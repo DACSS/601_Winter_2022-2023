@@ -18,6 +18,6 @@ The blog posts here are contributed by students enrolled in DACSS 601, Fundament
 
  - <a href = "https://dacss.github.io/DACSS_601_August2022_v2/" title = "Summmer 2022">2022 Summer </a>
  - <a href = "https://dacss.github.io/601_Fall_2022/" title = "FALL 2022">2022 Fall  </a>
- - <a href = "https://dacss.github.io/601_Winter_2022-2023/" title = "Winter 2022-2023">2022-2023 Winter </a>
+ - <a href = "posts.qmd" title = "Winter 2022-2023">2022-2023 Winter </a>
 
 :::
