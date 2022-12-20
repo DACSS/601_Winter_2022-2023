@@ -1,1 +1,1 @@
-Sitemap: https://dacss.github.io/601_Fall_2022/sitemap.xml
+Sitemap: https://dacss.github.io/601_Winter_2022-2023/sitemap.xml
