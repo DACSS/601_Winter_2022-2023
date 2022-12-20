@@ -4,5 +4,9 @@
     "items": [
       "/about/about.html"
     ]
+  },
+  {
+    "listing": "/posts.html",
+    "items": []
   }
 ]
