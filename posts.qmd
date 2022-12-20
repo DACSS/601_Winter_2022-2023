@@ -1,0 +1,13 @@
+---
+title: "DACSS 601: Data Science Fundamentals"
+subtitle: "Winter 2022-2023"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: table
+  categories: true
+  fields: [date, title, author]
+  table-hover: true
+page-layout: full
+---
+
