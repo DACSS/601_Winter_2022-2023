@@ -3,7 +3,7 @@ project:
 
 website:
   title: "DACSS 601: Data Science Fundamentals - FALL 2022"
-  site-url: https://dacss.github.io/601_Fall_2022/
+  site-url: https://dacss.github.io/601_Winter_2022-2023/
   twitter-card:
     creator: "@UMassDACSS"
     site: "@UMassDACSS"
@@ -37,7 +37,7 @@ website:
       - href: https://umass.edu/sbs/dacss
         text: "DACSS"
       - icon: github
-        href: https://github.com/DACSS/601_Fall_2022
+        href: https://github.com/DACSS/601_Winter_2022-2023
         aria-label: GitHub
   page-navigation: true
 execution:
