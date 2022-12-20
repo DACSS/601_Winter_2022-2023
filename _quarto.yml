@@ -2,35 +2,56 @@ project:
   type: website
 
 website:
-  title: ""
-  site-url: https://github.com/DACSS
+  title: "DACSS 601: Data Science Fundamentals - FALL 2022"
+  site-url: https://dacss.github.io/601_Fall_2022/
   twitter-card:
     creator: "@UMassDACSS"
     site: "@UMassDACSS"
+
+  sidebar:  
+    search: true
+    collapse-level: 2
+    contents:
+      - section: "Course information"
+        contents:
+          - href: Syllabus.qmd
+            text: Overview
+          - href: instructional_team.qmd
+            text: Instructional Team
+          - href: course_schedule.qmd
+            text: Course Schedule
+      - section: "Weekly materials"
+        contents:
+          - href: index.qmd
+            text: Posts
+    
   favicon: images/DACSS_Round_Network.png
   navbar:
     background: "#881c1c"
     logo: images/UMass White Wordmark Horiz.png
     right:
-      - text: ""
-        href: https://github.com/DACSS
+      - text: "Fall 2022 Posts"
+        href: index.qmd
       - text: "Contributors"
         file: about.qmd
       - href: https://umass.edu/sbs/dacss
         text: "DACSS"
       - icon: github
-        href: https://github.com/DACSS
+        href: https://github.com/DACSS/601_Fall_2022
         aria-label: GitHub
-
+  page-navigation: true
 execution:
   freeze: auto
 
 
 format:
   html:
+    smooth-scroll: true
+    page-layout: full
     mainfont: Open Sans
     linkcolor: "#881c1c"
     toc: true
     theme: 
       light: [flatly, styles.scss]
       dark: [darkly, styles.scss]
+    
