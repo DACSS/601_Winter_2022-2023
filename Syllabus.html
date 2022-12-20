@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DACSS 601: Data Science Fundamentals - FALL 2022 – syllabus</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./instructional_team.html" rel="next">
+<link href="./images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <img src="./images/UMass White Wordmark Horiz.png" alt="">
+    <span class="navbar-title">DACSS 601: Data Science Fundamentals - FALL 2022</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page">Fall 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/601_Fall_2022"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Course information</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Syllabus.html" class="sidebar-item-text sidebar-link active">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./instructional_team.html" class="sidebar-item-text sidebar-link">Instructional Team</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_schedule.html" class="sidebar-item-text sidebar-link">Course Schedule</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Weekly materials</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Posts</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#course-description" id="toc-course-description" class="nav-link active" data-scroll-target="#course-description"><strong>Course Description</strong></a></li>
+  <li><a href="#course-objectives" id="toc-course-objectives" class="nav-link" data-scroll-target="#course-objectives"><strong>Course Objectives</strong></a></li>
+  <li><a href="#textbook" id="toc-textbook" class="nav-link" data-scroll-target="#textbook"><strong>Textbook</strong></a></li>
+  <li><a href="#course-website" id="toc-course-website" class="nav-link" data-scroll-target="#course-website"><strong>Course Website</strong></a></li>
+  <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading"><strong>Grading</strong></a></li>
+  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software"><strong>Software</strong></a></li>
+  <li><a href="#academic-honesty" id="toc-academic-honesty" class="nav-link" data-scroll-target="#academic-honesty"><strong>Academic Honesty</strong></a></li>
+  <li><a href="#statement-on-disabilities" id="toc-statement-on-disabilities" class="nav-link" data-scroll-target="#statement-on-disabilities"><strong>Statement on Disabilities</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p><strong>Data Science Fundamentals</strong><br>
+DACSS 601<br>
+University of Massachusetts Amherst<br>
+Fall 2022<br>
+</p>
+<section id="course-description" class="level1">
+<h1><strong>Course Description</strong></h1>
+<p>This 3 credit course provides students with an introduction to the R programming language that will be used in all core courses and many of the technical electives. There is a growing demand for students with a background in generalist data science languages such as R, as opposed to more limited software such as Excel or statistics packages such as SPSS or Stata. The course will also provide students with a solid grounding in general data management and data wrangling skills that are required in all advanced quantitative and data analysis courses.&nbsp;</p>
+</section>
+<section id="course-objectives" class="level1">
+<h1><strong>Course Objectives</strong></h1>
+<ul>
+<li><p>Equip students with the skills necessary to conduct statistical analyses in R, capable of understanding implementing data science research designs across a variety of settings.&nbsp;</p></li>
+<li><p>Provide students with the tools to design and complete basic data science tasks of their own and in group collaborations.&nbsp;</p></li>
+<li><p>Demonstrate the importance of technological and statistical literacy for purposes of analysis, argument, and understanding, with students capable of critically engaging research and identifying both the strengths and weaknesses of increasingly common arguments based on empirical evidence.&nbsp;</p></li>
+<li><p>Enable students to communicate clearly and appropriately in both oral and written format the results or shortcomings of data-centered research.&nbsp;</p></li>
+</ul>
+<p><br>
+</p>
+</section>
+<section id="textbook" class="level1">
+<h1><strong>Textbook</strong></h1>
+<p>There is one required text for this course, <strong>freely available online:</strong></p>
+<p>Wickham, H., &amp; Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.</p>
+<p>We <strong>may</strong> also reference the following texts and associated online content in this course. These are not required, but any interested students can also find them freely available online.&nbsp;</p>
+<p>Wickham, H. (2019). Advanced R. Chapman and Hall/CRC.</p>
+<p>Wickham, H. (2010). A layered grammar of graphics. Journal of Computational I and Graphical Statistics, 19(1), 3-28.</p>
+<p>This syllabus outlines general areas of study throughout the course, as well as listing specific assignments on a daily basis. It is vital that you keep current with the assignments, as they will provide the basis for in-class lectures, discussions, and activities.&nbsp;</p>
+</section>
+<section id="course-website" class="level1">
+<h1><strong>Course Website</strong></h1>
+<p>All classroom material will be posted in <a href="https://classroom.google.com/c/NDcxMDc4MTg2OTI4?cjc=e5wvvbl">Google Classroom</a>. You will be submitting assignments via GitHub as part of a course blog.</p>
+</section>
+<section id="grading" class="level1">
+<h1><strong>Grading</strong></h1>
+<p>Grades are calculated as follows:&nbsp;</p>
+<ul>
+<li>Tutorials (15%)&nbsp;</li>
+<li>Challenges and Homeworks (50%)&nbsp;</li>
+<li>Final Project (25%)&nbsp;</li>
+<li>Synchronous and/or Asynchronous Participation (10%)&nbsp;</li>
+</ul>
+<p><strong>Tutorials</strong> Students are expected to complete nine online R tutorials that will walk them through data science tasks in R. These tutorials are FORMATIVE work - they are not intended to negatively affect your grade but to support your learning. Therefore, students who submit every assignment will receive at least a 90 (or 36 out of 40 points), regardless of their actual score.</p>
+<p><strong>Challenges and Homework</strong> There are weekly challenges to help you practice specific skills (usually on datasets that we provide), and 2 significant assignments that allow you practice your new skills working with data that you choose. Challenges and homeworks are all formative assignments that help you prepare for the final (summative) student project. The assignments will help you build your ability to capably and efficiently accomplish data science tasks in R and will establish a foundation for your subsequent methods courses. Feedback is provided to help individual students “stretch” and improve their data management and programming skills regardless of their background.&nbsp;</p>
+<p><strong>Final Project</strong> More information regarding the final project will be made available on the course website. Students are expected to prepare a basic data analysis pipeline and resulting visualization at the end of the semester, and to draft a final discussion post that reflects on their approach, experience, and challenges in drafting the visualization, as well as what they would do differently next time. Students with no prior experience in R may want to consider one of the relatively clean datasets that we provide; while students with extensive programming experience should choose ambitious projects involving multiple datasets and more extensive data cleaning. Examples are provided of past projects, to provide a sense of the range of possible submissions. The goal is to increase individual skills and comfort with R and data management during the course, and we fully expect some students will submit projects considerably more complicated than others due to their prior experience.</p>
+<p><strong>Participation</strong> It is imperative that students actively participate in class discussion both synchronously (when possible) and asynchronously. Students are expected to participate regularly, and participation should reflect careful consideration of the topic. Participation does not need to reflect expertise; rather, students should seek to both ask and answer questions regularly and in equal proportion. In summation, students should show some amount of engagement with instructor/students in the course content.</p>
+<p>Final letter grades are assigned using the University’s Plus-Minus Grading Scale according to following rubric:&nbsp;</p>
+<p>A &nbsp; (94-100%)<br>
+A-&nbsp; (90-93%)<br>
+B+ (86-89%)<br>
+B &nbsp; (81-85%)<br>
+B- &nbsp;(77-80%)<br>
+C+ (74-76%)<br>
+C &nbsp; (70-73%)<br>
+F &nbsp; (Below 70%)<br>
+</p>
+</section>
+<section id="software" class="level1">
+<h1><strong>Software</strong></h1>
+<p>Students in this class will use R and RStudio. The software is free and available online; the course website includes a guide for installing both on your machine. The course assumes no familiarity with the R programming language. If you run into issues during R installation, we recommend that you create a free RStudio Cloud account to use while you consult with an expert to sort out any installation issues.&nbsp;</p>
+<p>We will also make use of Google Classroom, GitHub and Slack. All of these are freely available for use online.</p>
+<p>The instructional team cannot provide support for installation or other general computing issues, and can provide only limited support for hands-on debugging (e.g., during class, during drop-in office hours, via slack.) We recommend that students work in small groups and support each other as much as possible during class. Additionally, DACSS maintains a list of tutors who can provide more specialized and intensive support for an hourly fee.</p>
+</section>
+<section id="academic-honesty" class="level1">
+<h1><strong>Academic Honesty</strong></h1>
+<p>Since the integrity of the academic enterprise of any institution of higher education requires&nbsp;</p>
+<p>honesty in scholarship and research, academic honesty is required of all students at the University of Massachusetts Amherst.&nbsp;</p>
+<p>Academic dishonesty is prohibited in all programs of the University. Academic dishonesty includes but is not limited to: cheating, fabrication, plagiarism, and facilitating dishonesty. Appropriate sanctions may be imposed on any student who has committed an act of academic dishonesty. Instructors should take reasonable steps to address academic misconduct. Any person who has reason to believe that a student has committed academic dishonesty should bring such information to the attention of the appropriate course instructor as soon as possible. Instances of academic dishonesty not related to a specific course should be brought to the attention of the appropriate department Head or Chair. The procedures outlined below are intended to provide an efficient and orderly process by which action may be taken if it appears that academic dishonesty has occurred and by which students may appeal such actions.&nbsp;</p>
+<p>Since students are expected to be familiar with this policy and the commonly accepted standards of academic integrity, ignorance of such standards is not normally sufficient evidence of lack of intent.&nbsp;</p>
+<p>For more information about what constitutes academic dishonesty, please see the Dean of Students’ website: <a href="http://umass.edu/dean_students/codeofconduct/acadhonesty/">http://umass.edu/dean_students/codeofconduct/acadhonesty/&nbsp;</a></p>
+</section>
+<section id="statement-on-disabilities" class="level1">
+<h1><strong>Statement on Disabilities</strong></h1>
+<p>The University of Massachusetts Amherst is committed to making reasonable, effective and appropriate accommodations to meet the needs of students with disabilities and help create a barrier free campus.&nbsp;</p>
+<p>If you are in need of accommodation for a documented disability, register with Disability Services to have an accommodation letter sent to your faculty. It is your responsibility to initiate these services and to communicate with faculty ahead of time to manage accommodations in a timely manner. For more information, consult the <a href="http://www.umass.edu/disability/">Disability Services website</a><a href="http://www.umass.edu/disability/.">.&nbsp;</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./instructional_team.html" class="pagination-link">
+        <span class="nav-page-text">Instructional Team</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
