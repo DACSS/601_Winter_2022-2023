@@ -19,7 +19,7 @@ You can create a new post by following the below steps
 
  - Open the any .qmd file which is in the _templates folder that you want to work on.
  - Click on `File` -> '`Save As` -> open the posts folder in your Project repository
- - Change the file name to "filedescription_FirstLast.qmd"
+ - Change the file name to "FirstLast_filedescription.qmd"
  - Save it.
  - Now Open the saved post which is in the posts folder
  - Edit your Post
