@@ -6,25 +6,11 @@ text-align: justify}
 ```
 # **Instructional Team** {#sec-instructional-team}
 
-[![Dr. Meredith Rolfe](images/rolfe.jpg){fig-align="left"}](https://polsci.umass.edu/people/meredith-rolfe)\
-
-[Meredith Rolfe](mailto:mrolfe@umass.edu)\
+[Sean Conway](mailto:spconway@umass.edu)\
 Instructor\
-Bartlett 251\
 
-[![Rosemary Pang](images/rosemary.jpeg){fig-align="left"}](https://rosemarypang.com/)\
+Course Time: M/W, 5:30-7:00 PM
 
-[Rosemary Pang](mailto:mrpang@umass.edu)\
-Instructor\
-Bartlett 263\
+Course Location: Machmer W13 or [Zoom](https://umass-amherst.zoom.us/j/94538774738)
 
-Joyti Rani\
-Classroom Assistant\
-DACSS Student\
-Bartlett 252\
-
-Course Time: Wednesday, 7:00 - 8:30 PM
-
-Course Location: Machmer W13 or [Zoom](https://umass-amherst.zoom.us/j/92413571486)
-
-Office Hours: [Make an appointment](https://www.umass.edu/sbs/data-analytics-and-computational-social-science-program/appointment-booking-test) with a tutor. Professor Rolfe answers all asynchronous questions posed in the classroom or #r-help slack -usually within 24 hours - but has limited availability to meet during the day. If you have an urgent issue that cannot be resolved asynchronously, please contact the classroom assistant or [Rosemary Pang](mailto:mrpang@umass.edu) for an appointment.
+Office Hours: [Make an appointment](https://www.umass.edu/sbs/data-analytics-and-computational-social-science-program/appointment-booking-test) with a tutor. Sean answers all asynchronous questions posed in the classroom or #r-help slack -usually within 24 hours - but has limited availability to meet during the day. 
