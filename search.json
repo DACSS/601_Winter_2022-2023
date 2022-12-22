@@ -63,11 +63,74 @@
     "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour Name\n\n\n\n\n\n\n\nNo matching items"
   },
   {
+    "objectID": "posts/challenge2_instructions.html",
+    "href": "posts/challenge2_instructions.html",
+    "title": "Challenge 2 Instructions",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge2_instructions.html#challenge-overview",
+    "href": "posts/challenge2_instructions.html#challenge-overview",
+    "title": "Challenge 2 Instructions",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is to\n\nread in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)\nprovide summary statistics for different interesting groups within the data, and interpret those statistics"
+  },
+  {
+    "objectID": "posts/challenge2_instructions.html#read-in-the-data",
+    "href": "posts/challenge2_instructions.html#read-in-the-data",
+    "title": "Challenge 2 Instructions",
+    "section": "Read in the Data",
+    "text": "Read in the Data\nRead in one (or more) of the following data sets, available in the posts/_data folder, using the correct R package and command.\n\nrailroad*.csv or StateCounty2012.xlsx ⭐\nFAOstat*.csv ⭐⭐⭐\nhotel_bookings ⭐⭐⭐⭐\n\n\n\n\nAdd any comments or documentation as needed. More challenging data may require additional code chunks and documentation."
+  },
+  {
+    "objectID": "posts/challenge2_instructions.html#describe-the-data",
+    "href": "posts/challenge2_instructions.html#describe-the-data",
+    "title": "Challenge 2 Instructions",
+    "section": "Describe the data",
+    "text": "Describe the data\nUsing a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data)."
+  },
+  {
+    "objectID": "posts/challenge2_instructions.html#provide-grouped-summary-statistics",
+    "href": "posts/challenge2_instructions.html#provide-grouped-summary-statistics",
+    "title": "Challenge 2 Instructions",
+    "section": "Provide Grouped Summary Statistics",
+    "text": "Provide Grouped Summary Statistics\nConduct some exploratory data analysis, using dplyr commands such as group_by(), select(), filter(), and summarise(). Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.\n\n\n\n\nExplain and Interpret\nBe sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included."
+  },
+  {
+    "objectID": "posts/challenge1_instructions.html",
+    "href": "posts/challenge1_instructions.html",
+    "title": "Challenge 1 Instructions",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge1_instructions.html#challenge-overview",
+    "href": "posts/challenge1_instructions.html#challenge-overview",
+    "title": "Challenge 1 Instructions",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is to\n\nread in a dataset, and\ndescribe the dataset using both words and any supporting information (e.g., tables, etc)"
+  },
+  {
+    "objectID": "posts/challenge1_instructions.html#read-in-the-data",
+    "href": "posts/challenge1_instructions.html#read-in-the-data",
+    "title": "Challenge 1 Instructions",
+    "section": "Read in the Data",
+    "text": "Read in the Data\nRead in one (or more) of the following data sets, using the correct R package and command.\n\nrailroad_2012_clean_county.csv ⭐\nbirds.csv ⭐⭐\nFAOstat*.csv ⭐⭐\nwild_bird_data.xlsx ⭐⭐⭐\nStateCounty2012.xlsx ⭐⭐⭐⭐\n\nFind the _data folder, located inside the posts folder. Then you can read in the data, using either one of the readr standard tidy read commands, or a specialized package such as readxl.\n\n\n\nAdd any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation."
+  },
+  {
+    "objectID": "posts/challenge1_instructions.html#describe-the-data",
+    "href": "posts/challenge1_instructions.html#describe-the-data",
+    "title": "Challenge 1 Instructions",
+    "section": "Describe the data",
+    "text": "Describe the data\nUsing a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data)."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "DACSS 601: Data Science Fundamentals",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nDec 21, 2022\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nDec 20, 2022\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "instructional_team.html",
