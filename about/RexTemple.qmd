@@ -1,0 +1,42 @@
+---
+title: "Rex Temple"
+image: images/YourName.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/RexTemple.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/XTemple
+---
+
+##Instructions
+
+  - save a copy of this document as *FirstLast.qmd* in the **about** folder
+  - replace *Your Name* in yaml header with your first and last name
+  - save an image (jpeg, png) to use in the **about/images** folder
+  - replace image names in yaml header
+  - replace github user name
+  - fill in information below, as appropriate
+  - commit to github and submit pull request
+
+## Education/Work Background
+I graduated from Boston University with my Master's in Clinical and Macro Social Work in 2021 and have been working at Mass. General Hospital since 2020.
+
+## R experience
+No experience with R.
+
+## Research interests
+Mainly curriculum development. In addition, I'm interested in social stratification, and welfare economics.
+
+## Hometown
+I grew up on a pig farm in rural Indiana.
+
+## Hobbies
+Weightlifting, fishing, metal, and videogames.
+
+
+## Fun fact
+I used to work with beluga whales.
