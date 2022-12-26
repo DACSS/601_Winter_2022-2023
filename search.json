@@ -2,7 +2,7 @@
   {
     "objectID": "course_schedule.html",
     "href": "course_schedule.html",
-    "title": "DACSS 601: Data Science Fundamentals - Winter 2022-2023",
+    "title": "",
     "section": "",
     "text": "Course Schedule\nDetailed schedule information with all asynchronous materials, assignment instructions and due dates is provided on Google Classroom.\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession\n12/21/22\nTutorials to Review\nTutorial 1 - 5\nHomework Due\n\n\nAsync Materials (to be completed PRIOR tosessions) | Challenge (submit before session - reviewed in session) | ====================================================+=========================================================+ Pre-session materials, Data import | 1: Challenge 1 Read data + HW1 setup github |\n\n\n\n\n12/26/22\nTutorial 7&9\n\n\nGroup and Summarize\n2: Summary Statistics\n\n\n\n12/28/22\n\n\n\n\nTidy Data\n3: Read + pivot data\n\n\n\n1/2/23 |   |   | Data wrangling and transformation | 4: Mutate with lubridate and stringr |\n\n\n1/4/23 |   | HW2  |   | HW2 |\n\n\n1/9/23 | Tutorial  6&8 |   | Visualizing statistics | Univariate graph, Bivariate graph |\n\n\n1/11/23 |   |   | Visualizing time and groups | Graph over time, stacked bar chart |\n\n\n1/16/23 |   |   | Customizing ggplot | Axis Labels, facets |\n\n\n1/18/23 |   |   | Joins | Joins |\n\n\n1/23/23 |   | HW3 |   | HW3 |\n\n\n1/25/23 |   |   | Creating your own Functions | Create a function |\n\n\n1/30/23 |   |   | purrr and map | purrr |\n\n\n2/1/23 |   |  Final Project Due Feb. 5th | Intro to Python | optional | ———–+———————+————————–+—————————————————-+———————————————————+"
   },
@@ -56,11 +56,158 @@
     "text": "Fun fact"
   },
   {
+    "objectID": "about/TanmayAgrawal.html",
+    "href": "about/TanmayAgrawal.html",
+    "title": "Tanmay Agrawal",
+    "section": "",
+    "text": "##Instructions"
+  },
+  {
+    "objectID": "about/TanmayAgrawal.html#educationwork-background",
+    "href": "about/TanmayAgrawal.html#educationwork-background",
+    "title": "Tanmay Agrawal",
+    "section": "Education/Work Background",
+    "text": "Education/Work Background\nBachelor’s: - SRM University: Computer Science - UC Berkeley: Computer Science, Data Science\nMaster’s: - UMass Amherst: Computer Science\nWork: Deep Learning Software Intern: NVIDIA ML Intern: PathAI, Inc."
+  },
+  {
+    "objectID": "about/TanmayAgrawal.html#r-experience",
+    "href": "about/TanmayAgrawal.html#r-experience",
+    "title": "Tanmay Agrawal",
+    "section": "R experience",
+    "text": "R experience\nI have minimal experience with R. I first used it during my sophomore year of undergrad (~4 years ago) for a project and I really enjoyed it. The R community has grown so much and the IDE, the user experience seems much better now."
+  },
+  {
+    "objectID": "about/TanmayAgrawal.html#research-interests",
+    "href": "about/TanmayAgrawal.html#research-interests",
+    "title": "Tanmay Agrawal",
+    "section": "Research interests",
+    "text": "Research interests\nBroadly, I am interested in applying Data Science and ML for social good causes."
+  },
+  {
+    "objectID": "about/TanmayAgrawal.html#hometown",
+    "href": "about/TanmayAgrawal.html#hometown",
+    "title": "Tanmay Agrawal",
+    "section": "Hometown",
+    "text": "Hometown\nIndore, India"
+  },
+  {
+    "objectID": "about/TanmayAgrawal.html#hobbies",
+    "href": "about/TanmayAgrawal.html#hobbies",
+    "title": "Tanmay Agrawal",
+    "section": "Hobbies",
+    "text": "Hobbies\nLearning new things, watching chess, coding"
+  },
+  {
+    "objectID": "about/TanmayAgrawal.html#fun-fact",
+    "href": "about/TanmayAgrawal.html#fun-fact",
+    "title": "Tanmay Agrawal",
+    "section": "Fun fact",
+    "text": "Fun fact\nI have a fraternal twin and we have rhyming names."
+  },
+  {
+    "objectID": "about/AboutCristhianBarbaGarzon.html",
+    "href": "about/AboutCristhianBarbaGarzon.html",
+    "title": "Cristhian Barba Garzon",
+    "section": "",
+    "text": "##Instructions"
+  },
+  {
+    "objectID": "about/AboutCristhianBarbaGarzon.html#educationwork-background",
+    "href": "about/AboutCristhianBarbaGarzon.html#educationwork-background",
+    "title": "Cristhian Barba Garzon",
+    "section": "Education/Work Background",
+    "text": "Education/Work Background\nMajor: Physics Major Year: 3rd Year Work: Student Researcher"
+  },
+  {
+    "objectID": "about/AboutCristhianBarbaGarzon.html#r-experience",
+    "href": "about/AboutCristhianBarbaGarzon.html#r-experience",
+    "title": "Cristhian Barba Garzon",
+    "section": "R experience",
+    "text": "R experience\nExperience Level: None"
+  },
+  {
+    "objectID": "about/AboutCristhianBarbaGarzon.html#research-interests",
+    "href": "about/AboutCristhianBarbaGarzon.html#research-interests",
+    "title": "Cristhian Barba Garzon",
+    "section": "Research interests",
+    "text": "Research interests\nI am interested in working with code and learning how to manipulate and visualize data."
+  },
+  {
+    "objectID": "about/AboutCristhianBarbaGarzon.html#hometown",
+    "href": "about/AboutCristhianBarbaGarzon.html#hometown",
+    "title": "Cristhian Barba Garzon",
+    "section": "Hometown",
+    "text": "Hometown\nLowell, MA"
+  },
+  {
+    "objectID": "about/AboutCristhianBarbaGarzon.html#hobbies",
+    "href": "about/AboutCristhianBarbaGarzon.html#hobbies",
+    "title": "Cristhian Barba Garzon",
+    "section": "Hobbies",
+    "text": "Hobbies\n\njump roping\ncooking\nsleeping\nlearning to code\nhiking (trying to get into it)"
+  },
+  {
+    "objectID": "about/AboutCristhianBarbaGarzon.html#fun-fact",
+    "href": "about/AboutCristhianBarbaGarzon.html#fun-fact",
+    "title": "Cristhian Barba Garzon",
+    "section": "Fun fact",
+    "text": "Fun fact\n\nI am the first in my family to go to college and nearly graduate!"
+  },
+  {
+    "objectID": "about/MarcelaRobinson.html",
+    "href": "about/MarcelaRobinson.html",
+    "title": "Marcela Robinson",
+    "section": "",
+    "text": "##Instructions"
+  },
+  {
+    "objectID": "about/MarcelaRobinson.html#educationwork-background",
+    "href": "about/MarcelaRobinson.html#educationwork-background",
+    "title": "Marcela Robinson",
+    "section": "Education/Work Background",
+    "text": "Education/Work Background\nI received my BA in Spanish and MBA from UMass. I have been working for the past seven years in higher education, as part of the operations team."
+  },
+  {
+    "objectID": "about/MarcelaRobinson.html#r-experience",
+    "href": "about/MarcelaRobinson.html#r-experience",
+    "title": "Marcela Robinson",
+    "section": "R experience",
+    "text": "R experience\nI do not have any experience with R."
+  },
+  {
+    "objectID": "about/MarcelaRobinson.html#research-interests",
+    "href": "about/MarcelaRobinson.html#research-interests",
+    "title": "Marcela Robinson",
+    "section": "Research interests",
+    "text": "Research interests\nI am interested in topics related to higher education such as diversity and inclusion in higher education, student accessibility to career services, intersectionality in career guidance, post graduate outcomes, particularly for underrepresented communities."
+  },
+  {
+    "objectID": "about/MarcelaRobinson.html#hometown",
+    "href": "about/MarcelaRobinson.html#hometown",
+    "title": "Marcela Robinson",
+    "section": "Hometown",
+    "text": "Hometown\nPereira, COLOMBIA."
+  },
+  {
+    "objectID": "about/MarcelaRobinson.html#hobbies",
+    "href": "about/MarcelaRobinson.html#hobbies",
+    "title": "Marcela Robinson",
+    "section": "Hobbies",
+    "text": "Hobbies\nI enjoy practicing yoga, spending time with my husband and 1 year old son, and cooking."
+  },
+  {
+    "objectID": "about/MarcelaRobinson.html#fun-fact",
+    "href": "about/MarcelaRobinson.html#fun-fact",
+    "title": "Marcela Robinson",
+    "section": "Fun fact",
+    "text": "Fun fact\nI was born and raised in the coffee region of Colombia (located in the foothills of the Andes)."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Contributors",
     "section": "",
-    "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour Name\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCristhian Barba Garzon\n\n\n\n\n\n\n\n\n\n\n\n\n\nMarcela Robinson\n\n\n\n\n\n\n\n\n\n\n\n\n\nTanmay Agrawal\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour Name\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/challenge2_instructions.html",
@@ -98,6 +245,13 @@
     "text": "Provide Grouped Summary Statistics\nConduct some exploratory data analysis, using dplyr commands such as group_by(), select(), filter(), and summarise(). Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.\n\n\n\n\nExplain and Interpret\nBe sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included."
   },
   {
+    "objectID": "posts/challenge1_MarcelaRobinson.html",
+    "href": "posts/challenge1_MarcelaRobinson.html",
+    "title": "Challenge 1",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n\n\n##Read the data Import data into R as a cvs file. This dataset contains information about the total number of railroad employees per county in the US.\n\n\nCode\nlibrary(readr)\nrailroad <- read.csv(\"C:/Users/mmrobinson/Desktop/Github/601_Winter_2022-2023/posts/_data/railroad_2012_clean_county.csv\")\n\n\nError in file(file, \"rt\"): cannot open the connection\n\n\nCode\nhead(railroad)\n\n\nError in head(railroad): object 'railroad' not found\n\n\n##Get dimension for railroad dataset This dataset has 3 different columns and 2930 rows.\n\n\nCode\ndim(railroad)\n\n\nError in eval(expr, envir, enclos): object 'railroad' not found\n\n\n##Get column names of railroad This dataset contains 3 columns named “state”, “county”, and “total_employees.”\n\n\nCode\ncolnames(railroad)\n\n\nError in is.data.frame(x): object 'railroad' not found\n\n\n##Select station_county and total_employees columns Focus on the total number of employees per county.\n\n\nCode\nselect(railroad, county, total_employees)\n\n\nError in select(railroad, county, total_employees): object 'railroad' not found\n\n\nCode\nhead(railroad)\n\n\nError in head(railroad): object 'railroad' not found\n\n\n##Arrange data by the total number of employees in descending order Arranging the dataset by the total number of employees in descending order help us determine that Cook, IL has the highest number of employees.\n\n\nCode\nrailroad %>%\nselect(total_employees, state, county) %>%\n  arrange(desc(total_employees))\n\n\nError in select(., total_employees, state, county): object 'railroad' not found\n\n\n##Arrange dataset based on the total number of employees per state\n\n\nCode\nrailroad%>%\n  arrange(desc(total_employees))%>%\n  select(total_employees,state, county) %>%\n  group_by(state) %>%\n    slice(1)%>%\n  arrange(desc(total_employees))\n\n\nError in arrange(., desc(total_employees)): object 'railroad' not found\n\n\n##Find the mean of total_employees per state with label\n\n\nCode\nsummarise(railroad, mean(total_employees))\n\n\nError in summarise(railroad, mean(total_employees)): object 'railroad' not found\n\n\n##Find basic statistical information on the dataset\n\n\nCode\nsummarise(railroad, mean.employees = mean(total_employees), min.employees = min(total_employees), max.employees = max(total_employees), sd.employees = sd(total_employees))\n\n\nError in summarise(railroad, mean.employees = mean(total_employees), min.employees = min(total_employees), : object 'railroad' not found\n\n\n##Find the mean of total_employees per state\n\n\nCode\nrailroad %>%\n  group_by(state) %>%\n  select(state, total_employees) %>%\n  summarise_all(mean, na.rm=TRUE)%>%\n  arrange(desc(total_employees))\n\n\nError in group_by(., state): object 'railroad' not found\n\n\n##Find the mean of total_employees per county Finding the mean and arranging the dataset by the total number of employees indicated that Delaware has the highest number of employees per station compared to the rest of the states. However, Texas has the most employees per state.\n\n\nCode\nrailroad%>%\n  group_by(state)%>%\n  select(total_employees)%>%\n  summarise_all(sum, na.rm = TRUE)%>%\narrange(desc(total_employees))\n\n\nError in group_by(., state): object 'railroad' not found\n\n\nConclusion - This dataset was likely created by the Railroad system in the United States to document the total number of railroad employees and keep record of its employment. The dataset contains 2930 observations and 3 variables. The county with most employees is in the state of Illinois, however, the state with most employees is in Texas."
+  },
+  {
     "objectID": "posts/challenge1_instructions.html",
     "href": "posts/challenge1_instructions.html",
     "title": "Challenge 1 Instructions",
@@ -128,22 +282,8 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "DACSS 601: Data Science Fundamentals",
+    "title": "DACSS 601: Data Science Fundamentals - W22/23",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nDec 21, 2022\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nDec 20, 2022\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "instructional_team.html",
-    "href": "instructional_team.html",
-    "title": "DACSS 601: Data Science Fundamentals - Winter 2022-2023",
-    "section": "",
-    "text": "Instructional Team\n\n\nMeredith Rolfe\nInstructor\nBartlett 251\n\n\n\nRosemary Pang\nInstructor\nBartlett 263\n\nJoyti Rani\nClassroom Assistant\nDACSS Student\nBartlett 252\n\nCourse Time: Wednesday, 7:00 - 8:30 PM\nCourse Location: Machmer W13 or Zoom\nOffice Hours: Make an appointment with a tutor. Professor Rolfe answers all asynchronous questions posed in the classroom or #r-help slack -usually within 24 hours - but has limited availability to meet during the day. If you have an urgent issue that cannot be resolved asynchronously, please contact the classroom assistant or Rosemary Pang for an appointment."
-  },
-  {
-    "objectID": "Syllabus.html",
-    "href": "Syllabus.html",
-    "title": "DACSS 601: Data Science Fundamentals - Winter 2022-2023",
-    "section": "",
-    "text": "Data Science Fundamentals\nDACSS 601\nUniversity of Massachusetts Amherst\nFall 2022\n\n\nCourse Description\nThis 3 credit course provides students with an introduction to the R programming language that will be used in all core courses and many of the technical electives. There is a growing demand for students with a background in generalist data science languages such as R, as opposed to more limited software such as Excel or statistics packages such as SPSS or Stata. The course will also provide students with a solid grounding in general data management and data wrangling skills that are required in all advanced quantitative and data analysis courses. \n\n\nCourse Objectives\n\nEquip students with the skills necessary to conduct statistical analyses in R, capable of understanding implementing data science research designs across a variety of settings. \nProvide students with the tools to design and complete basic data science tasks of their own and in group collaborations. \nDemonstrate the importance of technological and statistical literacy for purposes of analysis, argument, and understanding, with students capable of critically engaging research and identifying both the strengths and weaknesses of increasingly common arguments based on empirical evidence. \nEnable students to communicate clearly and appropriately in both oral and written format the results or shortcomings of data-centered research. \n\n\n\n\n\nTextbook\nThere is one required text for this course, freely available online:\nWickham, H., & Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.\nWe may also reference the following texts and associated online content in this course. These are not required, but any interested students can also find them freely available online. \nWickham, H. (2019). Advanced R. Chapman and Hall/CRC.\nWickham, H. (2010). A layered grammar of graphics. Journal of Computational I and Graphical Statistics, 19(1), 3-28.\nThis syllabus outlines general areas of study throughout the course, as well as listing specific assignments on a daily basis. It is vital that you keep current with the assignments, as they will provide the basis for in-class lectures, discussions, and activities. \n\n\nCourse Website\nAll classroom material will be posted in Google Classroom. You will be submitting assignments via GitHub as part of a course blog.\n\n\nGrading\nGrades are calculated as follows: \n\nTutorials (15%) \nChallenges and Homeworks (50%) \nFinal Project (25%) \nSynchronous and/or Asynchronous Participation (10%) \n\nTutorials Students are expected to complete nine online R tutorials that will walk them through data science tasks in R. These tutorials are FORMATIVE work - they are not intended to negatively affect your grade but to support your learning. Therefore, students who submit every assignment will receive at least a 90 (or 36 out of 40 points), regardless of their actual score.\nChallenges and Homework There are weekly challenges to help you practice specific skills (usually on datasets that we provide), and 2 significant assignments that allow you practice your new skills working with data that you choose. Challenges and homeworks are all formative assignments that help you prepare for the final (summative) student project. The assignments will help you build your ability to capably and efficiently accomplish data science tasks in R and will establish a foundation for your subsequent methods courses. Feedback is provided to help individual students “stretch” and improve their data management and programming skills regardless of their background. \nFinal Project More information regarding the final project will be made available on the course website. Students are expected to prepare a basic data analysis pipeline and resulting visualization at the end of the semester, and to draft a final discussion post that reflects on their approach, experience, and challenges in drafting the visualization, as well as what they would do differently next time. Students with no prior experience in R may want to consider one of the relatively clean datasets that we provide; while students with extensive programming experience should choose ambitious projects involving multiple datasets and more extensive data cleaning. Examples are provided of past projects, to provide a sense of the range of possible submissions. The goal is to increase individual skills and comfort with R and data management during the course, and we fully expect some students will submit projects considerably more complicated than others due to their prior experience.\nParticipation It is imperative that students actively participate in class discussion both synchronously (when possible) and asynchronously. Students are expected to participate regularly, and participation should reflect careful consideration of the topic. Participation does not need to reflect expertise; rather, students should seek to both ask and answer questions regularly and in equal proportion. In summation, students should show some amount of engagement with instructor/students in the course content.\nFinal letter grades are assigned using the University’s Plus-Minus Grading Scale according to following rubric: \nA   (94-100%)\nA-  (90-93%)\nB+ (86-89%)\nB   (81-85%)\nB-  (77-80%)\nC+ (74-76%)\nC   (70-73%)\nF   (Below 70%)\n\n\n\nSoftware\nStudents in this class will use R and RStudio. The software is free and available online; the course website includes a guide for installing both on your machine. The course assumes no familiarity with the R programming language. If you run into issues during R installation, we recommend that you create a free RStudio Cloud account to use while you consult with an expert to sort out any installation issues. \nWe will also make use of Google Classroom, GitHub and Slack. All of these are freely available for use online.\nThe instructional team cannot provide support for installation or other general computing issues, and can provide only limited support for hands-on debugging (e.g., during class, during drop-in office hours, via slack.) We recommend that students work in small groups and support each other as much as possible during class. Additionally, DACSS maintains a list of tutors who can provide more specialized and intensive support for an hourly fee.\n\n\nAcademic Honesty\nSince the integrity of the academic enterprise of any institution of higher education requires \nhonesty in scholarship and research, academic honesty is required of all students at the University of Massachusetts Amherst. \nAcademic dishonesty is prohibited in all programs of the University. Academic dishonesty includes but is not limited to: cheating, fabrication, plagiarism, and facilitating dishonesty. Appropriate sanctions may be imposed on any student who has committed an act of academic dishonesty. Instructors should take reasonable steps to address academic misconduct. Any person who has reason to believe that a student has committed academic dishonesty should bring such information to the attention of the appropriate course instructor as soon as possible. Instances of academic dishonesty not related to a specific course should be brought to the attention of the appropriate department Head or Chair. The procedures outlined below are intended to provide an efficient and orderly process by which action may be taken if it appears that academic dishonesty has occurred and by which students may appeal such actions. \nSince students are expected to be familiar with this policy and the commonly accepted standards of academic integrity, ignorance of such standards is not normally sufficient evidence of lack of intent. \nFor more information about what constitutes academic dishonesty, please see the Dean of Students’ website: http://umass.edu/dean_students/codeofconduct/acadhonesty/ \n\n\nStatement on Disabilities\nThe University of Massachusetts Amherst is committed to making reasonable, effective and appropriate accommodations to meet the needs of students with disabilities and help create a barrier free campus. \nIf you are in need of accommodation for a documented disability, register with Disability Services to have an accommodation letter sent to your faculty. It is your responsibility to initiate these services and to communicate with faculty ahead of time to manage accommodations in a timely manner. For more information, consult the Disability Services website."
+    "text": "Challenge 1\n\n\n\n\n\n\n\nchallenge_1\n\n\n\n\nReading in data and creating a post\n\n\n\n\n\n\nDec 25, 2022\n\n\nMarcela Robinson\n\n\n\n\n\n\n\n\nChallenge 2 Instructions\n\n\n\n\n\n\n\nchallenge_2\n\n\n\n\nData wrangling: using group() and summarise()\n\n\n\n\n\n\nDec 21, 2022\n\n\nSean Conway\n\n\n\n\n\n\n\n\nChallenge 1 Instructions\n\n\n\n\n\n\n\nchallenge_1\n\n\n\n\nReading in data and creating a post\n\n\n\n\n\n\nDec 20, 2022\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
   }
 ]

@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dacss.github.io/601_Winter_2022-2023/course_schedule.html</loc>
-    <lastmod>2022-12-22T20:31:55.531Z</lastmod>
+    <loc>https://github.com/DACSS/course_schedule.html</loc>
+    <lastmod>2022-12-26T21:56:40.754Z</lastmod>
   </url>
   <url>
-    <loc>https://dacss.github.io/601_Winter_2022-2023/about/about.html</loc>
-    <lastmod>2022-12-22T20:31:57.583Z</lastmod>
+    <loc>https://github.com/DACSS/about/about.html</loc>
+    <lastmod>2022-12-26T21:56:42.798Z</lastmod>
   </url>
   <url>
-    <loc>https://dacss.github.io/601_Winter_2022-2023/about.html</loc>
-    <lastmod>2022-12-22T20:31:57.943Z</lastmod>
+    <loc>https://github.com/DACSS/about/TanmayAgrawal.html</loc>
+    <lastmod>2022-12-26T21:56:43.158Z</lastmod>
   </url>
   <url>
-    <loc>https://dacss.github.io/601_Winter_2022-2023/posts/challenge2_instructions.html</loc>
-    <lastmod>2022-12-22T20:32:01.775Z</lastmod>
+    <loc>https://github.com/DACSS/about/AboutCristhianBarbaGarzon.html</loc>
+    <lastmod>2022-12-26T21:56:43.486Z</lastmod>
   </url>
   <url>
-    <loc>https://dacss.github.io/601_Winter_2022-2023/posts/challenge1_instructions.html</loc>
-    <lastmod>2022-12-22T20:32:04.683Z</lastmod>
+    <loc>https://github.com/DACSS/about/MarcelaRobinson.html</loc>
+    <lastmod>2022-12-26T21:56:43.818Z</lastmod>
   </url>
   <url>
-    <loc>https://dacss.github.io/601_Winter_2022-2023/index.html</loc>
-    <lastmod>2022-12-22T20:32:05.735Z</lastmod>
+    <loc>https://github.com/DACSS/about.html</loc>
+    <lastmod>2022-12-26T21:56:44.190Z</lastmod>
   </url>
   <url>
-    <loc>https://dacss.github.io/601_Winter_2022-2023/instructional_team.html</loc>
-    <lastmod>2022-12-22T20:32:06.063Z</lastmod>
+    <loc>https://github.com/DACSS/posts/challenge2_instructions.html</loc>
+    <lastmod>2022-12-26T21:56:48.066Z</lastmod>
   </url>
   <url>
-    <loc>https://dacss.github.io/601_Winter_2022-2023/Syllabus.html</loc>
-    <lastmod>2022-12-22T20:32:06.463Z</lastmod>
+    <loc>https://github.com/DACSS/posts/challenge1_MarcelaRobinson.html</loc>
+    <lastmod>2022-12-26T21:56:51.150Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/DACSS/posts/challenge1_instructions.html</loc>
+    <lastmod>2022-12-26T21:56:54.070Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/DACSS/index.html</loc>
+    <lastmod>2022-12-26T21:56:55.098Z</lastmod>
   </url>
 </urlset>
