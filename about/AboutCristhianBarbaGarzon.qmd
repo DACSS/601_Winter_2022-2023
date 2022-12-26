@@ -1,0 +1,49 @@
+---
+title: "Cristhian Barba Garzon"
+image: images/YourName.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/Me.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/CristhianBarba
+---
+
+##Instructions
+
+  - save a copy of this document as *FirstLast.qmd* in the **about** folder
+  - replace *Your Name* in yaml header with your first and last name
+  - save an image (jpeg, png) to use in the **about/images** folder
+  - replace image names in yaml header
+  - replace github user name
+  - fill in information below, as appropriate
+  - commit to github and submit pull request
+
+## Education/Work Background
+Major: Physics Major
+Year: 3rd Year
+Work: Student Researcher 
+
+
+## R experience
+Experience Level: None
+
+## Research interests
+I am interested in working with code and learning how to manipulate and visualize data.
+
+## Hometown
+Lowell, MA
+
+## Hobbies
+- jump roping 
+- cooking 
+- sleeping 
+- learning to code
+- hiking (trying to get into it)
+- 
+
+## Fun fact
+- I am the first in my family to go to college and nearly graduate! 
