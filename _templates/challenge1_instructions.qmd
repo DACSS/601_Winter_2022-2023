@@ -44,7 +44,12 @@ Read in one (or more) of the following data sets, using the correct R package an
 Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
 
 ```{r}
+# load the libs
+library(readr)
+library(readxl)
 
+# read the data using standard csv loading function
+data = read_csv("../posts/_data/railroad_2012_clean_county.csv")
 ```
 
 Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
@@ -56,4 +61,11 @@ Using a combination of words and results of R commands, can you provide a high l
 ```{r}
 #| label: summary
 
+# describe the data using str, breif summary of the columns, datatypes, sizes tell us that there are 3 columns with 2930 rows.
+str(data)
+
+# show the first few entries using the head command
+head(data)
+
+# from a cursory analysis, it looks like the dataset describes a no. of rail road employees by counties and their corresponding states.
 ```
