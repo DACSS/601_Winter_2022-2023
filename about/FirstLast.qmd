@@ -1,0 +1,41 @@
+---
+title: "Henry Mitrano"
+image: images/TatumBrown.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/TatumBrown.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/henrymitrano
+---
+
+##Instructions
+
+  - save a copy of this document as *FirstLast.qmd* in the **about** folder
+  - replace *Your Name* in yaml header with your first and last name
+  - save an image (jpeg, png) to use in the **about/images** folder
+  - replace image names in yaml header
+  - replace github user name
+  - fill in information below, as appropriate
+  - commit to github and submit pull request
+
+## Education/Work Background
+I am a senior at UNC Chapel Hill studying for a B.A. in Computer Science. I've had experience doing software development at LabCorp and Deutsche Bank in the last two summers.
+
+## R experience
+I have no past experience with the R programming language.
+
+## Research interests
+I'm a huge sports fan, be it football, soccer, basketball, baseball, tennis, whatever. I know there are tons of methods of statistical modeling that are used in different areas of those sports, and I want to learn more about how R can be utilized in that regard. 
+
+## Hometown
+Marblehead, MA.
+
+## Hobbies
+I have a passion for writing about sports, music, and pop culture. I also love to cook.
+
+## Fun fact
+I have a very handsome terrier mix named Willie.
