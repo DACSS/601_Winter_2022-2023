@@ -28,8 +28,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 Import data into R as a cvs file. This dataset contains information about the total number of railroad employees per county in the US. 
 
 ```{r}
-library(readr)
-railroad <- read.csv("C:/Users/mmrobinson/Desktop/Github/601_Winter_2022-2023/posts/_data/railroad_2012_clean_county.csv")
+railroad <- read.csv("_data/railroad_2012_clean_county.csv")
 head(railroad)
 ```
 
