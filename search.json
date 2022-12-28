@@ -294,90 +294,6 @@
     "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCristhian Barba Garzon\n\n\n\n\n\n\n\n\n\n\n\n\n\nMarcela Robinson\n\n\n\n\n\n\n\n\n\n\n\n\n\nPriya Marla\n\n\n\n\n\n\n\n\n\n\n\n\n\nSai Rishita Golla\n\n\n\n\n\n\n\n\n\n\n\n\n\nTanmay Agrawal\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour Name\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge2.html",
-    "href": "posts/CristhianBarbaGarzon_Challenge2.html",
-    "title": "Challenge 2",
-    "section": "",
-    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
-  },
-  {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge2.html#challenge-overview",
-    "href": "posts/CristhianBarbaGarzon_Challenge2.html#challenge-overview",
-    "title": "Challenge 2",
-    "section": "Challenge Overview",
-    "text": "Challenge Overview\nToday’s challenge is to\n\nread in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)\nprovide summary statistics for different interesting groups within the data, and interpret those statistics"
-  },
-  {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge2.html#read-in-the-data",
-    "href": "posts/CristhianBarbaGarzon_Challenge2.html#read-in-the-data",
-    "title": "Challenge 2",
-    "section": "Read in the Data",
-    "text": "Read in the Data\nRead in one (or more) of the following data sets, available in the posts/_data folder, using the correct R package and command.\n\nrailroad*.csv or StateCounty2012.xlsx ⭐\nFAOstat*.csv ⭐⭐⭐\nhotel_bookings ⭐⭐⭐⭐\n\n\n\nCode\nh_bookings = read_csv(\"_data/hotel_bookings.csv\") #sets the read_csv() function to a named variable\nview(h_bookings) #opens the data set to be viewed by an audience \n\n\nAdd any comments or documentation as needed. More challenging data may require additional code chunks and documentation."
-  },
-  {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge2.html#describe-the-data",
-    "href": "posts/CristhianBarbaGarzon_Challenge2.html#describe-the-data",
-    "title": "Challenge 2",
-    "section": "Describe the data",
-    "text": "Describe the data\nUsing a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data)."
-  },
-  {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge2.html#describing-the-data",
-    "href": "posts/CristhianBarbaGarzon_Challenge2.html#describing-the-data",
-    "title": "Challenge 2",
-    "section": "Describing the data",
-    "text": "Describing the data\nThe commands below are great in helping to describe the data chosen: hotel bookings. The dimensions command, dim(), tells us that there are 119,390 rows and 32 columns–meaning there are 119,390 observations recorded. The column names command, colnames(), tells us the names of these 32 columns, and this is useful when trying to look through your data set to select specific columns to analyze. Furtherdown, the use of piping helps in creating clean command lines to select specific columns and identify distinct values in those columns. By selecting the “hotel”, “country”, and “arrival_date_year” columns, I am able to identify unique values within those columns. There are only two types of hotels chosen for this data: resort and city. Additionally, the data was taken from 10 different countries and from 3 different years. This information is important because it tells use where the data is from and what time period it is from.\n\n\nCode\nh_bookings %>%\n  dim() #tells use the dimensions of the dataset; the dimensions can tell us how many observed values (rows) there are\n\n\n[1] 119390     32\n\n\nCode\ncolnames(h_bookings) #tells us the name of each column--there are 32 columns, so this is useful\n\n\n [1] \"hotel\"                          \"is_canceled\"                   \n [3] \"lead_time\"                      \"arrival_date_year\"             \n [5] \"arrival_date_month\"             \"arrival_date_week_number\"      \n [7] \"arrival_date_day_of_month\"      \"stays_in_weekend_nights\"       \n [9] \"stays_in_week_nights\"           \"adults\"                        \n[11] \"children\"                       \"babies\"                        \n[13] \"meal\"                           \"country\"                       \n[15] \"market_segment\"                 \"distribution_channel\"          \n[17] \"is_repeated_guest\"              \"previous_cancellations\"        \n[19] \"previous_bookings_not_canceled\" \"reserved_room_type\"            \n[21] \"assigned_room_type\"             \"booking_changes\"               \n[23] \"deposit_type\"                   \"agent\"                         \n[25] \"company\"                        \"days_in_waiting_list\"          \n[27] \"customer_type\"                  \"adr\"                           \n[29] \"required_car_parking_spaces\"    \"total_of_special_requests\"     \n[31] \"reservation_status\"             \"reservation_status_date\"       \n\n\nCode\nh_bookings %>%\n  select(\"hotel\") %>%\n  distinct() #tells us the distinct values in the \"hotel\" column; there are only two different values: resort and city hotels \n\n\n# A tibble: 2 × 1\n  hotel       \n  <chr>       \n1 Resort Hotel\n2 City Hotel  \n\n\nCode\nh_bookings %>%\n  select(\"country\")%>%\n  distinct() #allows use to select the country column and find distinct values; this simply tells us the different countries that data was taken from for hotels. There are about 10 different countires where data was gathered from.\n\n\n# A tibble: 178 × 1\n   country\n   <chr>  \n 1 PRT    \n 2 GBR    \n 3 USA    \n 4 ESP    \n 5 IRL    \n 6 FRA    \n 7 NULL   \n 8 ROU    \n 9 NOR    \n10 OMN    \n# … with 168 more rows\n\n\nCode\nh_bookings %>% \n  select('arrival_date_year') %>%\n  distinct() #this section tells us the distinct years that this data was taken from. This data was taken from the years 2015,2016, and 2017. \n\n\n# A tibble: 3 × 1\n  arrival_date_year\n              <dbl>\n1              2015\n2              2016\n3              2017"
-  },
-  {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge2.html#provide-grouped-summary-statistics",
-    "href": "posts/CristhianBarbaGarzon_Challenge2.html#provide-grouped-summary-statistics",
-    "title": "Challenge 2",
-    "section": "Provide Grouped Summary Statistics",
-    "text": "Provide Grouped Summary Statistics\nConduct some exploratory data analysis, using dplyr commands such as group_by(), select(), filter(), and summarise(). Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set."
-  },
-  {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge2.html#explaining-and-interpreting-grouped-summary-statistics",
-    "href": "posts/CristhianBarbaGarzon_Challenge2.html#explaining-and-interpreting-grouped-summary-statistics",
-    "title": "Challenge 2",
-    "section": "Explaining and Interpreting Grouped Summary Statistics",
-    "text": "Explaining and Interpreting Grouped Summary Statistics\nThe commands below are great in helping find the mean, median, and mode in different columns in the hotel bookings data set. The summarize command, summarize(), helps in summarizing information within the column. Specifically, the mean and median commands are used within the summarize command to find the values for the “stays_in_week_nights” column; this simply allows us to know the average and median amount of nights guests stayed in their respective hotels. Using the na.rm = TRUE command allows me to completely eliminate any unknown values in the column. Since there is no mode command in R, a function was used to find it manually. The mode for the amount of week nights stayed is found.\nFurthermore, the summarize command is continously helpful with the additional maximum, minimum, and standard deviation commands. I chose to find the maximum amount of adults, using the “adults” column, the maximum and minimum amount of babies, using the “babies” column, and the maximum amount of weekend nights stayed. This is important information to know about this data set because it tells us how the guests behave; considering the maximum amount of weekend nights stayed, one can infer that this particular booking was over a long period of time. Knowing the amount of adults tells us that people can travel in very large groups to either of these hotels. You can also analyze the difference in the maximum amount of adults and babies; the difference between the two is very large–by 45. This difference can tell us that people with children may travel less, but further analysis may be required to make any assumptions. This is all important information that any viewer can use to understand the data and see where it could come from or how different values may relate to one another.\nLastly, using the filter command is important when finding specific values. Below, the filter command helps to find rows that only contain “September” in the “arrival_date_month” column; this can be used to analyze how many bookings were made for that specific month.\n\n\nCode\nsummarize(h_bookings, mean_stay = mean(`stays_in_week_nights`, na.rm=TRUE)) #this allows us to see what the average amount of nights families stay in their respective hotels. \n\n\n# A tibble: 1 × 1\n  mean_stay\n      <dbl>\n1      2.50\n\n\nCode\nsummarize(h_bookings, median_stay = median(`stays_in_week_nights`,na.rm=TRUE)) #gives us the median for the amount of nights hotel guests stayed.\n\n\n# A tibble: 1 × 1\n  median_stay\n        <dbl>\n1           2\n\n\nCode\nmode = function(x){\n  index = which.max(table(x)) # which.max() returns the index of the max value in a vector\n  mode = x[index] # use the mode index to find the mode in the original vector\n  return(mode)\n}\nmode(h_bookings$stays_in_week_nights) #this finds the mode for the amount of nights people have stayed in their hotels. \n\n\n[1] 1\n\n\nCode\nsummarize(h_bookings, Maximum_nights_stayed_weekend = max(`stays_in_weekend_nights`, na.rm = TRUE), maximum_adults = max(`adults`, na.rm = TRUE), min_babies = min(`babies`,na.rm=TRUE), max_babies = max(`babies`, na.rm=TRUE)) #these commands tell us the max amount of nights stayed during the weel, the most amount of adults in one booking, and the maximum amount of babies in one booking.\n\n\n# A tibble: 1 × 4\n  Maximum_nights_stayed_weekend maximum_adults min_babies max_babies\n                          <dbl>          <dbl>      <dbl>      <dbl>\n1                            19             55          0         10\n\n\nCode\nsummarize(h_bookings,sd_adults = sd(`adults`, na.rm = TRUE)) #this tells us the standard deviation of the amount of adults stayed for all bookings\n\n\n# A tibble: 1 × 1\n  sd_adults\n      <dbl>\n1     0.579\n\n\nCode\nfilter(h_bookings, `arrival_date_month` == 'September', na.rm=TRUE) #will select rows that only contain the value \"September\"\n\n\n# A tibble: 10,508 × 32\n   hotel  is_ca…¹ lead_…² arriv…³ arriv…⁴ arriv…⁵ arriv…⁶ stays…⁷ stays…⁸ adults\n   <chr>    <dbl>   <dbl>   <dbl> <chr>     <dbl>   <dbl>   <dbl>   <dbl>  <dbl>\n 1 Resor…       1      38    2015 Septem…      36       1       0       2      2\n 2 Resor…       1      47    2015 Septem…      36       1       0       2      2\n 3 Resor…       0      48    2015 Septem…      36       1       0       3      2\n 4 Resor…       0      48    2015 Septem…      36       1       0       3      2\n 5 Resor…       0      27    2015 Septem…      36       1       0       3      2\n 6 Resor…       1      71    2015 Septem…      36       1       0       3      2\n 7 Resor…       1      85    2015 Septem…      36       1       0       4      2\n 8 Resor…       1     132    2015 Septem…      36       1       0       4      2\n 9 Resor…       0      50    2015 Septem…      36       1       0       4      2\n10 Resor…       0     122    2015 Septem…      36       1       0       4      2\n# … with 10,498 more rows, 22 more variables: children <dbl>, babies <dbl>,\n#   meal <chr>, country <chr>, market_segment <chr>,\n#   distribution_channel <chr>, is_repeated_guest <dbl>,\n#   previous_cancellations <dbl>, previous_bookings_not_canceled <dbl>,\n#   reserved_room_type <chr>, assigned_room_type <chr>, booking_changes <dbl>,\n#   deposit_type <chr>, agent <chr>, company <chr>, days_in_waiting_list <dbl>,\n#   customer_type <chr>, adr <dbl>, required_car_parking_spaces <dbl>, …"
-  },
-  {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge1.html",
-    "href": "posts/CristhianBarbaGarzon_Challenge1.html",
-    "title": "Challenge 1",
-    "section": "",
-    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
-  },
-  {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge1.html#challenge-overview",
-    "href": "posts/CristhianBarbaGarzon_Challenge1.html#challenge-overview",
-    "title": "Challenge 1",
-    "section": "Challenge Overview",
-    "text": "Challenge Overview\nToday’s challenge is to\n\nread in a dataset, and\ndescribe the dataset using both words and any supporting information (e.g., tables, etc)"
-  },
-  {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge1.html#read-in-the-data",
-    "href": "posts/CristhianBarbaGarzon_Challenge1.html#read-in-the-data",
-    "title": "Challenge 1",
-    "section": "Read in the Data",
-    "text": "Read in the Data\nRead in one (or more) of the following data sets, using the correct R package and command.\n\nrailroad_2012_clean_county.csv ⭐\nbirds.csv ⭐⭐\nFAOstat*.csv ⭐⭐\nwild_bird_data.xlsx ⭐⭐⭐\nStateCounty2012.xlsx ⭐⭐⭐⭐\n\nFind the _data folder, located inside the posts folder. Then you can read in the data, using either one of the readr standard tidy read commands, or a specialized package such as readxl.\n\n\nCode\nx = read_csv(\"_data/railroad_2012_clean_county.csv\")\nview(x)\n\nsummary(x)\n\n\n    state              county          total_employees  \n Length:2930        Length:2930        Min.   :   1.00  \n Class :character   Class :character   1st Qu.:   7.00  \n Mode  :character   Mode  :character   Median :  21.00  \n                                       Mean   :  87.18  \n                                       3rd Qu.:  65.00  \n                                       Max.   :8207.00  \n\n\nCode\n#in the employees column, the summary functions provides the min, max, and mean\n#the max number of employees is about 8,207\n\nx%>%\n  select(state)%>%\n  distinct()\n\n\n# A tibble: 53 × 1\n   state\n   <chr>\n 1 AE   \n 2 AK   \n 3 AL   \n 4 AP   \n 5 AR   \n 6 AZ   \n 7 CA   \n 8 CO   \n 9 CT   \n10 DC   \n# … with 43 more rows\n\n\nCode\n#tells us how many distinct values are in the states column\n#there are 53 distinct values \n\nx%>%\n  select(county)%>%\n  distinct()\n\n\n# A tibble: 1,709 × 1\n   county              \n   <chr>               \n 1 APO                 \n 2 ANCHORAGE           \n 3 FAIRBANKS NORTH STAR\n 4 JUNEAU              \n 5 MATANUSKA-SUSITNA   \n 6 SITKA               \n 7 SKAGWAY MUNICIPALITY\n 8 AUTAUGA             \n 9 BALDWIN             \n10 BARBOUR             \n# … with 1,699 more rows\n\n\nCode\n#this tells us how many distinct counties were used to record data\n\n\nAdd any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation."
-  },
-  {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge1.html#describe-the-data",
-    "href": "posts/CristhianBarbaGarzon_Challenge1.html#describe-the-data",
-    "title": "Challenge 1",
-    "section": "Describe the data",
-    "text": "Describe the data\nUsing a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data)."
-  },
-  {
-    "objectID": "posts/CristhianBarbaGarzon_Challenge1.html#data-summary",
-    "href": "posts/CristhianBarbaGarzon_Challenge1.html#data-summary",
-    "title": "Challenge 1",
-    "section": "Data Summary",
-    "text": "Data Summary\nUsing commands in R, I was able to establish that this data was recorded in about 53 states/territoriess in the US. That information was found out by using the select() and distinct() functions, which helped find the unique values in the states column. Additionally, using the same functions, I was able to find out the amount of counties that data was recorded in. The summary() command was used to provide a quick summary of what the data consists of; this function provided information on the maximum, minimum, and mean amount of employees in each state, in each county."
-  },
-  {
     "objectID": "posts/challenge1_solutions.html",
     "href": "posts/challenge1_solutions.html",
     "title": "Challenge 1 Solution",
@@ -508,6 +424,6 @@
     "href": "index.html",
     "title": "DACSS 601: Data Science Fundamentals - W22/23",
     "section": "",
-    "text": "Challenge 2\n\n\n\n\n\n\n\nchallenge_2\n\n\n\n\nData wrangling: using group() and summarise()\n\n\n\n\n\n\nDec 27, 2022\n\n\nCristhian Barba Garzon\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChallenge 1\n\n\n\n\n\n\n\nchallenge_1\n\n\n\n\nReading in data and creating a post\n\n\n\n\n\n\nDec 26, 2022\n\n\nCristhian Barba Garzon\n\n\n\n\n\n\n  \n\n\n\n\nChallenge 1 Solution\n\n\n\n\n\n\n\nchallenge_1\n\n\nsolution\n\n\n\n\nReading in data and creating a post\n\n\n\n\n\n\nDec 26, 2022\n\n\nMeredith Rolfe & Sean Conway\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChallenge 1\n\n\n\n\n\n\n\nchallenge_1\n\n\n\n\nReading in data and creating a post\n\n\n\n\n\n\nDec 25, 2022\n\n\nMarcela Robinson\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChallenge 2 Instructions\n\n\n\n\n\n\n\nchallenge_2\n\n\n\n\nData wrangling: using group() and summarise()\n\n\n\n\n\n\nDec 21, 2022\n\n\nSean Conway\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChallenge 1 Instructions\n\n\n\n\n\n\n\nchallenge_1\n\n\n\n\nReading in data and creating a post\n\n\n\n\n\n\nDec 20, 2022\n\n\nSean Conway\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Import\n\n\n\n\n\n\n\ndata import\n\n\nreadr\n\n\n\n\nimporting data with R\n\n\n\n\n\n\nJun 5, 2022\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
+    "text": "Challenge 1 Solution\n\n\n\n\n\n\n\nchallenge_1\n\n\nsolution\n\n\n\n\nReading in data and creating a post\n\n\n\n\n\n\nDec 26, 2022\n\n\nMeredith Rolfe & Sean Conway\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChallenge 1\n\n\n\n\n\n\n\nchallenge_1\n\n\n\n\nReading in data and creating a post\n\n\n\n\n\n\nDec 25, 2022\n\n\nMarcela Robinson\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChallenge 2 Instructions\n\n\n\n\n\n\n\nchallenge_2\n\n\n\n\nData wrangling: using group() and summarise()\n\n\n\n\n\n\nDec 21, 2022\n\n\nSean Conway\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChallenge 1 Instructions\n\n\n\n\n\n\n\nchallenge_1\n\n\n\n\nReading in data and creating a post\n\n\n\n\n\n\nDec 20, 2022\n\n\nSean Conway\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Import\n\n\n\n\n\n\n\ndata import\n\n\nreadr\n\n\n\n\nimporting data with R\n\n\n\n\n\n\nJun 5, 2022\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
   }
 ]
