@@ -1,0 +1,50 @@
+---
+title: "Birds Dataset Description"
+author: "Surya Praneeth Reddy Chirasani"
+desription: "This is the Challenge 1 of the 601 Winter course where I read in the data and describe the dataset"
+date: "08/02/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge1
+  - dataset
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+library(readr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+birds <- read_csv('_data/birds.csv', show_col_types = FALSE)
+```
+```{r}
+head(birds)
+```
+There are 14 columns or variables in this dataset *Domain Code*, *Domain*, *Area Code*, *Area*, *Element Code*, *Element*, *Item Code*, *Item*, *Year Code*, *Year*, *Unit*, *Value*, *Flag*, *Flag Description* and some of the columns especially the ones with codes are redundant as the succeeding columns provides the same info and can be used for grouping
+ 
+```{r}
+unique(birds$Domain)
+length(unique(birds$Area))
+length(unique(birds$Item))
+length(unique(birds$Element))
+length(unique(birds$Year))
+length(unique(birds$Flag))
+```
+```{r}
+unique(birds$Item)
+```
+
+```{r}
+unique(birds$Year)
+```
+
+This dataset contains Food and Agriculture Data of five Live Animals which are 'Chickens', 'Ducks', 'Geese and guinea fowls', 'Turkeys' and 'Pigeons, other birds' that are collected from across 248 Areas. There is only one domain in the dataset which is 'Live Animals'. The Data is collected across years from 1961-2018 every year
