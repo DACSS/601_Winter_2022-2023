@@ -53,7 +53,7 @@ I use pivot_wider to make the dataset wider and include the states as columns.
 ``` {r}
 summarize(railroad2, mean(total_employees), na.rm = TRUE)
 ```
-The mean of the total employees for all countiesis 87.17816. 
+The mean of the total employees for all counties is 87.17816. 
 
 #Summary of the data set 
 ```{r}
@@ -65,15 +65,23 @@ A summary of the dataset confirms that the mean is 87.18 as well as providing ot
 ```{r}
 railroad2%>% 
   filter(total_employees <=50)%>%
-  group_by(county, state)%>%
+  group_by(county)%>%
   summarize(total_employees)
 
 ```
-I use the filter function to pull the counties that have 50 or less employees. After running the code, there are 2,067 counties with 50 or less employees. There are multiple questions that arise from this information: Is employment declining in those counties? Are resources distributed based on the total number of employees? Are the railroad stations smaller and less employees are needed, or are these counties significantly understaffed?  
+I use the filter function to pull the counties that have 50 or less employees. After running the code, there are 2,067 counties with 50 or less employees. There are multiple questions that arise from this information: Is employment declining in those counties? Are resources distributed based on the total number of employees? Are the railroad stations smaller and less employees are needed, or are these counties significantly understaffed? Is there a correlation between state/county population and the number of employees?  
+
+##Create a df for counties with 50 or less employees called railroad_l50 
+```{r}
+railroad_l50<-railroad2%>%
+  filter(total_employees<=50)
+railroad_l50
+```
+
 
 ##Obtain the mean for counties with 50 or less employees 
 ```{r}
-railroad2%>%
+railroad_l50%>%
   select(county, total_employees)%>%
   filter(total_employees<=50)%>%
   summarize(mean = mean(total_employees, na.rm = TRUE))
@@ -82,30 +90,26 @@ railroad2%>%
 
 ##Obtain the median for counties with 50 or less employees 
 ``` {r}
-railroad2%>%
- select(county, total_employees)%>%
-  filter(total_employees<=50)%>%
-  summarize(median = median(total_employees, na.rm = TRUE))
-
+median(railroad_l50$total_employees)
 ```
 ##Calculate the standard deviation for counties with 50 or less employees
 ```{r}
-summarize(railroad2, sd(total_employees<=50))
+summarize(railroad_l50, sd(total_employees))
 ```
-##Calculate the stantard deviation for railroad2 
+##Calculate the stantard deviation for railroad2 dataset
 ```{r}
 summarize(railroad2, sd(total_employees))
 ```
-Since I already calculated the mean, median and standard deviation for counties with 50 or less employees (15.66, 11, 0.4559 respectively) and the mean and median for railroad2 (87.18, 21), I wanted to calculate the standard deviation as well (283.63).
+Since I already calculated the mean, median and standard deviation for railroad_l50 (15.66, 11, 13.40 respectively) and the mean and median for railroad2 (87.18, 21), I wanted to calculate the standard deviation as well for railroad2 (283.63).
 
 I then decided to visualize my data by creating histograms. 
 
-##Sample 1000 values with mean 15.66 and sd 0.45 for counties with 50 or less employees.
+##Sample 1000 values with mean 15.66 and sd 13.40 for counties with 50 or less employees.
 ```{r}
 set.seed(10000)
-data<-tibble(value=rnorm(1000,15.66, 0.45))
+data<-tibble(value=rnorm(1000,15.66, 13.40))
 ggplot(data, aes(x=value))+
-  geom_histogram(binwidth = .5, col='black', fill='gray')
+  geom_histogram(binwidth = 10, col='black', fill='gray')
 ```
 ##Sample 1000 values with mean 87.18 and sd 283.63 for counties with 50 or more employees and adjust binwidth.
 ```{r}
