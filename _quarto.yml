@@ -11,13 +11,13 @@ website:
   sidebar:  
      search: true
      collapse-level: 2
-      contents:
+     contents:
        - section: "Course information"
          contents:
            - href: course_schedule.qmd
              text: Course Schedule
-        - section: "Weekly materials"
-          contents:
+       - section: "Weekly materials"
+         contents:
            - href: index.qmd
              text: Posts
   favicon: images/DACSS_Round_Network.png
