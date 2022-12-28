@@ -4,6 +4,8 @@
     "items": [
       "/about/AboutCristhianBarbaGarzon.html",
       "/about/MarcelaRobinson.html",
+      "/about/PriyaMarla.html",
+      "/about/SaiRishitaGolla.html",
       "/about/TanmayAgrawal.html",
       "/about/about.html"
     ]
@@ -11,6 +13,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/CristhianBarbaGarzon_Challenge2.html",
+      "/posts/CristhianBarbaGarzon_Challenge1.html",
       "/posts/challenge1_solutions.html",
       "/posts/challenge1_MarcelaRobinson.html",
       "/posts/challenge2_instructions.html",
