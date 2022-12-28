@@ -1,0 +1,108 @@
+---
+title: "Challenge 2"
+author: "Cristhian Barba Garzon"
+description: "Data wrangling: using group() and summarise()"
+date: "12/27/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+-   railroad\*.csv or StateCounty2012.xlsx ⭐
+-   FAOstat\*.csv ⭐⭐⭐
+-   hotel_bookings ⭐⭐⭐⭐
+
+```{r}
+h_bookings = read_csv("_data/hotel_bookings.csv") #sets the read_csv() function to a named variable
+view(h_bookings) #opens the data set to be viewed by an audience 
+```
+
+Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+## Describing the data
+
+The commands below are great in helping to describe the data chosen: hotel bookings. The dimensions command, dim(), tells us that there are 119,390 rows and 32 columns--meaning there are 119,390 observations recorded. The column names command, colnames(), tells us the names of these 32 columns, and this is useful when trying to look through your data set to select specific columns to analyze. Furtherdown, the use of piping helps in creating clean command lines to select specific columns and identify distinct values in those columns. By selecting the "hotel", "country", and "arrival_date_year" columns, I am able to identify unique values within those columns. There are only two types of hotels chosen for this data: resort and city. Additionally, the data was taken from 10 different countries and from 3 different years. This information is important because it tells use where the data is from and what time period it is from.  
+
+```{r}
+#| label: summary
+h_bookings %>%
+  dim() #tells use the dimensions of the dataset; the dimensions can tell us how many observed values (rows) there are
+
+colnames(h_bookings) #tells us the name of each column--there are 32 columns, so this is useful
+
+h_bookings %>%
+  select("hotel") %>%
+  distinct() #tells us the distinct values in the "hotel" column; there are only two different values: resort and city hotels 
+
+h_bookings %>%
+  select("country")%>%
+  distinct() #allows use to select the country column and find distinct values; this simply tells us the different countries that data was taken from for hotels. There are about 10 different countires where data was gathered from.
+
+h_bookings %>% 
+  select('arrival_date_year') %>%
+  distinct() #this section tells us the distinct years that this data was taken from. This data was taken from the years 2015,2016, and 2017. 
+```
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+## Explaining and Interpreting Grouped Summary Statistics 
+
+The commands below are great in helping find the mean, median, and mode in different columns in the hotel bookings data set. The summarize command, summarize(), helps in summarizing information within the column. Specifically, the mean and median commands are used within the summarize command to find the values for the "stays_in_week_nights" column; this simply allows us to know the average and median amount of nights guests stayed in their respective hotels. Using the na.rm = TRUE command allows me to completely eliminate any unknown values in the column. Since there is no mode command in R, a function was used to find it manually. The mode for the amount of week nights stayed is found. 
+
+Furthermore, the summarize command is continously helpful with the additional maximum, minimum, and standard deviation commands. I chose to find the maximum amount of adults, using the "adults" column, the maximum and minimum amount of babies, using the "babies" column, and the maximum amount of weekend nights stayed. This is important information to know about this data set because it tells us how the guests behave; considering the maximum amount of weekend nights stayed, one can infer that this particular booking was over a long period of time. Knowing the amount of adults tells us that people can travel in very large groups to either of these hotels. You can also analyze the difference in the maximum amount of adults and babies; the difference between the two is very large--by 45. This difference can tell us that people with children may travel less, but further analysis may be required to make any assumptions. This is all important information that any viewer can use to understand the data and see where it could come from or how different values may relate to one another. 
+
+Lastly, using the filter command is important when finding specific values. Below, the filter command helps to find rows that only contain "September" in the "arrival_date_month" column; this can be used to analyze how many bookings were made for that specific month. 
+
+```{r}
+summarize(h_bookings, mean_stay = mean(`stays_in_week_nights`, na.rm=TRUE)) #this allows us to see what the average amount of nights families stay in their respective hotels. 
+
+summarize(h_bookings, median_stay = median(`stays_in_week_nights`,na.rm=TRUE)) #gives us the median for the amount of nights hotel guests stayed.
+
+mode = function(x){
+  index = which.max(table(x)) # which.max() returns the index of the max value in a vector
+  mode = x[index] # use the mode index to find the mode in the original vector
+  return(mode)
+}
+mode(h_bookings$stays_in_week_nights) #this finds the mode for the amount of nights people have stayed in their hotels. 
+summarize(h_bookings, Maximum_nights_stayed_weekend = max(`stays_in_weekend_nights`, na.rm = TRUE), maximum_adults = max(`adults`, na.rm = TRUE), min_babies = min(`babies`,na.rm=TRUE), max_babies = max(`babies`, na.rm=TRUE)) #these commands tell us the max amount of nights stayed during the weel, the most amount of adults in one booking, and the maximum amount of babies in one booking.
+
+summarize(h_bookings,sd_adults = sd(`adults`, na.rm = TRUE)) #this tells us the standard deviation of the amount of adults stayed for all bookings
+
+filter(h_bookings, `arrival_date_month` == 'September', na.rm=TRUE) #will select rows that only contain the value "September"
+
+```
+
+
+
