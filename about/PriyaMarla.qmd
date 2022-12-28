@@ -1,0 +1,49 @@
+---
+title: "Priya Marla"
+image: images/PriyaMarla.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/PriyaMarla.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/Priya-Marla
+---
+
+##Instructions
+
+-   save a copy of this document as *FirstLast.qmd* in the **about** folder
+-   replace *Your Name* in yaml header with your first and last name
+-   save an image (jpeg, png) to use in the **about/images** folder
+-   replace image names in yaml header
+-   replace github user name
+-   fill in information below, as appropriate
+-   commit to github and submit pull request
+
+## Education/Work Background
+
+-   I'm a CS major graduate student in University of Massachusetts Amherst. I have previously worked in a company called ADP for 2 years
+
+## R experience
+
+-   Have theoritical idea about it but never got a chance to work on it
+
+## Research interests
+
+-   I'm very inclined towards data science field
+
+## Hometown
+
+-   Hyderabad, Telangana, India
+
+## Hobbies
+
+-   Reading Novels
+-   Playing lawn tennis
+-   Drawing
+
+## Fun fact
+
+-   I like meeting diversified people. And very bad at singing.
