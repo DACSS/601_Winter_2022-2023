@@ -53,7 +53,7 @@ This is a concise summary of more extensive work we did in Challenge 1, and is a
 Here, we are just reusing the code from Challenge 1. We are using the excel version, to ensure that we get Canada, and are renaming the missing data in *county* for Canada so that we don't accidently filter that observation out.
 
 ```{r}
-railroad<-read_excel("posts/_data/StateCounty2012.xls",
+railroad<-read_excel("_data/StateCounty2012.xls",
                      skip = 4,
                      col_names= c("state", "delete",  "county",
                                   "delete", "employees"))%>%
@@ -135,7 +135,7 @@ The FAOSTAT sheets are excerpts of the [FAOSTAT database](https://www.fao.org/fa
 Because we know (from challenge 1) that several of those areas include aggregated data (e.g., ) we are going to remove the aggregations, remove the unnecessary variables, and only work with the grouping variables available in the data. In a future challenge, we will join back on more data from the FAO to recreate regional groupings.
 
 ```{r}
-birds<-read_csv("posts/_data/birds.csv")%>%
+birds<-read_csv("_data/birds.csv")%>%
   select(-c(contains("Code"), Element, Domain, Unit))%>%
   filter(Flag!="A")
 birds
@@ -212,7 +212,7 @@ The data are a de-identified extract of real hotel demand data, [made available 
 The hotel bookings data set is new to challenge 2, so we need to go through the same process we did during challenge 1 to find out more about the data. Lets read in the data and use the `summmaryTools` package to get an overview of the data set.
 
 ```{r}
-bookings<-read_csv("posts/_data/hotel_bookings.csv")
+bookings<-read_csv("_data/hotel_bookings.csv")
 
 print(summarytools::dfSummary(bookings,
                         varnumbers = FALSE,
