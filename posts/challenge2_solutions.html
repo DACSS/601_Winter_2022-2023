@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Meredith Rolfe">
+<meta name="dcterms.date" content="2022-12-26">
+<meta name="description" content="Data wrangling: using group() and summarise()">
+
+<title>Challenge 2 Solutions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+<meta name="twitter:title" content="Challenge 2 Solutions">
+<meta name="twitter:description" content="Data wrangling: using group() and summarise()">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/DACSS">
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Challenge 2 Solutions</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Course information</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course_schedule.html" class="sidebar-item-text sidebar-link">Course Schedule</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Weekly materials</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Posts</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#challenge-overview" id="toc-challenge-overview" class="nav-link active" data-scroll-target="#challenge-overview">Challenge Overview</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Challenge 2 Solutions</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">challenge_2</div>
+    <div class="quarto-category">solution</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Data wrangling: using group() and summarise()
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Meredith Rolfe </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 26, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="challenge-overview" class="level2">
+<h2 class="anchored" data-anchor-id="challenge-overview">Challenge Overview</h2>
+<p>Today’s challenge is to</p>
+<ol type="1">
+<li>read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)</li>
+<li>provide summary statistics for different interesting groups within the data, and interpret those statistics</li>
+</ol>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Railroad ⭐</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">FAOstat* ⭐⭐⭐</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Hotel Bookings ⭐⭐⭐⭐</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>The <code>railroad</code> data contain 2931 county-level aggregated counts of the number of railroad employees in 2012. <em>Counties</em> are embedded within <em>States</em>, and all 50 states plus Canada, overseas addresses in Asia and Europe, and Washington, DC are represented.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Data Summaries
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a concise summary of more extensive work we did in Challenge 1, and is an example of how you should describe data in public-facing work. A “public-facing” version of your work contains all critical details needed to replicate your work, but doesn’t contain a point-by-point rundown of the mental process you went through to get to that point. (Your internal analysis file should probably walk through that mental process, however!)</p>
+</div>
+</div>
+<section id="read-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="read-the-data">Read the data</h3>
+<p>Here, we are just reusing the code from Challenge 1. We are using the excel version, to ensure that we get Canada, and are renaming the missing data in <em>county</em> for Canada so that we don’t accidently filter that observation out.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>railroad<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"posts/_data/StateCounty2012.xls"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">skip =</span> <span class="dv">4</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col_names=</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"delete"</span>,  <span class="st">"county"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"delete"</span>, <span class="st">"employees"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">contains</span>(<span class="st">"delete"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(state, <span class="st">"Total"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: `path` does not exist: 'posts/_data/StateCounty2012.xls'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>railroad<span class="ot">&lt;-</span><span class="fu">head</span>(railroad, <span class="sc">-</span><span class="dv">2</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">ifelse</span>(state<span class="sc">==</span><span class="st">"CANADA"</span>, <span class="st">"CANADA"</span>, county))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in head(railroad, -2): object 'railroad' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>railroad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in eval(expr, envir, enclos): object 'railroad' not found</code></pre>
+</div>
+</div>
+</section>
+<section id="how-many-values-does-x-take-on" class="level3">
+<h3 class="anchored" data-anchor-id="how-many-values-does-x-take-on">How many values does X take on?</h3>
+<p>Now, lets practice grouping our data and using other <code>dplyr</code> commands that make data wrangling super easy. First, lets take a closer look at how we counted the number of unique <em>states</em> last week. First, we selected the <em>state</em> column. Then we used the <code>n_distinct</code> command - which replicates the base R commands length(unique(var)).</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+across()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Instead of counting the number of distinct values one at a time, I am doing an operation on two columns at the same time using <code>across.</code></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>railroad<span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(state,county), n_distinct))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in summarise(., across(c(state, county), n_distinct)): object 'railroad' not found</code></pre>
+</div>
+</div>
+<p>Check this out - many counties have the same name! There are 2931 state-county cases, but only 1710 distinct county names. This is one reason it is so critical to understand “what is a case” when you are working with your data - otherwise you might accidentally collapse or group information that isn’t intended to be grouped.</p>
+</section>
+<section id="how-many-total-x-are-in-group-y" class="level3">
+<h3 class="anchored" data-anchor-id="how-many-total-x-are-in-group-y">How many total X are in group Y?</h3>
+<p>Suppose we want to know the total number of railroad employees was in 2012, what is the best way to sum up all of the values in the data? The <code>summarize</code> function is useful for doing calculations across some or all of a data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>railroad<span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_employees =</span> <span class="fu">sum</span>(employees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in summarise(., total_employees = sum(employees)): object 'railroad' not found</code></pre>
+</div>
+</div>
+<p>Around a quarter of a million people were employed in the railroad industry in 2012. While this may seem like a lot, it was a significant decrease in employment from <a href="https://www.bls.gov/opub/mlr/2021/article/employment-in-rail-transportation-heads-downhill-between-november-2018-and-december-2020.htm">a few decades earlier</a>, according to official Bureau of Labor Statistics (BLS) estimates.</p>
+<p>You may notice that the BLS estimates are significantly lower than the ones we are using, provided by the <a href="https://catalog.data.gov/dataset?publisher=Railroad%20Retirement%20Board">Railroad Retirement Board.</a> Given that the Railroad Retirement Board has “gold-standard” data on railroad employees, this discrepancy suggests that many people who work in the railroad industry are being classified in a different way by BLS statistics.</p>
+</section>
+<section id="which-x-have-the-most-y" class="level3">
+<h3 class="anchored" data-anchor-id="which-x-have-the-most-y">Which X have the most Y?</h3>
+<p>Suppose we are interested in which county names are duplicated most often, or in which states have the most railroad employees. We can use the same basic approach to answer both <em>“Which X have the most Y?”</em> style questions</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+df-print: paged (YAML)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you are using <code>df-print: paged</code> in your yaml header, or are using tibbles, there is no need to rely on the <code>head(data)</code> command to limit your results to the top 10 of a list.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>railroad<span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state)<span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_employees =</span> <span class="fu">sum</span>(employees),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">num_counties =</span> <span class="fu">n</span>())<span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_employees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in group_by(., state): object 'railroad' not found</code></pre>
+</div>
+</div>
+<p>Looking at the top 10 states in terms of total railroad employment, a few trends emerge. Several of the top 10 states with large numbers of railroad employment are highly populous and geographically large. California, Texas, New York, Pennsylvania, Ohio, Illinois, and Georgia are all amonst the top-10 largest states - so it would make sense if there are more railroad employees in large states.</p>
+<p>But railroads are spread out along geography, and thus we might also expect square mileage within a state to be related to state railroad employment - not just state population. For example, Texas is around 65% larger (in area) than California, and has around 50% more railroad employees.</p>
+<p>There appear to be multiple exceptions to both rules, however. If geography plus population were the primary factors explaining railroad employment, then California would be ranked higher than New York and Illinois, and New York would likely rank higher than Illinois. However, Illinois - Chicago in particular - is a hub of railroad activity, and thus Illinois’ higher ranking is likely reflecting hub activity and employment. New York is a hub for the East Coast in particular. While California may have hubs of train activity in Los Angeles or San Francisco, the Northeast has a higher density of train stations and almost certainly generates more passenger and freight miles than the larger and more populous California.</p>
+<p>This final factor - the existence of heavily used train routes probably explains the high railroad employment in states like Nebraska, Indiana and Missouri - all of which lay along a major railway route between New York and Chicago, and then out to California. Anyway who has played Ticket to Ride probably recognizes many of these routes!</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Go further
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A fun exercise once you are comfortable with joins and map-based visualizatinos would be to join the railroad employment data to information about state population and geographic area, and also mapping information about railway routes, to get more insight into the factors driving railroad employment.</p>
+</div>
+</div>
+</section>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>The FAOSTAT sheets are excerpts of the <a href="https://www.fao.org/faostat/en/#home">FAOSTAT database</a> provided by the <a href="https://www.fao.org/home/en">Food and Agriculture Association</a>, an agency of the United Nations. We are using the file <em>birds.csv</em> that includes estimates of the stock of five different types of poultry (Chickens, Ducks, Geese and guinea fowls, Turkeys, and Pigeons/Others) for 248 areas for 58 years between 1961-2018. Estimated stocks are given in 1000 head.</p>
+<p>Because we know (from challenge 1) that several of those areas include aggregated data (e.g., ) we are going to remove the aggregations, remove the unnecessary variables, and only work with the grouping variables available in the data. In a future challenge, we will join back on more data from the FAO to recreate regional groupings.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>birds<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"posts/_data/birds.csv"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"Code"</span>), Element, Domain, Unit))<span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Flag<span class="sc">!=</span><span class="st">"A"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: 'posts/_data/birds.csv' does not exist in current working directory ('/Users/seanconway/Github/601_Winter_2022-2023/posts').</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>birds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in eval(expr, envir, enclos): object 'birds' not found</code></pre>
+</div>
+</div>
+<section id="what-is-the-average-of-y-for-x-groups" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-the-average-of-y-for-x-groups">What is the average of Y for X groups?</h3>
+<p>Lets suppose we are starting off and know nothing about poultry stocks around the world, where could we start? Perhaps we could try to get a sense of the relative sizes of stocks of each of the five types of poultry, identified in the variable <em>Item</em>. Additionally, because some of the values may be missing, lets find out how many of the estimates are missing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>birds<span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Item)<span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_stocks =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">med_stocks =</span> <span class="fu">median</span>(Value, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_missing =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(Value)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in group_by(., Item): object 'birds' not found</code></pre>
+</div>
+</div>
+<p>On average, we can see that countries have far more chickens as livestock (<span class="math inline">\(\bar{x}\)</span>=58.4million head) than other livestock birds (average stocks range between 2 and 10 million head). However, the information from the median stock counts suggest that there is significant variation across countries along with a strong right hand skew with regards to chicken stocks. The median number of chickens in a country is 3.8 million head - significantly less than the mean of almost 60 million. Overall, missing data doesn’t seem to be a huge issue, so we will just use <code>na.rm=TRUE</code> and not worry too much about the missingness for now.</p>
+<p>It could be that stock head counts have changed over time, so lets try selecting two points in time and seeing whether or not average livestock counts are changing.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+pivot-wider
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It can be difficult to visually report data in tidy format. For example, it is tough to compare two values when they are on different rows. In this example, I use <code>pivot-wider</code> to swap a tidy grouping variable into multiple columns to be more “table-like.” I then do some manual formatting to make it easy to compare the grouped estimates.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>t1<span class="ot">&lt;-</span>birds<span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1966</span>, <span class="dv">2016</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Item)<span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_stocks =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">med_stocks =</span> <span class="fu">median</span>(Value, <span class="at">na.rm=</span><span class="cn">TRUE</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Year, <span class="at">values_from =</span> <span class="fu">c</span>(avg_stocks, med_stocks))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in filter(., Year %in% c(1966, 2016)): object 'birds' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(t1,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">digits=</span><span class="dv">0</span>,<span class="at">format.args =</span> <span class="fu">list</span>(<span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Type"</span>, <span class="st">"1966"</span>, <span class="st">"2016"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"1966"</span>, <span class="st">"2016"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">htmltable_class =</span> <span class="st">"lightable-minimal"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Mean Stock (1000)"</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"Median Stock (1000)"</span> <span class="ot">=</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in knitr::kable(t1, digits = 0, format.args = list(big.mark = ","), : object 't1' not found</code></pre>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+kable and kableExtra
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I manually adjust table formatting (column names, setting significant digits, adding a comma) using <code>kable</code> and add a header row using <code>kableExtra</code>. Because <code>df-print=paged</code> option is set to make it easier to scroll through longer data frames, I need to directly specify that I want to produce an htmltable - not a default kable/rmarkdown table - when I use kable and kableExtra formatting directly.</p>
+</div>
+</div>
+<p>Sure enough, it does look like stocks have changed significantly over time. The expansion of country-level chicken stocks over five decades between 1966 and 2016 are most noteworthy, with both average and median stock count going up by a factor of 4. Pigeons have never been very popular, and average stocks have actually decreased over the same time period while the other less popular bird - turkeys - saw significant incrases in stock count. Some countries increased specialization in goose and/or guinea fowl production, as the average stock count went up but the median went down over the same period.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Go further
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It could be really interesting to graph the rise and fall of poultry stocks overtime with these data, and match these changes to changes in population size and country GDP. Another option would be to match the countries back to regional groupings available from the UN FAO, a future “data join” challenge.</p>
+</div>
+</div>
+</section>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>This data set contains 119,390 hotel bookings from two hotels (“City Hotel” and “Resort Hotel”) with an arrival date between July 2015 and August 2017 <em>(more detail needed)</em>, including bookings that were later cancelled. Each row contains extensive information about a single booking:</p>
+<ul>
+<li>the booking process (e.g., lead time, booking agent, deposit, changes made)</li>
+<li>booking details (e.g., scheduled arrival date, length of stay)</li>
+<li>guest requests (e.g., type of room, meal(s) included, car parking)</li>
+<li>booking channel (e.g., distribution, market segment, corporate affiliation for )</li>
+<li>guest information (e.g., child/adult, passport country)</li>
+<li>guest prior bookings (e.g., repeat customer, prior cancellations)</li>
+</ul>
+<p>The data are a de-identified extract of real hotel demand data, <a href="https://www-sciencedirect-com.silk.library.umass.edu/science/article/pii/S2352340918315191">made available by the authors.</a></p>
+<section id="read-and-make-sense-of-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="read-and-make-sense-of-the-data">Read and make sense of the data</h3>
+<p>The hotel bookings data set is new to challenge 2, so we need to go through the same process we did during challenge 1 to find out more about the data. Lets read in the data and use the <code>summmaryTools</code> package to get an overview of the data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>bookings<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"posts/_data/hotel_bookings.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: 'posts/_data/hotel_bookings.csv' does not exist in current working directory ('/Users/seanconway/Github/601_Winter_2022-2023/posts').</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(bookings,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in summarytools::dfSummary(bookings, varnumbers = FALSE, plain.ascii = FALSE, : object 'bookings' not found</code></pre>
+</div>
+</div>
+<p>Wow - there is a lot of information available here. Lets scan it and see what jumps out. First we can see that the summary function claims that there are almost 32,000 duplicates in the data. However, this is likely an artifact of the way that the bookings have been de-identified, and may reflect bookings with identical details but different individuals who made the bookings.</p>
+<p>We can see that we are provided with limited information about the <strong>hotel.</strong> Hotels are identified only as “City” Hotel” or a “Resort Hotel”. Maybe we have bookings from only two hotels? Lets tentatively add that to our data description.</p>
+<p>There is a flag for whether a booking is <strong>cancelled</strong>. This means that our universe of cases includes bookings where the guests showed up, as well as bookings that were later cancelled - we can add that to our data description.</p>
+<p>There are multiple fields with the <strong>arrival date</strong> - year, month, etc. For now, we can tell that the arrival date of the bookings ranges between 2015 and 2017. More precise identification of the date range could be more easily done next challenge when we can recode the arrival date information using <code>lubridate</code>.But maybe it is possible to find out which values of month co-occur with specific years?</p>
+</section>
+<section id="which-values-of-y-are-nested-within-x" class="level3">
+<h3 class="anchored" data-anchor-id="which-values-of-y-are-nested-within-x">Which values of Y are nested within X?</h3>
+<p>To approach this question, we can narrow the dataset down to just the two variables of interest, and then use the <code>distinct</code> command.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(arrival_date_year, arrival_date_month)<span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in select(., arrival_date_year, arrival_date_month): object 'bookings' not found</code></pre>
+</div>
+</div>
+<p>Great - now we now that all bookings have arrival dates between June 2015 and August 2017, and can add that to the data description. Just for fun, lets see if we can confirm that the dates are the same for both hotels.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+slice()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This would be easier to investigate with proper date variables, but I am using <code>slice</code> to find the first and last row for each hotel, by position. This avoids printing out a long data list we have to scroll through, but would fail if the hotels had different sets of arrival month-year pairs.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(arrival_date_year, arrival_date_month)<span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  n_distinct</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in select(., arrival_date_year, arrival_date_month): object 'bookings' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(hotel, arrival_date_year, arrival_date_month)<span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">1</span>, d, d<span class="sc">+</span><span class="dv">1</span>, d<span class="sc">*</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in select(., hotel, arrival_date_year, arrival_date_month): object 'bookings' not found</code></pre>
+</div>
+</div>
+<p>Lets suppose we want to know whether or not the two hotels offer the same types of rooms? This is another query of the sort <em>Which values of X are nested in y?</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel)<span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(reserved_room_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in group_by(., hotel): object 'bookings' not found</code></pre>
+</div>
+</div>
+<p>In this case, however, it is tough to directly compare - it appears that the hotel-roomtype pairs are not as consistent as the year-month pairs for the same hotels. A quick <code>pivot-wider</code> makes this comparison a little easier to visualize. Here we can see that the Resort Hotel has two additional room types: “H” and “L”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel)<span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(reserved_room_type)<span class="sc">%&gt;%</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span> hotel, <span class="at">values_from =</span> n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in group_by(., hotel): object 'bookings' not found</code></pre>
+</div>
+</div>
+</section>
+<section id="what-is-the-average-of-y-for-group-x" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-the-average-of-y-for-group-x">What is the average of Y for group X?</h3>
+<p>The breakdown of rooms by hotel doesn’t shed much light on the room codes and what they might mean. Lets see if we can find average number of occupants and average price for each room type, and see if we can learn more about our data.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+mean(., na.rm=TRUE)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I am using the <code>mean</code> function with the option <code>na.rm=TRUE</code> to deal with the four NA values in the <em>children</em> field, identified in the summary table above.</p>
+</div>
+</div>
+<div class="cell" data-tbl-cap="Average Price and Occupancy, by hotel and room type">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>t1<span class="ot">&lt;-</span>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel, reserved_room_type)<span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">price =</span> <span class="fu">mean</span>(adr),</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">adults =</span> <span class="fu">mean</span>(adults),</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">children =</span> <span class="fu">mean</span>(children<span class="sc">+</span>babies, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>            )<span class="sc">%&gt;%</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span> hotel, </span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> <span class="fu">c</span>(price, adults, children))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in group_by(., hotel, reserved_room_type): object 'bookings' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(t1,</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">digits=</span><span class="dv">1</span>,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Type"</span>, <span class="st">"City"</span>, <span class="st">"Resort"</span>,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"City"</span>, <span class="st">"Resort"</span>, <span class="st">"City"</span>, <span class="st">"Resort"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">htmltable_class =</span> <span class="st">"lightable-minimal"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Room"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Price"</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"Adults"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Children &amp; Babies"</span> <span class="ot">=</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in knitr::kable(t1, digits = 1, col.names = c("Type", "City", "Resort", : object 't1' not found</code></pre>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+kable &amp; kableExtra
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I manually adjust table formatting (column names, plus adding a header row) using <code>kable</code> and <code>kableExtra</code> package, respectively. Also, because <code>df-print=paged</code> is the option set in the YAML header, I need to directly specify that I want to produce an htmltable - not a default kable/rmarkdown table.</p>
+</div>
+</div>
+<p>Based on these descriptives broken down by hotel and room type, we can speculate that the “H” and “L” room types at the resort are likely some sort of multi-bedroom suite (because the average number of adults is over 2.) Similarly, we can speculate that the difference between ABC and DEF may be something related to room size or quality (e.g., number and size of beds) and/or related to meals included with the rooms - but this would require further investigation to pin down!</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Go further
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is lots more to explore in the hotel bookings dataset, but it will be a lot easier once we recode the date fields using <code>lubridate</code>.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb42" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2 Solutions"</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Meredith Rolfe"</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Data wrangling: using group() and summarise()"</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "12/26/22"</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: styles.css</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - solution</span></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>,</span>
+<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>                      <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
+<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>Today's challenge is to</span>
+<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a>1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)</span>
+<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a>2)  provide summary statistics for different interesting groups within the data, and interpret those statistics</span>
+<span id="cb42-41"><a href="#cb42-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-42"><a href="#cb42-42" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb42-43"><a href="#cb42-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Railroad ⭐</span></span>
+<span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a>The <span class="in">`railroad`</span> data contain 2931 county-level aggregated counts of the number of railroad employees in 2012. *Counties* are embedded within *States*, and all 50 states plus Canada, overseas addresses in Asia and Europe, and Washington, DC are represented.</span>
+<span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb42-48"><a href="#cb42-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Summaries</span></span>
+<span id="cb42-49"><a href="#cb42-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-50"><a href="#cb42-50" aria-hidden="true" tabindex="-1"></a>This is a concise summary of more extensive work we did in Challenge 1, and is an example of how you should describe data in public-facing work. A "public-facing" version of your work contains all critical details needed to replicate your work, but doesn't contain a point-by-point rundown of the mental process you went through to get to that point. (Your internal analysis file should probably walk through that mental process, however!)</span>
+<span id="cb42-51"><a href="#cb42-51" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb42-52"><a href="#cb42-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-53"><a href="#cb42-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Read the data</span></span>
+<span id="cb42-54"><a href="#cb42-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-55"><a href="#cb42-55" aria-hidden="true" tabindex="-1"></a>Here, we are just reusing the code from Challenge 1. We are using the excel version, to ensure that we get Canada, and are renaming the missing data in *county* for Canada so that we don't accidently filter that observation out.</span>
+<span id="cb42-56"><a href="#cb42-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-59"><a href="#cb42-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-60"><a href="#cb42-60" aria-hidden="true" tabindex="-1"></a>railroad<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"posts/_data/StateCounty2012.xls"</span>,</span>
+<span id="cb42-61"><a href="#cb42-61" aria-hidden="true" tabindex="-1"></a>                     <span class="at">skip =</span> <span class="dv">4</span>,</span>
+<span id="cb42-62"><a href="#cb42-62" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col_names=</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"delete"</span>,  <span class="st">"county"</span>,</span>
+<span id="cb42-63"><a href="#cb42-63" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"delete"</span>, <span class="st">"employees"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb42-64"><a href="#cb42-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">contains</span>(<span class="st">"delete"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb42-65"><a href="#cb42-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(state, <span class="st">"Total"</span>))</span>
+<span id="cb42-66"><a href="#cb42-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-67"><a href="#cb42-67" aria-hidden="true" tabindex="-1"></a>railroad<span class="ot">&lt;-</span><span class="fu">head</span>(railroad, <span class="sc">-</span><span class="dv">2</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb42-68"><a href="#cb42-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">ifelse</span>(state<span class="sc">==</span><span class="st">"CANADA"</span>, <span class="st">"CANADA"</span>, county))</span>
+<span id="cb42-69"><a href="#cb42-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-70"><a href="#cb42-70" aria-hidden="true" tabindex="-1"></a>railroad</span>
+<span id="cb42-71"><a href="#cb42-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-72"><a href="#cb42-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-73"><a href="#cb42-73" aria-hidden="true" tabindex="-1"></a><span class="fu">### How many values does X take on?</span></span>
+<span id="cb42-74"><a href="#cb42-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-75"><a href="#cb42-75" aria-hidden="true" tabindex="-1"></a>Now, lets practice grouping our data and using other <span class="in">`dplyr`</span> commands that make data wrangling super easy. First, lets take a closer look at how we counted the number of unique *states* last week. First, we selected the *state* column. Then we used the <span class="in">`n_distinct`</span> command - which replicates the base R commands length(unique(var)).</span>
+<span id="cb42-76"><a href="#cb42-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-77"><a href="#cb42-77" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb42-78"><a href="#cb42-78" aria-hidden="true" tabindex="-1"></a><span class="fu">## across()</span></span>
+<span id="cb42-79"><a href="#cb42-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-80"><a href="#cb42-80" aria-hidden="true" tabindex="-1"></a>Instead of counting the number of distinct values one at a time, I am doing an operation on two columns at the same time using <span class="in">`across.`</span></span>
+<span id="cb42-81"><a href="#cb42-81" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb42-82"><a href="#cb42-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-85"><a href="#cb42-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-86"><a href="#cb42-86" aria-hidden="true" tabindex="-1"></a>railroad<span class="sc">%&gt;%</span></span>
+<span id="cb42-87"><a href="#cb42-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(state,county), n_distinct))</span>
+<span id="cb42-88"><a href="#cb42-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-89"><a href="#cb42-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-90"><a href="#cb42-90" aria-hidden="true" tabindex="-1"></a>Check this out - many counties have the same name! There are 2931 state-county cases, but only 1710 distinct county names. This is one reason it is so critical to understand "what is a case" when you are working with your data - otherwise you might accidentally collapse or group information that isn't intended to be grouped.</span>
+<span id="cb42-91"><a href="#cb42-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-92"><a href="#cb42-92" aria-hidden="true" tabindex="-1"></a><span class="fu">### How many total X are in group Y?</span></span>
+<span id="cb42-93"><a href="#cb42-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-94"><a href="#cb42-94" aria-hidden="true" tabindex="-1"></a>Suppose we want to know the total number of railroad employees was in 2012, what is the best way to sum up all of the values in the data? The <span class="in">`summarize`</span> function is useful for doing calculations across some or all of a data set.</span>
+<span id="cb42-95"><a href="#cb42-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-98"><a href="#cb42-98" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-99"><a href="#cb42-99" aria-hidden="true" tabindex="-1"></a>railroad<span class="sc">%&gt;%</span></span>
+<span id="cb42-100"><a href="#cb42-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_employees =</span> <span class="fu">sum</span>(employees))</span>
+<span id="cb42-101"><a href="#cb42-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-102"><a href="#cb42-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-103"><a href="#cb42-103" aria-hidden="true" tabindex="-1"></a>Around a quarter of a million people were employed in the railroad industry in 2012. While this may seem like a lot, it was a significant decrease in employment from <span class="co">[</span><span class="ot">a few decades earlier</span><span class="co">](https://www.bls.gov/opub/mlr/2021/article/employment-in-rail-transportation-heads-downhill-between-november-2018-and-december-2020.htm)</span>, according to official Bureau of Labor Statistics (BLS) estimates.</span>
+<span id="cb42-104"><a href="#cb42-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-105"><a href="#cb42-105" aria-hidden="true" tabindex="-1"></a>You may notice that the BLS estimates are significantly lower than the ones we are using, provided by the <span class="co">[</span><span class="ot">Railroad Retirement Board.</span><span class="co">](https://catalog.data.gov/dataset?publisher=Railroad%20Retirement%20Board)</span> Given that the Railroad Retirement Board has "gold-standard" data on railroad employees, this discrepancy suggests that many people who work in the railroad industry are being classified in a different way by BLS statistics.</span>
+<span id="cb42-106"><a href="#cb42-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-107"><a href="#cb42-107" aria-hidden="true" tabindex="-1"></a><span class="fu">### Which X have the most Y?</span></span>
+<span id="cb42-108"><a href="#cb42-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-109"><a href="#cb42-109" aria-hidden="true" tabindex="-1"></a>Suppose we are interested in which county names are duplicated most often, or in which states have the most railroad employees. We can use the same basic approach to answer both *"Which X have the most Y?"* style questions</span>
+<span id="cb42-110"><a href="#cb42-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-111"><a href="#cb42-111" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb42-112"><a href="#cb42-112" aria-hidden="true" tabindex="-1"></a><span class="fu">## df-print: paged (YAML)</span></span>
+<span id="cb42-113"><a href="#cb42-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-114"><a href="#cb42-114" aria-hidden="true" tabindex="-1"></a>When you are using <span class="in">`df-print: paged`</span> in your yaml header, or are using tibbles, there is no need to rely on the <span class="in">`head(data)`</span> command to limit your results to the top 10 of a list.</span>
+<span id="cb42-115"><a href="#cb42-115" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb42-116"><a href="#cb42-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-119"><a href="#cb42-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-120"><a href="#cb42-120" aria-hidden="true" tabindex="-1"></a>railroad<span class="sc">%&gt;%</span></span>
+<span id="cb42-121"><a href="#cb42-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state)<span class="sc">%&gt;%</span></span>
+<span id="cb42-122"><a href="#cb42-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_employees =</span> <span class="fu">sum</span>(employees),</span>
+<span id="cb42-123"><a href="#cb42-123" aria-hidden="true" tabindex="-1"></a>            <span class="at">num_counties =</span> <span class="fu">n</span>())<span class="sc">%&gt;%</span></span>
+<span id="cb42-124"><a href="#cb42-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_employees))</span>
+<span id="cb42-125"><a href="#cb42-125" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-126"><a href="#cb42-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-127"><a href="#cb42-127" aria-hidden="true" tabindex="-1"></a>Looking at the top 10 states in terms of total railroad employment, a few trends emerge. Several of the top 10 states with large numbers of railroad employment are highly populous and geographically large. California, Texas, New York, Pennsylvania, Ohio, Illinois, and Georgia are all amonst the top-10 largest states - so it would make sense if there are more railroad employees in large states.</span>
+<span id="cb42-128"><a href="#cb42-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-129"><a href="#cb42-129" aria-hidden="true" tabindex="-1"></a>But railroads are spread out along geography, and thus we might also expect square mileage within a state to be related to state railroad employment - not just state population. For example, Texas is around 65% larger (in area) than California, and has around 50% more railroad employees.</span>
+<span id="cb42-130"><a href="#cb42-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-131"><a href="#cb42-131" aria-hidden="true" tabindex="-1"></a>There appear to be multiple exceptions to both rules, however. If geography plus population were the primary factors explaining railroad employment, then California would be ranked higher than New York and Illinois, and New York would likely rank higher than Illinois. However, Illinois - Chicago in particular - is a hub of railroad activity, and thus Illinois' higher ranking is likely reflecting hub activity and employment. New York is a hub for the East Coast in particular. While California may have hubs of train activity in Los Angeles or San Francisco, the Northeast has a higher density of train stations and almost certainly generates more passenger and freight miles than the larger and more populous California.</span>
+<span id="cb42-132"><a href="#cb42-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-133"><a href="#cb42-133" aria-hidden="true" tabindex="-1"></a>This final factor - the existence of heavily used train routes probably explains the high railroad employment in states like Nebraska, Indiana and Missouri - all of which lay along a major railway route between New York and Chicago, and then out to California. Anyway who has played Ticket to Ride probably recognizes many of these routes!</span>
+<span id="cb42-134"><a href="#cb42-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-135"><a href="#cb42-135" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb42-136"><a href="#cb42-136" aria-hidden="true" tabindex="-1"></a><span class="fu">## Go further</span></span>
+<span id="cb42-137"><a href="#cb42-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-138"><a href="#cb42-138" aria-hidden="true" tabindex="-1"></a>A fun exercise once you are comfortable with joins and map-based visualizatinos would be to join the railroad employment data to information about state population and geographic area, and also mapping information about railway routes, to get more insight into the factors driving railroad employment.</span>
+<span id="cb42-139"><a href="#cb42-139" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb42-140"><a href="#cb42-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-141"><a href="#cb42-141" aria-hidden="true" tabindex="-1"></a><span class="fu">## FAOstat\* ⭐⭐⭐</span></span>
+<span id="cb42-142"><a href="#cb42-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-143"><a href="#cb42-143" aria-hidden="true" tabindex="-1"></a>The FAOSTAT sheets are excerpts of the <span class="co">[</span><span class="ot">FAOSTAT database</span><span class="co">](https://www.fao.org/faostat/en/#home)</span> provided by the <span class="co">[</span><span class="ot">Food and Agriculture Association</span><span class="co">](https://www.fao.org/home/en)</span>, an agency of the United Nations. We are using the file *birds.csv* that includes estimates of the stock of five different types of poultry (Chickens, Ducks, Geese and guinea fowls, Turkeys, and Pigeons/Others) for 248 areas for 58 years between 1961-2018. Estimated stocks are given in 1000 head.</span>
+<span id="cb42-144"><a href="#cb42-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-145"><a href="#cb42-145" aria-hidden="true" tabindex="-1"></a>Because we know (from challenge 1) that several of those areas include aggregated data (e.g., ) we are going to remove the aggregations, remove the unnecessary variables, and only work with the grouping variables available in the data. In a future challenge, we will join back on more data from the FAO to recreate regional groupings.</span>
+<span id="cb42-146"><a href="#cb42-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-149"><a href="#cb42-149" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-150"><a href="#cb42-150" aria-hidden="true" tabindex="-1"></a>birds<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"posts/_data/birds.csv"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb42-151"><a href="#cb42-151" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"Code"</span>), Element, Domain, Unit))<span class="sc">%&gt;%</span></span>
+<span id="cb42-152"><a href="#cb42-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Flag<span class="sc">!=</span><span class="st">"A"</span>)</span>
+<span id="cb42-153"><a href="#cb42-153" aria-hidden="true" tabindex="-1"></a>birds</span>
+<span id="cb42-154"><a href="#cb42-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-155"><a href="#cb42-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-156"><a href="#cb42-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### What is the average of Y for X groups?</span></span>
+<span id="cb42-157"><a href="#cb42-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-158"><a href="#cb42-158" aria-hidden="true" tabindex="-1"></a>Lets suppose we are starting off and know nothing about poultry stocks around the world, where could we start? Perhaps we could try to get a sense of the relative sizes of stocks of each of the five types of poultry, identified in the variable *Item*. Additionally, because some of the values may be missing, lets find out how many of the estimates are missing.</span>
+<span id="cb42-159"><a href="#cb42-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-162"><a href="#cb42-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-163"><a href="#cb42-163" aria-hidden="true" tabindex="-1"></a>birds<span class="sc">%&gt;%</span></span>
+<span id="cb42-164"><a href="#cb42-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Item)<span class="sc">%&gt;%</span></span>
+<span id="cb42-165"><a href="#cb42-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_stocks =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb42-166"><a href="#cb42-166" aria-hidden="true" tabindex="-1"></a>            <span class="at">med_stocks =</span> <span class="fu">median</span>(Value, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb42-167"><a href="#cb42-167" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_missing =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(Value)))</span>
+<span id="cb42-168"><a href="#cb42-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-169"><a href="#cb42-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-170"><a href="#cb42-170" aria-hidden="true" tabindex="-1"></a>On average, we can see that countries have far more chickens as livestock ($\bar{x}$=58.4million head) than other livestock birds (average stocks range between 2 and 10 million head). However, the information from the median stock counts suggest that there is significant variation across countries along with a strong right hand skew with regards to chicken stocks. The median number of chickens in a country is 3.8 million head - significantly less than the mean of almost 60 million. Overall, missing data doesn't seem to be a huge issue, so we will just use <span class="in">`na.rm=TRUE`</span> and not worry too much about the missingness for now.</span>
+<span id="cb42-171"><a href="#cb42-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-172"><a href="#cb42-172" aria-hidden="true" tabindex="-1"></a>It could be that stock head counts have changed over time, so lets try selecting two points in time and seeing whether or not average livestock counts are changing.</span>
+<span id="cb42-173"><a href="#cb42-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-174"><a href="#cb42-174" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb42-175"><a href="#cb42-175" aria-hidden="true" tabindex="-1"></a><span class="fu">## pivot-wider</span></span>
+<span id="cb42-176"><a href="#cb42-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-177"><a href="#cb42-177" aria-hidden="true" tabindex="-1"></a>It can be difficult to visually report data in tidy format. For example, it is tough to compare two values when they are on different rows. In this example, I use <span class="in">`pivot-wider`</span> to swap a tidy grouping variable into multiple columns to be more "table-like." I then do some manual formatting to make it easy to compare the grouped estimates.</span>
+<span id="cb42-178"><a href="#cb42-178" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb42-179"><a href="#cb42-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-182"><a href="#cb42-182" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-183"><a href="#cb42-183" aria-hidden="true" tabindex="-1"></a>t1<span class="ot">&lt;-</span>birds<span class="sc">%&gt;%</span></span>
+<span id="cb42-184"><a href="#cb42-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1966</span>, <span class="dv">2016</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb42-185"><a href="#cb42-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Item)<span class="sc">%&gt;%</span></span>
+<span id="cb42-186"><a href="#cb42-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_stocks =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb42-187"><a href="#cb42-187" aria-hidden="true" tabindex="-1"></a>            <span class="at">med_stocks =</span> <span class="fu">median</span>(Value, <span class="at">na.rm=</span><span class="cn">TRUE</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb42-188"><a href="#cb42-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Year, <span class="at">values_from =</span> <span class="fu">c</span>(avg_stocks, med_stocks))</span>
+<span id="cb42-189"><a href="#cb42-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-190"><a href="#cb42-190" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(t1,</span>
+<span id="cb42-191"><a href="#cb42-191" aria-hidden="true" tabindex="-1"></a>             <span class="at">digits=</span><span class="dv">0</span>,<span class="at">format.args =</span> <span class="fu">list</span>(<span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb42-192"><a href="#cb42-192" aria-hidden="true" tabindex="-1"></a>             <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Type"</span>, <span class="st">"1966"</span>, <span class="st">"2016"</span>,</span>
+<span id="cb42-193"><a href="#cb42-193" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"1966"</span>, <span class="st">"2016"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb42-194"><a href="#cb42-194" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">htmltable_class =</span> <span class="st">"lightable-minimal"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb42-195"><a href="#cb42-195" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Mean Stock (1000)"</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb42-196"><a href="#cb42-196" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"Median Stock (1000)"</span> <span class="ot">=</span> <span class="dv">2</span>))</span>
+<span id="cb42-197"><a href="#cb42-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-198"><a href="#cb42-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-199"><a href="#cb42-199" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb42-200"><a href="#cb42-200" aria-hidden="true" tabindex="-1"></a><span class="fu">## kable and kableExtra</span></span>
+<span id="cb42-201"><a href="#cb42-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-202"><a href="#cb42-202" aria-hidden="true" tabindex="-1"></a>I manually adjust table formatting (column names, setting significant digits, adding a comma) using <span class="in">`kable`</span> and add a header row using <span class="in">`kableExtra`</span>. Because <span class="in">`df-print=paged`</span> option is set to make it easier to scroll through longer data frames, I need to directly specify that I want to produce an htmltable - not a default kable/rmarkdown table - when I use kable and kableExtra formatting directly.</span>
+<span id="cb42-203"><a href="#cb42-203" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb42-204"><a href="#cb42-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-205"><a href="#cb42-205" aria-hidden="true" tabindex="-1"></a>Sure enough, it does look like stocks have changed significantly over time. The expansion of country-level chicken stocks over five decades between 1966 and 2016 are most noteworthy, with both average and median stock count going up by a factor of 4. Pigeons have never been very popular, and average stocks have actually decreased over the same time period while the other less popular bird - turkeys - saw significant incrases in stock count. Some countries increased specialization in goose and/or guinea fowl production, as the average stock count went up but the median went down over the same period.</span>
+<span id="cb42-206"><a href="#cb42-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-207"><a href="#cb42-207" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb42-208"><a href="#cb42-208" aria-hidden="true" tabindex="-1"></a><span class="fu">## Go further</span></span>
+<span id="cb42-209"><a href="#cb42-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-210"><a href="#cb42-210" aria-hidden="true" tabindex="-1"></a>It could be really interesting to graph the rise and fall of poultry stocks overtime with these data, and match these changes to changes in population size and country GDP. Another option would be to match the countries back to regional groupings available from the UN FAO, a future "data join" challenge.</span>
+<span id="cb42-211"><a href="#cb42-211" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb42-212"><a href="#cb42-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-213"><a href="#cb42-213" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hotel Bookings ⭐⭐⭐⭐</span></span>
+<span id="cb42-214"><a href="#cb42-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-215"><a href="#cb42-215" aria-hidden="true" tabindex="-1"></a>This data set contains 119,390 hotel bookings from two hotels ("City Hotel" and "Resort Hotel") with an arrival date between July 2015 and August 2017 *(more detail needed)*, including bookings that were later cancelled. Each row contains extensive information about a single booking:</span>
+<span id="cb42-216"><a href="#cb42-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-217"><a href="#cb42-217" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>the booking process (e.g., lead time, booking agent, deposit, changes made)</span>
+<span id="cb42-218"><a href="#cb42-218" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>booking details (e.g., scheduled arrival date, length of stay)</span>
+<span id="cb42-219"><a href="#cb42-219" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>guest requests (e.g., type of room, meal(s) included, car parking)</span>
+<span id="cb42-220"><a href="#cb42-220" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>booking channel (e.g., distribution, market segment, corporate affiliation for )</span>
+<span id="cb42-221"><a href="#cb42-221" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>guest information (e.g., child/adult, passport country)</span>
+<span id="cb42-222"><a href="#cb42-222" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>guest prior bookings (e.g., repeat customer, prior cancellations)</span>
+<span id="cb42-223"><a href="#cb42-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-224"><a href="#cb42-224" aria-hidden="true" tabindex="-1"></a>The data are a de-identified extract of real hotel demand data, <span class="co">[</span><span class="ot">made available by the authors.</span><span class="co">](https://www-sciencedirect-com.silk.library.umass.edu/science/article/pii/S2352340918315191)</span></span>
+<span id="cb42-225"><a href="#cb42-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-226"><a href="#cb42-226" aria-hidden="true" tabindex="-1"></a><span class="fu">### Read and make sense of the data</span></span>
+<span id="cb42-227"><a href="#cb42-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-228"><a href="#cb42-228" aria-hidden="true" tabindex="-1"></a>The hotel bookings data set is new to challenge 2, so we need to go through the same process we did during challenge 1 to find out more about the data. Lets read in the data and use the <span class="in">`summmaryTools`</span> package to get an overview of the data set.</span>
+<span id="cb42-229"><a href="#cb42-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-232"><a href="#cb42-232" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-233"><a href="#cb42-233" aria-hidden="true" tabindex="-1"></a>bookings<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"posts/_data/hotel_bookings.csv"</span>)</span>
+<span id="cb42-234"><a href="#cb42-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-235"><a href="#cb42-235" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(bookings,</span>
+<span id="cb42-236"><a href="#cb42-236" aria-hidden="true" tabindex="-1"></a>                        <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb42-237"><a href="#cb42-237" aria-hidden="true" tabindex="-1"></a>                        <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb42-238"><a href="#cb42-238" aria-hidden="true" tabindex="-1"></a>                        <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
+<span id="cb42-239"><a href="#cb42-239" aria-hidden="true" tabindex="-1"></a>                        <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb42-240"><a href="#cb42-240" aria-hidden="true" tabindex="-1"></a>                        <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb42-241"><a href="#cb42-241" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb42-242"><a href="#cb42-242" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb42-243"><a href="#cb42-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-244"><a href="#cb42-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-245"><a href="#cb42-245" aria-hidden="true" tabindex="-1"></a>Wow - there is a lot of information available here. Lets scan it and see what jumps out. First we can see that the summary function claims that there are almost 32,000 duplicates in the data. However, this is likely an artifact of the way that the bookings have been de-identified, and may reflect bookings with identical details but different individuals who made the bookings.</span>
+<span id="cb42-246"><a href="#cb42-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-247"><a href="#cb42-247" aria-hidden="true" tabindex="-1"></a>We can see that we are provided with limited information about the **hotel.** Hotels are identified only as "City" Hotel" or a "Resort Hotel". Maybe we have bookings from only two hotels? Lets tentatively add that to our data description.</span>
+<span id="cb42-248"><a href="#cb42-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-249"><a href="#cb42-249" aria-hidden="true" tabindex="-1"></a>There is a flag for whether a booking is **cancelled**. This means that our universe of cases includes bookings where the guests showed up, as well as bookings that were later cancelled - we can add that to our data description.</span>
+<span id="cb42-250"><a href="#cb42-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-251"><a href="#cb42-251" aria-hidden="true" tabindex="-1"></a>There are multiple fields with the **arrival date** - year, month, etc. For now, we can tell that the arrival date of the bookings ranges between 2015 and 2017. More precise identification of the date range could be more easily done next challenge when we can recode the arrival date information using <span class="in">`lubridate`</span>.But maybe it is possible to find out which values of month co-occur with specific years?</span>
+<span id="cb42-252"><a href="#cb42-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-253"><a href="#cb42-253" aria-hidden="true" tabindex="-1"></a><span class="fu">### Which values of Y are nested within X?</span></span>
+<span id="cb42-254"><a href="#cb42-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-255"><a href="#cb42-255" aria-hidden="true" tabindex="-1"></a>To approach this question, we can narrow the dataset down to just the two variables of interest, and then use the <span class="in">`distinct`</span> command.</span>
+<span id="cb42-256"><a href="#cb42-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-259"><a href="#cb42-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-260"><a href="#cb42-260" aria-hidden="true" tabindex="-1"></a>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb42-261"><a href="#cb42-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(arrival_date_year, arrival_date_month)<span class="sc">%&gt;%</span></span>
+<span id="cb42-262"><a href="#cb42-262" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb42-263"><a href="#cb42-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-264"><a href="#cb42-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-265"><a href="#cb42-265" aria-hidden="true" tabindex="-1"></a>Great - now we now that all bookings have arrival dates between June 2015 and August 2017, and can add that to the data description. Just for fun, lets see if we can confirm that the dates are the same for both hotels.</span>
+<span id="cb42-266"><a href="#cb42-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-267"><a href="#cb42-267" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb42-268"><a href="#cb42-268" aria-hidden="true" tabindex="-1"></a><span class="fu">## slice()</span></span>
+<span id="cb42-269"><a href="#cb42-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-270"><a href="#cb42-270" aria-hidden="true" tabindex="-1"></a>This would be easier to investigate with proper date variables, but I am using <span class="in">`slice`</span> to find the first and last row for each hotel, by position. This avoids printing out a long data list we have to scroll through, but would fail if the hotels had different sets of arrival month-year pairs.</span>
+<span id="cb42-271"><a href="#cb42-271" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb42-272"><a href="#cb42-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-275"><a href="#cb42-275" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-276"><a href="#cb42-276" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb42-277"><a href="#cb42-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(arrival_date_year, arrival_date_month)<span class="sc">%&gt;%</span></span>
+<span id="cb42-278"><a href="#cb42-278" aria-hidden="true" tabindex="-1"></a>  n_distinct</span>
+<span id="cb42-279"><a href="#cb42-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-280"><a href="#cb42-280" aria-hidden="true" tabindex="-1"></a>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb42-281"><a href="#cb42-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(hotel, arrival_date_year, arrival_date_month)<span class="sc">%&gt;%</span></span>
+<span id="cb42-282"><a href="#cb42-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb42-283"><a href="#cb42-283" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">1</span>, d, d<span class="sc">+</span><span class="dv">1</span>, d<span class="sc">*</span><span class="dv">2</span>))</span>
+<span id="cb42-284"><a href="#cb42-284" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-285"><a href="#cb42-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-286"><a href="#cb42-286" aria-hidden="true" tabindex="-1"></a>Lets suppose we want to know whether or not the two hotels offer the same types of rooms? This is another query of the sort *Which values of X are nested in y?*</span>
+<span id="cb42-287"><a href="#cb42-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-290"><a href="#cb42-290" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-291"><a href="#cb42-291" aria-hidden="true" tabindex="-1"></a>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb42-292"><a href="#cb42-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel)<span class="sc">%&gt;%</span></span>
+<span id="cb42-293"><a href="#cb42-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(reserved_room_type)</span>
+<span id="cb42-294"><a href="#cb42-294" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-295"><a href="#cb42-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-296"><a href="#cb42-296" aria-hidden="true" tabindex="-1"></a>In this case, however, it is tough to directly compare - it appears that the hotel-roomtype pairs are not as consistent as the year-month pairs for the same hotels. A quick <span class="in">`pivot-wider`</span> makes this comparison a little easier to visualize. Here we can see that the Resort Hotel has two additional room types: "H" and "L".</span>
+<span id="cb42-297"><a href="#cb42-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-300"><a href="#cb42-300" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-301"><a href="#cb42-301" aria-hidden="true" tabindex="-1"></a>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb42-302"><a href="#cb42-302" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel)<span class="sc">%&gt;%</span></span>
+<span id="cb42-303"><a href="#cb42-303" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(reserved_room_type)<span class="sc">%&gt;%</span></span>
+<span id="cb42-304"><a href="#cb42-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span> hotel, <span class="at">values_from =</span> n)</span>
+<span id="cb42-305"><a href="#cb42-305" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-306"><a href="#cb42-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-307"><a href="#cb42-307" aria-hidden="true" tabindex="-1"></a><span class="fu">### What is the average of Y for group X?</span></span>
+<span id="cb42-308"><a href="#cb42-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-309"><a href="#cb42-309" aria-hidden="true" tabindex="-1"></a>The breakdown of rooms by hotel doesn't shed much light on the room codes and what they might mean. Lets see if we can find average number of occupants and average price for each room type, and see if we can learn more about our data.</span>
+<span id="cb42-310"><a href="#cb42-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-311"><a href="#cb42-311" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb42-312"><a href="#cb42-312" aria-hidden="true" tabindex="-1"></a><span class="fu">## mean(., na.rm=TRUE)</span></span>
+<span id="cb42-313"><a href="#cb42-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-314"><a href="#cb42-314" aria-hidden="true" tabindex="-1"></a>I am using the <span class="in">`mean`</span> function with the option <span class="in">`na.rm=TRUE`</span> to deal with the four NA values in the *children* field, identified in the summary table above.</span>
+<span id="cb42-315"><a href="#cb42-315" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb42-316"><a href="#cb42-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-319"><a href="#cb42-319" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-320"><a href="#cb42-320" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Average Price and Occupancy, by hotel and room type</span></span>
+<span id="cb42-321"><a href="#cb42-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-322"><a href="#cb42-322" aria-hidden="true" tabindex="-1"></a>t1<span class="ot">&lt;-</span>bookings<span class="sc">%&gt;%</span></span>
+<span id="cb42-323"><a href="#cb42-323" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel, reserved_room_type)<span class="sc">%&gt;%</span></span>
+<span id="cb42-324"><a href="#cb42-324" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">price =</span> <span class="fu">mean</span>(adr),</span>
+<span id="cb42-325"><a href="#cb42-325" aria-hidden="true" tabindex="-1"></a>            <span class="at">adults =</span> <span class="fu">mean</span>(adults),</span>
+<span id="cb42-326"><a href="#cb42-326" aria-hidden="true" tabindex="-1"></a>            <span class="at">children =</span> <span class="fu">mean</span>(children<span class="sc">+</span>babies, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb42-327"><a href="#cb42-327" aria-hidden="true" tabindex="-1"></a>            )<span class="sc">%&gt;%</span></span>
+<span id="cb42-328"><a href="#cb42-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span> hotel, </span>
+<span id="cb42-329"><a href="#cb42-329" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> <span class="fu">c</span>(price, adults, children))</span>
+<span id="cb42-330"><a href="#cb42-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-331"><a href="#cb42-331" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(t1,</span>
+<span id="cb42-332"><a href="#cb42-332" aria-hidden="true" tabindex="-1"></a>             <span class="at">digits=</span><span class="dv">1</span>,</span>
+<span id="cb42-333"><a href="#cb42-333" aria-hidden="true" tabindex="-1"></a>             <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Type"</span>, <span class="st">"City"</span>, <span class="st">"Resort"</span>,</span>
+<span id="cb42-334"><a href="#cb42-334" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"City"</span>, <span class="st">"Resort"</span>, <span class="st">"City"</span>, <span class="st">"Resort"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb42-335"><a href="#cb42-335" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">htmltable_class =</span> <span class="st">"lightable-minimal"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb42-336"><a href="#cb42-336" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Room"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Price"</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb42-337"><a href="#cb42-337" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"Adults"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Children &amp; Babies"</span> <span class="ot">=</span> <span class="dv">2</span>))</span>
+<span id="cb42-338"><a href="#cb42-338" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb42-339"><a href="#cb42-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-340"><a href="#cb42-340" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb42-341"><a href="#cb42-341" aria-hidden="true" tabindex="-1"></a><span class="fu">## kable &amp; kableExtra</span></span>
+<span id="cb42-342"><a href="#cb42-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-343"><a href="#cb42-343" aria-hidden="true" tabindex="-1"></a>I manually adjust table formatting (column names, plus adding a header row) using <span class="in">`kable`</span> and <span class="in">`kableExtra`</span> package, respectively. Also, because <span class="in">`df-print=paged`</span> is the option set in the YAML header, I need to directly specify that I want to produce an htmltable - not a default kable/rmarkdown table.</span>
+<span id="cb42-344"><a href="#cb42-344" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb42-345"><a href="#cb42-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-346"><a href="#cb42-346" aria-hidden="true" tabindex="-1"></a>Based on these descriptives broken down by hotel and room type, we can speculate that the "H" and "L" room types at the resort are likely some sort of multi-bedroom suite (because the average number of adults is over 2.) Similarly, we can speculate that the difference between ABC and DEF may be something related to room size or quality (e.g., number and size of beds) and/or related to meals included with the rooms - but this would require further investigation to pin down!</span>
+<span id="cb42-347"><a href="#cb42-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-348"><a href="#cb42-348" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb42-349"><a href="#cb42-349" aria-hidden="true" tabindex="-1"></a><span class="fu">## Go further</span></span>
+<span id="cb42-350"><a href="#cb42-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-351"><a href="#cb42-351" aria-hidden="true" tabindex="-1"></a>There is lots more to explore in the hotel bookings dataset, but it will be a lot easier once we recode the date fields using <span class="in">`lubridate`</span>.</span>
+<span id="cb42-352"><a href="#cb42-352" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb42-353"><a href="#cb42-353" aria-hidden="true" tabindex="-1"></a>:::</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
