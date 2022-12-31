@@ -287,6 +287,48 @@
     "text": "Fun fact\nI was born and raised in the coffee region of Colombia (located in the foothills of the Andes)."
   },
   {
+    "objectID": "about/PaarthTandon.html",
+    "href": "about/PaarthTandon.html",
+    "title": "Paarth Tandon",
+    "section": "",
+    "text": "I graduated from UMass in Spring 2022 with a BS in computer science. Currently, I am a grad student (MS) studying computer science. Most recently, I interned at Moody’s Analytics building real-time NLP features."
+  },
+  {
+    "objectID": "about/PaarthTandon.html#r-experience",
+    "href": "about/PaarthTandon.html#r-experience",
+    "title": "Paarth Tandon",
+    "section": "R experience",
+    "text": "R experience\nI had no experience working with R before this course. I have worked extensively with the PyData ecosystem, which I heard is pretty similar."
+  },
+  {
+    "objectID": "about/PaarthTandon.html#research-interests",
+    "href": "about/PaarthTandon.html#research-interests",
+    "title": "Paarth Tandon",
+    "section": "Research interests",
+    "text": "Research interests\nI am passionate about deep learning, natural language processing, reinforcement learning, and the progress of artificial intelligence."
+  },
+  {
+    "objectID": "about/PaarthTandon.html#hometown",
+    "href": "about/PaarthTandon.html#hometown",
+    "title": "Paarth Tandon",
+    "section": "Hometown",
+    "text": "Hometown\nI was born in New Delhi, moved to Rhode Island when I was three. Grew up in Warwick, RI."
+  },
+  {
+    "objectID": "about/PaarthTandon.html#hobbies",
+    "href": "about/PaarthTandon.html#hobbies",
+    "title": "Paarth Tandon",
+    "section": "Hobbies",
+    "text": "Hobbies\nSpending time outdoors, bouldering, playing guitar, and virtual reality."
+  },
+  {
+    "objectID": "about/PaarthTandon.html#fun-fact",
+    "href": "about/PaarthTandon.html#fun-fact",
+    "title": "Paarth Tandon",
+    "section": "Fun fact",
+    "text": "Fun fact\nI am currently seeking full time employment (MLE/DS roles)!"
+  },
+  {
     "objectID": "about/PriyaMarla.html",
     "href": "about/PriyaMarla.html",
     "title": "Priya Marla",
@@ -389,7 +431,7 @@
     "href": "about.html",
     "title": "Contributors",
     "section": "",
-    "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCristhian Barba Garzon\n\n\n\n\n\n\n\n\n\n\n\n\n\nHenry Mitrano\n\n\n\n\n\n\n\n\n\n\n\n\n\nMarcela Robinson\n\n\n\n\n\n\n\n\n\n\n\n\n\nPriya Marla\n\n\n\n\n\n\n\n\n\n\n\n\n\nRex Temple\n\n\n\n\n\n\n\n\n\n\n\n\n\nSai Rishita Golla\n\n\n\n\n\n\n\n\n\n\n\n\n\nTanmay Agrawal\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour Name\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCristhian Barba Garzon\n\n\n\n\n\n\n\n\n\n\n\n\n\nHenry Mitrano\n\n\n\n\n\n\n\n\n\n\n\n\n\nMarcela Robinson\n\n\n\n\n\n\n\n\n\n\n\n\n\nPaarth Tandon\n\n\n\n\n\n\n\n\n\n\n\n\n\nPriya Marla\n\n\n\n\n\n\n\n\n\n\n\n\n\nRex Temple\n\n\n\n\n\n\n\n\n\n\n\n\n\nSai Rishita Golla\n\n\n\n\n\n\n\n\n\n\n\n\n\nTanmay Agrawal\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour Name\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/CristhianBarbaGarzon_Challenge2.html",
@@ -481,6 +523,41 @@
     "title": "Challenge 1",
     "section": "Data Summary",
     "text": "Data Summary\nUsing commands in R, I was able to establish that this data was recorded in about 53 states/territoriess in the US. That information was found out by using the select() and distinct() functions, which helped find the unique values in the states column. Additionally, using the same functions, I was able to find out the amount of counties that data was recorded in. The summary() command was used to provide a quick summary of what the data consists of; this function provided information on the maximum, minimum, and mean amount of employees in each state, in each county."
+  },
+  {
+    "objectID": "posts/challenge2_Sathvik.html",
+    "href": "posts/challenge2_Sathvik.html",
+    "title": "Challenge 2 Instructions",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge2_Sathvik.html#challenge-overview",
+    "href": "posts/challenge2_Sathvik.html#challenge-overview",
+    "title": "Challenge 2 Instructions",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is to\n\nread in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)\nprovide summary statistics for different interesting groups within the data, and interpret those statistics"
+  },
+  {
+    "objectID": "posts/challenge2_Sathvik.html#read-in-the-data",
+    "href": "posts/challenge2_Sathvik.html#read-in-the-data",
+    "title": "Challenge 2 Instructions",
+    "section": "Read in the Data",
+    "text": "Read in the Data\nRead in one (or more) of the following data sets, available in the posts/_data folder, using the correct R package and command.\n\nrailroad*.csv or StateCounty2012.xlsx ⭐\nFAOstat*.csv ⭐⭐⭐\nhotel_bookings ⭐⭐⭐⭐\n\n\n\n\nAdd any comments or documentation as needed. More challenging data may require additional code chunks and documentation."
+  },
+  {
+    "objectID": "posts/challenge2_Sathvik.html#describe-the-data",
+    "href": "posts/challenge2_Sathvik.html#describe-the-data",
+    "title": "Challenge 2 Instructions",
+    "section": "Describe the data",
+    "text": "Describe the data\nUsing a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data)."
+  },
+  {
+    "objectID": "posts/challenge2_Sathvik.html#provide-grouped-summary-statistics",
+    "href": "posts/challenge2_Sathvik.html#provide-grouped-summary-statistics",
+    "title": "Challenge 2 Instructions",
+    "section": "Provide Grouped Summary Statistics",
+    "text": "Provide Grouped Summary Statistics\nConduct some exploratory data analysis, using dplyr commands such as group_by(), select(), filter(), and summarise(). Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.\n\n\n\n\nExplain and Interpret\nBe sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included."
   },
   {
     "objectID": "posts/challenge1_PriyaMarla.html",
@@ -606,7 +683,7 @@
     "href": "posts/challenge2_instructions.html",
     "title": "Challenge 2 Instructions",
     "section": "",
-    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+    "text": "Code\nlibrary(tidyverse)\n\n\nError in library(tidyverse): there is no package called 'tidyverse'\n\n\nCode\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
   },
   {
     "objectID": "posts/challenge2_instructions.html#challenge-overview",
@@ -691,6 +768,27 @@
     "title": "Challenge 3 Instructions",
     "section": "Pivot the Data",
     "text": "Pivot the Data\nNow we will pivot the data, and compare our pivoted data dimensions to the dimensions calculated above as a “sanity” check.\n\nExample\n\n\nCode\ndf<-pivot_longer(df, col = c(outgoing, incoming),\n                 names_to=\"trade_direction\",\n                 values_to = \"trade_value\")\ndf\n\n\n# A tibble: 12 × 5\n   country  year trade trade_direction trade_value\n   <chr>   <dbl> <chr> <chr>                 <dbl>\n 1 Mexico   1980 NAFTA outgoing              1343.\n 2 Mexico   1980 NAFTA incoming               837.\n 3 USA      1990 NAFTA outgoing               980.\n 4 USA      1990 NAFTA incoming              1374.\n 5 France   1980 EU    outgoing              1495.\n 6 France   1980 EU    incoming              1764.\n 7 Mexico   1990 NAFTA outgoing              1115.\n 8 Mexico   1990 NAFTA incoming              1342.\n 9 USA      1980 NAFTA outgoing              1040.\n10 USA      1980 NAFTA incoming               720.\n11 France   1990 EU    outgoing              1556.\n12 France   1990 EU    incoming               894.\n\n\nYes, once it is pivoted long, our resulting data are \\(12x5\\) - exactly what we expected!\n\n\nChallenge: Pivot the Chosen Data\nDocument your work here. What will a new “case” be once you have pivoted the data? How does it meet requirements for tidy data?\n\n\n\nAny additional comments?"
+  },
+  {
+    "objectID": "posts/challenge1_paarth_tandon.html",
+    "href": "posts/challenge1_paarth_tandon.html",
+    "title": "Challenge 1",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge1_paarth_tandon.html#read-in-the-data",
+    "href": "posts/challenge1_paarth_tandon.html#read-in-the-data",
+    "title": "Challenge 1",
+    "section": "Read in the Data",
+    "text": "Read in the Data\n\n\nCode\n# read in the data using readr\nrail <- read_csv(\"_data/railroad_2012_clean_county.csv\")\n# view a few data points\nhead(rail)\n\n\n# A tibble: 6 × 3\n  state county               total_employees\n  <chr> <chr>                          <dbl>\n1 AE    APO                                2\n2 AK    ANCHORAGE                          7\n3 AK    FAIRBANKS NORTH STAR               2\n4 AK    JUNEAU                             3\n5 AK    MATANUSKA-SUSITNA                  2\n6 AK    SITKA                              1\n\n\nReading the data was very straight forward using readr."
+  },
+  {
+    "objectID": "posts/challenge1_paarth_tandon.html#describe-the-data",
+    "href": "posts/challenge1_paarth_tandon.html#describe-the-data",
+    "title": "Challenge 1",
+    "section": "Describe the data",
+    "text": "Describe the data\nAs seen by using head, this csv has three columns: state <chr>, county <chr>, and total_employees <dbl>. It contains two character based columns and one double column. Essentially, it contains the number of employees at each state, county pair.\n\n\nCode\nu_states <- rail$state %>%\n                unique() %>%\n                length()\nsprintf('# unique states: %s', u_states)\n\n\n[1] \"# unique states: 53\"\n\n\nCode\nu_counties <- rail$county %>%\n                unique() %>%\n                length()\nsprintf('# unique counties: %s', u_counties)\n\n\n[1] \"# unique counties: 1709\"\n\n\nCode\nrange_emp <- rail$total_employees %>%\n                range()\nsprintf('range of total employees: [%s, %s]', range_emp[1], range_emp[2])\n\n\n[1] \"range of total employees: [1, 8207]\"\n\n\nOne anomaly in this data is that there are 53 unique states, when in reality there are only 50 states in USA. We can find out what is causing this using filter.\n\n\nCode\nfifty_states <- c(\"AL\", \"AK\", \"AZ\", \"AR\", \"CA\", \"CO\", \"CT\", \"DE\", \"FL\", \"GA\", \"HI\", \"ID\", \"IL\", \"IN\", \"IA\", \"KS\", \"KY\", \"LA\", \"ME\", \"MD\", \"MA\", \"MI\", \"MN\", \"MS\", \"MO\", \"MT\", \"NE\", \"NV\", \"NH\", \"NJ\", \"NM\", \"NY\", \"NC\", \"ND\", \"OH\", \"OK\", \"OR\", \"PA\", \"RI\", \"SC\", \"SD\", \"TN\", \"TX\", \"UT\", \"VT\", \"VA\", \"WA\", \"WV\", \"WI\", \"WY\")\n\nfilter(rail, ! state %in% fifty_states)\n\n\n# A tibble: 3 × 3\n  state county        total_employees\n  <chr> <chr>                   <dbl>\n1 AE    APO                         2\n2 AP    APO                         1\n3 DC    WASHINGTON DC             279\n\n\nThe obvious row in this output is DC, as it represents Washington D.C., the capital zone. I was confused about AE and AP. After further research, I found out that AE is the Armed Forces in Europe, Africa, the Middle East, and Canada; AP is the Armed Forces in the Pacific. Mystery solved!\nI believe that this data was collected from each railroad station in the United States. It is most likely collected for bookkeeping purposes, but I could see it being used for analysis of which railroad stations need more employees, and which are overstaffed. Of course, answering these questions would require more data to be combined with this dataset."
   },
   {
     "objectID": "posts/SuryaPraneethReddyChirasani_challenge1.html",
@@ -812,6 +910,34 @@
     "text": "Viewing data for a particular Country for further analysis\n\n\nCode\nbirds_csv_america <- filter(birds_csv, Area == \"Europe\")\nbirds_csv_america\n\n\n# A tibble: 290 × 14\n   Domain Cod…¹ Domain Area …² Area  Eleme…³ Element Item …⁴ Item  Year …⁵  Year\n   <chr>        <chr>    <dbl> <chr>   <dbl> <chr>     <dbl> <chr>   <dbl> <dbl>\n 1 QA           Live …    5400 Euro…    5112 Stocks     1057 Chic…    1961  1961\n 2 QA           Live …    5400 Euro…    5112 Stocks     1057 Chic…    1962  1962\n 3 QA           Live …    5400 Euro…    5112 Stocks     1057 Chic…    1963  1963\n 4 QA           Live …    5400 Euro…    5112 Stocks     1057 Chic…    1964  1964\n 5 QA           Live …    5400 Euro…    5112 Stocks     1057 Chic…    1965  1965\n 6 QA           Live …    5400 Euro…    5112 Stocks     1057 Chic…    1966  1966\n 7 QA           Live …    5400 Euro…    5112 Stocks     1057 Chic…    1967  1967\n 8 QA           Live …    5400 Euro…    5112 Stocks     1057 Chic…    1968  1968\n 9 QA           Live …    5400 Euro…    5112 Stocks     1057 Chic…    1969  1969\n10 QA           Live …    5400 Euro…    5112 Stocks     1057 Chic…    1970  1970\n# … with 280 more rows, 4 more variables: Unit <chr>, Value <dbl>, Flag <chr>,\n#   `Flag Description` <chr>, and abbreviated variable names ¹​`Domain Code`,\n#   ²​`Area Code`, ³​`Element Code`, ⁴​`Item Code`, ⁵​`Year Code`\n\n\n\n\nCode\nsummary(birds_csv_america)\n\n\n Domain Code           Domain            Area Code        Area          \n Length:290         Length:290         Min.   :5400   Length:290        \n Class :character   Class :character   1st Qu.:5400   Class :character  \n Mode  :character   Mode  :character   Median :5400   Mode  :character  \n                                       Mean   :5400                     \n                                       3rd Qu.:5400                     \n                                       Max.   :5400                     \n  Element Code    Element            Item Code        Item          \n Min.   :5112   Length:290         Min.   :1057   Length:290        \n 1st Qu.:5112   Class :character   1st Qu.:1068   Class :character  \n Median :5112   Mode  :character   Median :1072   Mode  :character  \n Mean   :5112                      Mean   :1072                     \n 3rd Qu.:5112                      3rd Qu.:1079                     \n Max.   :5112                      Max.   :1083                     \n   Year Code         Year          Unit               Value        \n Min.   :1961   Min.   :1961   Length:290         Min.   :   2417  \n 1st Qu.:1975   1st Qu.:1975   Class :character   1st Qu.:  12047  \n Median :1990   Median :1990   Mode  :character   Median :  31402  \n Mean   :1990   Mean   :1990                      Mean   : 421435  \n 3rd Qu.:2004   3rd Qu.:2004                      3rd Qu.: 109158  \n Max.   :2018   Max.   :2018                      Max.   :2486932  \n     Flag           Flag Description  \n Length:290         Length:290        \n Class :character   Class :character  \n Mode  :character   Mode  :character"
   },
   {
+    "objectID": "posts/challenge2_paarth_tandon.html",
+    "href": "posts/challenge2_paarth_tandon.html",
+    "title": "Challenge 1",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge2_paarth_tandon.html#read-in-the-data",
+    "href": "posts/challenge2_paarth_tandon.html#read-in-the-data",
+    "title": "Challenge 1",
+    "section": "Read in the Data",
+    "text": "Read in the Data\n\n\nCode\n# read in the data using readr\nrail <- read_csv(\"_data/railroad_2012_clean_county.csv\")\n# view a few data points\nhead(rail)\n\n\n\n\n\n\nstate\ncounty\ntotal_employees\n\n\n\n\nAE\nAPO\n2\n\n\nAK\nANCHORAGE\n7\n\n\nAK\nFAIRBANKS NORTH STAR\n2\n\n\nAK\nJUNEAU\n3\n\n\nAK\nMATANUSKA-SUSITNA\n2\n\n\nAK\nSITKA\n1"
+  },
+  {
+    "objectID": "posts/challenge2_paarth_tandon.html#describe-the-data",
+    "href": "posts/challenge2_paarth_tandon.html#describe-the-data",
+    "title": "Challenge 1",
+    "section": "Describe the data",
+    "text": "Describe the data\nThis part is the same as in challenge 1.\nAs seen by using head, this csv has three columns: state <chr>, county <chr>, and total_employees <dbl>. It contains two character based columns and one double column. Essentially, it contains the number of employees at each state, county pair.\n\n\nCode\nu_states <- rail$state %>%\n                unique() %>%\n                length()\nsprintf('# unique states: %s', u_states)\n\n\n[1] \"# unique states: 53\"\n\n\nCode\nu_counties <- rail$county %>%\n                unique() %>%\n                length()\nsprintf('# unique counties: %s', u_counties)\n\n\n[1] \"# unique counties: 1709\"\n\n\nCode\nrange_emp <- rail$total_employees %>%\n                range()\nsprintf('range of total employees: [%s, %s]', range_emp[1], range_emp[2])\n\n\n[1] \"range of total employees: [1, 8207]\"\n\n\nI believe that this data was collected from each railroad station in the United States. It is most likely collected for bookkeeping purposes, but I could see it being used for analysis of which railroad stations need more employees, and which are overstaffed. Of course, answering these questions would require more data to be combined with this dataset."
+  },
+  {
+    "objectID": "posts/challenge2_paarth_tandon.html#provide-grouped-summary-statistics",
+    "href": "posts/challenge2_paarth_tandon.html#provide-grouped-summary-statistics",
+    "title": "Challenge 1",
+    "section": "Provide Grouped Summary Statistics",
+    "text": "Provide Grouped Summary Statistics\n\n\nCode\nrail %>%\n    group_by(`state`) %>%\n    summarise(n_counties=n(),\n              sum_emp=sum(`total_employees`),\n              mean_emp=mean(`total_employees`),\n              sd_emp=sd(`total_employees`)) %>%\n    arrange(desc(`mean_emp`))\n\n\n\n\n\n\nstate\nn_counties\nsum_emp\nmean_emp\nsd_emp\n\n\n\n\nDE\n3\n1495\n498.333333\n674.3236117\n\n\nNJ\n21\n8329\n396.619048\n338.2173083\n\n\nCT\n8\n2592\n324.000000\n520.1983138\n\n\nMA\n12\n3379\n281.583333\n203.8299016\n\n\nNY\n61\n17050\n279.508197\n590.7790231\n\n\nDC\n1\n279\n279.000000\nNA\n\n\nCA\n55\n13137\n238.854546\n549.4691518\n\n\nAZ\n15\n3153\n210.200000\n227.7819132\n\n\nPA\n65\n12769\n196.446154\n293.0664937\n\n\nMD\n24\n4709\n196.208333\n233.2815017\n\n\nIL\n103\n19131\n185.737864\n829.1464659\n\n\nNE\n89\n13176\n148.044944\n511.5815697\n\n\nWA\n39\n5222\n133.897436\n255.7140462\n\n\nWY\n22\n2876\n130.727273\n168.9799035\n\n\nFL\n67\n7419\n110.731343\n386.0113274\n\n\nOH\n88\n9056\n102.909091\n147.9123410\n\n\nRI\n5\n487\n97.400000\n129.0186033\n\n\nIN\n92\n8537\n92.793478\n233.0627675\n\n\nTX\n221\n19839\n89.769231\n350.1155344\n\n\nVA\n92\n7551\n82.076087\n340.7355403\n\n\nUT\n25\n1917\n76.680000\n142.5724143\n\n\nMO\n115\n8419\n73.208696\n208.1161744\n\n\nOR\n33\n2322\n70.363636\n108.4495327\n\n\nNM\n29\n1958\n67.517241\n112.7198235\n\n\nKS\n95\n6092\n64.126316\n167.3644413\n\n\nCO\n57\n3650\n64.035088\n127.7507289\n\n\nMN\n86\n5467\n63.569767\n122.3857489\n\n\nAL\n67\n4257\n63.537313\n130.1652014\n\n\nMT\n53\n3327\n62.773585\n122.9539691\n\n\nNV\n12\n746\n62.166667\n94.7953138\n\n\nLA\n63\n3915\n62.142857\n101.4812643\n\n\nWV\n53\n3213\n60.622642\n85.7537230\n\n\nGA\n152\n8605\n56.611842\n113.1291853\n\n\nWI\n69\n3773\n54.681159\n82.1718953\n\n\nTN\n91\n4952\n54.417582\n94.8181963\n\n\nAR\n72\n3871\n53.763889\n131.1367948\n\n\nMI\n78\n3932\n50.410256\n109.7598838\n\n\nSC\n46\n2296\n49.913044\n53.9122027\n\n\nND\n49\n2204\n44.979592\n92.4696999\n\n\nID\n36\n1563\n43.416667\n95.5478564\n\n\nME\n16\n654\n40.875000\n38.1153950\n\n\nIA\n99\n4019\n40.595960\n76.7957693\n\n\nKY\n119\n4811\n40.428571\n76.9114141\n\n\nNH\n10\n393\n39.300000\n54.3324131\n\n\nNC\n94\n3143\n33.436170\n58.5875980\n\n\nOK\n73\n2318\n31.753425\n55.8621271\n\n\nMS\n78\n2111\n27.064103\n46.6866703\n\n\nVT\n14\n259\n18.500000\n24.5443084\n\n\nSD\n52\n949\n18.250000\n34.6041338\n\n\nAK\n6\n103\n17.166667\n34.7644454\n\n\nAE\n1\n2\n2.000000\nNA\n\n\nHI\n3\n4\n1.333333\n0.5773503\n\n\nAP\n1\n1\n1.000000\nNA\n\n\n\n\n\n\nAbove is a dataframe that has five columns. The first column is the state. The second column is how many counties are in that state. The third column is how many employees are in that state. The fourth column is the mean employees per county in that state. The final column is the standard deviation of employees per county in that state. Sometimes, the standard deviation cannot be calculated, as there is only one sample (county) in that state.\nAs seen in the dataframe, Delaware (DE) has the highest mean employees of all the states.\n\n\nCode\nrail %>%\n    filter(`state`==\"DE\") %>%\n    arrange(desc(`total_employees`))\n\n\n\n\n\n\nstate\ncounty\ntotal_employees\n\n\n\n\nDE\nNEW CASTLE\n1275\n\n\nDE\nKENT\n158\n\n\nDE\nSUSSEX\n62\n\n\n\n\n\n\nTaking a look specifically at Delaware, it seems that their employees are mostly at New Castle, while Kent and Sussex have very few employees in comparison.\n\n\nCode\nrail %>%\n    filter(`state`==\"NJ\") %>%\n    arrange(desc(`total_employees`))\n\n\n\n\n\n\nstate\ncounty\ntotal_employees\n\n\n\n\nNJ\nESSEX\n1097\n\n\nNJ\nMIDDLESEX\n955\n\n\nNJ\nHUDSON\n871\n\n\nNJ\nMONMOUTH\n862\n\n\nNJ\nUNION\n738\n\n\nNJ\nOCEAN\n589\n\n\nNJ\nBERGEN\n513\n\n\nNJ\nBURLINGTON\n464\n\n\nNJ\nCAMDEN\n427\n\n\nNJ\nMERCER\n361\n\n\nNJ\nMORRIS\n296\n\n\nNJ\nGLOUCESTER\n270\n\n\nNJ\nPASSAIC\n231\n\n\nNJ\nSUSSEX\n178\n\n\nNJ\nSOMERSET\n148\n\n\nNJ\nWARREN\n115\n\n\nNJ\nHUNTERDON\n68\n\n\nNJ\nATLANTIC\n58\n\n\nNJ\nCUMBERLAND\n39\n\n\nNJ\nSALEM\n30\n\n\nNJ\nCAPE MAY\n19\n\n\n\n\n\n\nIn comparison, looking at New Jersey (NJ, second highest mean), tells a different story. New Jersey has 21 counties, and the employees are much more dispersed that in Delaware. This can also be noted by comparing their standard deviations, where New Jersey is half as dispersed as Delaware.\n\nExplain and Interpret\nI first chose to group by state, as it gives a bigger picture as to which states have a higher concentration of employees. After which, I focused on the top two states by mean employees, and compared them."
+  },
+  {
     "objectID": "posts/challenge2_MarcelaRobinson(railroad).html",
     "href": "posts/challenge2_MarcelaRobinson(railroad).html",
     "title": "Challenge 2 Instructions",
@@ -823,6 +949,6 @@
     "href": "index.html",
     "title": "DACSS 601: Data Science Fundamentals",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nDec 29, 2022\n\n\nChallenge 2 Instructions\n\n\nMarcela Robinson\n\n\n\n\nDec 27, 2022\n\n\nChallenge 2\n\n\nCristhian Barba Garzon\n\n\n\n\nDec 26, 2022\n\n\nChallenge 1\n\n\nCristhian Barba Garzon\n\n\n\n\nDec 26, 2022\n\n\nChallenge 1 Solution\n\n\nMeredith Rolfe & Sean Conway\n\n\n\n\nDec 26, 2022\n\n\nChallenge 2 Solutions\n\n\nMeredith Rolfe\n\n\n\n\nDec 25, 2022\n\n\nChallenge 1\n\n\nMarcela Robinson\n\n\n\n\nDec 25, 2022\n\n\nChallenge 1\n\n\nMarcela Robinson\n\n\n\n\nDec 21, 2022\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nDec 21, 2022\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nDec 21, 2022\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nDec 20, 2022\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nDec 20, 2022\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nDec 20, 2022\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nAug 17, 2022\n\n\nChallenge 3 Instructions\n\n\nMeredith Rolfe\n\n\n\n\nAug 2, 2022\n\n\nBirds Dataset Description\n\n\nSurya Praneeth Reddy Chirasani\n\n\n\n\nJun 5, 2022\n\n\nData Import\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nDec 29, 2022\n\n\nChallenge 2 Instructions\n\n\nMarcela Robinson\n\n\n\n\nDec 28, 2022\n\n\nChallenge 1\n\n\nPaarth Tandon\n\n\n\n\nDec 27, 2022\n\n\nChallenge 2\n\n\nCristhian Barba Garzon\n\n\n\n\nDec 26, 2022\n\n\nChallenge 1\n\n\nCristhian Barba Garzon\n\n\n\n\nDec 26, 2022\n\n\nChallenge 1 Solution\n\n\nMeredith Rolfe & Sean Conway\n\n\n\n\nDec 26, 2022\n\n\nChallenge 2 Solutions\n\n\nMeredith Rolfe\n\n\n\n\nDec 26, 2022\n\n\nChallenge 1\n\n\nPaarth Tandon\n\n\n\n\nDec 25, 2022\n\n\nChallenge 1\n\n\nMarcela Robinson\n\n\n\n\nDec 25, 2022\n\n\nChallenge 1\n\n\nMarcela Robinson\n\n\n\n\nDec 21, 2022\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nDec 21, 2022\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nDec 21, 2022\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nDec 21, 2022\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nDec 20, 2022\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nDec 20, 2022\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nDec 20, 2022\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nAug 17, 2022\n\n\nChallenge 3 Instructions\n\n\nMeredith Rolfe\n\n\n\n\nAug 2, 2022\n\n\nBirds Dataset Description\n\n\nSurya Praneeth Reddy Chirasani\n\n\n\n\nJun 5, 2022\n\n\nData Import\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
   }
 ]
