@@ -3286,7 +3286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 1              87.17816  TRUE</code></pre>
 </div>
 </div>
-<p>The mean of the total employees for all countiesis 87.17816.</p>
+<p>The mean of the total employees for all counties is 87.17816.</p>
 <p>#Summary of the data set</p>
 <div class="cell">
 <details>
@@ -3310,36 +3310,2115 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>railroad2<span class="sc">%&gt;%</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_employees <span class="sc">&lt;=</span><span class="dv">50</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(county, state)<span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(county)<span class="sc">%&gt;%</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(total_employees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,067 × 3
+<pre><code># A tibble: 2,067 × 2
 # Groups:   county [1,295]
-   county   state total_employees
-   &lt;chr&gt;    &lt;chr&gt;           &lt;int&gt;
- 1 ACADIA   LA                 13
- 2 ACCOMACK VA                  4
- 3 ADAIR    IA                  5
- 4 ADAIR    KY                  1
- 5 ADAIR    MO                 21
- 6 ADAIR    OK                  2
- 7 ADAMS    IA                  7
- 8 ADAMS    ID                  2
- 9 ADAMS    IN                 11
-10 ADAMS    MS                  3
+   county   total_employees
+   &lt;chr&gt;              &lt;int&gt;
+ 1 ACADIA                13
+ 2 ACCOMACK               4
+ 3 ADAIR                  5
+ 4 ADAIR                  1
+ 5 ADAIR                 21
+ 6 ADAIR                  2
+ 7 ADAMS                  7
+ 8 ADAMS                  2
+ 9 ADAMS                 11
+10 ADAMS                  3
 # … with 2,057 more rows</code></pre>
 </div>
 </div>
-<p>I use the filter function to pull the counties that have 50 or less employees. After running the code, there are 2,067 counties with 50 or less employees. There are multiple questions that arise from this information: Is employment declining in those counties? Are resources distributed based on the total number of employees? Are the railroad stations smaller and less employees are needed, or are these counties significantly understaffed?</p>
+<p>I use the filter function to pull the counties that have 50 or less employees. After running the code, there are 2,067 counties with 50 or less employees. There are multiple questions that arise from this information: Is employment declining in those counties? Are resources distributed based on the total number of employees? Are the railroad stations smaller and less employees are needed, or are these counties significantly understaffed? Is there a correlation between state/county population and the number of employees?</p>
+<p>##Create a df for counties with 50 or less employees called railroad_l50</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>railroad_l50<span class="ot">&lt;-</span>railroad2<span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_employees<span class="sc">&lt;=</span><span class="dv">50</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>railroad_l50</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     state               county total_employees
+1       AE                  APO               2
+2       AK            ANCHORAGE               7
+3       AK FAIRBANKS NORTH STAR               2
+4       AK               JUNEAU               3
+5       AK    MATANUSKA-SUSITNA               2
+6       AK                SITKA               1
+7       AL              BARBOUR               1
+8       AL                 BIBB              25
+9       AL              BULLOCK              13
+10      AL               BUTLER              29
+11      AL              CALHOUN              45
+12      AL             CHAMBERS              13
+13      AL             CHEROKEE               9
+14      AL              CHOCTAW               7
+15      AL               CLARKE              26
+16      AL                 CLAY              10
+17      AL             CLEBURNE               7
+18      AL               COFFEE              14
+19      AL              CONECUH              11
+20      AL                COOSA               5
+21      AL            COVINGTON              12
+22      AL             CRENSHAW               5
+23      AL                 DALE              11
+24      AL               DEKALB              33
+25      AL             ESCAMBIA              47
+26      AL              FAYETTE               3
+27      AL             FRANKLIN              40
+28      AL               GENEVA               8
+29      AL               GREENE               7
+30      AL                 HALE               8
+31      AL                HENRY               1
+32      AL              HOUSTON              46
+33      AL                LAMAR              25
+34      AL             LAWRENCE              11
+35      AL                  LEE              46
+36      AL            LIMESTONE               7
+37      AL              LOWNDES               7
+38      AL                MACON               6
+39      AL              MADISON              29
+40      AL              MARENGO              16
+41      AL               MARION              17
+42      AL             MARSHALL              29
+43      AL               MONROE              43
+44      AL               MORGAN              42
+45      AL                PERRY               4
+46      AL              PICKENS              24
+47      AL                 PIKE              19
+48      AL             RANDOLPH              39
+49      AL              RUSSELL              38
+50      AL               SUMTER               9
+51      AL            TALLADEGA              42
+52      AL           TALLAPOOSA              19
+53      AL           WASHINGTON              11
+54      AL               WILCOX              11
+55      AL              WINSTON              45
+56      AP                  APO               1
+57      AR             ARKANSAS              11
+58      AR               ASHLEY              18
+59      AR               BAXTER              25
+60      AR               BENTON              35
+61      AR                BOONE               5
+62      AR              BRADLEY               8
+63      AR              CALHOUN               5
+64      AR               CHICOT               3
+65      AR                CLARK              40
+66      AR                 CLAY              13
+67      AR             CLEBURNE               8
+68      AR             COLUMBIA               5
+69      AR               CONWAY              19
+70      AR           CRITTENDEN              48
+71      AR                CROSS              30
+72      AR               DALLAS              12
+73      AR                DESHA              15
+74      AR                 DREW              34
+75      AR             FRANKLIN               5
+76      AR               GREENE              15
+77      AR            HEMPSTEAD               6
+78      AR               HOWARD              37
+79      AR         INDEPENDENCE              32
+80      AR                IZARD               4
+81      AR              JACKSON              13
+82      AR              JOHNSON               7
+83      AR            LAFAYETTE              11
+84      AR             LAWRENCE              32
+85      AR                  LEE               3
+86      AR         LITTLE RIVER              22
+87      AR                LOGAN               4
+88      AR              MADISON               7
+89      AR               MARION               8
+90      AR               MILLER              10
+91      AR          MISSISSIPPI              18
+92      AR               MONROE               7
+93      AR           MONTGOMERY               2
+94      AR               NEVADA              15
+95      AR               NEWTON               1
+96      AR             OUACHITA              15
+97      AR                PERRY              22
+98      AR             PHILLIPS              11
+99      AR                 PIKE              10
+100     AR             POINSETT               4
+101     AR                 POLK              17
+102     AR                 POPE              31
+103     AR              PRAIRIE               5
+104     AR             RANDOLPH              19
+105     AR                SCOTT               3
+106     AR            SEBASTIAN              43
+107     AR               SEVIER              50
+108     AR                SHARP              20
+109     AR           ST FRANCIS              16
+110     AR                STONE               2
+111     AR                UNION              20
+112     AR            VAN BUREN               2
+113     AR           WASHINGTON              46
+114     AR                 YELL               9
+115     AZ                 GILA              37
+116     AZ               GRAHAM              48
+117     AZ             GREENLEE               3
+118     AZ               LA PAZ              10
+119     AZ           SANTA CRUZ              18
+120     CA               AMADOR               9
+121     CA            CALAVERAS              30
+122     CA               COLUSA               2
+123     CA                GLENN               4
+124     CA             HUMBOLDT               2
+125     CA                KINGS              21
+126     CA                 LAKE               2
+127     CA               LASSEN              14
+128     CA               MADERA              39
+129     CA                MARIN              12
+130     CA             MARIPOSA               4
+131     CA            MENDOCINO               6
+132     CA                MODOC               3
+133     CA                 MONO               1
+134     CA             MONTEREY              29
+135     CA                 NAPA              17
+136     CA               NEVADA              36
+137     CA           SAN BENITO              13
+138     CA        SANTA BARBARA              36
+139     CA           SANTA CRUZ              44
+140     CA               SIERRA               2
+141     CA               SONOMA              38
+142     CA               TEHAMA              10
+143     CA              TRINITY               2
+144     CA             TUOLUMNE               9
+145     CO              ALAMOSA              10
+146     CO            ARCHULETA               2
+147     CO                 BACA               3
+148     CO                 BENT               1
+149     CO           BROOMFIELD              42
+150     CO              CHAFFEE               6
+151     CO             CHEYENNE               1
+152     CO          CLEAR CREEK               2
+153     CO              CONEJOS               6
+154     CO             COSTILLA               1
+155     CO              CROWLEY               7
+156     CO               CUSTER               3
+157     CO                DELTA              16
+158     CO              DOLORES               1
+159     CO                EAGLE              10
+160     CO               ELBERT              10
+161     CO              FREMONT              28
+162     CO             GARFIELD              13
+163     CO               GILPIN               5
+164     CO                GRAND              10
+165     CO             GUNNISON               1
+166     CO             HUERFANO              10
+167     CO                KIOWA               3
+168     CO           KIT CARSON               2
+169     CO             LA PLATA               1
+170     CO                 LAKE               2
+171     CO              LINCOLN               5
+172     CO               MOFFAT               6
+173     CO            MONTEZUMA               2
+174     CO             MONTROSE              10
+175     CO               MORGAN              34
+176     CO                 PARK              12
+177     CO             PHILLIPS               4
+178     CO               PITKIN               1
+179     CO              PROWERS              26
+180     CO           RIO GRANDE              10
+181     CO                ROUTT              30
+182     CO             SAGUACHE               2
+183     CO             SEDGWICK              16
+184     CO               SUMMIT               6
+185     CO               TELLER               6
+186     CO           WASHINGTON               3
+187     CO                 YUMA               3
+188     CT              TOLLAND              26
+189     FL              ALACHUA              22
+190     FL                  BAY              45
+191     FL             BRADFORD              20
+192     FL              BREVARD              33
+193     FL              CALHOUN               1
+194     FL            CHARLOTTE              10
+195     FL               CITRUS              23
+196     FL              COLLIER              14
+197     FL             COLUMBIA              35
+198     FL               DESOTO               9
+199     FL                DIXIE               2
+200     FL              FLAGLER              29
+201     FL             FRANKLIN               2
+202     FL              GADSDEN               5
+203     FL            GILCHRIST               1
+204     FL               GLADES               5
+205     FL                 GULF               6
+206     FL             HAMILTON              11
+207     FL               HARDEE               2
+208     FL               HENDRY               1
+209     FL             HERNANDO              30
+210     FL            HIGHLANDS              15
+211     FL               HOLMES               6
+212     FL         INDIAN RIVER              12
+213     FL              JACKSON              12
+214     FL            JEFFERSON               3
+215     FL            LAFAYETTE               5
+216     FL                  LEE              43
+217     FL                 LEON              21
+218     FL                 LEVY               6
+219     FL              LIBERTY               1
+220     FL              MADISON               1
+221     FL              MANATEE              23
+222     FL               MARION              48
+223     FL               MARTIN               9
+224     FL               MONROE               7
+225     FL             OKALOOSA               6
+226     FL           OKEECHOBEE              12
+227     FL              OSCEOLA              30
+228     FL               PUTNAM              34
+229     FL           SANTA ROSA              48
+230     FL             SARASOTA              18
+231     FL               SUMTER              36
+232     FL             SUWANNEE              11
+233     FL               TAYLOR               5
+234     FL                UNION              11
+235     FL              WAKULLA               4
+236     FL               WALTON               3
+237     FL           WASHINGTON              13
+238     GA              APPLING              24
+239     GA             ATKINSON              22
+240     GA              BALDWIN              11
+241     GA                BANKS               1
+242     GA               BARROW              32
+243     GA              BERRIEN              12
+244     GA             BLECKLEY              17
+245     GA               BROOKS               4
+246     GA              BULLOCH              42
+247     GA                BURKE              17
+248     GA                BUTTS              23
+249     GA              CALHOUN               3
+250     GA               CAMDEN              41
+251     GA              CANDLER               4
+252     GA             CHARLTON              35
+253     GA        CHATTAHOOCHEE               4
+254     GA            CHATTOOGA               4
+255     GA               CLARKE               9
+256     GA                 CLAY               2
+257     GA               CLINCH              16
+258     GA             COLQUITT               5
+259     GA                 COOK               4
+260     GA             CRAWFORD               6
+261     GA                CRISP              12
+262     GA                 DADE              31
+263     GA               DAWSON               3
+264     GA              DECATUR              11
+265     GA                DODGE               9
+266     GA                DOOLY               6
+267     GA            DOUGHERTY              43
+268     GA                EARLY               6
+269     GA               ELBERT               1
+270     GA              EMANUEL              33
+271     GA                EVANS               5
+272     GA               FANNIN               9
+273     GA                FLOYD              31
+274     GA              FORSYTH              40
+275     GA             FRANKLIN               6
+276     GA               GILMER               6
+277     GA             GLASCOCK               1
+278     GA                GLYNN              40
+279     GA               GORDON              33
+280     GA                GRADY               9
+281     GA               GREENE               5
+282     GA            HABERSHAM              12
+283     GA              HANCOCK               4
+284     GA             HARALSON              21
+285     GA               HARRIS              37
+286     GA                 HART              10
+287     GA                HEARD               4
+288     GA                IRWIN              24
+289     GA              JACKSON              38
+290     GA               JASPER              13
+291     GA           JEFF DAVIS              12
+292     GA            JEFFERSON              11
+293     GA              JENKINS              17
+294     GA              JOHNSON               4
+295     GA                JONES              42
+296     GA                LAMAR              19
+297     GA               LANIER              10
+298     GA              LAURENS              11
+299     GA                  LEE              22
+300     GA              LIBERTY              28
+301     GA              LINCOLN              15
+302     GA                 LONG               4
+303     GA              LUMPKIN               2
+304     GA                MACON               4
+305     GA              MADISON               6
+306     GA               MARION               7
+307     GA             MCDUFFIE              32
+308     GA             MCINTOSH               7
+309     GA               MILLER               2
+310     GA             MITCHELL               6
+311     GA           MONTGOMERY               4
+312     GA               MORGAN               2
+313     GA               MURRAY               6
+314     GA               NEWTON               9
+315     GA               OCONEE               7
+316     GA           OGLETHORPE               3
+317     GA                PEACH              47
+318     GA              PICKENS              16
+319     GA                 PIKE              17
+320     GA              PULASKI               3
+321     GA               PUTNAM              10
+322     GA                RABUN               4
+323     GA             RANDOLPH              12
+324     GA               SCHLEY               7
+325     GA              SCREVEN               7
+326     GA             SEMINOLE               2
+327     GA             SPALDING              33
+328     GA             STEPHENS               8
+329     GA              STEWART               3
+330     GA               SUMTER               9
+331     GA               TALBOT              13
+332     GA             TATTNALL               4
+333     GA               TAYLOR              11
+334     GA              TELFAIR               5
+335     GA              TERRELL               9
+336     GA               THOMAS              30
+337     GA                 TIFT              13
+338     GA               TOOMBS              28
+339     GA             TREUTLEN               1
+340     GA               TURNER               7
+341     GA               TWIGGS              12
+342     GA                UPSON              18
+343     GA               WARREN               8
+344     GA           WASHINGTON              34
+345     GA              WEBSTER               3
+346     GA                WHITE               3
+347     GA            WHITFIELD              22
+348     GA               WILCOX              15
+349     GA               WILKES               7
+350     GA            WILKINSON              22
+351     GA                WORTH              11
+352     HI               HAWAII               1
+353     HI             HONOLULU               2
+354     HI                KAUAI               1
+355     IA                ADAIR               5
+356     IA                ADAMS               7
+357     IA            ALLAMAKEE              18
+358     IA            APPANOOSE              13
+359     IA              AUDUBON               1
+360     IA               BENTON              39
+361     IA               BREMER              17
+362     IA             BUCHANAN              35
+363     IA          BUENA VISTA               2
+364     IA               BUTLER              23
+365     IA              CALHOUN              16
+366     IA              CARROLL              38
+367     IA                 CASS              13
+368     IA                CEDAR              19
+369     IA             CHEROKEE               2
+370     IA            CHICKASAW               7
+371     IA               CLARKE              16
+372     IA                 CLAY               2
+373     IA              CLAYTON              24
+374     IA             CRAWFORD               8
+375     IA               DALLAS              46
+376     IA                DAVIS              11
+377     IA              DECATUR               9
+378     IA             DELAWARE              18
+379     IA            DICKINSON               2
+380     IA                EMMET               6
+381     IA              FAYETTE              23
+382     IA                FLOYD              34
+383     IA             FRANKLIN              11
+384     IA              FREMONT              15
+385     IA               GREENE              19
+386     IA               GRUNDY               9
+387     IA              GUTHRIE              10
+388     IA             HAMILTON              31
+389     IA              HANCOCK              10
+390     IA               HARDIN              20
+391     IA                HENRY              26
+392     IA               HOWARD               1
+393     IA             HUMBOLDT              17
+394     IA                  IDA               1
+395     IA                 IOWA              13
+396     IA              JACKSON              26
+397     IA               JASPER              24
+398     IA            JEFFERSON              10
+399     IA              JOHNSON              37
+400     IA                JONES              14
+401     IA               KEOKUK               3
+402     IA              KOSSUTH               5
+403     IA               LOUISA               7
+404     IA                LUCAS               5
+405     IA                 LYON               2
+406     IA              MADISON              12
+407     IA              MAHASKA               3
+408     IA               MARION              14
+409     IA             MITCHELL              15
+410     IA               MONONA              12
+411     IA               MONROE              14
+412     IA           MONTGOMERY              19
+413     IA            MUSCATINE              29
+414     IA              O'BRIEN               1
+415     IA              OSCEOLA               1
+416     IA                 PAGE              13
+417     IA            PALO ALTO               2
+418     IA             PLYMOUTH              14
+419     IA           POCAHONTAS               5
+420     IA            POWESHIEK               7
+421     IA             RINGGOLD              13
+422     IA                  SAC              10
+423     IA               SHELBY              12
+424     IA                SIOUX               1
+425     IA                 TAMA              20
+426     IA               TAYLOR               3
+427     IA            VAN BUREN               8
+428     IA              WAPELLO              42
+429     IA               WARREN              37
+430     IA           WASHINGTON              10
+431     IA                WAYNE               5
+432     IA            WINNEBAGO               6
+433     IA           WINNESHIEK               1
+434     IA                WORTH              12
+435     IA               WRIGHT              36
+436     ID                ADAMS               2
+437     ID              BENEWAH              10
+438     ID              BINGHAM              47
+439     ID                BOISE               3
+440     ID               BONNER              40
+441     ID           BONNEVILLE              44
+442     ID             BOUNDARY              44
+443     ID              CARIBOU              12
+444     ID               CASSIA              16
+445     ID           CLEARWATER               1
+446     ID               CUSTER               1
+447     ID               ELMORE               9
+448     ID             FRANKLIN              20
+449     ID              FREMONT               1
+450     ID                  GEM              26
+451     ID              GOODING               4
+452     ID                IDAHO               4
+453     ID            JEFFERSON               6
+454     ID               JEROME              11
+455     ID                LATAH              11
+456     ID                LEWIS               2
+457     ID              LINCOLN               6
+458     ID             MINIDOKA              32
+459     ID            NEZ PERCE              13
+460     ID               ONEIDA               8
+461     ID               OWYHEE               7
+462     ID              PAYETTE              23
+463     ID                POWER              12
+464     ID               VALLEY               1
+465     ID           WASHINGTON              21
+466     IL            ALEXANDER               2
+467     IL                 BOND              23
+468     IL                BOONE              44
+469     IL                BROWN               7
+470     IL               BUREAU              35
+471     IL              CALHOUN               4
+472     IL                CLARK              24
+473     IL                 CLAY              14
+474     IL              CLINTON              38
+475     IL                COLES              42
+476     IL             CRAWFORD              12
+477     IL           CUMBERLAND               9
+478     IL              DE WITT              46
+479     IL              DUPAGEE              45
+480     IL                EDGAR              12
+481     IL              EDWARDS               4
+482     IL            EFFINGHAM              33
+483     IL              FAYETTE              32
+484     IL                 FORD              23
+485     IL             FRANKLIN              39
+486     IL             GALLATIN               7
+487     IL               GREENE              13
+488     IL             HAMILTON              19
+489     IL               HARDIN               1
+490     IL              JACKSON              37
+491     IL               JASPER               4
+492     IL               JERSEY              14
+493     IL           JO DAVIESS              14
+494     IL              JOHNSON              26
+495     IL             LAWRENCE               6
+496     IL                  LEE              40
+497     IL           LIVINGSTON              12
+498     IL                LOGAN              16
+499     IL             MARSHALL              10
+500     IL                MASON              23
+501     IL               MASSAC               9
+502     IL               MCLEAN              45
+503     IL               MENARD              10
+504     IL               MERCER              18
+505     IL           MONTGOMERY              38
+506     IL               MORGAN              43
+507     IL             MOULTRIE              49
+508     IL                PERRY              20
+509     IL                 PIKE              50
+510     IL                 POPE               1
+511     IL              PULASKI               7
+512     IL               PUTNAM               5
+513     IL             RICHLAND               9
+514     IL               SALINE              11
+515     IL             SCHUYLER              32
+516     IL                SCOTT              15
+517     IL               SHELBY              45
+518     IL                STARK               5
+519     IL           STEPHENSON              33
+520     IL                UNION              41
+521     IL               WABASH              14
+522     IL           WASHINGTON              29
+523     IL                WAYNE              18
+524     IL                WHITE              16
+525     IL             WOODFORD              14
+526     IN                ADAMS              11
+527     IN          BARTHOLOMEW              12
+528     IN               BENTON               6
+529     IN            BLACKFORD              24
+530     IN                BOONE              22
+531     IN                BROWN               7
+532     IN              CARROLL              26
+533     IN                 CASS              35
+534     IN                 CLAY              28
+535     IN              CLINTON              28
+536     IN             CRAWFORD              21
+537     IN              DAVIESS              35
+538     IN             DEARBORN              50
+539     IN              DECATUR               7
+540     IN               DUBOIS              35
+541     IN              FAYETTE              19
+542     IN             FOUNTAIN              21
+543     IN             FRANKLIN              10
+544     IN               FULTON               8
+545     IN                GRANT              39
+546     IN                HENRY              35
+547     IN               HOWARD              34
+548     IN              JACKSON              11
+549     IN                  JAY              18
+550     IN            JEFFERSON              10
+551     IN             JENNINGS              13
+552     IN                 KNOX              16
+553     IN            KOSCIUSKO              30
+554     IN             LAGRANGE              16
+555     IN             LAPORTEE              24
+556     IN             LAWRENCE              16
+557     IN             MARSHALL              40
+558     IN               MARTIN               3
+559     IN               MONROE              27
+560     IN           MONTGOMERY              30
+561     IN               NEWTON              18
+562     IN                 OHIO               5
+563     IN               ORANGE               7
+564     IN                 OWEN              19
+565     IN                PARKE              10
+566     IN                PERRY               7
+567     IN                 PIKE              27
+568     IN                POSEY              41
+569     IN              PULASKI              11
+570     IN               PUTNAM              41
+571     IN             RANDOLPH              23
+572     IN               RIPLEY               8
+573     IN                 RUSH               7
+574     IN                SCOTT              10
+575     IN               SHELBY              43
+576     IN              SPENCER              23
+577     IN              STEUBEN              45
+578     IN             SULLIVAN              34
+579     IN               TIPTON              14
+580     IN                UNION               7
+581     IN           VERMILLION              23
+582     IN               WABASH              30
+583     IN               WARREN               8
+584     IN           WASHINGTON              29
+585     IN                WAYNE              12
+586     IN                WELLS              39
+587     IN                WHITE              23
+588     IN              WHITLEY              38
+589     KS                ALLEN              16
+590     KS             ANDERSON              12
+591     KS             ATCHISON              42
+592     KS               BARBER              11
+593     KS               BARTON              22
+594     KS              BOURBON              47
+595     KS                BROWN              14
+596     KS                CHASE              11
+597     KS           CHAUTAUQUA               1
+598     KS             CHEROKEE              38
+599     KS                 CLAY               5
+600     KS                CLOUD              14
+601     KS               COFFEY              10
+602     KS             COMANCHE               1
+603     KS              DECATUR               3
+604     KS             DONIPHAN              24
+605     KS              EDWARDS               4
+606     KS                  ELK               7
+607     KS                ELLIS              12
+608     KS            ELLSWORTH               3
+609     KS               FINNEY               9
+610     KS                 FORD              22
+611     KS                GEARY              24
+612     KS                 GRAY               1
+613     KS              GREELEY               3
+614     KS            GREENWOOD               3
+615     KS             HAMILTON               1
+616     KS               HARPER              14
+617     KS              HASKELL              19
+618     KS             HODGEMAN               4
+619     KS               JEWELL               1
+620     KS              KINGMAN              12
+621     KS                KIOWA               1
+622     KS              LINCOLN               2
+623     KS                 LINN              31
+624     KS                LOGAN               6
+625     KS               MARION              46
+626     KS            MCPHERSON              34
+627     KS                MEADE               5
+628     KS             MITCHELL               2
+629     KS               NEMAHA              22
+630     KS               NEOSHO              16
+631     KS               NORTON               2
+632     KS              OSBORNE               1
+633     KS               OTTAWA              12
+634     KS               PAWNEE               1
+635     KS             PHILLIPS              25
+636     KS         POTTAWATOMIE              17
+637     KS                PRATT              34
+638     KS              RAWLINS               2
+639     KS             REPUBLIC               2
+640     KS                 RICE               7
+641     KS                RILEY              30
+642     KS                ROOKS               9
+643     KS                 RUSH              10
+644     KS              RUSSELL               1
+645     KS                SCOTT               3
+646     KS               SEWARD              12
+647     KS              SHERMAN               9
+648     KS                SMITH               2
+649     KS             STAFFORD               3
+650     KS              STANTON               1
+651     KS              STEVENS               3
+652     KS               THOMAS               3
+653     KS                TREGO               2
+654     KS            WABAUNSEE              21
+655     KS              WALLACE               9
+656     KS           WASHINGTON              22
+657     KS              WICHITA               2
+658     KS               WILSON               4
+659     KS              WOODSON               7
+660     KY                ADAIR               1
+661     KY                ALLEN               5
+662     KY             ANDERSON               5
+663     KY              BALLARD               7
+664     KY               BARREN               5
+665     KY                 BATH               3
+666     KY                 BELL              27
+667     KY              BOURBON               8
+668     KY              BRACKEN              11
+669     KY            BREATHITT              36
+670     KY         BRECKINRIDGE              14
+671     KY               BUTLER               1
+672     KY             CALDWELL              29
+673     KY             CALLOWAY               4
+674     KY             CARLISLE               7
+675     KY              CARROLL              19
+676     KY                CASEY              18
+677     KY            CHRISTIAN              15
+678     KY                CLARK               6
+679     KY                 CLAY               7
+680     KY           CRITTENDEN               1
+681     KY           CUMBERLAND               1
+682     KY              DAVIESS              31
+683     KY             EDMONSON               5
+684     KY              ELLIOTT               1
+685     KY               ESTILL              42
+686     KY              FLEMING               9
+687     KY             FRANKLIN               5
+688     KY               FULTON               4
+689     KY             GALLATIN               8
+690     KY              GARRARD               8
+691     KY               GRAVES              24
+692     KY              GRAYSON              11
+693     KY                GREEN               4
+694     KY              HANCOCK               3
+695     KY               HARLAN              44
+696     KY             HARRISON              15
+697     KY                 HART               6
+698     KY            HENDERSON              48
+699     KY                HENRY              24
+700     KY              HICKMAN               3
+701     KY              JACKSON               4
+702     KY            JESSAMINE              13
+703     KY              JOHNSON              50
+704     KY                KNOTT              16
+705     KY                 KNOX              38
+706     KY                LARUE               7
+707     KY                  LEE               8
+708     KY               LESLIE               3
+709     KY              LETCHER              22
+710     KY           LIVINGSTON              11
+711     KY                LOGAN              16
+712     KY                 LYON               6
+713     KY              MADISON              47
+714     KY             MAGOFFIN               1
+715     KY               MARION               7
+716     KY             MARSHALL              22
+717     KY               MARTIN              16
+718     KY                MASON               8
+719     KY             MCCREARY               7
+720     KY               MCLEAN               5
+721     KY                MEADE              28
+722     KY              MENIFEE               1
+723     KY             METCALFE               1
+724     KY               MONROE               4
+725     KY           MONTGOMERY               5
+726     KY               MORGAN               1
+727     KY           MUHLENBERG              22
+728     KY             NICHOLAS              11
+729     KY                 OHIO              16
+730     KY               OLDHAM              35
+731     KY                 OWEN               3
+732     KY               OWSLEY               2
+733     KY            PENDLETON              31
+734     KY                PERRY              39
+735     KY               POWELL               6
+736     KY            ROBERTSON               2
+737     KY           ROCKCASTLE              32
+738     KY                ROWAN               4
+739     KY              RUSSELL               5
+740     KY                SCOTT              15
+741     KY               SHELBY              33
+742     KY              SIMPSON               1
+743     KY              SPENCER              22
+744     KY               TAYLOR               2
+745     KY                 TODD              15
+746     KY                TRIGG               3
+747     KY              TRIMBLE               4
+748     KY                UNION               7
+749     KY               WARREN              12
+750     KY           WASHINGTON               3
+751     KY                WAYNE               2
+752     KY              WEBSTER              10
+753     KY                WOLFE               3
+754     KY             WOODFORD               5
+755     LA               ACADIA              13
+756     LA                ALLEN              19
+757     LA           ASSUMPTION               5
+758     LA            AVOYELLES              37
+759     LA           BEAUREGARD              43
+760     LA            BIENVILLE              21
+761     LA             CALDWELL               7
+762     LA              CAMERON               1
+763     LA            CATAHOULA               1
+764     LA            CLAIBORNE              31
+765     LA            CONCORDIA               3
+766     LA              DE SOTO              40
+767     LA         EAST CARROLL               1
+768     LA       EAST FELICIANA              11
+769     LA           EVANGELINE              11
+770     LA             FRANKLIN               4
+771     LA                GRANT              25
+772     LA               IBERIA              25
+773     LA              JACKSON              20
+774     LA      JEFFERSON DAVIS               6
+775     LA             LA SALLE               5
+776     LA            LAFOURCHE              10
+777     LA              LINCOLN              16
+778     LA              MADISON              10
+779     LA            MOREHOUSE              19
+780     LA         NATCHITOCHES              22
+781     LA          PLAQUEMINES              17
+782     LA            RED RIVER               6
+783     LA             RICHLAND               2
+784     LA               SABINE               8
+785     LA           ST BERNARD              35
+786     LA           ST CHARLES              46
+787     LA             ST JAMES              11
+788     LA  ST JOHN THE BAPTIST              38
+789     LA            ST MARTIN              31
+790     LA              ST MARY               2
+791     LA               TENSAS               1
+792     LA           TERREBONNE              14
+793     LA                UNION               8
+794     LA            VERMILION               5
+795     LA               VERNON              42
+796     LA           WASHINGTON              20
+797     LA         WEST CARROLL               3
+798     LA       WEST FELICIANA               5
+799     LA                 WINN               2
+800     MA           BARNSTABLE              44
+801     MA            BERKSHIRE              50
+802     MD             CAROLINE               8
+803     MD           DORCHESTER               8
+804     MD                 KENT               3
+805     MD          QUEEN ANNES              22
+806     MD             SOMERSET               1
+807     MD               TALBOT               2
+808     MD             WICOMICO              12
+809     MD            WORCESTER               6
+810     ME         ANDROSCOGGIN              22
+811     ME             FRANKLIN               2
+812     ME              HANCOCK               3
+813     ME                 KNOX               5
+814     ME              LINCOLN               7
+815     ME               OXFORD              36
+816     ME            SAGADAHOC               8
+817     ME                WALDO              11
+818     ME           WASHINGTON              17
+819     ME                 YORK              47
+820     MI               ALCONA               1
+821     MI                ALGER               8
+822     MI              ALLEGAN              27
+823     MI               ALPENA               3
+824     MI               ARENAC              19
+825     MI               BARAGA               4
+826     MI                BARRY              16
+827     MI               BENZIE               2
+828     MI               BRANCH              13
+829     MI            CHEBOYGAN               2
+830     MI             CHIPPEWA               8
+831     MI                CLARE               5
+832     MI              CLINTON              10
+833     MI             CRAWFORD               1
+834     MI            DICKINSON               7
+835     MI                EATON              42
+836     MI                EMMET               1
+837     MI              GLADWIN               4
+838     MI              GOGEBIC               3
+839     MI       GRAND TRAVERSE               4
+840     MI              GRATIOT               5
+841     MI            HILLSDALE              17
+842     MI             HOUGHTON               6
+843     MI                HURON               9
+844     MI               INGHAM              46
+845     MI                IONIA              32
+846     MI                IOSCO              13
+847     MI                 IRON               3
+848     MI             ISABELLA               5
+849     MI             KALKASKA               3
+850     MI                 LAKE               1
+851     MI               LAPEER              36
+852     MI             LEELANAU               3
+853     MI           LIVINGSTON              33
+854     MI                 LUCE               2
+855     MI             MACKINAC               2
+856     MI             MANISTEE              12
+857     MI                MASON              17
+858     MI              MECOSTA               5
+859     MI            MENOMINEE              14
+860     MI              MIDLAND               5
+861     MI             MONTCALM              17
+862     MI             MUSKEGON              24
+863     MI              NEWAYGO              15
+864     MI               OCEANA               1
+865     MI               OGEMAW               6
+866     MI            ONTONAGON              11
+867     MI              OSCEOLA               2
+868     MI               OSCODA               1
+869     MI               OTSEGO               1
+870     MI               OTTAWA              40
+871     MI         PRESQUE ISLE               1
+872     MI            ROSCOMMON               2
+873     MI              SANILAC              14
+874     MI          SCHOOLCRAFT              13
+875     MI            ST JOSEPH              42
+876     MI              TUSCOLA              38
+877     MI            VAN BUREN              27
+878     MI              WEXFORD               5
+879     MN               AITKIN              19
+880     MN             BELTRAMI              10
+881     MN               BENTON              20
+882     MN            BIG STONE              10
+883     MN                BROWN              25
+884     MN               CARVER              41
+885     MN                 CASS              20
+886     MN             CHIPPEWA               6
+887     MN           CLEARWATER               9
+888     MN           COTTONWOOD               4
+889     MN                DODGE               1
+890     MN              DOUGLAS              44
+891     MN            FARIBAULT               8
+892     MN             FILLMORE               4
+893     MN             FREEBORN              24
+894     MN              GOODHUE              35
+895     MN                GRANT               3
+896     MN              HOUSTON              42
+897     MN              HUBBARD              14
+898     MN               ITASCA              37
+899     MN              JACKSON               7
+900     MN              KANABEC              10
+901     MN              KITTSON               4
+902     MN          KOOCHICHING              43
+903     MN        LAC QUI PARLE               2
+904     MN    LAKE OF THE WOODS               6
+905     MN             LE SUEUR              27
+906     MN              LINCOLN               4
+907     MN                 LYON              10
+908     MN             MAHNOMEN               7
+909     MN             MARSHALL              13
+910     MN               MARTIN               3
+911     MN               MCLEOD              46
+912     MN               MEEKER              32
+913     MN           MILLE LACS              34
+914     MN             MORRISON              43
+915     MN                MOWER              20
+916     MN               MURRAY               3
+917     MN             NICOLLET               6
+918     MN               NOBLES               6
+919     MN               NORMAN               9
+920     MN              OLMSTED              18
+921     MN                 PINE              35
+922     MN            PIPESTONE               5
+923     MN                 POPE              43
+924     MN             RED LAKE              10
+925     MN              REDWOOD               9
+926     MN             RENVILLE              13
+927     MN                 RICE              37
+928     MN                 ROCK               9
+929     MN               ROSEAU               4
+930     MN               SIBLEY              11
+931     MN               STEELE              16
+932     MN              STEVENS               9
+933     MN                SWIFT              16
+934     MN                 TODD              28
+935     MN             TRAVERSE               2
+936     MN              WABASHA              13
+937     MN               WADENA               9
+938     MN               WASECA              49
+939     MN             WATONWAN              32
+940     MN               WILKIN              34
+941     MN               WINONA              26
+942     MN      YELLOW MEDICINE               5
+943     MO                ADAIR              21
+944     MO               ANDREW              17
+945     MO             ATCHISON               5
+946     MO              AUDRAIN              25
+947     MO                BARRY              17
+948     MO               BARTON              26
+949     MO                BATES              12
+950     MO               BENTON              29
+951     MO            BOLLINGER              12
+952     MO             CALDWELL              38
+953     MO             CALLAWAY              15
+954     MO               CAMDEN              11
+955     MO              CARROLL              23
+956     MO               CARTER              20
+957     MO                CEDAR              10
+958     MO             CHARITON              50
+959     MO                CLARK              29
+960     MO                 COLE              46
+961     MO             CRAWFORD              17
+962     MO                 DADE              19
+963     MO               DALLAS               8
+964     MO              DAVIESS              21
+965     MO               DEKALB              36
+966     MO                 DENT               2
+967     MO              DOUGLAS               1
+968     MO              DUNKLIN              24
+969     MO            GASCONADE              14
+970     MO               GENTRY               5
+971     MO               GRUNDY              23
+972     MO             HARRISON              19
+973     MO                HENRY              20
+974     MO              HICKORY               3
+975     MO                 HOLT              16
+976     MO               HOWARD               7
+977     MO                 IRON              13
+978     MO              JOHNSON              42
+979     MO                 KNOX              16
+980     MO              LACLEDE              18
+981     MO                LEWIS              20
+982     MO              LINCOLN              18
+983     MO           LIVINGSTON              44
+984     MO                MACON              47
+985     MO              MADISON              30
+986     MO               MARIES               1
+987     MO             MCDONALD               5
+988     MO               MERCER               9
+989     MO               MILLER              15
+990     MO          MISSISSIPPI               1
+991     MO             MONITEAU              24
+992     MO               MONROE              24
+993     MO           MONTGOMERY               9
+994     MO               MORGAN              24
+995     MO           NEW MADRID              10
+996     MO               NEWTON              38
+997     MO              NODAWAY               7
+998     MO                OSAGE              12
+999     MO                OZARK               5
+1000    MO             PEMISCOT               3
+1001    MO                PERRY              29
+1002    MO               PHELPS              18
+1003    MO                 PIKE              33
+1004    MO                 POLK              38
+1005    MO              PULASKI               5
+1006    MO               PUTNAM               1
+1007    MO                RALLS              23
+1008    MO             REYNOLDS               5
+1009    MO               RIPLEY              48
+1010    MO     SAINTE GENEVIEVE              27
+1011    MO               SALINE              27
+1012    MO             SCHUYLER               8
+1013    MO             SCOTLAND               1
+1014    MO              SHANNON              10
+1015    MO               SHELBY              12
+1016    MO             ST CLAIR               8
+1017    MO             STODDARD              47
+1018    MO                STONE              20
+1019    MO             SULLIVAN               6
+1020    MO                TANEY              19
+1021    MO                TEXAS              34
+1022    MO               VERNON              25
+1023    MO               WARREN               8
+1024    MO           WASHINGTON              50
+1025    MO                WAYNE              38
+1026    MO                WORTH               3
+1027    MO               WRIGHT              40
+1028    MS                ADAMS               3
+1029    MS               ALCORN              45
+1030    MS                AMITE              16
+1031    MS               ATTALA              33
+1032    MS               BENTON              12
+1033    MS              CARROLL              14
+1034    MS            CHICKASAW              11
+1035    MS              CHOCTAW               6
+1036    MS            CLAIBORNE               3
+1037    MS               CLARKE              15
+1038    MS                 CLAY              10
+1039    MS              COAHOMA               1
+1040    MS               COPIAH              16
+1041    MS            COVINGTON               8
+1042    MS             FRANKLIN              12
+1043    MS               GEORGE              21
+1044    MS               GREENE               2
+1045    MS              GRENADA              15
+1046    MS             HARRISON              46
+1047    MS               HOLMES              23
+1048    MS            HUMPHREYS               3
+1049    MS            ISSAQUENA               1
+1050    MS             ITAWAMBA               7
+1051    MS              JACKSON              42
+1052    MS               JASPER              10
+1053    MS            JEFFERSON               4
+1054    MS                JONES              10
+1055    MS               KEMPER               6
+1056    MS            LAFAYETTE               5
+1057    MS                LAMAR              27
+1058    MS             LAWRENCE              15
+1059    MS                LEAKE               6
+1060    MS                  LEE              23
+1061    MS              LEFLORE               1
+1062    MS              LINCOLN              46
+1063    MS              MADISON              45
+1064    MS               MARION              24
+1065    MS             MARSHALL              50
+1066    MS           MONTGOMERY              15
+1067    MS              NESHOBA               3
+1068    MS               NEWTON              47
+1069    MS              NOXUBEE               8
+1070    MS            OKTIBBEHA              10
+1071    MS               PANOLA              13
+1072    MS                PERRY              11
+1073    MS             PONTOTOC               3
+1074    MS             PRENTISS               1
+1075    MS              QUITMAN               5
+1076    MS                SCOTT              12
+1077    MS              SHARKEY               1
+1078    MS              SIMPSON              15
+1079    MS                STONE               8
+1080    MS            SUNFLOWER               2
+1081    MS         TALLAHATCHIE               3
+1082    MS                 TATE              36
+1083    MS               TIPPAH               8
+1084    MS           TISHOMINGO              10
+1085    MS               TUNICA               3
+1086    MS                UNION               8
+1087    MS             WALTHALL               5
+1088    MS               WARREN              49
+1089    MS           WASHINGTON               4
+1090    MS                WAYNE              18
+1091    MS              WEBSTER               6
+1092    MS            WILKINSON               5
+1093    MS              WINSTON              16
+1094    MS            YALOBUSHA              10
+1095    MS                YAZOO               7
+1096    MT           BEAVERHEAD               8
+1097    MT             BIG HORN               5
+1098    MT               BLAINE              32
+1099    MT           BROADWATER               4
+1100    MT               CARBON              40
+1101    MT             CHOUTEAU               9
+1102    MT              DANIELS               2
+1103    MT           DEER LODGE              18
+1104    MT               FALLON               4
+1105    MT               FERGUS              11
+1106    MT             GALLATIN              30
+1107    MT              GLACIER              29
+1108    MT        GOLDEN VALLEY               2
+1109    MT              GRANITE               8
+1110    MT            JEFFERSON               8
+1111    MT         JUDITH BASIN               2
+1112    MT                 LAKE              46
+1113    MT              LIBERTY               9
+1114    MT              LINCOLN              31
+1115    MT              MADISON               1
+1116    MT               MCCONE               1
+1117    MT              MEAGHER               1
+1118    MT              MINERAL              14
+1119    MT          MUSSELSHELL               3
+1120    MT             PHILLIPS               9
+1121    MT              PONDERA              25
+1122    MT         POWDER RIVER               3
+1123    MT               POWELL               9
+1124    MT              PRAIRIE              11
+1125    MT              RAVALLI              49
+1126    MT             RICHLAND              26
+1127    MT            ROOSEVELT               9
+1128    MT              SANDERS              37
+1129    MT             SHERIDAN               7
+1130    MT           SILVER BOW              20
+1131    MT          SWEET GRASS               7
+1132    MT                TETON               5
+1133    MT                TOOLE              28
+1134    MT             TREASURE               2
+1135    MT            WHEATLAND               1
+1136    MT               WIBAUX               7
+1137    NC             ALAMANCE              14
+1138    NC            ALEXANDER              10
+1139    NC            ALLEGHANY               1
+1140    NC                ANSON              12
+1141    NC                 ASHE               3
+1142    NC                AVERY               4
+1143    NC             BEAUFORT               4
+1144    NC               BLADEN               7
+1145    NC            BRUNSWICK              22
+1146    NC                BURKE              15
+1147    NC             CALDWELL               5
+1148    NC               CAMDEN              10
+1149    NC             CARTERET               5
+1150    NC              CASWELL               7
+1151    NC              CATAWBA              22
+1152    NC              CHATHAM               3
+1153    NC             CHEROKEE               8
+1154    NC               CHOWAN               2
+1155    NC                 CLAY               1
+1156    NC            CLEVELAND              12
+1157    NC             COLUMBUS              17
+1158    NC               CRAVEN              14
+1159    NC           CUMBERLAND              39
+1160    NC            CURRITUCK              29
+1161    NC                 DARE               3
+1162    NC                DAVIE              28
+1163    NC               DUPLIN               4
+1164    NC               DURHAM              24
+1165    NC            EDGECOMBE               7
+1166    NC             FRANKLIN               5
+1167    NC                GATES               6
+1168    NC               GRAHAM               2
+1169    NC            GRANVILLE               8
+1170    NC              HALIFAX              36
+1171    NC              HARNETT              15
+1172    NC              HAYWOOD              21
+1173    NC            HENDERSON              32
+1174    NC             HERTFORD               3
+1175    NC                 HOKE               4
+1176    NC              IREDELL              48
+1177    NC              JACKSON               8
+1178    NC                  LEE               8
+1179    NC               LENOIR               5
+1180    NC              LINCOLN              19
+1181    NC               MARTIN               4
+1182    NC             MCDOWELL              26
+1183    NC             MITCHELL              13
+1184    NC           MONTGOMERY              22
+1185    NC                MOORE              41
+1186    NC          NEW HANOVER              45
+1187    NC          NORTHAMPTON              15
+1188    NC               ONSLOW               4
+1189    NC               ORANGE              15
+1190    NC              PAMLICO               1
+1191    NC           PASQUOTANK              16
+1192    NC               PENDER              18
+1193    NC           PERQUIMANS               2
+1194    NC               PERSON               2
+1195    NC                 PITT              19
+1196    NC                 POLK               5
+1197    NC             RANDOLPH              18
+1198    NC           ROCKINGHAM              12
+1199    NC           RUTHERFORD              30
+1200    NC              SAMPSON               5
+1201    NC             SCOTLAND              30
+1202    NC               STANLY              49
+1203    NC               STOKES               9
+1204    NC                SURRY              30
+1205    NC                SWAIN               3
+1206    NC         TRANSYLVANIA               4
+1207    NC                UNION              50
+1208    NC                VANCE               4
+1209    NC               WARREN               6
+1210    NC           WASHINGTON               6
+1211    NC              WATAUGA               1
+1212    NC                WAYNE              15
+1213    NC               WILKES               1
+1214    NC               WILSON              49
+1215    NC               YADKIN               6
+1216    NC               YANCEY              23
+1217    ND                ADAMS               2
+1218    ND               BARNES              25
+1219    ND               BENSON               2
+1220    ND            BOTTINEAU               6
+1221    ND               BOWMAN               1
+1222    ND                BURKE               7
+1223    ND             CAVALIER               2
+1224    ND               DICKEY              11
+1225    ND               DIVIDE              12
+1226    ND                 DUNN               1
+1227    ND                 EDDY               7
+1228    ND               EMMONS               2
+1229    ND               FOSTER              14
+1230    ND        GOLDEN VALLEY               4
+1231    ND                GRANT               5
+1232    ND               GRIGGS               2
+1233    ND            HETTINGER               1
+1234    ND               KIDDER               9
+1235    ND              LAMOURE               5
+1236    ND                LOGAN               2
+1237    ND             MCINTOSH              10
+1238    ND             MCKENZIE               1
+1239    ND               MCLEAN              34
+1240    ND            MOUNTRAIL              14
+1241    ND               NELSON               6
+1242    ND               OLIVER               2
+1243    ND              PEMBINA               4
+1244    ND               PIERCE               9
+1245    ND               RAMSEY              14
+1246    ND             RENVILLE               8
+1247    ND              ROLETTE               6
+1248    ND              SARGENT               3
+1249    ND             SHERIDAN               8
+1250    ND                SIOUX               1
+1251    ND                SLOPE               2
+1252    ND                STARK              34
+1253    ND             STUTSMAN              48
+1254    ND               TRAILL              11
+1255    ND             WILLIAMS              25
+1256    NE             ANTELOPE               2
+1257    NE               ARTHUR               2
+1258    NE               BANNER               8
+1259    NE               BLAINE               2
+1260    NE                BOONE               2
+1261    NE                BROWN               1
+1262    NE                 BURT               9
+1263    NE               BUTLER              40
+1264    NE                CEDAR               8
+1265    NE                CHASE               2
+1266    NE               CHERRY               1
+1267    NE                 CLAY              13
+1268    NE               COLFAX               4
+1269    NE               CUMING               4
+1270    NE               DAKOTA              35
+1271    NE                DEUEL              13
+1272    NE                DIXON               5
+1273    NE                DUNDY               5
+1274    NE             FILLMORE              13
+1275    NE             FRANKLIN               3
+1276    NE             FRONTIER              30
+1277    NE               FURNAS              18
+1278    NE               GARDEN              21
+1279    NE               GOSPER               9
+1280    NE                GRANT               8
+1281    NE              GREELEY               3
+1282    NE             HAMILTON              14
+1283    NE               HARLAN               4
+1284    NE                HAYES               3
+1285    NE            HITCHCOCK              15
+1286    NE                 HOLT               3
+1287    NE               HOOKER              17
+1288    NE               HOWARD              21
+1289    NE            JEFFERSON              42
+1290    NE              JOHNSON              30
+1291    NE              KEARNEY               6
+1292    NE              KIMBALL              24
+1293    NE                 KNOX               9
+1294    NE                LOGAN              35
+1295    NE                 LOUP               1
+1296    NE              MADISON              45
+1297    NE            MCPHERSON              19
+1298    NE              MERRICK              14
+1299    NE                NANCE               1
+1300    NE               NEMAHA              12
+1301    NE             NUCKOLLS               8
+1302    NE               PAWNEE               7
+1303    NE              PERKINS              20
+1304    NE               PHELPS               7
+1305    NE               PIERCE               7
+1306    NE                 POLK               8
+1307    NE                 ROCK               1
+1308    NE               SALINE              41
+1309    NE             SHERIDAN              49
+1310    NE              SHERMAN              18
+1311    NE                SIOUX               1
+1312    NE              STANTON              11
+1313    NE               THAYER              22
+1314    NE               THOMAS               5
+1315    NE             THURSTON               1
+1316    NE               VALLEY              13
+1317    NE                WAYNE               3
+1318    NE              WEBSTER               5
+1319    NE                 YORK              18
+1320    NH              BELKNAP               2
+1321    NH              CARROLL              12
+1322    NH             CHESHIRE              28
+1323    NH                 COOS              19
+1324    NH              GRAFTON               7
+1325    NH            MERRIMACK               9
+1326    NH            STRAFFORD              27
+1327    NH             SULLIVAN               7
+1328    NJ             CAPE MAY              19
+1329    NJ           CUMBERLAND              39
+1330    NJ                SALEM              30
+1331    NM               CATRON               4
+1332    NM               CHAVES              14
+1333    NM               CIBOLA              27
+1334    NM               COLFAX              25
+1335    NM              DE BACA               7
+1336    NM                 EDDY              43
+1337    NM                GRANT              13
+1338    NM            GUADALUPE               8
+1339    NM              HIDALGO              11
+1340    NM                  LEA               4
+1341    NM              LINCOLN               7
+1342    NM                 LUNA              41
+1343    NM                OTERO              45
+1344    NM                 QUAY              42
+1345    NM           RIO ARRIBA               2
+1346    NM           SAN MIGUEL               6
+1347    NM             SANTA FE              26
+1348    NM               SIERRA               3
+1349    NM              SOCORRO              12
+1350    NM             TORRANCE              29
+1351    NM                UNION               5
+1352    NV            CHURCHILL               5
+1353    NV             HUMBOLDT              47
+1354    NV     INDEPENDENT CITY               8
+1355    NV               LANDER               5
+1356    NV              LINCOLN              26
+1357    NV                 LYON              42
+1358    NV                  NYE              12
+1359    NV             PERSHING               5
+1360    NV               STOREY               1
+1361    NY               CAYUGA              36
+1362    NY              CHEMUNG              21
+1363    NY             CHENANGO              39
+1364    NY              CLINTON              24
+1365    NY             CORTLAND              11
+1366    NY             DELAWARE              25
+1367    NY                ESSEX              27
+1368    NY             FRANKLIN              11
+1369    NY               FULTON              20
+1370    NY              GENESEE              46
+1371    NY             HERKIMER              48
+1372    NY            JEFFERSON              19
+1373    NY                LEWIS               5
+1374    NY              MADISON              43
+1375    NY           MONTGOMERY              36
+1376    NY              ONTARIO              33
+1377    NY              ORLEANS              11
+1378    NY            SCHOHARIE              43
+1379    NY             SCHUYLER               7
+1380    NY               SENECA              13
+1381    NY             SULLIVAN              14
+1382    NY                TIOGA              32
+1383    NY             TOMPKINS               8
+1384    NY               WARREN              26
+1385    NY                WAYNE              46
+1386    NY              WYOMING              50
+1387    NY                YATES               6
+1388    OH                ADAMS              24
+1389    OH               ATHENS              21
+1390    OH             AUGLAIZE              23
+1391    OH              BELMONT              22
+1392    OH                BROWN              14
+1393    OH              CARROLL              25
+1394    OH            CHAMPAIGN              28
+1395    OH                CLARK              23
+1396    OH              CLINTON              25
+1397    OH                DARKE              16
+1398    OH             DEFIANCE              33
+1399    OH              FAYETTE              18
+1400    OH               GALLIA              19
+1401    OH               GEAUGA              29
+1402    OH               GREENE              19
+1403    OH             GUERNSEY              16
+1404    OH               HARDIN              22
+1405    OH             HARRISON              26
+1406    OH                HENRY              38
+1407    OH             HIGHLAND              15
+1408    OH              HOCKING               9
+1409    OH               HOLMES               4
+1410    OH              JACKSON              14
+1411    OH                 KNOX              17
+1412    OH              LICKING              49
+1413    OH              MADISON              20
+1414    OH                MEIGS              20
+1415    OH               MERCER               8
+1416    OH                MIAMI              24
+1417    OH               MONROE               4
+1418    OH               MORGAN               3
+1419    OH               MORROW              21
+1420    OH            MUSKINGUM              29
+1421    OH                NOBLE               3
+1422    OH             PAULDING              18
+1423    OH                PERRY              12
+1424    OH             PICKAWAY              40
+1425    OH                 PIKE              39
+1426    OH               PREBLE              12
+1427    OH                 ROSS              40
+1428    OH               SHELBY              21
+1429    OH             VAN WERT              16
+1430    OH               VINTON               6
+1431    OH           WASHINGTON              22
+1432    OH             WILLIAMS              42
+1433    OH              WYANDOT              35
+1434    OK                ADAIR               2
+1435    OK              ALFALFA               5
+1436    OK                ATOKA               4
+1437    OK               BEAVER               1
+1438    OK              BECKHAM              11
+1439    OK               BLAINE               7
+1440    OK                BRYAN              49
+1441    OK                CADDO              24
+1442    OK               CARTER               8
+1443    OK             CHEROKEE               6
+1444    OK              CHOCTAW              32
+1445    OK            CLEVELAND              41
+1446    OK                 COAL               5
+1447    OK             COMANCHE              15
+1448    OK               COTTON               3
+1449    OK                CRAIG              17
+1450    OK               CUSTER              38
+1451    OK             DELAWARE              14
+1452    OK                DEWEY               2
+1453    OK                ELLIS               7
+1454    OK               GARVIN              11
+1455    OK                GRANT              12
+1456    OK                GREER               5
+1457    OK               HARPER               1
+1458    OK              HASKELL               8
+1459    OK               HUGHES               9
+1460    OK              JACKSON               3
+1461    OK            JEFFERSON               5
+1462    OK             JOHNSTON               8
+1463    OK           KINGFISHER               7
+1464    OK                KIOWA               2
+1465    OK              LATIMER              43
+1466    OK              LINCOLN              18
+1467    OK                LOGAN              19
+1468    OK                 LOVE              11
+1469    OK                MAJOR               5
+1470    OK             MARSHALL              29
+1471    OK                MAYES              19
+1472    OK              MCCLAIN              27
+1473    OK            MCCURTAIN              18
+1474    OK             MCINTOSH              18
+1475    OK               MURRAY               7
+1476    OK                NOBLE              10
+1477    OK               NOWATA              34
+1478    OK             OKFUSKEE               7
+1479    OK             OKMULGEE              34
+1480    OK                OSAGE               1
+1481    OK               OTTAWA              14
+1482    OK               PAWNEE              11
+1483    OK                PAYNE               9
+1484    OK            PITTSBURG              23
+1485    OK             PONTOTOC              37
+1486    OK         POTTAWATOMIE              21
+1487    OK           PUSHMATAHA              11
+1488    OK             SEMINOLE               6
+1489    OK             SEQUOYAH              48
+1490    OK             STEPHENS               9
+1491    OK                TEXAS               7
+1492    OK              WAGONER              19
+1493    OK           WASHINGTON              31
+1494    OK              WASHITA               6
+1495    OK                WOODS              20
+1496    OK             WOODWARD              23
+1497    OR                BAKER              37
+1498    OR               BENTON              15
+1499    OR              CLATSOP               4
+1500    OR             COLUMBIA              48
+1501    OR                 COOS              10
+1502    OR                CROOK               8
+1503    OR              DOUGLAS              39
+1504    OR              GILLIAM               2
+1505    OR                GRANT               2
+1506    OR           HOOD RIVER              14
+1507    OR              JACKSON              30
+1508    OR            JEFFERSON              10
+1509    OR            JOSEPHINE               8
+1510    OR                 LAKE               4
+1511    OR              LINCOLN               4
+1512    OR              MALHEUR              10
+1513    OR               MORROW              39
+1514    OR                 POLK              11
+1515    OR              SHERMAN               2
+1516    OR            TILLAMOOK               7
+1517    OR              WALLOWA               6
+1518    OR                WASCO              50
+1519    OR              YAMHILL              38
+1520    PA                ADAMS              39
+1521    PA            ARMSTRONG              39
+1522    PA             BRADFORD              38
+1523    PA              CAMERON               4
+1524    PA               CENTRE              32
+1525    PA              CLARION              22
+1526    PA              CLINTON              39
+1527    PA             COLUMBIA               3
+1528    PA                  ELK               7
+1529    PA               FULTON               3
+1530    PA               GREENE              29
+1531    PA           HUNTINGDON              47
+1532    PA              INDIANA              36
+1533    PA               MCKEAN               8
+1534    PA              MONTOUR               3
+1535    PA               POTTER               5
+1536    PA               SNYDER              26
+1537    PA                TIOGA              15
+1538    PA                UNION              19
+1539    PA              VENANGO              16
+1540    PA               WARREN              10
+1541    PA              WYOMING              17
+1542    RI              BRISTOL               8
+1543    RI              NEWPORT              11
+1544    RI           WASHINGTON              48
+1545    SC            ALLENDALE               1
+1546    SC             ANDERSON              34
+1547    SC              BAMBERG               6
+1548    SC             BARNWELL               9
+1549    SC             BEAUFORT              17
+1550    SC              CALHOUN               2
+1551    SC             CHEROKEE               9
+1552    SC              CHESTER              15
+1553    SC         CHESTERFIELD              24
+1554    SC            CLARENDON              18
+1555    SC             COLLETON              29
+1556    SC            EDGEFIELD              17
+1557    SC            FAIRFIELD              22
+1558    SC           GEORGETOWN              29
+1559    SC              HAMPTON              25
+1560    SC                HORRY              42
+1561    SC               JASPER               7
+1562    SC              KERSHAW              26
+1563    SC            LANCASTER              19
+1564    SC              LAURENS              20
+1565    SC                  LEE               4
+1566    SC               MARION              22
+1567    SC             MARLBORO              19
+1568    SC            MCCORMICK              20
+1569    SC             NEWBERRY              28
+1570    SC               OCONEE               5
+1571    SC           ORANGEBURG              25
+1572    SC              PICKENS              48
+1573    SC               SALUDA               5
+1574    SC               SUMTER              29
+1575    SC                UNION              19
+1576    SC         WILLIAMSBURG              22
+1577    SD               AURORA               1
+1578    SD              BENNETT               2
+1579    SD            BON HOMME               1
+1580    SD            BROOKINGS              34
+1581    SD                BRULE               5
+1582    SD                BUTTE               4
+1583    SD             CAMPBELL               1
+1584    SD          CHARLES MIX               1
+1585    SD                 CLAY               5
+1586    SD            CODINGTON              13
+1587    SD              DAVISON               6
+1588    SD                  DAY               4
+1589    SD                DEUEL               3
+1590    SD                DEWEY               2
+1591    SD              DOUGLAS               1
+1592    SD              EDMUNDS               9
+1593    SD                GRANT               5
+1594    SD              GREGORY               3
+1595    SD               HAAKON               6
+1596    SD               HAMLIN               3
+1597    SD                 HAND               9
+1598    SD               HANSON               1
+1599    SD               HUGHES              17
+1600    SD                 HYDE               1
+1601    SD              JERAULD               1
+1602    SD            KINGSBURY              13
+1603    SD                 LAKE               3
+1604    SD             LAWRENCE              19
+1605    SD              LINCOLN              10
+1606    SD             MARSHALL               1
+1607    SD               MCCOOK               2
+1608    SD                MINER               1
+1609    SD                MOODY               2
+1610    SD           PENNINGTON              49
+1611    SD              PERKINS               1
+1612    SD               POTTER               1
+1613    SD              ROBERTS              10
+1614    SD              SANBORN               8
+1615    SD              SHANNON               2
+1616    SD                SPINK               5
+1617    SD              STANLEY               4
+1618    SD                SULLY               1
+1619    SD               TURNER               5
+1620    SD             WALWORTH               6
+1621    SD              YANKTON               5
+1622    TN             ANDERSON              45
+1623    TN              BEDFORD              12
+1624    TN               BENTON              24
+1625    TN              BLEDSOE              10
+1626    TN               CANNON               8
+1627    TN               CARTER              21
+1628    TN             CHEATHAM              16
+1629    TN              CHESTER               3
+1630    TN            CLAIBORNE              32
+1631    TN                COCKE              37
+1632    TN               COFFEE              12
+1633    TN             CROCKETT              16
+1634    TN           CUMBERLAND              14
+1635    TN              DECATUR               1
+1636    TN               DEKALB               6
+1637    TN                 DYER              18
+1638    TN              FAYETTE              30
+1639    TN             FENTRESS               5
+1640    TN             FRANKLIN              36
+1641    TN               GIBSON              25
+1642    TN                GILES              10
+1643    TN               GREENE              43
+1644    TN              HANCOCK               2
+1645    TN             HARDEMAN              14
+1646    TN               HARDIN              10
+1647    TN              HAYWOOD               4
+1648    TN            HENDERSON              14
+1649    TN                HENRY              22
+1650    TN              HICKMAN              16
+1651    TN            HUMPHREYS              24
+1652    TN              JACKSON               2
+1653    TN              JOHNSON               1
+1654    TN                 LAKE               2
+1655    TN           LAUDERDALE              44
+1656    TN             LAWRENCE              42
+1657    TN                LEWIS               6
+1658    TN              LINCOLN               4
+1659    TN               LOUDON              26
+1660    TN              MADISON              22
+1661    TN             MARSHALL              40
+1662    TN              MCNAIRY              17
+1663    TN                MEIGS              10
+1664    TN               MONROE              46
+1665    TN           MONTGOMERY              27
+1666    TN                OBION              37
+1667    TN              OVERTON               1
+1668    TN                PERRY               2
+1669    TN              PICKETT               2
+1670    TN                 POLK              41
+1671    TN               PUTNAM               3
+1672    TN                ROANE              44
+1673    TN                SCOTT              45
+1674    TN           SEQUATCHIE              11
+1675    TN                SMITH               7
+1676    TN              STEWART               2
+1677    TN               TIPTON              45
+1678    TN            TROUSDALE               2
+1679    TN                UNION              23
+1680    TN            VAN BUREN               3
+1681    TN               WARREN               6
+1682    TN                WAYNE               3
+1683    TN              WEAKLEY              39
+1684    TN                WHITE               3
+1685    TX              ANDREWS               3
+1686    TX              ARANSAS               6
+1687    TX               ARCHER               8
+1688    TX            ARMSTRONG              12
+1689    TX               AUSTIN              35
+1690    TX               BAILEY               5
+1691    TX              BANDERA              15
+1692    TX               BAYLOR               1
+1693    TX                  BEE               9
+1694    TX               BLANCO               3
+1695    TX               BOSQUE              17
+1696    TX             BREWSTER              14
+1697    TX              BRISCOE               3
+1698    TX                BROWN              39
+1699    TX             BURLESON              21
+1700    TX               BURNET               6
+1701    TX             CALDWELL              25
+1702    TX              CALHOUN               7
+1703    TX             CALLAHAN              12
+1704    TX                 CAMP              14
+1705    TX               CARSON              21
+1706    TX             CHAMBERS               9
+1707    TX                 CLAY              17
+1708    TX              COLEMAN              11
+1709    TX        COLLINGSWORTH               4
+1710    TX             COLORADO              16
+1711    TX             COMANCHE              15
+1712    TX               CONCHO               1
+1713    TX             CROCKETT               1
+1714    TX               CROSBY               2
+1715    TX            CULBERSON              13
+1716    TX           DEAF SMITH               7
+1717    TX                DELTA               2
+1718    TX               DEWITT               6
+1719    TX              DICKENS               2
+1720    TX               DIMMIT               1
+1721    TX               DONLEY               1
+1722    TX                DUVAL               1
+1723    TX             EASTLAND              16
+1724    TX                ECTOR              20
+1725    TX              EDWARDS               1
+1726    TX                ERATH              20
+1727    TX                FALLS              20
+1728    TX               FANNIN              19
+1729    TX              FAYETTE              26
+1730    TX               FISHER               2
+1731    TX                FLOYD               2
+1732    TX                FOARD               1
+1733    TX                 FRIO              20
+1734    TX                GARZA               2
+1735    TX            GILLESPIE               2
+1736    TX               GOLIAD               5
+1737    TX             GONZALES              42
+1738    TX                 GRAY              22
+1739    TX               GRIMES               9
+1740    TX                 HALE              10
+1741    TX                 HALL               7
+1742    TX             HAMILTON               2
+1743    TX             HANSFORD               1
+1744    TX             HARDEMAN               8
+1745    TX              HARTLEY               9
+1746    TX                 HAYS              33
+1747    TX            HENDERSON              37
+1748    TX              HIDALGO              39
+1749    TX              HOCKLEY               7
+1750    TX              HOPKINS              22
+1751    TX              HOUSTON              21
+1752    TX             HUDSPETH               7
+1753    TX                 HUNT              32
+1754    TX           HUTCHINSON              37
+1755    TX                 JACK              33
+1756    TX              JACKSON               8
+1757    TX               JASPER              30
+1758    TX           JEFF DAVIS               2
+1759    TX             JIM HOGG               4
+1760    TX            JIM WELLS              11
+1761    TX                JONES               7
+1762    TX               KARNES               3
+1763    TX              KAUFMAN              49
+1764    TX              KENDALL              10
+1765    TX                 KERR               5
+1766    TX               KINNEY              35
+1767    TX              KLEBERG              20
+1768    TX                 KNOX               1
+1769    TX             LA SALLE              14
+1770    TX                LAMAR              26
+1771    TX                 LAMB               4
+1772    TX             LAMPASAS               9
+1773    TX               LAVACA              14
+1774    TX                  LEE              12
+1775    TX                 LEON              31
+1776    TX            LIMESTONE              24
+1777    TX             LIVE OAK               4
+1778    TX                LLANO               3
+1779    TX                 LYNN               2
+1780    TX              MADISON               8
+1781    TX               MARION              14
+1782    TX               MARTIN               2
+1783    TX                MASON               2
+1784    TX            MATAGORDA              12
+1785    TX            MCCULLOCH               4
+1786    TX              MIDLAND              30
+1787    TX                MILAM              37
+1788    TX                MILLS               4
+1789    TX             MITCHELL              11
+1790    TX             MONTAGUE              17
+1791    TX                MOORE              49
+1792    TX               MORRIS              16
+1793    TX               MOTLEY              17
+1794    TX          NACOGDOCHES              37
+1795    TX              NAVARRO              25
+1796    TX               NEWTON              14
+1797    TX                NOLAN              34
+1798    TX               OLDHAM               8
+1799    TX           PALO PINTO              31
+1800    TX               PANOLA              21
+1801    TX               PARMER              28
+1802    TX                PECOS               2
+1803    TX                 POLK              27
+1804    TX             PRESIDIO               9
+1805    TX                RAINS               5
+1806    TX                 REAL               2
+1807    TX            RED RIVER               1
+1808    TX               REEVES               3
+1809    TX              REFUGIO               2
+1810    TX            ROBERTSON              30
+1811    TX             ROCKWALL              32
+1812    TX              RUNNELS              10
+1813    TX                 RUSK              13
+1814    TX               SABINE               5
+1815    TX        SAN AUGUSTINE               3
+1816    TX          SAN JACINTO              24
+1817    TX         SAN PATRICIO              38
+1818    TX             SAN SABA               5
+1819    TX               SCURRY               9
+1820    TX               SHELBY              17
+1821    TX              SHERMAN               1
+1822    TX            SOMERVELL               5
+1823    TX                STARR               2
+1824    TX             STEPHENS               1
+1825    TX            STONEWALL               1
+1826    TX              SWISHER              13
+1827    TX              TERRELL              15
+1828    TX                TERRY               5
+1829    TX                TITUS              10
+1830    TX              TRINITY               6
+1831    TX                TYLER              29
+1832    TX               UPSHUR              41
+1833    TX                UPTON               2
+1834    TX               UVALDE              35
+1835    TX            VAN ZANDT              47
+1836    TX               WALKER              38
+1837    TX               WALLER              21
+1838    TX                 WARD               5
+1839    TX           WASHINGTON               4
+1840    TX              WHARTON              13
+1841    TX              WHEELER               4
+1842    TX            WILBARGER               4
+1843    TX              WILLACY               1
+1844    TX                YOUNG               2
+1845    TX               ZAPATA               2
+1846    TX               ZAVALA               4
+1847    UT                CACHE              23
+1848    UT              DAGGETT               2
+1849    UT             DUCHESNE              10
+1850    UT                EMERY               8
+1851    UT                GRAND               1
+1852    UT                 IRON              48
+1853    UT                 JUAB              25
+1854    UT              MILLARD               8
+1855    UT               MORGAN              18
+1856    UT                 RICH               5
+1857    UT             SAN JUAN               8
+1858    UT              SANPETE               5
+1859    UT               SEVIER               1
+1860    UT               SUMMIT              12
+1861    UT               UINTAH              10
+1862    UT              WASATCH               7
+1863    UT           WASHINGTON              16
+1864    VA             ACCOMACK               4
+1865    VA            ALBEMARLE              28
+1866    VA               AMELIA              10
+1867    VA              AMHERST              28
+1868    VA           APPOMATTOX              16
+1869    VA              AUGUSTA              12
+1870    VA                 BATH              12
+1871    VA                BLAND              14
+1872    VA            BRUNSWICK               9
+1873    VA             BUCHANAN              25
+1874    VA           BUCKINGHAM              32
+1875    VA             CAMPBELL              43
+1876    VA             CAROLINE              46
+1877    VA              CARROLL               3
+1878    VA         CHARLES CITY               6
+1879    VA            CHARLOTTE              30
+1880    VA               CLARKE               2
+1881    VA                CRAIG              31
+1882    VA             CULPEPER              24
+1883    VA           CUMBERLAND               5
+1884    VA            DICKENSON              15
+1885    VA            DINWIDDIE              23
+1886    VA                ESSEX               4
+1887    VA             FAUQUIER              24
+1888    VA                FLOYD              43
+1889    VA             FLUVANNA               9
+1890    VA            FREDERICK              24
+1891    VA                GILES              41
+1892    VA           GLOUCESTER              14
+1893    VA            GOOCHLAND              15
+1894    VA               GREENE               4
+1895    VA          GREENSVILLE               2
+1896    VA              HALIFAX              10
+1897    VA                HENRY              24
+1898    VA        ISLE OF WIGHT              36
+1899    VA           JAMES CITY               6
+1900    VA       KING AND QUEEN               6
+1901    VA          KING GEORGE               6
+1902    VA         KING WILLIAM              29
+1903    VA            LANCASTER               1
+1904    VA                  LEE              32
+1905    VA              LOUDOUN              42
+1906    VA               LOUISA              31
+1907    VA            LUNENBURG              43
+1908    VA              MADISON               3
+1909    VA              MATHEWS               3
+1910    VA          MECKLENBURG               7
+1911    VA            MIDDLESEX               2
+1912    VA               NELSON              12
+1913    VA             NEW KENT              29
+1914    VA          NORTHAMPTON               7
+1915    VA               ORANGE              35
+1916    VA              PATRICK               9
+1917    VA         PITTSYLVANIA              49
+1918    VA             POWHATAN              28
+1919    VA        PRINCE EDWARD              34
+1920    VA        PRINCE GEORGE              13
+1921    VA              PULASKI              33
+1922    VA         RAPPAHANNOCK               9
+1923    VA             RICHMOND               1
+1924    VA           ROCKBRIDGE              16
+1925    VA           ROCKINGHAM              40
+1926    VA                SCOTT              30
+1927    VA           SHENANDOAH              13
+1928    VA                SMYTH              15
+1929    VA          SOUTHAMPTON              26
+1930    VA         SPOTSYLVANIA              46
+1931    VA             STAFFORD              37
+1932    VA               SUSSEX              10
+1933    VA               WARREN              22
+1934    VA           WASHINGTON              26
+1935    VA         WESTMORELAND               7
+1936    VA                WYTHE              39
+1937    VA                 YORK              20
+1938    VT              ADDISON               8
+1939    VT           BENNINGTON               8
+1940    VT            CALEDONIA               3
+1941    VT           CHITTENDEN              40
+1942    VT                ESSEX               4
+1943    VT           GRAND ISLE               5
+1944    VT             LAMOILLE               4
+1945    VT               ORANGE               9
+1946    VT              ORLEANS              13
+1947    VT           WASHINGTON               3
+1948    VT              WINDHAM              10
+1949    VT              WINDSOR              10
+1950    WA                ADAMS              15
+1951    WA               ASOTIN              17
+1952    WA              CLALLAM               8
+1953    WA             COLUMBIA               2
+1954    WA              DOUGLAS               2
+1955    WA                FERRY               1
+1956    WA             GARFIELD               1
+1957    WA                GRANT              22
+1958    WA         GRAYS HARBOR              29
+1959    WA               ISLAND              39
+1960    WA            JEFFERSON               4
+1961    WA             KITTITAS              15
+1962    WA              LINCOLN              12
+1963    WA                MASON              20
+1964    WA             OKANOGAN              15
+1965    WA              PACIFIC               6
+1966    WA         PEND OREILLE              21
+1967    WA             SAN JUAN               2
+1968    WA             SKAMANIA              14
+1969    WA              STEVENS              34
+1970    WA            WAHKIAKUM               3
+1971    WA          WALLA WALLA              45
+1972    WA              WHATCOM              45
+1973    WA              WHITMAN               9
+1974    WI                ADAMS              29
+1975    WI              ASHLAND               7
+1976    WI               BARRON              20
+1977    WI             BAYFIELD              11
+1978    WI              BUFFALO              16
+1979    WI              BURNETT               6
+1980    WI              CALUMET               8
+1981    WI             CHIPPEWA              35
+1982    WI                CLARK               9
+1983    WI             CRAWFORD              24
+1984    WI                 DOOR               2
+1985    WI                 DUNN              13
+1986    WI               FOREST              16
+1987    WI                GRANT              33
+1988    WI                GREEN              11
+1989    WI           GREEN LAKE              17
+1990    WI                 IOWA               5
+1991    WI                 IRON               4
+1992    WI              JACKSON              19
+1993    WI            JEFFERSON              27
+1994    WI               JUNEAU              14
+1995    WI             KEWAUNEE               4
+1996    WI            LAFAYETTE               7
+1997    WI             LANGLADE               7
+1998    WI              LINCOLN              23
+1999    WI            MANITOWOC              15
+2000    WI             MARATHON              23
+2001    WI            MARINETTE              12
+2002    WI            MARQUETTE              36
+2003    WI               OCONTO              16
+2004    WI               ONEIDA              13
+2005    WI              OZAUKEE               6
+2006    WI                PEPIN              12
+2007    WI               PIERCE              43
+2008    WI                 POLK              23
+2009    WI                PRICE              10
+2010    WI                 RUSK              21
+2011    WI                 SAUK              29
+2012    WI               SAWYER              14
+2013    WI              SHAWANO               9
+2014    WI            SHEBOYGAN               9
+2015    WI               TAYLOR              15
+2016    WI               VERNON              48
+2017    WI                VILAS               5
+2018    WI             WALWORTH              47
+2019    WI             WASHBURN              23
+2020    WI           WASHINGTON              37
+2021    WI              WAUPACA              34
+2022    WI             WAUSHARA              13
+2023    WV              BARBOUR              33
+2024    WV                BOONE              50
+2025    WV              BRAXTON              22
+2026    WV               BROOKE              19
+2027    WV                 CLAY               4
+2028    WV            DODDRIDGE               4
+2029    WV              FAYETTE              30
+2030    WV               GILMER               1
+2031    WV                GRANT               7
+2032    WV            HAMPSHIRE              37
+2033    WV              HANCOCK              37
+2034    WV                HARDY               7
+2035    WV              JACKSON              22
+2036    WV                LEWIS               3
+2037    WV               MARION              16
+2038    WV             MARSHALL              26
+2039    WV                MASON              34
+2040    WV             MCDOWELL              43
+2041    WV           MONONGALIA              19
+2042    WV               MONROE              35
+2043    WV               MORGAN              33
+2044    WV             NICHOLAS               6
+2045    WV                 OHIO              25
+2046    WV            PLEASANTS               3
+2047    WV           POCAHONTAS              13
+2048    WV              PRESTON              35
+2049    WV             RANDOLPH              21
+2050    WV              RITCHIE               7
+2051    WV                ROANE               3
+2052    WV               TUCKER               2
+2053    WV                TYLER               2
+2054    WV               UPSHUR               5
+2055    WV              WEBSTER               5
+2056    WV               WETZEL               9
+2057    WV                 WIRT               7
+2058    WY                CROOK              33
+2059    WY              FREMONT              42
+2060    WY          HOT SPRINGS               4
+2061    WY              JOHNSON              18
+2062    WY              LINCOLN              25
+2063    WY                 PARK              29
+2064    WY             SUBLETTE               3
+2065    WY                UINTA              49
+2066    WY             WASHAKIE              10
+2067    WY               WESTON              37</code></pre>
+</div>
+</div>
 <p>##Obtain the mean for counties with 50 or less employees</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>railroad2<span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, total_employees)<span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_employees<span class="sc">&lt;=</span><span class="dv">50</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(total_employees, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>railroad_l50<span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, total_employees)<span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_employees<span class="sc">&lt;=</span><span class="dv">50</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(total_employees, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mean
@@ -3350,64 +5429,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>railroad2<span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">select</span>(county, total_employees)<span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_employees<span class="sc">&lt;=</span><span class="dv">50</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">median =</span> <span class="fu">median</span>(total_employees, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(railroad_l50<span class="sc">$</span>total_employees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>  median
-1     11</code></pre>
+<pre><code>[1] 11</code></pre>
 </div>
 </div>
 <p>##Calculate the standard deviation for counties with 50 or less employees</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad2, <span class="fu">sd</span>(total_employees<span class="sc">&lt;=</span><span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad_l50, <span class="fu">sd</span>(total_employees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>  sd(total_employees &lt;= 50)
-1                 0.4559132</code></pre>
+<pre><code>  sd(total_employees)
+1            13.40935</code></pre>
 </div>
 </div>
-<p>##Calculate the stantard deviation for railroad2</p>
+<p>##Calculate the stantard deviation for railroad2 dataset</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad2, <span class="fu">sd</span>(total_employees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad2, <span class="fu">sd</span>(total_employees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  sd(total_employees)
 1            283.6359</code></pre>
 </div>
 </div>
-<p>Since I already calculated the mean, median and standard deviation for counties with 50 or less employees (15.66, 11, 0.4559 respectively) and the mean and median for railroad2 (87.18, 21), I wanted to calculate the standard deviation as well (283.63).</p>
+<p>Since I already calculated the mean, median and standard deviation for railroad_l50 (15.66, 11, 13.40 respectively) and the mean and median for railroad2 (87.18, 21), I wanted to calculate the standard deviation as well for railroad2 (283.63).</p>
 <p>I then decided to visualize my data by creating histograms.</p>
-<p>##Sample 1000 values with mean 15.66 and sd 0.45 for counties with 50 or less employees.</p>
+<p>##Sample 1000 values with mean 15.66 and sd 13.40 for counties with 50 or less employees.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10000</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">value=</span><span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="fl">15.66</span>, <span class="fl">0.45</span>))</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>value))<span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">5</span>, <span class="at">col=</span><span class="st">'black'</span>, <span class="at">fill=</span><span class="st">'gray'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10000</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">value=</span><span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="fl">15.66</span>, <span class="fl">13.40</span>))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>value))<span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">col=</span><span class="st">'black'</span>, <span class="at">fill=</span><span class="st">'gray'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="challenge2_MarcelaRobinson-railroad-_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="challenge2_MarcelaRobinson-railroad-_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>##Sample 1000 values with mean 87.18 and sd 283.63 for counties with 50 or more employees and adjust binwidth.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10000</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">value=</span><span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="fl">87.18</span>,<span class="fl">283.63</span>))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>value))<span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">col=</span><span class="st">'black'</span>, <span class="at">fill=</span><span class="st">'gray'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10000</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">value=</span><span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="fl">87.18</span>,<span class="fl">283.63</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>value))<span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">col=</span><span class="st">'black'</span>, <span class="at">fill=</span><span class="st">'gray'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="challenge2_MarcelaRobinson-railroad-_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="challenge2_MarcelaRobinson-railroad-_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>By looking at both histograms, it can be determined that the data is approximately symmetrical since there is an almost equal amount of data on either side of the mean.</p>
@@ -3719,125 +5794,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb26" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2 Instructions"</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Marcela Robinson"</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Data wrangling: using group() and summarise()"</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "12/29/2022"</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>##Import data into R </span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>railroad2<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"_data/railroad_2012_clean_county.csv"</span>)</span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>railroad2</span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>##Get the name of the columns</span>
-<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(railroad2)</span>
-<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>We can determine that the name of the columns for the railroad2 dataset are "state", "county", and "total_employees". </span>
-<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>##Get dimesion of the dataset </span>
-<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(railroad2)</span>
-<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>By using the dim() function, it was determine that there are 2,930 observances and 3 variables in this dataset. </span>
-<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>##Pivot_wider to add states into columns </span>
-<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(railroad2, <span class="at">names_from =</span> state, <span class="at">values_from =</span> total_employees)</span>
-<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a>I use pivot_wider to make the dataset wider and include the states as columns.</span>
-<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a>##Find the mean of total employees </span>
-<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a><span class="in">``` {r}</span></span>
-<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad2, <span class="fu">mean</span>(total_employees), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a>The mean of the total employees for all countiesis 87.17816. </span>
-<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a>#Summary of the data set </span>
-<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(railroad2)</span>
-<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a>A summary of the dataset confirms that the mean is 87.18 as well as providing other information regarding the dataset. </span>
-<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a>##Filter by counties with total employees of 50 or less. </span>
-<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a>railroad2<span class="sc">%&gt;%</span> </span>
-<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_employees <span class="sc">&lt;=</span><span class="dv">50</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(county, state)<span class="sc">%&gt;%</span></span>
-<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(total_employees)</span>
-<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a>I use the filter function to pull the counties that have 50 or less employees. After running the code, there are 2,067 counties with 50 or less employees. There are multiple questions that arise from this information: Is employment declining in those counties? Are resources distributed based on the total number of employees? Are the railroad stations smaller and less employees are needed, or are these counties significantly understaffed?  </span>
-<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a>##Obtain the mean for counties with 50 or less employees </span>
-<span id="cb26-91"><a href="#cb26-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-92"><a href="#cb26-92" aria-hidden="true" tabindex="-1"></a>railroad2<span class="sc">%&gt;%</span></span>
-<span id="cb26-93"><a href="#cb26-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, total_employees)<span class="sc">%&gt;%</span></span>
-<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_employees<span class="sc">&lt;=</span><span class="dv">50</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(total_employees, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb26-96"><a href="#cb26-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-97"><a href="#cb26-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-98"><a href="#cb26-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-99"><a href="#cb26-99" aria-hidden="true" tabindex="-1"></a>##Obtain the median for counties with 50 or less employees </span>
-<span id="cb26-100"><a href="#cb26-100" aria-hidden="true" tabindex="-1"></a><span class="in">``` {r}</span></span>
-<span id="cb26-101"><a href="#cb26-101" aria-hidden="true" tabindex="-1"></a>railroad2<span class="sc">%&gt;%</span></span>
-<span id="cb26-102"><a href="#cb26-102" aria-hidden="true" tabindex="-1"></a> <span class="fu">select</span>(county, total_employees)<span class="sc">%&gt;%</span></span>
-<span id="cb26-103"><a href="#cb26-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_employees<span class="sc">&lt;=</span><span class="dv">50</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb26-104"><a href="#cb26-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">median =</span> <span class="fu">median</span>(total_employees, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb26-105"><a href="#cb26-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-106"><a href="#cb26-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-107"><a href="#cb26-107" aria-hidden="true" tabindex="-1"></a>##Calculate the standard deviation for counties with 50 or less employees</span>
-<span id="cb26-110"><a href="#cb26-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-111"><a href="#cb26-111" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad2, <span class="fu">sd</span>(total_employees<span class="sc">&lt;=</span><span class="dv">50</span>))</span>
-<span id="cb26-112"><a href="#cb26-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-113"><a href="#cb26-113" aria-hidden="true" tabindex="-1"></a>##Calculate the stantard deviation for railroad2 </span>
-<span id="cb26-116"><a href="#cb26-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-117"><a href="#cb26-117" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad2, <span class="fu">sd</span>(total_employees))</span>
-<span id="cb26-118"><a href="#cb26-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-119"><a href="#cb26-119" aria-hidden="true" tabindex="-1"></a>Since I already calculated the mean, median and standard deviation for counties with 50 or less employees (15.66, 11, 0.4559 respectively) and the mean and median for railroad2 (87.18, 21), I wanted to calculate the standard deviation as well (283.63).</span>
-<span id="cb26-120"><a href="#cb26-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-121"><a href="#cb26-121" aria-hidden="true" tabindex="-1"></a>I then decided to visualize my data by creating histograms. </span>
-<span id="cb26-122"><a href="#cb26-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-123"><a href="#cb26-123" aria-hidden="true" tabindex="-1"></a>##Sample 1000 values with mean 15.66 and sd 0.45 for counties with 50 or less employees.</span>
-<span id="cb26-126"><a href="#cb26-126" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-127"><a href="#cb26-127" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10000</span>)</span>
-<span id="cb26-128"><a href="#cb26-128" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">value=</span><span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="fl">15.66</span>, <span class="fl">0.45</span>))</span>
-<span id="cb26-129"><a href="#cb26-129" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>value))<span class="sc">+</span></span>
-<span id="cb26-130"><a href="#cb26-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">5</span>, <span class="at">col=</span><span class="st">'black'</span>, <span class="at">fill=</span><span class="st">'gray'</span>)</span>
-<span id="cb26-131"><a href="#cb26-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-132"><a href="#cb26-132" aria-hidden="true" tabindex="-1"></a>##Sample 1000 values with mean 87.18 and sd 283.63 for counties with 50 or more employees and adjust binwidth.</span>
-<span id="cb26-135"><a href="#cb26-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-136"><a href="#cb26-136" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10000</span>)</span>
-<span id="cb26-137"><a href="#cb26-137" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">value=</span><span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="fl">87.18</span>,<span class="fl">283.63</span>))</span>
-<span id="cb26-138"><a href="#cb26-138" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>value))<span class="sc">+</span></span>
-<span id="cb26-139"><a href="#cb26-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">col=</span><span class="st">'black'</span>, <span class="at">fill=</span><span class="st">'gray'</span>)</span>
-<span id="cb26-140"><a href="#cb26-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-141"><a href="#cb26-141" aria-hidden="true" tabindex="-1"></a>By looking at both histograms, it can be determined that the data is approximately symmetrical since there is an almost equal amount of data on either side of the mean. </span>
-<span id="cb26-142"><a href="#cb26-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-143"><a href="#cb26-143" aria-hidden="true" tabindex="-1"></a>Conclusion: The file railroad_2012_clean_county.cvs contains information regarding total employees per county in the United States. This data was most likely gathered by the US Department of Transportation. After filtering the data by counties that have 50 or less employees, I was able to determine the mean, median and standard deviation for those counties. By creating histograms, I was able to determine that the data is symmetrical. </span>
+<div class="sourceCode" id="cb28" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2 Instructions"</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Marcela Robinson"</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Data wrangling: using group() and summarise()"</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "12/29/2022"</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>##Import data into R </span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>railroad2<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"_data/railroad_2012_clean_county.csv"</span>)</span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>railroad2</span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>##Get the name of the columns</span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(railroad2)</span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>We can determine that the name of the columns for the railroad2 dataset are "state", "county", and "total_employees". </span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>##Get dimesion of the dataset </span>
+<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(railroad2)</span>
+<span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a>By using the dim() function, it was determine that there are 2,930 observances and 3 variables in this dataset. </span>
+<span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-53"><a href="#cb28-53" aria-hidden="true" tabindex="-1"></a>##Pivot_wider to add states into columns </span>
+<span id="cb28-56"><a href="#cb28-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-57"><a href="#cb28-57" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(railroad2, <span class="at">names_from =</span> state, <span class="at">values_from =</span> total_employees)</span>
+<span id="cb28-58"><a href="#cb28-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-59"><a href="#cb28-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-60"><a href="#cb28-60" aria-hidden="true" tabindex="-1"></a>I use pivot_wider to make the dataset wider and include the states as columns.</span>
+<span id="cb28-61"><a href="#cb28-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a>##Find the mean of total employees </span>
+<span id="cb28-63"><a href="#cb28-63" aria-hidden="true" tabindex="-1"></a><span class="in">``` {r}</span></span>
+<span id="cb28-64"><a href="#cb28-64" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad2, <span class="fu">mean</span>(total_employees), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-65"><a href="#cb28-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-66"><a href="#cb28-66" aria-hidden="true" tabindex="-1"></a>The mean of the total employees for all counties is 87.17816. </span>
+<span id="cb28-67"><a href="#cb28-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-68"><a href="#cb28-68" aria-hidden="true" tabindex="-1"></a>#Summary of the data set </span>
+<span id="cb28-71"><a href="#cb28-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-72"><a href="#cb28-72" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(railroad2)</span>
+<span id="cb28-73"><a href="#cb28-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-74"><a href="#cb28-74" aria-hidden="true" tabindex="-1"></a>A summary of the dataset confirms that the mean is 87.18 as well as providing other information regarding the dataset. </span>
+<span id="cb28-75"><a href="#cb28-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-76"><a href="#cb28-76" aria-hidden="true" tabindex="-1"></a>##Filter by counties with total employees of 50 or less. </span>
+<span id="cb28-79"><a href="#cb28-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-80"><a href="#cb28-80" aria-hidden="true" tabindex="-1"></a>railroad2<span class="sc">%&gt;%</span> </span>
+<span id="cb28-81"><a href="#cb28-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_employees <span class="sc">&lt;=</span><span class="dv">50</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb28-82"><a href="#cb28-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(county)<span class="sc">%&gt;%</span></span>
+<span id="cb28-83"><a href="#cb28-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(total_employees)</span>
+<span id="cb28-84"><a href="#cb28-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-85"><a href="#cb28-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-86"><a href="#cb28-86" aria-hidden="true" tabindex="-1"></a>I use the filter function to pull the counties that have 50 or less employees. After running the code, there are 2,067 counties with 50 or less employees. There are multiple questions that arise from this information: Is employment declining in those counties? Are resources distributed based on the total number of employees? Are the railroad stations smaller and less employees are needed, or are these counties significantly understaffed? Is there a correlation between state/county population and the number of employees?  </span>
+<span id="cb28-87"><a href="#cb28-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-88"><a href="#cb28-88" aria-hidden="true" tabindex="-1"></a>##Create a df for counties with 50 or less employees called railroad_l50 </span>
+<span id="cb28-91"><a href="#cb28-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-92"><a href="#cb28-92" aria-hidden="true" tabindex="-1"></a>railroad_l50<span class="ot">&lt;-</span>railroad2<span class="sc">%&gt;%</span></span>
+<span id="cb28-93"><a href="#cb28-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_employees<span class="sc">&lt;=</span><span class="dv">50</span>)</span>
+<span id="cb28-94"><a href="#cb28-94" aria-hidden="true" tabindex="-1"></a>railroad_l50</span>
+<span id="cb28-95"><a href="#cb28-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-96"><a href="#cb28-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-97"><a href="#cb28-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-98"><a href="#cb28-98" aria-hidden="true" tabindex="-1"></a>##Obtain the mean for counties with 50 or less employees </span>
+<span id="cb28-101"><a href="#cb28-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-102"><a href="#cb28-102" aria-hidden="true" tabindex="-1"></a>railroad_l50<span class="sc">%&gt;%</span></span>
+<span id="cb28-103"><a href="#cb28-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, total_employees)<span class="sc">%&gt;%</span></span>
+<span id="cb28-104"><a href="#cb28-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_employees<span class="sc">&lt;=</span><span class="dv">50</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb28-105"><a href="#cb28-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(total_employees, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb28-106"><a href="#cb28-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-107"><a href="#cb28-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-108"><a href="#cb28-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-109"><a href="#cb28-109" aria-hidden="true" tabindex="-1"></a>##Obtain the median for counties with 50 or less employees </span>
+<span id="cb28-110"><a href="#cb28-110" aria-hidden="true" tabindex="-1"></a><span class="in">``` {r}</span></span>
+<span id="cb28-111"><a href="#cb28-111" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(railroad_l50<span class="sc">$</span>total_employees)</span>
+<span id="cb28-112"><a href="#cb28-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-113"><a href="#cb28-113" aria-hidden="true" tabindex="-1"></a>##Calculate the standard deviation for counties with 50 or less employees</span>
+<span id="cb28-116"><a href="#cb28-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-117"><a href="#cb28-117" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad_l50, <span class="fu">sd</span>(total_employees))</span>
+<span id="cb28-118"><a href="#cb28-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-119"><a href="#cb28-119" aria-hidden="true" tabindex="-1"></a>##Calculate the stantard deviation for railroad2 dataset</span>
+<span id="cb28-122"><a href="#cb28-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-123"><a href="#cb28-123" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad2, <span class="fu">sd</span>(total_employees))</span>
+<span id="cb28-124"><a href="#cb28-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-125"><a href="#cb28-125" aria-hidden="true" tabindex="-1"></a>Since I already calculated the mean, median and standard deviation for railroad_l50 (15.66, 11, 13.40 respectively) and the mean and median for railroad2 (87.18, 21), I wanted to calculate the standard deviation as well for railroad2 (283.63).</span>
+<span id="cb28-126"><a href="#cb28-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-127"><a href="#cb28-127" aria-hidden="true" tabindex="-1"></a>I then decided to visualize my data by creating histograms. </span>
+<span id="cb28-128"><a href="#cb28-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-129"><a href="#cb28-129" aria-hidden="true" tabindex="-1"></a>##Sample 1000 values with mean 15.66 and sd 13.40 for counties with 50 or less employees.</span>
+<span id="cb28-132"><a href="#cb28-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-133"><a href="#cb28-133" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10000</span>)</span>
+<span id="cb28-134"><a href="#cb28-134" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">value=</span><span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="fl">15.66</span>, <span class="fl">13.40</span>))</span>
+<span id="cb28-135"><a href="#cb28-135" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>value))<span class="sc">+</span></span>
+<span id="cb28-136"><a href="#cb28-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">col=</span><span class="st">'black'</span>, <span class="at">fill=</span><span class="st">'gray'</span>)</span>
+<span id="cb28-137"><a href="#cb28-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-138"><a href="#cb28-138" aria-hidden="true" tabindex="-1"></a>##Sample 1000 values with mean 87.18 and sd 283.63 for counties with 50 or more employees and adjust binwidth.</span>
+<span id="cb28-141"><a href="#cb28-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-142"><a href="#cb28-142" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10000</span>)</span>
+<span id="cb28-143"><a href="#cb28-143" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">value=</span><span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="fl">87.18</span>,<span class="fl">283.63</span>))</span>
+<span id="cb28-144"><a href="#cb28-144" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>value))<span class="sc">+</span></span>
+<span id="cb28-145"><a href="#cb28-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">col=</span><span class="st">'black'</span>, <span class="at">fill=</span><span class="st">'gray'</span>)</span>
+<span id="cb28-146"><a href="#cb28-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-147"><a href="#cb28-147" aria-hidden="true" tabindex="-1"></a>By looking at both histograms, it can be determined that the data is approximately symmetrical since there is an almost equal amount of data on either side of the mean. </span>
+<span id="cb28-148"><a href="#cb28-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-149"><a href="#cb28-149" aria-hidden="true" tabindex="-1"></a>Conclusion: The file railroad_2012_clean_county.cvs contains information regarding total employees per county in the United States. This data was most likely gathered by the US Department of Transportation. After filtering the data by counties that have 50 or less employees, I was able to determine the mean, median and standard deviation for those counties. By creating histograms, I was able to determine that the data is symmetrical. </span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
