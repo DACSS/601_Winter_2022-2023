@@ -41,7 +41,6 @@ Read in one (or more) of the following datasets, using the correct R package and
 -   sce_labor_chart_data_public.csv 🌟🌟🌟🌟🌟
 
 ```{r}
-setwd('/Users/danielmanning/Desktop/601_Winter_2022-2023/posts/_data')
 weight <- read_csv('animal_weight.csv')
 head(weight)
 weight
