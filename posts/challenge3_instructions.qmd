@@ -2,7 +2,7 @@
 title: "Challenge 3 Instructions"
 author: "Meredith Rolfe"
 description: "Tidy Data: Pivoting"
-date: "08/17/2022"
+date: "1/2/2022"
 format:
   html:
     toc: true
