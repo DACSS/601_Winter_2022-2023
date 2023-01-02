@@ -39,7 +39,6 @@ Read in one (or more) of the following data sets, available in the `posts/_data`
 -   hotel_bookings ⭐⭐⭐⭐
 
 ```{r}
-setwd('/Users/danielmanning/Desktop/601_Winter_2022-2023/posts/_data')
 livestock <- read.csv("FAOSTAT_livestock.csv")
 livestock
 ```
