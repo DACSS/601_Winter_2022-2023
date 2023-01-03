@@ -1,0 +1,60 @@
+---
+title: "Challenge 1 "
+author: "Sai Rishita Golla"
+description: "Reading in data and creating a post"
+date: "12/26/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+```{r}
+install.packages("tidyverse")
+```
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+```{r}
+data = read_csv("_data/railroad_2012_clean_county.csv")
+```
+
+```{r}
+view(data)
+```
+
+```{r}
+# Number of unique states for recording the data. 
+unique(data$state)
+length(unique(data$state))
+```
+
+```{r}
+# Number of unique counties used to collect the data.
+length(unique(data$county))
+```
+```{r}
+# Maximum number of recorded total employees in a state and county.
+max(data$total_employees)
+```
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+```{r}
+summary(data)
+# Mean of total emplyoees recorded in all counties.
+summarise(data, mean(total_employees))
+```
+
+## Describe the data
+
+The data is first viewed using the `view` command. The data consists of 3 columns - state, county, and total employees. We observe that the data was recorded in 53 states in the US which was concluded using the unique() command in R. Similarly the total number of counties in which data was recorded is 1709.
+For the third column - total_employees, we analyzed the min, max, and mean of total employees using the max(), summary(), and summarize() commands. The max count is 8207, min count is 1, and the mean is 87.17.
+---
