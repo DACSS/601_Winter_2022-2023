@@ -1,0 +1,113 @@
+---
+title: "Challenge 4"
+author: "Cristhian Barba Garzon"
+description: "More data wrangling: mutate"
+date: "01/03/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  identify variables that need to be mutated
+4)  mutate variables and sanity check all mutations
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+-   abc_poll.csv ⭐
+-   poultry_tidy.csv⭐⭐
+-   FedFundsRate.csv⭐⭐⭐
+-   hotel_bookings.csv⭐⭐⭐⭐
+-   debt_in_trillions ⭐⭐⭐⭐⭐
+
+The data set that was chosen to be read was "poultry_tidy.csv".
+
+```{r}
+poll = read_csv("_data/poultry_tidy.csv")
+poll
+
+poll %>%
+  dim() # 600 rows by 4 columns
+
+poll %>%
+  colnames()
+```
+
+### Briefly describe the data
+The data set "poultry_tidy.csv" contains 600 observations and 4 columns. It seems to describe the price of poultry products in each year and month. It can be used to analyze the price increase or decrease for specific products. 
+
+## Tidying Data (as needed)
+
+The data set "poultry_tidy.csv" is already tidy. All columns have their own variables stored within them, meaning their column title refers to these observations. I can further tidy this data by changing the arrangement of values; I can arrange the years in ascending order. After viewing the arranged data, we can see that the data is now in ascending order of years, allowing us to view the earliest year.
+```{r}
+arranged = poll %>% 
+  arrange(Year) %>% #arranges data set by the year in ascending order
+  select(Product:Price_Dollar) #selects all columns in data set 
+
+arranged
+
+```
+
+
+## Identifying variables that need to be mutated
+
+In this data set, the column titled "Month" can have its variables changed to numerical values; the months can be mutated to their respective numerical values in order to simplify the data set. Furthermore, we simplify the data set by joining the month and the year into one column. This will leave three columns, with the newly mutated data set having a "date" column in the format of mm/yyyy. 
+
+
+```{r}
+mutated = poll %>%
+  mutate(Month = case_when(
+    Month == "January" ~ 1,
+    Month == "February" ~ 2,
+    Month == "March" ~ 3,
+    Month == "April" ~ 4,
+    Month == "May" ~ 5 ,
+    Month == "June" ~ 6,
+    Month == "July" ~ 7,
+    Month == "August" ~ 8,
+    Month == "September" ~ 9,
+    Month == "October" ~ 10,
+    Month == "November" ~ 11,
+    Month == "December" ~ 12
+  ))
+
+arranged_mutate = mutated %>%
+  arrange(Year) #arranged by year in ascending order; the values in the "Month" column are now numerical 
+arranged_mutate
+
+dates = c() # Create an empty vector to store the dates
+
+for (i in 1:length(arranged_mutate$Year)) { #for loop -- in range 1 to total length of Year column
+  date_string = sprintf("%02d/%04d", arranged_mutate$Month[i], arranged_mutate$Year[i]) # Format the year and month as a date string
+  dates = c(dates, date_string)  # Append the date string to the dates vector
+}
+
+
+final_set = arranged_mutate %>%
+   mutate(Date = dates) %>% #adds new column Date with the vector dates from for-loop
+  subset(select = -c(Year:Month)) %>% #drops Year and Month columns so new date column will replace
+  relocate(Date,.before = 2, .after = NULL) #moves the column to the left hand side before the previous 2nd
+final_set
+```
