@@ -2,7 +2,7 @@
 title: "Challenge 1 "
 author: "Sai Rishita Golla"
 description: "Reading in data and creating a post"
-date: "12/26/2022"
+date: "01/03/2023"
 format:
   html:
     toc: true
@@ -12,9 +12,6 @@ format:
 categories:
   - challenge_1
 ---
-```{r}
-install.packages("tidyverse")
-```
 
 ```{r}
 #| label: setup
