@@ -1,5 +1,5 @@
 ---
-title: "Challenge 1"
+title: "Challenge 2"
 author: "Paarth Tandon"
 description: "Data wrangling: using group() and summarise()"
 date: "12/28/2022"
