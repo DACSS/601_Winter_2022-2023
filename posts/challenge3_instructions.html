@@ -354,12 +354,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code># A tibble: 6 × 5
   country  year trade outgoing incoming
   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1 Mexico   1980 NAFTA    1686.   1157. 
-2 USA      1990 NAFTA    1333.    575. 
-3 France   1980 EU       2111.    819. 
-4 Mexico   1990 NAFTA    1046.    433. 
-5 USA      1980 NAFTA     523.    320. 
-6 France   1990 EU        997.     28.7</code></pre>
+1 Mexico   1980 NAFTA     491.   -1496.
+2 USA      1990 NAFTA    1482.     647.
+3 France   1980 EU       1739.     265.
+4 Mexico   1990 NAFTA    1006.     235.
+5 USA      1980 NAFTA     645.    1226.
+6 France   1990 EU       1444.     487.</code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -422,18 +422,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code># A tibble: 12 × 5
    country  year trade trade_direction trade_value
    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;
- 1 Mexico   1980 NAFTA outgoing             1686. 
- 2 Mexico   1980 NAFTA incoming             1157. 
- 3 USA      1990 NAFTA outgoing             1333. 
- 4 USA      1990 NAFTA incoming              575. 
- 5 France   1980 EU    outgoing             2111. 
- 6 France   1980 EU    incoming              819. 
- 7 Mexico   1990 NAFTA outgoing             1046. 
- 8 Mexico   1990 NAFTA incoming              433. 
- 9 USA      1980 NAFTA outgoing              523. 
-10 USA      1980 NAFTA incoming              320. 
-11 France   1990 EU    outgoing              997. 
-12 France   1990 EU    incoming               28.7</code></pre>
+ 1 Mexico   1980 NAFTA outgoing               491.
+ 2 Mexico   1980 NAFTA incoming             -1496.
+ 3 USA      1990 NAFTA outgoing              1482.
+ 4 USA      1990 NAFTA incoming               647.
+ 5 France   1980 EU    outgoing              1739.
+ 6 France   1980 EU    incoming               265.
+ 7 Mexico   1990 NAFTA outgoing              1006.
+ 8 Mexico   1990 NAFTA incoming               235.
+ 9 USA      1980 NAFTA outgoing               645.
+10 USA      1980 NAFTA incoming              1226.
+11 France   1990 EU    outgoing              1444.
+12 France   1990 EU    incoming               487.</code></pre>
 </div>
 </div>
 <p>Yes, once it is pivoted long, our resulting data are <span class="math inline">\(12x5\)</span> - exactly what we expected!</p>
