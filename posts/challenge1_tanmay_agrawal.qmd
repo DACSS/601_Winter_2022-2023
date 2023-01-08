@@ -1,6 +1,6 @@
 ---
-title: "Challenge 1 Instructions"
-author: "Sean Conway"
+title: "Challenge 1 Submission"
+author: "Tanmay Agrawal"
 description: "Reading in data and creating a post"
 date: "12/20/2022"
 format:
