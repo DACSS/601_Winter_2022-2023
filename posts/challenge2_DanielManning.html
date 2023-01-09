@@ -313,10 +313,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"FAOSTAT_livestock.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"posts"</span>,<span class="st">"_data"</span>,<span class="st">"FAOSTAT_livestock.csv"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-error">
-<pre><code>Error in file(file, "rt"): cannot open the connection</code></pre>
+<pre><code>Error in here("posts", "_data", "FAOSTAT_livestock.csv"): could not find function "here"</code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -980,135 +981,136 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb80-41"><a href="#cb80-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>hotel_bookings ⭐⭐⭐⭐</span>
 <span id="cb80-42"><a href="#cb80-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb80-45"><a href="#cb80-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb80-46"><a href="#cb80-46" aria-hidden="true" tabindex="-1"></a>livestock <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"FAOSTAT_livestock.csv"</span>)</span>
-<span id="cb80-47"><a href="#cb80-47" aria-hidden="true" tabindex="-1"></a>livestock</span>
-<span id="cb80-48"><a href="#cb80-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb80-49"><a href="#cb80-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-50"><a href="#cb80-50" aria-hidden="true" tabindex="-1"></a>Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.</span>
-<span id="cb80-51"><a href="#cb80-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-52"><a href="#cb80-52" aria-hidden="true" tabindex="-1"></a>In the above cell, I used read.csv() to store the FAOSTAT dataset within my livestock variable. Based on the output when calling the variable livestock, the variable types are as follows:</span>
-<span id="cb80-53"><a href="#cb80-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-54"><a href="#cb80-54" aria-hidden="true" tabindex="-1"></a>Domain.Code: String</span>
-<span id="cb80-55"><a href="#cb80-55" aria-hidden="true" tabindex="-1"></a>Domain: String</span>
-<span id="cb80-56"><a href="#cb80-56" aria-hidden="true" tabindex="-1"></a>Area.Code:Integer</span>
-<span id="cb80-57"><a href="#cb80-57" aria-hidden="true" tabindex="-1"></a>Area:String</span>
-<span id="cb80-58"><a href="#cb80-58" aria-hidden="true" tabindex="-1"></a>Element.Code: Integer</span>
-<span id="cb80-59"><a href="#cb80-59" aria-hidden="true" tabindex="-1"></a>Element:String</span>
-<span id="cb80-60"><a href="#cb80-60" aria-hidden="true" tabindex="-1"></a>Item.Code: Integer</span>
-<span id="cb80-61"><a href="#cb80-61" aria-hidden="true" tabindex="-1"></a>Item: String</span>
-<span id="cb80-62"><a href="#cb80-62" aria-hidden="true" tabindex="-1"></a>Year.Code: Integer</span>
-<span id="cb80-63"><a href="#cb80-63" aria-hidden="true" tabindex="-1"></a>Year: Integer</span>
-<span id="cb80-64"><a href="#cb80-64" aria-hidden="true" tabindex="-1"></a>Unit: String</span>
-<span id="cb80-65"><a href="#cb80-65" aria-hidden="true" tabindex="-1"></a>Value: Integer</span>
-<span id="cb80-66"><a href="#cb80-66" aria-hidden="true" tabindex="-1"></a>Flag: String</span>
-<span id="cb80-67"><a href="#cb80-67" aria-hidden="true" tabindex="-1"></a>Flag.Description String</span>
-<span id="cb80-68"><a href="#cb80-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-69"><a href="#cb80-69" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
-<span id="cb80-70"><a href="#cb80-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-71"><a href="#cb80-71" aria-hidden="true" tabindex="-1"></a>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</span>
-<span id="cb80-72"><a href="#cb80-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-73"><a href="#cb80-73" aria-hidden="true" tabindex="-1"></a>First I used the head() function to determine that the dataset has fourteen variables. This dataset was likely gathered by survey. Then I used dim() to show that their are 82116 rows, representing the total number of values of livestock counts/estimates spanning various countries (Areas), Types (Items), and years (Years). Next I stored the columns into individual variables for ease of use later on. I used the n_distinct() and distinct() functions to show the number of unique entries in each column and to ouput these values. </span>
-<span id="cb80-74"><a href="#cb80-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-77"><a href="#cb80-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb80-78"><a href="#cb80-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
-<span id="cb80-79"><a href="#cb80-79" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock)</span>
-<span id="cb80-80"><a href="#cb80-80" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(livestock)</span>
-<span id="cb80-81"><a href="#cb80-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-82"><a href="#cb80-82" aria-hidden="true" tabindex="-1"></a>Domain <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Domain</span>
-<span id="cb80-83"><a href="#cb80-83" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Area</span>
-<span id="cb80-84"><a href="#cb80-84" aria-hidden="true" tabindex="-1"></a>Element <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Element</span>
-<span id="cb80-85"><a href="#cb80-85" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Item</span>
-<span id="cb80-86"><a href="#cb80-86" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Year</span>
-<span id="cb80-87"><a href="#cb80-87" aria-hidden="true" tabindex="-1"></a>Unit <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Unit</span>
-<span id="cb80-88"><a href="#cb80-88" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Value</span>
-<span id="cb80-89"><a href="#cb80-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-46"><a href="#cb80-46" aria-hidden="true" tabindex="-1"></a>livestock <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"posts"</span>,<span class="st">"_data"</span>,<span class="st">"FAOSTAT_livestock.csv"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb80-47"><a href="#cb80-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span>
+<span id="cb80-48"><a href="#cb80-48" aria-hidden="true" tabindex="-1"></a>livestock</span>
+<span id="cb80-49"><a href="#cb80-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb80-50"><a href="#cb80-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-51"><a href="#cb80-51" aria-hidden="true" tabindex="-1"></a>Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.</span>
+<span id="cb80-52"><a href="#cb80-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-53"><a href="#cb80-53" aria-hidden="true" tabindex="-1"></a>In the above cell, I used read.csv() to store the FAOSTAT dataset within my livestock variable. Based on the output when calling the variable livestock, the variable types are as follows:</span>
+<span id="cb80-54"><a href="#cb80-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-55"><a href="#cb80-55" aria-hidden="true" tabindex="-1"></a>Domain.Code: String</span>
+<span id="cb80-56"><a href="#cb80-56" aria-hidden="true" tabindex="-1"></a>Domain: String</span>
+<span id="cb80-57"><a href="#cb80-57" aria-hidden="true" tabindex="-1"></a>Area.Code:Integer</span>
+<span id="cb80-58"><a href="#cb80-58" aria-hidden="true" tabindex="-1"></a>Area:String</span>
+<span id="cb80-59"><a href="#cb80-59" aria-hidden="true" tabindex="-1"></a>Element.Code: Integer</span>
+<span id="cb80-60"><a href="#cb80-60" aria-hidden="true" tabindex="-1"></a>Element:String</span>
+<span id="cb80-61"><a href="#cb80-61" aria-hidden="true" tabindex="-1"></a>Item.Code: Integer</span>
+<span id="cb80-62"><a href="#cb80-62" aria-hidden="true" tabindex="-1"></a>Item: String</span>
+<span id="cb80-63"><a href="#cb80-63" aria-hidden="true" tabindex="-1"></a>Year.Code: Integer</span>
+<span id="cb80-64"><a href="#cb80-64" aria-hidden="true" tabindex="-1"></a>Year: Integer</span>
+<span id="cb80-65"><a href="#cb80-65" aria-hidden="true" tabindex="-1"></a>Unit: String</span>
+<span id="cb80-66"><a href="#cb80-66" aria-hidden="true" tabindex="-1"></a>Value: Integer</span>
+<span id="cb80-67"><a href="#cb80-67" aria-hidden="true" tabindex="-1"></a>Flag: String</span>
+<span id="cb80-68"><a href="#cb80-68" aria-hidden="true" tabindex="-1"></a>Flag.Description String</span>
+<span id="cb80-69"><a href="#cb80-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-70"><a href="#cb80-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
+<span id="cb80-71"><a href="#cb80-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-72"><a href="#cb80-72" aria-hidden="true" tabindex="-1"></a>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</span>
+<span id="cb80-73"><a href="#cb80-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-74"><a href="#cb80-74" aria-hidden="true" tabindex="-1"></a>First I used the head() function to determine that the dataset has fourteen variables. This dataset was likely gathered by survey. Then I used dim() to show that their are 82116 rows, representing the total number of values of livestock counts/estimates spanning various countries (Areas), Types (Items), and years (Years). Next I stored the columns into individual variables for ease of use later on. I used the n_distinct() and distinct() functions to show the number of unique entries in each column and to ouput these values. </span>
+<span id="cb80-75"><a href="#cb80-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-78"><a href="#cb80-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb80-79"><a href="#cb80-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
+<span id="cb80-80"><a href="#cb80-80" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock)</span>
+<span id="cb80-81"><a href="#cb80-81" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(livestock)</span>
+<span id="cb80-82"><a href="#cb80-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-83"><a href="#cb80-83" aria-hidden="true" tabindex="-1"></a>Domain <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Domain</span>
+<span id="cb80-84"><a href="#cb80-84" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Area</span>
+<span id="cb80-85"><a href="#cb80-85" aria-hidden="true" tabindex="-1"></a>Element <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Element</span>
+<span id="cb80-86"><a href="#cb80-86" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Item</span>
+<span id="cb80-87"><a href="#cb80-87" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Year</span>
+<span id="cb80-88"><a href="#cb80-88" aria-hidden="true" tabindex="-1"></a>Unit <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Unit</span>
+<span id="cb80-89"><a href="#cb80-89" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Value</span>
 <span id="cb80-90"><a href="#cb80-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-91"><a href="#cb80-91" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-92"><a href="#cb80-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
-<span id="cb80-93"><a href="#cb80-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-94"><a href="#cb80-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-95"><a href="#cb80-95" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-96"><a href="#cb80-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
-<span id="cb80-97"><a href="#cb80-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-98"><a href="#cb80-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-99"><a href="#cb80-99" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-100"><a href="#cb80-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
-<span id="cb80-101"><a href="#cb80-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-102"><a href="#cb80-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-103"><a href="#cb80-103" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-104"><a href="#cb80-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
-<span id="cb80-105"><a href="#cb80-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-106"><a href="#cb80-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-107"><a href="#cb80-107" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-108"><a href="#cb80-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
-<span id="cb80-109"><a href="#cb80-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-110"><a href="#cb80-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-111"><a href="#cb80-111" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-112"><a href="#cb80-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
-<span id="cb80-113"><a href="#cb80-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-114"><a href="#cb80-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-115"><a href="#cb80-115" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-116"><a href="#cb80-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
-<span id="cb80-117"><a href="#cb80-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-118"><a href="#cb80-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-119"><a href="#cb80-119" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-120"><a href="#cb80-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
-<span id="cb80-121"><a href="#cb80-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-122"><a href="#cb80-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-123"><a href="#cb80-123" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-124"><a href="#cb80-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb80-125"><a href="#cb80-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-126"><a href="#cb80-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-127"><a href="#cb80-127" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-128"><a href="#cb80-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb80-129"><a href="#cb80-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-130"><a href="#cb80-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-131"><a href="#cb80-131" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-132"><a href="#cb80-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
-<span id="cb80-133"><a href="#cb80-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-134"><a href="#cb80-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-135"><a href="#cb80-135" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-136"><a href="#cb80-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
-<span id="cb80-137"><a href="#cb80-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-138"><a href="#cb80-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-139"><a href="#cb80-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb80-140"><a href="#cb80-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-141"><a href="#cb80-141" aria-hidden="true" tabindex="-1"></a><span class="fu">## Provide Grouped Summary Statistics</span></span>
-<span id="cb80-142"><a href="#cb80-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-143"><a href="#cb80-143" aria-hidden="true" tabindex="-1"></a>Conduct some exploratory data analysis, using dplyr commands such as <span class="in">`group_by()`</span>, <span class="in">`select()`</span>, <span class="in">`filter()`</span>, and <span class="in">`summarise()`</span>. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.</span>
-<span id="cb80-144"><a href="#cb80-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-145"><a href="#cb80-145" aria-hidden="true" tabindex="-1"></a>I first used the select() function to remove any columns/variables that were redundant or contained only 1 distinct value. I then used the head() to show the first 10 rows our new dataset to confirm that the desired variables were removed. Next, I stored the value (number of a given livestock) in a new variable. I calculated summary statistics of Value, and included the 'na.rm = TRUE' parameter so NA values were ignored. Following this, I created a new variable (Area) using the group_by() function. Using the summarise function, I then computed the mean, median, standard deviation, and IQR for the number of livestock, grouped by country. I calculated the summary statistics of the the data grouped by type of animal (Item) and year using the same method. </span>
-<span id="cb80-146"><a href="#cb80-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-149"><a href="#cb80-149" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb80-150"><a href="#cb80-150" aria-hidden="true" tabindex="-1"></a>livestock_new <span class="ot">&lt;-</span> livestock <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Domain'</span>, <span class="st">'Domain.Code'</span>, <span class="st">'Area.Code'</span>, <span class="st">'Element'</span>, <span class="st">'Element.Code'</span>, <span class="st">'Item.Code'</span>, <span class="st">'Year.Code'</span>, <span class="st">'Unit'</span>, <span class="st">'Flag'</span>))</span>
-<span id="cb80-151"><a href="#cb80-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-152"><a href="#cb80-152" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock_new)</span>
-<span id="cb80-153"><a href="#cb80-153" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock_new<span class="sc">$</span>Value</span>
-<span id="cb80-154"><a href="#cb80-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-91"><a href="#cb80-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-92"><a href="#cb80-92" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-93"><a href="#cb80-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
+<span id="cb80-94"><a href="#cb80-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb80-95"><a href="#cb80-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-96"><a href="#cb80-96" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-97"><a href="#cb80-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
+<span id="cb80-98"><a href="#cb80-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb80-99"><a href="#cb80-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-100"><a href="#cb80-100" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-101"><a href="#cb80-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
+<span id="cb80-102"><a href="#cb80-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb80-103"><a href="#cb80-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-104"><a href="#cb80-104" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-105"><a href="#cb80-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
+<span id="cb80-106"><a href="#cb80-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb80-107"><a href="#cb80-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-108"><a href="#cb80-108" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-109"><a href="#cb80-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
+<span id="cb80-110"><a href="#cb80-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb80-111"><a href="#cb80-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-112"><a href="#cb80-112" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-113"><a href="#cb80-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
+<span id="cb80-114"><a href="#cb80-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb80-115"><a href="#cb80-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-116"><a href="#cb80-116" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-117"><a href="#cb80-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
+<span id="cb80-118"><a href="#cb80-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb80-119"><a href="#cb80-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-120"><a href="#cb80-120" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-121"><a href="#cb80-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
+<span id="cb80-122"><a href="#cb80-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb80-123"><a href="#cb80-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-124"><a href="#cb80-124" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-125"><a href="#cb80-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb80-126"><a href="#cb80-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb80-127"><a href="#cb80-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-128"><a href="#cb80-128" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-129"><a href="#cb80-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb80-130"><a href="#cb80-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb80-131"><a href="#cb80-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-132"><a href="#cb80-132" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-133"><a href="#cb80-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
+<span id="cb80-134"><a href="#cb80-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb80-135"><a href="#cb80-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-136"><a href="#cb80-136" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb80-137"><a href="#cb80-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
+<span id="cb80-138"><a href="#cb80-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb80-139"><a href="#cb80-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-140"><a href="#cb80-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb80-141"><a href="#cb80-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-142"><a href="#cb80-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Provide Grouped Summary Statistics</span></span>
+<span id="cb80-143"><a href="#cb80-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-144"><a href="#cb80-144" aria-hidden="true" tabindex="-1"></a>Conduct some exploratory data analysis, using dplyr commands such as <span class="in">`group_by()`</span>, <span class="in">`select()`</span>, <span class="in">`filter()`</span>, and <span class="in">`summarise()`</span>. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.</span>
+<span id="cb80-145"><a href="#cb80-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-146"><a href="#cb80-146" aria-hidden="true" tabindex="-1"></a>I first used the select() function to remove any columns/variables that were redundant or contained only 1 distinct value. I then used the head() to show the first 10 rows our new dataset to confirm that the desired variables were removed. Next, I stored the value (number of a given livestock) in a new variable. I calculated summary statistics of Value, and included the 'na.rm = TRUE' parameter so NA values were ignored. Following this, I created a new variable (Area) using the group_by() function. Using the summarise function, I then computed the mean, median, standard deviation, and IQR for the number of livestock, grouped by country. I calculated the summary statistics of the the data grouped by type of animal (Item) and year using the same method. </span>
+<span id="cb80-147"><a href="#cb80-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-150"><a href="#cb80-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb80-151"><a href="#cb80-151" aria-hidden="true" tabindex="-1"></a>livestock_new <span class="ot">&lt;-</span> livestock <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Domain'</span>, <span class="st">'Domain.Code'</span>, <span class="st">'Area.Code'</span>, <span class="st">'Element'</span>, <span class="st">'Element.Code'</span>, <span class="st">'Item.Code'</span>, <span class="st">'Year.Code'</span>, <span class="st">'Unit'</span>, <span class="st">'Flag'</span>))</span>
+<span id="cb80-152"><a href="#cb80-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-153"><a href="#cb80-153" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock_new)</span>
+<span id="cb80-154"><a href="#cb80-154" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock_new<span class="sc">$</span>Value</span>
 <span id="cb80-155"><a href="#cb80-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-156"><a href="#cb80-156" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-157"><a href="#cb80-157" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-158"><a href="#cb80-158" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-159"><a href="#cb80-159" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-160"><a href="#cb80-160" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-161"><a href="#cb80-161" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-162"><a href="#cb80-162" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-163"><a href="#cb80-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-164"><a href="#cb80-164" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Area)</span>
-<span id="cb80-165"><a href="#cb80-165" aria-hidden="true" tabindex="-1"></a>Area <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb80-166"><a href="#cb80-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-167"><a href="#cb80-167" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Item)</span>
-<span id="cb80-168"><a href="#cb80-168" aria-hidden="true" tabindex="-1"></a>Item <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb80-169"><a href="#cb80-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-170"><a href="#cb80-170" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Year)</span>
-<span id="cb80-171"><a href="#cb80-171" aria-hidden="true" tabindex="-1"></a>Year <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb80-172"><a href="#cb80-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb80-173"><a href="#cb80-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-174"><a href="#cb80-174" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explain and Interpret</span></span>
-<span id="cb80-175"><a href="#cb80-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-176"><a href="#cb80-176" aria-hidden="true" tabindex="-1"></a>Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.</span>
-<span id="cb80-177"><a href="#cb80-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-178"><a href="#cb80-178" aria-hidden="true" tabindex="-1"></a>I chose to group the data by Area, Unit, and Year in order to see how the values differed across these observations. I noticed that the mean Values differed by country, year, and animal type. One interesting observation was that greatest average Value was the number of Cattle while the smallest average Value was mules. In addition, the total Value tended to increase every year. </span>
+<span id="cb80-156"><a href="#cb80-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-157"><a href="#cb80-157" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb80-158"><a href="#cb80-158" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb80-159"><a href="#cb80-159" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb80-160"><a href="#cb80-160" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb80-161"><a href="#cb80-161" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb80-162"><a href="#cb80-162" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb80-163"><a href="#cb80-163" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb80-164"><a href="#cb80-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-165"><a href="#cb80-165" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Area)</span>
+<span id="cb80-166"><a href="#cb80-166" aria-hidden="true" tabindex="-1"></a>Area <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb80-167"><a href="#cb80-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-168"><a href="#cb80-168" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Item)</span>
+<span id="cb80-169"><a href="#cb80-169" aria-hidden="true" tabindex="-1"></a>Item <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb80-170"><a href="#cb80-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-171"><a href="#cb80-171" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Year)</span>
+<span id="cb80-172"><a href="#cb80-172" aria-hidden="true" tabindex="-1"></a>Year <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb80-173"><a href="#cb80-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb80-174"><a href="#cb80-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-175"><a href="#cb80-175" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explain and Interpret</span></span>
+<span id="cb80-176"><a href="#cb80-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-177"><a href="#cb80-177" aria-hidden="true" tabindex="-1"></a>Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.</span>
+<span id="cb80-178"><a href="#cb80-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-179"><a href="#cb80-179" aria-hidden="true" tabindex="-1"></a>I chose to group the data by Area, Unit, and Year in order to see how the values differed across these observations. I noticed that the mean Values differed by country, year, and animal type. One interesting observation was that greatest average Value was the number of Cattle while the smallest average Value was mules. In addition, the total Value tended to increase every year. </span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
