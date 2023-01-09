@@ -1,0 +1,94 @@
+title: "Challenge 4"
+author: "Daniel Manning"
+description: "More data wrangling: mutate"
+date: "1/7/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+library(tidyverse)
+install.packages('here')
+library(here)
+library(lubridate)
+library(readxl)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  identify variables that need to be mutated
+4)  mutate variables and sanity check all mutations
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+-   abc_poll.csv ⭐
+-   poultry_tidy.csv⭐⭐
+-   FedFundsRate.csv⭐⭐⭐
+-   hotel_bookings.csv⭐⭐⭐⭐
+-   debt_in_trillions ⭐⭐⭐⭐⭐
+
+```{r}
+hotel_bookings <- here("posts","_data","hotel_bookings.csv")%>%
+  read_csv()
+```
+
+### Briefly describe the data
+
+The "hotel_bookings.csv" dataset consists of 119,390 rows, which correspond to hotel bookings from two hotels between July 2015 and August 2017. Some of the variables include which hotel was booked ("Resort Hotel" and "City Hotel"), whether the reservation was canceled, the length of the stay (broken into weekend and week nights), who stayed (adults, children, and babies), and some history on previous bookings.
+
+## Tidy Data (as needed)
+
+Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
+
+There is definitely some  tidying to be done, since the arrival date is broken into several variables ("arrival_date_year", "arrival_date_month", "arrival_date_week_number", and "arrival_date_day_of_month"). Other than that, the dataset is relatively tidy, since each of the columns represents a variable and each row represents a reservation.
+
+```{r}
+hotel_bookings
+nrow(hotel_bookings)
+ncol(hotel_bookings)
+# Expected  Number of Columns (after consolidating date of arrival into one variable)
+ncol(hotel_bookings)-3
+```
+
+Any additional comments?
+
+## Identify variables that need to be mutated
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, are all time variables correctly coded as dates? Are all string variables reduced and cleaned to sensible categories? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+Document your work here.
+
+I mutated the multiple variables that code arrival date into one variable in the date-month-year format called "date_arrival". I also created a new variable "total_stay" by summing the data from "stays_in_weekend_nights" and "stays_in_week_nights". Lastly, I created a new variable "total_people" by summing the data from "adults", "children", and "babies". 
+
+```{r}
+bookings <- hotel_bookings %>%
+  mutate(date_arrival=str_c(arrival_date_day_of_month, 
+                            arrival_date_month, 
+                            arrival_date_year, sep="/"),
+         date_arrival=dmy(date_arrival)) %>%
+  select(-starts_with("arrival"))
+
+bookings <- bookings %>%
+  mutate(total_stay = stays_in_weekend_nights + stays_in_week_nights)
+bookings <- bookings %>%
+  mutate(total_people = adults + children + babies)
+bookings
+```
+
+Any additional comments?

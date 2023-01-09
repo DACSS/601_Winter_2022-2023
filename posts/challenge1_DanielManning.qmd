@@ -46,7 +46,8 @@ Find the `_data` folder, located inside the `posts` folder. Then you can read in
 I changed my working directory to the location of the csv file within the local folder on my desktop. I then used read.csv() to store the railroad dataset within my railroad variable. Based on the output when calling the variable railroads, the state column and county columns consist of characters while the total_employee column consists of integers.
 
 ```{r}
-railroad <- read.csv("railroad_2012_clean_county.csv")
+railroad <- here("posts","_data","railroad_2012_clean_county.csv")%>%
+  read_csv()
 railroad
 ```
 
