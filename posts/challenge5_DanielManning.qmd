@@ -1,0 +1,58 @@
+---
+title: "Challenge 5"
+author: "Daniel Manning"
+description: "Introduction to Visualization"
+date: "1/9/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Read in data
+
+```{r}
+cereal <- here("posts","_data","cereal.csv")%>%
+  read_csv()
+cereal
+```
+
+## Univariate Visualization 
+
+I chose to use two histograms to display the Sodium and Sugar content of various cereal brands because these are single numeric variables.
+
+```{r}
+ggplot(cereal, aes(Sodium)) + 
+  geom_histogram(aes(y = ..density..), alpha = 0.5) +
+  geom_density(alpha = 0.2, fill="red")
+  labs(title = "Sodium Content by Cereal Brand", x = "Sodium")
+
+ggplot(cereal, aes(Sugar)) + 
+  geom_histogram(aes(y = ..density..), alpha = 0.5) +
+  geom_density(alpha = 0.2, fill="red")
+  labs(title = "Sugar Content by Cereal Brand", x = "Sugar")
+```
+## Bivariate Visualization
+
+I chose to use a scatterplot to display the Sodium by Sugar content of various cereal brands because these are numeric variables and the scatterplot can be used to reveal relationships between them.
+
+```{r}
+ggplot(cereal, aes(Sugar, Sodium)) + geom_point()
+  labs(title = "Sodium Content by Sugar for Cereal Brands", x = "Sugar", y = "Sodium")
+```
+
