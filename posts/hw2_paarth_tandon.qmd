@@ -11,7 +11,8 @@ format:
     code-tools: true
     df-print: kable
 categories:
-  - hw2, emissions
+  - hw2
+  - emissions
 ---
 
 ```{r}
