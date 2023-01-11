@@ -8,7 +8,7 @@
 
 <meta name="author" content="Marcela Robinson">
 
-<title>Challenge3_MarcelaRobinson(animal_weights)</title>
+<title>MarcelaRobinson_Challege6(FedFunds)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,9 +126,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
-<meta name="twitter:title" content="Challenge3_MarcelaRobinson(animal_weights)">
-<meta name="twitter:description" content="##Read in “animal_weight.csv”">
+
+<meta name="twitter:title" content="MarcelaRobinson_Challege6(FedFunds)">
+<meta name="twitter:description" content="The FedFundsRate data set contains information about federal fund rates from 1954-2017 provided by the Federal Open Markets Committee (FOMC).">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:site" content="@UMassDACSS">
 <meta name="twitter:card" content="summary">
@@ -177,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Challenge3_MarcelaRobinson(animal_weights)</h1>
+      <h1 class="quarto-secondary-nav-title">MarcelaRobinson_Challege6(FedFunds)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -237,7 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Challenge3_MarcelaRobinson(animal_weights)</h1>
+<h1 class="title d-none d-lg-block">MarcelaRobinson_Challege6(FedFunds)</h1>
 </div>
 
 
@@ -270,89 +273,102 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: timechange
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union</code></pre>
 </div>
-<p>##Read in “animal_weight.csv”</p>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"treemap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Installing package into '/home/runner/work/_temp/Library'
+(as 'lib' is unspecified)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(treemap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>animal_weights<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"_data/animal_weight.csv"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>animal_weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            IPCC.Area Cattle...dairy Cattle...non.dairy Buffaloes
-1 Indian Subcontinent            275                110       295
-2      Eastern Europe            550                391       380
-3              Africa            275                173       380
-4             Oceania            500                330       380
-5      Western Europe            600                420       380
-6       Latin America            400                305       380
-7                Asia            350                391       380
-8         Middle east            275                173       380
-9    Northern America            604                389       380
-  Swine...market Swine...breeding Chicken...Broilers Chicken...Layers Ducks
-1             28               28                0.9              1.8   2.7
-2             50              180                0.9              1.8   2.7
-3             28               28                0.9              1.8   2.7
-4             45              180                0.9              1.8   2.7
-5             50              198                0.9              1.8   2.7
-6             28               28                0.9              1.8   2.7
-7             50              180                0.9              1.8   2.7
-8             28               28                0.9              1.8   2.7
-9             46              198                0.9              1.8   2.7
-  Turkeys Sheep Goats Horses Asses Mules Camels Llamas
-1     6.8  28.0  30.0    238   130   130    217    217
-2     6.8  48.5  38.5    377   130   130    217    217
-3     6.8  28.0  30.0    238   130   130    217    217
-4     6.8  48.5  38.5    377   130   130    217    217
-5     6.8  48.5  38.5    377   130   130    217    217
-6     6.8  28.0  30.0    238   130   130    217    217
-7     6.8  48.5  38.5    377   130   130    217    217
-8     6.8  28.0  30.0    238   130   130    217    217
-9     6.8  48.5  38.5    377   130   130    217    217</code></pre>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fedfunds<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/FedFundsRate.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 904 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): Year, Month, Day, Federal Funds Target Rate, Federal Funds Upper T...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fedfunds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Month"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Day"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Federal Funds Target Rate"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Federal Funds Upper Target"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Federal Funds Lower Target"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Effective Federal Funds Rate"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Real GDP (Percent Change)"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Unemployment Rate"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Inflation Rate"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"1954","2":"7","3":"1","4":"NA","5":"NA","6":"NA","7":"0.80","8":"4.6","9":"5.8","10":"NA"},{"1":"1954","2":"8","3":"1","4":"NA","5":"NA","6":"NA","7":"1.22","8":"NA","9":"6.0","10":"NA"},{"1":"1954","2":"9","3":"1","4":"NA","5":"NA","6":"NA","7":"1.06","8":"NA","9":"6.1","10":"NA"},{"1":"1954","2":"10","3":"1","4":"NA","5":"NA","6":"NA","7":"0.85","8":"8.0","9":"5.7","10":"NA"},{"1":"1954","2":"11","3":"1","4":"NA","5":"NA","6":"NA","7":"0.83","8":"NA","9":"5.3","10":"NA"},{"1":"1954","2":"12","3":"1","4":"NA","5":"NA","6":"NA","7":"1.28","8":"NA","9":"5.0","10":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
-<p>The csv file “animal_weights” contains the weight of 16 different animals (Cattle - dairy, Cattle - non-dairy, Buffaloes, Swine - market, Swine - breeding, Chicken - Broilers, Chicken - Layers, Ducks, Turkeys, Sheep, Goats, Horses, Asses, Mules, Camels, and Llamas) in 9 different areas of the world (Indian Subcontinent, Eastern Europe, Africa, Oceania,Western Europe,Latin America, Asia, Middle East and Northern America). This data was provided by the Intergovernmental Panel on Climate Change, a United Nations body assessing the science related to climate change.</p>
-<p>This dataset can provide relevant information to determine underfeeding/overfeeding in certain areas of the world and check the measurements with the standards of the industry. It can also be useful in determining market values for the animals.</p>
-<p>The dataset is wide and difficult to read. Therefore, I want to use the function pivot_longer() to make the data longer. However, I first want to check on what is the expected row/cases for the data.</p>
-<p>##Determine the expected row/cases</p>
+</div>
+<p>The FedFundsRate data set contains information about federal fund rates from 1954-2017 provided by the Federal Open Markets Committee (FOMC). This data set contains 904 observations and 10 variables, which includes different rates (unemployment, inflation, federal funds target rate), targets (upper, target, and lower), and real GDP.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Existing rows/cases</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(animal_weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fedfunds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 9</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Existing column/cases</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(animal_weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 17</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Expected row/cases</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(animal_weights)<span class="sc">*</span>(<span class="fu">ncol</span>(animal_weights)<span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 144</code></pre>
+<pre><code> [1] "Year"                         "Month"                       
+ [3] "Day"                          "Federal Funds Target Rate"   
+ [5] "Federal Funds Upper Target"   "Federal Funds Lower Target"  
+ [7] "Effective Federal Funds Rate" "Real GDP (Percent Change)"   
+ [9] "Unemployment Rate"            "Inflation Rate"              </code></pre>
 </div>
 </div>
-<p>According to the test, my new dataframe should have 144 rows.</p>
-<p>##Pivot_Longer the data #Pivot every column except the first</p>
+<p>##Combine the day, month and year in one column</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>animal_weights_PL<span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(animal_weights, <span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">names_to =</span> <span class="st">"Animals"</span>, <span class="at">values_to =</span> <span class="st">"Weights"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>animal_weights_PL</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 144 × 3
-   IPCC.Area           Animals            Weights
-   &lt;chr&gt;               &lt;chr&gt;                &lt;dbl&gt;
- 1 Indian Subcontinent Cattle...dairy       275  
- 2 Indian Subcontinent Cattle...non.dairy   110  
- 3 Indian Subcontinent Buffaloes            295  
- 4 Indian Subcontinent Swine...market        28  
- 5 Indian Subcontinent Swine...breeding      28  
- 6 Indian Subcontinent Chicken...Broilers     0.9
- 7 Indian Subcontinent Chicken...Layers       1.8
- 8 Indian Subcontinent Ducks                  2.7
- 9 Indian Subcontinent Turkeys                6.8
-10 Indian Subcontinent Sheep                 28  
-# … with 134 more rows</code></pre>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fedfunds_date<span class="ot">&lt;-</span>fedfunds<span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">str_c</span>(Year, Month, Day, <span class="at">sep=</span><span class="st">" "</span>),</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">date =</span> <span class="fu">ymd</span>(date))<span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">select</span>(date, <span class="st">"Federal Funds Upper Target"</span>,<span class="st">"Federal Funds Lower Target"</span>, <span class="st">"Effective Federal Funds Rate"</span>,<span class="st">"Real GDP (Percent Change)"</span>,<span class="st">"Unemployment Rate"</span>,<span class="st">"Inflation Rate"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fedfunds_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["date"],"name":[1],"type":["date"],"align":["right"]},{"label":["Federal Funds Upper Target"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Federal Funds Lower Target"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Effective Federal Funds Rate"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Real GDP (Percent Change)"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Unemployment Rate"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Inflation Rate"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"1954-07-01","2":"NA","3":"NA","4":"0.80","5":"4.6","6":"5.8","7":"NA"},{"1":"1954-08-01","2":"NA","3":"NA","4":"1.22","5":"NA","6":"6.0","7":"NA"},{"1":"1954-09-01","2":"NA","3":"NA","4":"1.06","5":"NA","6":"6.1","7":"NA"},{"1":"1954-10-01","2":"NA","3":"NA","4":"0.85","5":"8.0","6":"5.7","7":"NA"},{"1":"1954-11-01","2":"NA","3":"NA","4":"0.83","5":"NA","6":"5.3","7":"NA"},{"1":"1954-12-01","2":"NA","3":"NA","4":"1.28","5":"NA","6":"5.0","7":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
-<p>I first wanted to pivot the data longer to decrease the number of columns and create a couple of new columns called “Animals” and “Weights”. The first column “Animals”, contains the names of the animals. The second column, “Weights” contains the weight for each of the animals. Once I pivot my data, they were 144 observations and 3 variables.</p>
+</div>
+<p>For my graph depicting time, I decided to use a a geom_line to show Unemployment Rates over the years. After I initially run the visualization, I noticed there are some values missing from Unemployment Rate. I then decided to use the fill() function to to replace missing values for better visualization.</p>
+<p>##Geom_line to show Unemployment Rate over te years</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fedfunds_date<span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(<span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(date,<span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>))<span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Unemployment Rates Over Time"</span>, <span class="at">x =</span> <span class="st">"Years"</span>, <span class="at">Y =</span> <span class="st">"Unemployment Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="MarcelaRobinson_Challenge6-FedFunds-_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>For my second graph, I chose a treemap to represent the median values for unemployment rate. I was particularly interested in the rates from 2007 to 2017.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fedfunds<span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2007</span><span class="sc">:</span><span class="dv">2017</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year)<span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Median_Unemployment=</span><span class="fu">median</span>(<span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">treemap</span>(<span class="at">index =</span> <span class="st">"Year"</span>, <span class="at">vSize =</span> <span class="st">"Median_Unemployment"</span>, <span class="at">type =</span> <span class="st">"index"</span>, <span class="at">title=</span> <span class="st">"Unemployment Median Rate Comparison from 2007 to 2017"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in Year == 2007:2017: longer object length is not a multiple of shorter
+object length</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="MarcelaRobinson_Challenge6-FedFunds-_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
 
