@@ -6,11 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Meredith Rolfe">
-<meta name="dcterms.date" content="2022-01-02">
-<meta name="description" content="Tidy Data: Pivoting">
+<meta name="author" content="Sean Conway">
+<meta name="dcterms.date" content="2022-12-21">
+<meta name="description" content="Data wrangling: using group() and summarise()">
 
-<title>Challenge 3 Instructions</title>
+<title>Challenge 2 Instructions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,10 +128,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta name="twitter:title" content="Challenge 3 Instructions">
-<meta name="twitter:description" content="Tidy Data: Pivoting">
+<meta name="twitter:title" content="Challenge 2 Instructions">
+<meta name="twitter:description" content="Data wrangling: using group() and summarise()">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:site" content="@UMassDACSS">
 <meta name="twitter:card" content="summary">
@@ -180,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Challenge 3 Instructions</h1>
+      <h1 class="quarto-secondary-nav-title">Challenge 2 Instructions</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -238,19 +237,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#challenge-overview" id="toc-challenge-overview" class="nav-link active" data-scroll-target="#challenge-overview">Challenge Overview</a></li>
-  <li><a href="#read-in-data" id="toc-read-in-data" class="nav-link" data-scroll-target="#read-in-data">Read in data</a>
+  <li><a href="#read-in-the-data" id="toc-read-in-the-data" class="nav-link" data-scroll-target="#read-in-the-data">Read in the Data</a></li>
+  <li><a href="#describe-the-data" id="toc-describe-the-data" class="nav-link" data-scroll-target="#describe-the-data">Describe the data</a></li>
+  <li><a href="#provide-grouped-summary-statistics" id="toc-provide-grouped-summary-statistics" class="nav-link" data-scroll-target="#provide-grouped-summary-statistics">Provide Grouped Summary Statistics</a>
   <ul class="collapse">
-  <li><a href="#briefly-describe-the-data" id="toc-briefly-describe-the-data" class="nav-link" data-scroll-target="#briefly-describe-the-data">Briefly describe the data</a></li>
-  </ul></li>
-  <li><a href="#anticipate-the-end-result" id="toc-anticipate-the-end-result" class="nav-link" data-scroll-target="#anticipate-the-end-result">Anticipate the End Result</a>
-  <ul class="collapse">
-  <li><a href="#example-find-current-and-future-data-dimensions" id="toc-example-find-current-and-future-data-dimensions" class="nav-link" data-scroll-target="#example-find-current-and-future-data-dimensions">Example: find current and future data dimensions</a></li>
-  <li><a href="#challenge-describe-the-final-dimensions" id="toc-challenge-describe-the-final-dimensions" class="nav-link" data-scroll-target="#challenge-describe-the-final-dimensions">Challenge: Describe the final dimensions</a></li>
-  </ul></li>
-  <li><a href="#pivot-the-data" id="toc-pivot-the-data" class="nav-link" data-scroll-target="#pivot-the-data">Pivot the Data</a>
-  <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  <li><a href="#challenge-pivot-the-chosen-data" id="toc-challenge-pivot-the-chosen-data" class="nav-link" data-scroll-target="#challenge-pivot-the-chosen-data">Challenge: Pivot the Chosen Data</a></li>
+  <li><a href="#explain-and-interpret" id="toc-explain-and-interpret" class="nav-link" data-scroll-target="#explain-and-interpret">Explain and Interpret</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -260,15 +251,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Challenge 3 Instructions</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Challenge 2 Instructions</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
   <div class="quarto-categories">
-    <div class="quarto-category">challenge_3</div>
+    <div class="quarto-category">challenge_2</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Tidy Data: Pivoting
+    Data wrangling: using group() and summarise()
   </div>
 </div>
 
@@ -278,14 +269,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Meredith Rolfe </p>
+             <p>Sean Conway </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 2, 2022</p>
+      <p class="date">December 21, 2022</p>
     </div>
   </div>
   
@@ -305,146 +296,113 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <section id="challenge-overview" class="level2">
 <h2 class="anchored" data-anchor-id="challenge-overview">Challenge Overview</h2>
-<p>Today’s challenge is to:</p>
+<p>Today’s challenge is to</p>
 <ol type="1">
-<li>read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)</li>
-<li>identify what needs to be done to tidy the current data</li>
-<li>anticipate the shape of pivoted data</li>
-<li>pivot the data into tidy format using <code>pivot_longer</code></li>
+<li>read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)</li>
+<li>provide summary statistics for different interesting groups within the data, and interpret those statistics</li>
 </ol>
 </section>
-<section id="read-in-data" class="level2">
-<h2 class="anchored" data-anchor-id="read-in-data">Read in data</h2>
-<p>Read in one (or more) of the following datasets, using the correct R package and command.</p>
+<section id="read-in-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-the-data">Read in the Data</h2>
+<p>Read in one (or more) of the following data sets, available in the <code>posts/_data</code> folder, using the correct R package and command.</p>
 <ul>
-<li>animal_weights.csv ⭐</li>
-<li>eggs_tidy.csv ⭐⭐ or organicpoultry.xls ⭐⭐⭐</li>
-<li>australian_marriage*.xlsx ⭐⭐⭐</li>
-<li>USA Households*.xlsx ⭐⭐⭐⭐</li>
-<li>sce_labor_chart_data_public.csv 🌟🌟🌟🌟🌟</li>
+<li>railroad*.csv or StateCounty2012.xlsx ⭐</li>
+<li>FAOstat*.csv ⭐⭐⭐</li>
+<li>hotel_bookings ⭐⭐⭐⭐</li>
 </ul>
 <div class="cell">
-
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here, I read in the data set, the same railroad worker info that I imported in challenge 1. I run the 'head' command to again see the first state (Alaska), a few of its counties, and how many rail employees work in each. </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>railroad_data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/railroad_2012_clean_county.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(railroad_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  state county               total_employees
+  &lt;chr&gt; &lt;chr&gt;                          &lt;dbl&gt;
+1 AE    APO                                2
+2 AK    ANCHORAGE                          7
+3 AK    FAIRBANKS NORTH STAR               2
+4 AK    JUNEAU                             3
+5 AK    MATANUSKA-SUSITNA                  2
+6 AK    SITKA                              1</code></pre>
 </div>
-<section id="briefly-describe-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="briefly-describe-the-data">Briefly describe the data</h3>
-<p>Describe the data, and be sure to comment on why you are planning to pivot it to make it “tidy”</p>
+</div>
+<p>Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.</p>
 </section>
-</section>
-<section id="anticipate-the-end-result" class="level2">
-<h2 class="anchored" data-anchor-id="anticipate-the-end-result">Anticipate the End Result</h2>
-<p>The first step in pivoting the data is to try to come up with a concrete vision of what the end product <em>should</em> look like - that way you will know whether or not your pivoting was successful.</p>
-<p>One easy way to do this is to think about the dimensions of your current data (tibble, dataframe, or matrix), and then calculate what the dimensions of the pivoted data should be.</p>
-<p>Suppose you have a dataset with <span class="math inline">\(n\)</span> rows and <span class="math inline">\(k\)</span> variables. In our example, 3 of the variables are used to identify a case, so you will be pivoting <span class="math inline">\(k-3\)</span> variables into a longer format where the <span class="math inline">\(k-3\)</span> variable names will move into the <code>names_to</code> variable and the current values in each of those columns will move into the <code>values_to</code> variable. Therefore, we would expect <span class="math inline">\(n * (k-3)\)</span> rows in the pivoted dataframe!</p>
-<section id="example-find-current-and-future-data-dimensions" class="level3">
-<h3 class="anchored" data-anchor-id="example-find-current-and-future-data-dimensions">Example: find current and future data dimensions</h3>
-<p>Lets see if this works with a simple example.</p>
-<div class="cell" data-tbl-cap="Example">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">country =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Mexico"</span>, <span class="st">"USA"</span>, <span class="st">"France"</span>),<span class="dv">2</span>),</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">year =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1980</span>,<span class="dv">1990</span>), <span class="dv">3</span>), </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">trade =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"NAFTA"</span>, <span class="st">"NAFTA"</span>, <span class="st">"EU"</span>),<span class="dv">2</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">outgoing =</span> <span class="fu">rnorm</span>(<span class="dv">6</span>, <span class="at">mean=</span><span class="dv">1000</span>, <span class="at">sd=</span><span class="dv">500</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">incoming =</span> <span class="fu">rlogis</span>(<span class="dv">6</span>, <span class="at">location=</span><span class="dv">1000</span>, </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">scale =</span> <span class="dv">400</span>))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  country  year trade outgoing incoming
-  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1 Mexico   1980 NAFTA     617.    1326.
-2 USA      1990 NAFTA    1046.     180.
-3 France   1980 EU       1803.    1853.
-4 Mexico   1990 NAFTA     190.    2421.
-5 USA      1980 NAFTA     507.     215.
-6 France   1990 EU       1405.     659.</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#existing rows/cases</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 6</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#existing columns/cases</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#expected rows/cases</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df) <span class="sc">*</span> (<span class="fu">ncol</span>(df)<span class="sc">-</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 12</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># expected columns </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
-</div>
-</div>
-<p>Or simple example has <span class="math inline">\(n = 6\)</span> rows and <span class="math inline">\(k - 3 = 2\)</span> variables being pivoted, so we expect a new dataframe to have <span class="math inline">\(n * 2 = 12\)</span> rows x <span class="math inline">\(3 + 2 = 5\)</span> columns.</p>
-</section>
-<section id="challenge-describe-the-final-dimensions" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-describe-the-final-dimensions">Challenge: Describe the final dimensions</h3>
-<p>Document your work here.</p>
+<section id="describe-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="describe-the-data">Describe the data</h2>
+<p>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</p>
 <div class="cell">
-
-</div>
-<p>Any additional comments?</p>
-</section>
-</section>
-<section id="pivot-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="pivot-the-data">Pivot the Data</h2>
-<p>Now we will pivot the data, and compare our pivoted data dimensions to the dimensions calculated above as a “sanity” check.</p>
-<section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
-<div class="cell" data-tbl-cap="Pivoted Example">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(df, <span class="at">col =</span> <span class="fu">c</span>(outgoing, incoming),</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_to=</span><span class="st">"trade_direction"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"trade_value"</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I plan to work with different data sets in challenges going forward, but since I'm fairly comfortable now with the railroad data, I feel confident developing the GSS for this one.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># From what we garnered by running 'head', the column that keeps an employee count is called 'total_employees'. We will use this variable name in the commands to find the central tendency and dispersion of the data.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="provide-grouped-summary-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="provide-grouped-summary-statistics">Provide Grouped Summary Statistics</h2>
+<p>Conduct some exploratory data analysis, using dplyr commands such as <code>group_by()</code>, <code>select()</code>, <code>filter()</code>, and <code>summarise()</code>. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here, we use the 'summarize' command to find the average number of rail employees per county in the country.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad_data, <span class="fu">mean</span>(total_employees), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 5
-   country  year trade trade_direction trade_value
-   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;
- 1 Mexico   1980 NAFTA outgoing               617.
- 2 Mexico   1980 NAFTA incoming              1326.
- 3 USA      1990 NAFTA outgoing              1046.
- 4 USA      1990 NAFTA incoming               180.
- 5 France   1980 EU    outgoing              1803.
- 6 France   1980 EU    incoming              1853.
- 7 Mexico   1990 NAFTA outgoing               190.
- 8 Mexico   1990 NAFTA incoming              2421.
- 9 USA      1980 NAFTA outgoing               507.
-10 USA      1980 NAFTA incoming               215.
-11 France   1990 EU    outgoing              1405.
-12 France   1990 EU    incoming               659.</code></pre>
+<pre><code># A tibble: 1 × 2
+  `mean(total_employees)` na.rm
+                    &lt;dbl&gt; &lt;lgl&gt;
+1                    87.2 TRUE </code></pre>
 </div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># It comes out as 87; surprisingly high, seeing that none of the counties listed from the 'head' command exceed 7 employees... the context clue that gives it away is our knowledge of the population of Alaska; pretty sparse! But we will figure out through more statistical summarizing how the mean number of employees per county is so high</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># One of the ways we could do this is by trying to find the standard deviation of the data set.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad_data, <span class="fu">sd</span>(total_employees), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  `sd(total_employees)` na.rm
+                  &lt;dbl&gt; &lt;lgl&gt;
+1                  284. TRUE </code></pre>
 </div>
-<p>Yes, once it is pivoted long, our resulting data are <span class="math inline">\(12x5\)</span> - exactly what we expected!</p>
-</section>
-<section id="challenge-pivot-the-chosen-data" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-pivot-the-chosen-data">Challenge: Pivot the Chosen Data</h3>
-<p>Document your work here. What will a new “case” be once you have pivoted the data? How does it meet requirements for tidy data?</p>
-<div class="cell">
-
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here, we realize how our mean could be so high despite seeing so many low, single-digit values when looking at individual table entries- the standard deviation is extremely high. Because of the nature of this data set, counting people, no county can have less than zero, or a negative number of rail workers. But since the standard deviation is high, we can assume there are some statistically significant outliers on the high end.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad_data, <span class="fu">median</span>(total_employees), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  `median(total_employees)` na.rm
+                      &lt;dbl&gt; &lt;lgl&gt;
+1                        21 TRUE </code></pre>
 </div>
-<p>Any additional comments?</p>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>railroad_data <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">range_railroadt=</span><span class="fu">max</span>(total_employees)<span class="sc">-</span><span class="fu">min</span>(total_employees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  range_railroadt
+            &lt;dbl&gt;
+1            8206</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We confirm our beliefs with these commands- we find the median of the data set for number of railroad workers per county, and it is a mere 21. And when we do the range, knowing there are some counties with only one railroad workers, we get 8,206. Some places have a massive amount of rail workers compared to most, accounting for the skew in data.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="explain-and-interpret" class="level3">
+<h3 class="anchored" data-anchor-id="explain-and-interpret">Explain and Interpret</h3>
+<p>Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.</p>
 
 
 <!-- -->
@@ -755,10 +713,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 3 Instructions"</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Meredith Rolfe"</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Tidy Data: Pivoting"</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "1/2/2022"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2 Instructions"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Sean Conway"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Data wrangling: using group() and summarise()"</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "12/21/2022"</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
@@ -766,7 +724,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_3</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -781,102 +739,63 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
 <span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>Today's challenge is to:</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>Today's challenge is to</span>
 <span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>identify what needs to be done to tidy the current data</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>anticipate the shape of pivoted data</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>pivot the data into tidy format using <span class="in">`pivot_longer`</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>2)  provide summary statistics for different interesting groups within the data, and interpret those statistics</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the Data</span></span>
 <span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in data</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>Read in one (or more) of the following data sets, available in the <span class="in">`posts/_data`</span> folder, using the correct R package and command.</span>
 <span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>Read in one (or more) of the following datasets, using the correct R package and command.</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>animal_weights.csv ⭐</span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>eggs_tidy.csv ⭐⭐ or organicpoultry.xls ⭐⭐⭐</span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>australian_marriage<span class="sc">\*</span>.xlsx ⭐⭐⭐</span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>USA Households<span class="sc">\*</span>.xlsx ⭐⭐⭐⭐</span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>sce_labor_chart_data_public.csv 🌟🌟🌟🌟🌟</span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>railroad<span class="sc">\*</span>.csv or StateCounty2012.xlsx ⭐</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>FAOstat<span class="sc">\*</span>.csv ⭐⭐⭐</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>hotel_bookings ⭐⭐⭐⭐</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Here, I read in the data set, the same railroad worker info that I imported in challenge 1. I run the 'head' command to again see the first state (Alaska), a few of its counties, and how many rail employees work in each. </span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>railroad_data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/railroad_2012_clean_county.csv"</span>)</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(railroad_data)</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a><span class="fu">### Briefly describe the data</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.</span>
 <span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>Describe the data, and be sure to comment on why you are planning to pivot it to make it "tidy"</span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
 <span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Anticipate the End Result</span></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</span>
 <span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>The first step in pivoting the data is to try to come up with a concrete vision of what the end product *should* look like - that way you will know whether or not your pivoting was successful.</span>
-<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>One easy way to do this is to think about the dimensions of your current data (tibble, dataframe, or matrix), and then calculate what the dimensions of the pivoted data should be.</span>
-<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>Suppose you have a dataset with $n$ rows and $k$ variables. In our example, 3 of the variables are used to identify a case, so you will be pivoting $k-3$ variables into a longer format where the $k-3$ variable names will move into the <span class="in">`names_to`</span> variable and the current values in each of those columns will move into the <span class="in">`values_to`</span> variable. Therefore, we would expect $n * (k-3)$ rows in the pivoted dataframe!</span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="co"># I plan to work with different data sets in challenges going forward, but since I'm fairly comfortable now with the railroad data, I feel confident developing the GSS for this one.</span></span>
 <span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### Example: find current and future data dimensions</span></span>
-<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>Lets see if this works with a simple example.</span>
-<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Example</span></span>
-<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">country =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Mexico"</span>, <span class="st">"USA"</span>, <span class="st">"France"</span>),<span class="dv">2</span>),</span>
-<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>           <span class="at">year =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1980</span>,<span class="dv">1990</span>), <span class="dv">3</span>), </span>
-<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>           <span class="at">trade =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"NAFTA"</span>, <span class="st">"NAFTA"</span>, <span class="st">"EU"</span>),<span class="dv">2</span>),</span>
-<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>           <span class="at">outgoing =</span> <span class="fu">rnorm</span>(<span class="dv">6</span>, <span class="at">mean=</span><span class="dv">1000</span>, <span class="at">sd=</span><span class="dv">500</span>),</span>
-<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>           <span class="at">incoming =</span> <span class="fu">rlogis</span>(<span class="dv">6</span>, <span class="at">location=</span><span class="dv">1000</span>, </span>
-<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>                             <span class="at">scale =</span> <span class="dv">400</span>))</span>
-<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a><span class="co">#existing rows/cases</span></span>
-<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df)</span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="co"># From what we garnered by running 'head', the column that keeps an employee count is called 'total_employees'. We will use this variable name in the commands to find the central tendency and dispersion of the data.</span></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Provide Grouped Summary Statistics</span></span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>Conduct some exploratory data analysis, using dplyr commands such as <span class="in">`group_by()`</span>, <span class="in">`select()`</span>, <span class="in">`filter()`</span>, and <span class="in">`summarise()`</span>. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.</span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Here, we use the 'summarize' command to find the average number of rail employees per county in the country.</span></span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad_data, <span class="fu">mean</span>(total_employees), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a><span class="co"># It comes out as 87; surprisingly high, seeing that none of the counties listed from the 'head' command exceed 7 employees... the context clue that gives it away is our knowledge of the population of Alaska; pretty sparse! But we will figure out through more statistical summarizing how the mean number of employees per county is so high</span></span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a><span class="co"># One of the ways we could do this is by trying to find the standard deviation of the data set.</span></span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad_data, <span class="fu">sd</span>(total_employees), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Here, we realize how our mean could be so high despite seeing so many low, single-digit values when looking at individual table entries- the standard deviation is extremely high. Because of the nature of this data set, counting people, no county can have less than zero, or a negative number of rail workers. But since the standard deviation is high, we can assume there are some statistically significant outliers on the high end.</span></span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(railroad_data, <span class="fu">median</span>(total_employees), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a><span class="co">#existing columns/cases</span></span>
-<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(df)</span>
-<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a><span class="co">#expected rows/cases</span></span>
-<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df) <span class="sc">*</span> (<span class="fu">ncol</span>(df)<span class="sc">-</span><span class="dv">3</span>)</span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>railroad_data <span class="sc">%&gt;%</span></span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">range_railroadt=</span><span class="fu">max</span>(total_employees)<span class="sc">-</span><span class="fu">min</span>(total_employees))</span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a><span class="co"># We confirm our beliefs with these commands- we find the median of the data set for number of railroad workers per county, and it is a mere 21. And when we do the range, knowing there are some counties with only one railroad workers, we get 8,206. Some places have a massive amount of rail workers compared to most, accounting for the skew in data.</span></span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a><span class="co"># expected columns </span></span>
-<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a>Or simple example has $n = 6$ rows and $k - 3 = 2$ variables being pivoted, so we expect a new dataframe to have $n * 2 = 12$ rows x $3 + 2 = 5$ columns.</span>
-<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### Challenge: Describe the final dimensions</span></span>
-<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a>Document your work here.</span>
-<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a>Any additional comments?</span>
-<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pivot the Data</span></span>
-<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a>Now we will pivot the data, and compare our pivoted data dimensions to the dimensions calculated above as a "sanity" check.</span>
-<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### Example</span></span>
-<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Pivoted Example</span></span>
-<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(df, <span class="at">col =</span> <span class="fu">c</span>(outgoing, incoming),</span>
-<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_to=</span><span class="st">"trade_direction"</span>,</span>
-<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"trade_value"</span>)</span>
-<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a>Yes, once it is pivoted long, our resulting data are $12x5$ - exactly what we expected!</span>
-<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a><span class="fu">### Challenge: Pivot the Chosen Data</span></span>
-<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a>Document your work here. What will a new "case" be once you have pivoted the data? How does it meet requirements for tidy data?</span>
-<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a>Any additional comments?</span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explain and Interpret</span></span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a>Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
