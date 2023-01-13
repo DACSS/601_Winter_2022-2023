@@ -1,0 +1,45 @@
+---
+title: "Challenge 4: Data Wrangling-Mutate"
+author: "Surya Praneeth Reddy Chirasani"
+desription: "More Data Wrangling using mutate function"
+date: "01/08/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+  - tidydata
+  - mutate
+  - lubridate
+---
+
+```{r}
+#| label: setup
+#| warning: false
+library(tidyverse)
+library("readxl")
+library(lubridate)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+debt_data <-read_excel("_data/debt_in_trillions.xlsx")
+debt_data
+```
+```{r}
+tail(debt_data)
+```
+
+This dataset has quarterly debt data of different categories in a household such as Mortgage, HE Revolving, Auto Loan, Credit Card, Student Loan and other kinds of debt from the first quarter of Year 2003 to second Quarter of Year 2021. It also has total debt data amount which is the sum of the above mentioned six different debt data
+
+For particular data analysis, we can consider to pivot the data using pivot_longer so we can group the data using the Year and Quarter column. Also in order to that, the Year and Quarter column is not in a typical date format. This column can be converted to the typical data format using **parse_data_time** function from the **lubridate** library by passing the date order 'YQ' through the orders argument 
+
+```{r}
+debt <- debt_data%>%
+        mutate(date = parse_date_time(`Year and Quarter`, orders="yq"))
+debt$date
+```
+
