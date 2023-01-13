@@ -1,8 +1,8 @@
 ---
-title: "Challenge 1 Instructions"
-author: "Sean Conway"
+title: "Challenge 1"
+author: "Priya MArla"
 description: "Reading in data and creating a post"
-date: "12/20/2022"
+date: "12/26/2022"
 format:
   html:
     toc: true
