@@ -1,0 +1,72 @@
+---
+title: "Challenge 6"
+author: "Daniel Manning"
+description: "Introduction to Visualization"
+date: "1/13/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+library(tidyverse)
+library(ggplot2)
+library(here)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Read in data
+
+```{r}
+fedfunds <- here("posts","_data","FedFundsRate.csv")%>%
+  read_csv()
+fedfunds
+```
+
+## Time Dependent Visualization 
+
+I chose to use a scatterplot to display the Effective Federal Funds Rate over time because these are numeric variables and the scatterplot can be used to reveal relationships between them. The scatterplot reveals peaks in Effective Federal Funds Rate during various years, such as 1970, 1975, and 1982.
+
+```{r}
+fedfunds <- fedfunds %>%
+  mutate(Date=str_c(Day, 
+                    Month, 
+                    Year, sep="/"),
+         Date=dmy(Date))
+fedfunds
+
+ggplot(fedfunds, aes(Date, `Effective Federal Funds Rate`)) + geom_point()
+  labs(title = "Effective Federal Funds Rate by Date", x = "Date", y = "Effective Federal Funds Rate")
+
+
+```
+## Visualizing Part-Whole Relationships
+
+I chose to use a bar chart with the Effective Federal Funds Rate values grouped by month of the year into Seasons in order to investigate any seasonal differences in this variable. Based on the plot, the averages of Effective Federal Funds Rate by season are relatively equal and all are just below 5.
+
+```{r}
+fedfunds <- fedfunds %>%
+      mutate(Season = 
+              case_when(Month <= 2 | Month == 12 ~ "Winter",
+                        Month >= 3 & Month <= 5 ~ "Spring",
+                        Month >= 6 & Month <= 8 ~ "Summer",
+                        Month >= 9 & Month <= 11 ~ "Fall"))
+fedfunds
+
+SeasonAverage <- fedfunds %>% 
+  group_by(Season) %>% 
+  summarise (`Average Effective Federal Funds Rate` = mean(`Effective Federal Funds Rate`, na.rm = TRUE))
+ggplot(SeasonAverage, aes(x=Season,y=`Average Effective Federal Funds Rate`)) + 
+    geom_bar(stat = "identity")
+```
+
