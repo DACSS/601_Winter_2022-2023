@@ -44,15 +44,17 @@ Today's challenge is to:
 
 ```{r}
 ab = read_csv("_data/AB_NYC_2019.csv")
-print(ab)
+ab
 
 #for when you are selecting columns with NA values: na.rm = TRUE
 
-ab %>%
+dim = ab %>%
   dim() 
+dim
 
-ab %>% 
+col = ab %>% 
   colnames()
+col
 
 
 ```
