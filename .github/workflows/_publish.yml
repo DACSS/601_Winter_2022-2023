@@ -74,6 +74,8 @@ jobs:
             any::corpus
             any::tm
             any::tmap
+            any::ggsci
+            any::ggthemes
             any::treemapify
             any::wordcloud
             any::dlookr
