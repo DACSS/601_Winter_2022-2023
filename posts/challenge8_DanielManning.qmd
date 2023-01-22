@@ -1,0 +1,64 @@
+---
+title: "Challenge 8"
+author: "Daniel Manning"
+description: "Visualization in Multiple Dimensions"
+date: "1/22/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+library(tidyverse)
+library(ggplot2)
+library(here)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Read in datasets and describe them
+
+I have chosen the "snl_seasons" dataset and the "snl_casts" dataset. The seasons dataset has information about each season of SNL including its year, first and last episode dates, and number of episodes. THe casts dataset has information about each of the cast members of SNL, including actor/actress name, season ID, first and last episode they appeared in, number of episodes they appeared in, and the fraction of the season they appeared in.
+
+```{r}
+seasons <- here("posts","_data","snl_seasons.csv")%>%
+  read_csv()
+
+casts <- here("posts","_data","snl_casts.csv")%>%
+  read_csv()
+
+seasons
+summary(seasons)
+
+casts
+summary(casts)
+
+```
+
+## Joining datasets 
+
+```{r}
+
+snl_join <- left_join(seasons, casts, by = "sid" )
+snl_join
+```
+## Analyzing Joined Dataset
+
+
+```{r}
+snl_join %>%
+  ggplot(aes(x = sid, y = n_episodes.y)) +
+  geom_bar(stat = "identity") 
+  labs(x = "Season Number", y = "Total Number of Episodes Cast Members Appeared In", title = "Total Number of Episodes Cast Members Appeared In for Each Season")
+  
+```
+
