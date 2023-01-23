@@ -1,0 +1,161 @@
+---
+title: "Homework 3"
+author: "Yoshita Varma"
+desription: "Answering research questions from HW2 with Visualizations"
+date: "01/21/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - hw3
+  - Descriptive Statistics 
+  - Visualizations
+  - Limitations2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+library(ggplot2)
+library(viridis)
+library(dplyr)
+library(plotly)
+library(hrbrthemes)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Read in Data
+
+```{r}
+data_r = read_csv("_data/WDI/Indicators.csv")
+data_r
+```
+
+To summarize from homework2. For the analysis and produce conclusions to the research questions we have used the World Development Indicators dataset. It describes 247 countries data over a period of 56 years (1960-2015) using 1344 indicators.
+
+HYPOTHESIS:
+Life expectancy is getting better for the majority of the countries across the globe. Country's development and growth can be motivating factors for increase in life expectancy. 
+
+GOALS: 
+Analysis of the dataset to identify if the hypothesis is supported or not? Identifying major factors and how much impact do they have in the increase of a country's life expectancy?
+
+## Tidy dataset and Provide Grouped Summary Statistics 
+
+```{r}
+summary(data_r)
+```
+To summerize the data and understand all the columns and its datatypes we have used summary function. This will give us mean, first quartile, and 3rd quartile for the numerical attributes.
+
+```{r}
+continentData = read_csv("_data/WDI/Continents_Countries_v2.csv")
+    data <- left_join(data_r, continentData, by = 'CountryCode')
+```
+
+```{r}
+# Removing Null values
+data <- data %>% 
+  filter(!(Continent == "NA"))
+data
+```
+
+Grouping data with continent by extracting new dataset of continents using country code. This will help to group the data based on continents. As there are few NA values in continent droping those rows to have a tidy dataset.
+
+```{r}
+data_LifeExpectancy <- data %>%
+  filter(IndicatorName == "Life expectancy at birth, total (years)")
+data_LifeExpectancy
+```
+
+As we are interested in narrowing down World's development based on few indicators. We are obtaining small subset of the dataset based on the indicator for all the years across the world. One example subset is of life expectancy dataset. As one of our research questions tries to find the trend of average life expectancy for all the years.
+
+```{r}
+data_group <- data_LifeExpectancy %>%
+  group_by(CountryName)
+data_group
+```
+Grouped the data based on country to obtain few statistics
+
+## Descriptive Statistics
+
+```{r}
+data_group %>%
+summarise(Average_LifeExpectancy =  mean(Value, nr.rm = TRUE),
+          Median_LifeExpectancy =  median(Value, nr.rm = TRUE))
+```
+As grouped by country we have obtained the means and medians of life expectancy over the years. In the statistics some countries have mean life expectancy same as median life expectancy like Armenia, Australia, etc. This explains that there is no sudden spike in the growth of life expectancy over the years.
+
+## Visualization for Statistics and Research Questions
+
+```{r}
+data_group %>%
+  ggplot( aes(x=Year, y=Value, group= Continent, color=Continent)) +
+    geom_line() +
+    scale_color_viridis(discrete = TRUE) +
+    ggtitle("Life Expectancy trend over the years grouped by Continents") +
+    ylab("Life Expectancy")
+```
+
+To get an overal trend of the life expectancy line plot played a decent role. As you can see the curve increase over the years. However, here the data is based on continents. For continents the life expectancy has been increasing.
+
+```{r}
+# Libraries
+
+
+# Interactive version
+p <- data_group %>%
+  
+  # prepare text for tooltip
+  mutate(text = paste("Country:", CountryName, "LifeExpectancy:", Value, "Year:", Year, "Continent:", Continent, sep=" ")) %>%
+  
+  # Classic ggplot
+  ggplot( aes(x=Year, y=Value, size = Value/5, color = Continent, text=text)) +
+    geom_point(alpha=0.5) +
+    scale_size(range = c(.1, 1), name="Continents Names")
+
+# turn ggplot interactive with plotly
+pp <- ggplotly(p, tooltip="text")
+pp
+
+```
+To further understand the trend of the life expectancy based on the continents I have used scatter plot and grouped it based on continents which will give some edge in identifying their country based on the continent. However, due to huge set of countries it can be challenging to exactly spot the country. 
+
+This is the visualization of the world map depicting life expectancies of the countries for the period of 60 years. Based on life expectancies, color changes over time.User will be able to understand whether life expectancy is increasing or decreasing for the countries, based on the color saturation.User will also be able to find life expectancies of the countries for a particular year. By hovering on a country , user can view - the year, country code,  life expectancy
+
+
+
+```{r}
+# Load dataset from github
+data_filtered <- data %>% 
+  filter(IndicatorName %in% c("Life expectancy at birth, total (years)", "Adjusted net national income (current US$)", "Population, total", "GDP per capita (constant 2005 US$)",   "Gross national expenditure (constant 2005 US$)", "Merchandise exports (current US$)", "Net official development assistance received (current US$)", "Age dependency ratio (% of working-age population)", "Arms exports (SIPRI trend indicator values)")) %>%
+  filter(CountryName=="China")
+
+# Plot
+data_filtered %>%
+  ggplot( aes(x=Year, y=Value, group=IndicatorName, fill=IndicatorName)) +
+    geom_area() +
+    scale_fill_viridis(discrete = TRUE) +
+    theme(legend.position="none") +
+    ggtitle("World Development Indicators over the years") +
+    theme_ipsum() +
+    theme(
+      legend.position="none",
+      panel.spacing = unit(0, "lines"),
+      strip.text.x = element_text(size = 8),
+      plot.title = element_text(size=13)
+    ) +
+    facet_wrap(~IndicatorName, scale="free_y")
+```
+We have already mentioned that , user will be able to understand the correlation between wdi and life expectancy for the countries , so the user will be able to do that with the help of the scatter plot. We have grouped the countries based on their respective continent. 
+
+## Limitations 
+
+As the data is huge Visualization might not be very clear when trying to infer some information for a particular country. To further narrow down the analysis based on the country we can implement animations. I'll try to implement those in the project. For now the data looks decent based on the continents.
+
+Also, while trying to find some correlation between different world development indicators to life expectancy it becomes very challenging to visualize the entire data in single graph. Further analysis is required with additional data to obtain separate graphs for the correlation with life expectancy.
+
