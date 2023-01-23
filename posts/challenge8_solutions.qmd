@@ -169,7 +169,7 @@ read_military<-function(sheet_name){
 We now have a function that is customized to read in the mmilitary active duty marital status sheets. We just need to use `purrr` - a package that is part of tidyverse but which may need to be installed and loaded on its own - to iterate through the list of sheets in the workbook.
 
 ```{r}
-military_sheets<-excel_sheets(here("posts","_data","ActiveDuty_MaritalStatus.xls"), )
+military_sheets<-excel_sheets(here("posts","_data","ActiveDuty_MaritalStatus.xls") )
 
 military_sheets
 ```
@@ -203,7 +203,7 @@ There are functions in `purrr` that automatically convert the list created by ma
 
 ```{r}
 military_all <- map_dfr(
-  excel_sheets(here("posts","_data","ActiveDuty_MaritalStatus.xls"), )[2:5],
+  excel_sheets(here("posts","_data","ActiveDuty_MaritalStatus.xls"))[2:5],
   read_military)
 military_all
 ```
@@ -217,7 +217,7 @@ The FAOSTAT sheets are excerpts of the [FAOSTAT database](https://www.fao.org/fa
 The file *birds.csv* that includes estimates of the stock of five different types of poultry (Chickens, Ducks, Geese and guinea fowls, Turkeys, and Pigeons/Others) in 248 areas for 58 years between 1961-2018. Because we know (from challenge 1) that several of those areas include aggregated data (e.g., ) we are going to remove the aggregations and replace the case level aggregations with the correct grouping variables from the file "FAOSTAT_country_groups.csv", downloaded from [Country Region definitions](https://www.fao.org/faostat/en/#definitions) provided by the FAO. As a reminder, I am going to split the original birds data into country level and aggregated data, and then list the aggregated groups we found in Challenge 1.
 
 ```{r}
-birds_orig<-read_csv(here("posts","_data","birds.csv"), )%>%
+birds_orig<-read_csv(here("posts","_data","birds.csv"))%>%
   select(-contains("Code"))
 
 birds_agg<-birds_orig%>%
