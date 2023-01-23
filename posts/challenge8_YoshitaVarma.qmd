@@ -1,6 +1,6 @@
 ---
-title: "Challenge 8 Instructions"
-author: "Meredith Rolfe & Sean Conwya"
+title: "Challenge 8"
+author: "Yoshita Varma Annam"
 description: "Joining Data"
 date: "1/16/2022"
 format:
