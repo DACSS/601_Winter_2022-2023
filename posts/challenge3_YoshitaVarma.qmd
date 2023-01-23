@@ -1,6 +1,6 @@
 ---
-title: "Challenge 3 Instructions"
-author: "Meredith Rolfe"
+title: "Challenge 3"
+author: "Yoshita Varma Annam"
 description: "Tidy Data: Pivoting"
 date: "08/17/2022"
 format:
