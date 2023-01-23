@@ -1,6 +1,6 @@
 ---
-title: "Challenge 5 Instructions"
-author: "Sean Conway"
+title: "Challenge 5"
+author: "Yoshita Varma Annam"
 description: "Introduction to Visualization"
 date: "1/2/2022"
 format:
