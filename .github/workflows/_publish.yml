@@ -93,6 +93,7 @@ jobs:
             any::flexmix
             any::ggrepel
             any::flexmix
+            any::hrbrthemes
             any::plm
             any::GGally
             any::ggfortify
