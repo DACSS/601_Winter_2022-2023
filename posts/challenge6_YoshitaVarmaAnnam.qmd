@@ -1,6 +1,6 @@
 ---
-title: "Challenge 6 Yoshita Varma"
-author: "Meredith Rolfe & Sean Conway"
+title: "Challenge 6"
+author: "Yoshita Varma Annam"
 description: "Visualizing Time and Relationships"
 date: "1/9/2023"
 format:
