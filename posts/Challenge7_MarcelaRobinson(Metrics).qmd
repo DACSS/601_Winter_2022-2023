@@ -6,7 +6,6 @@ Date: January 20, 2023
 description: "Visualizing Multiple Dimensions"
 ---
 
-
 ```{r}
 library(tidyverse)
 library(ggplot2)
