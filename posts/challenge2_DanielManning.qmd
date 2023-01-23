@@ -1,5 +1,5 @@
 ---
-title: "Challenge 2 Instructions"
+title: "Challenge 2"
 author: "Daniel Manning"
 description: "Data wrangling: using group() and summarise()"
 date: "12/28/2022"
@@ -19,6 +19,7 @@ categories:
 #| message: false
 
 library(tidyverse)
+library(here)
 
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
