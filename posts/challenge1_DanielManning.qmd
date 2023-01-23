@@ -1,5 +1,5 @@
 ---
-title: "Challenge 1 Instructions"
+title: "Challenge 1"
 author: "Daniel Manning"
 description: "Reading in data and creating a post"
 date: "12/28/2022"
@@ -19,6 +19,8 @@ categories:
 #| message: false
 
 library(tidyverse)
+library(here)
+library(readxl)
 
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
