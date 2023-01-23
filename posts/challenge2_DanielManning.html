@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2022-12-28">
 <meta name="description" content="Data wrangling: using group() and summarise()">
 
-<title>Challenge 2 Instructions</title>
+<title>Challenge 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }</script>
 
 
-<meta name="twitter:title" content="Challenge 2 Instructions">
+<meta name="twitter:title" content="Challenge 2">
 <meta name="twitter:description" content="Data wrangling: using group() and summarise()">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:site" content="@UMassDACSS">
@@ -179,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Challenge 2 Instructions</h1>
+      <h1 class="quarto-secondary-nav-title">Challenge 2</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -251,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Challenge 2 Instructions</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Challenge 2</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
   <div class="quarto-categories">
     <div class="quarto-category">challenge_2</div>
   </div>
@@ -290,8 +290,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="challenge-overview" class="level2">
@@ -314,17 +315,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"posts"</span>,<span class="st">"_data"</span>,<span class="st">"FAOSTAT_livestock.csv"</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>livestock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in here("posts", "_data", "FAOSTAT_livestock.csv"): could not find function "here"</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>livestock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,116 × 14
+   Domain Cod…¹ Domain Area …² Area  Eleme…³ Element Item …⁴ Item  Year …⁵  Year
+   &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1 QA           Live …       2 Afgh…    5111 Stocks     1107 Asses    1961  1961
+ 2 QA           Live …       2 Afgh…    5111 Stocks     1107 Asses    1962  1962
+ 3 QA           Live …       2 Afgh…    5111 Stocks     1107 Asses    1963  1963
+ 4 QA           Live …       2 Afgh…    5111 Stocks     1107 Asses    1964  1964
+ 5 QA           Live …       2 Afgh…    5111 Stocks     1107 Asses    1965  1965
+ 6 QA           Live …       2 Afgh…    5111 Stocks     1107 Asses    1966  1966
+ 7 QA           Live …       2 Afgh…    5111 Stocks     1107 Asses    1967  1967
+ 8 QA           Live …       2 Afgh…    5111 Stocks     1107 Asses    1968  1968
+ 9 QA           Live …       2 Afgh…    5111 Stocks     1107 Asses    1969  1969
+10 QA           Live …       2 Afgh…    5111 Stocks     1107 Asses    1970  1970
+# … with 82,106 more rows, 4 more variables: Unit &lt;chr&gt;, Value &lt;dbl&gt;,
+#   Flag &lt;chr&gt;, `Flag Description` &lt;chr&gt;, and abbreviated variable names
+#   ¹​`Domain Code`, ²​`Area Code`, ³​`Element Code`, ⁴​`Item Code`, ⁵​`Year Code`</code></pre>
 </div>
 </div>
 <p>Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.</p>
@@ -338,174 +348,191 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in head(livestock): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 14
+  Domai…¹ Domain Area …² Area  Eleme…³ Element Item …⁴ Item  Year …⁵  Year Unit 
+  &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+1 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1961  1961 Head 
+2 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1962  1962 Head 
+3 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1963  1963 Head 
+4 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1964  1964 Head 
+5 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1965  1965 Head 
+6 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1966  1966 Head 
+# … with 3 more variables: Value &lt;dbl&gt;, Flag &lt;chr&gt;, `Flag Description` &lt;chr&gt;,
+#   and abbreviated variable names ¹​`Domain Code`, ²​`Area Code`,
+#   ³​`Element Code`, ⁴​`Item Code`, ⁵​`Year Code`</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(livestock)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(livestock)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 82116    14</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Domain <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Domain</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Domain <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Domain</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Area</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Element <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Element</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Item</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Year</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>Unit <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Unit</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Value</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Area</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  Domain      
+  &lt;chr&gt;       
+1 Live Animals</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Element <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Element</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 253</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Item</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 253 × 1
+   Area               
+   &lt;chr&gt;              
+ 1 Afghanistan        
+ 2 Albania            
+ 3 Algeria            
+ 4 American Samoa     
+ 5 Angola             
+ 6 Antigua and Barbuda
+ 7 Argentina          
+ 8 Armenia            
+ 9 Aruba              
+10 Australia          
+# … with 243 more rows</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Unit <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Unit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  Element
+  &lt;chr&gt;  
+1 Stocks </code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 1
+  Item     
+  &lt;chr&gt;    
+1 Asses    
+2 Camels   
+3 Cattle   
+4 Goats    
+5 Horses   
+6 Mules    
+7 Sheep    
+8 Buffaloes
+9 Pigs     </code></pre>
 </div>
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Domain): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 58</code></pre>
 </div>
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Domain): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 58 × 1
+    Year
+   &lt;dbl&gt;
+ 1  1961
+ 2  1962
+ 3  1963
+ 4  1964
+ 5  1965
+ 6  1966
+ 7  1967
+ 8  1968
+ 9  1969
+10  1970
+# … with 48 more rows</code></pre>
 </div>
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Area): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
 </div>
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Area): object 'livestock' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Element): object 'livestock' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Element): object 'livestock' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Item): object 'livestock' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Item): object 'livestock' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Year): object 'livestock' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Year): object 'livestock' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Unit): object 'livestock' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., Unit): object 'livestock' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  Unit 
+  &lt;chr&gt;
+1 Head </code></pre>
 </div>
 </div>
 </section>
@@ -516,115 +543,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>livestock_new <span class="ot">&lt;-</span> livestock <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Domain'</span>, <span class="st">'Domain.Code'</span>, <span class="st">'Area.Code'</span>, <span class="st">'Element'</span>, <span class="st">'Element.Code'</span>, <span class="st">'Item.Code'</span>, <span class="st">'Year.Code'</span>, <span class="st">'Unit'</span>, <span class="st">'Flag'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>livestock_new <span class="ot">&lt;-</span> livestock <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Domain'</span>, <span class="st">'Domain.Code'</span>, <span class="st">'Area.Code'</span>, <span class="st">'Element'</span>, <span class="st">'Element.Code'</span>, <span class="st">'Item.Code'</span>, <span class="st">'Year.Code'</span>, <span class="st">'Unit'</span>, <span class="st">'Flag'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-error">
-<pre><code>Error in select(., -c("Domain", "Domain.Code", "Area.Code", "Element", : object 'livestock' not found</code></pre>
+<pre><code>Error in `select()`:
+! Can't subset columns that don't exist.
+✖ Column `Domain.Code` doesn't exist.</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-error">
 <pre><code>Error in head(livestock_new): object 'livestock_new' not found</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock_new<span class="sc">$</span>Value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock_new<span class="sc">$</span>Value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-error">
 <pre><code>Error in eval(expr, envir, enclos): object 'livestock_new' not found</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in mean(Value, na.rm = TRUE): object 'Value' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11625569</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in median(Value, na.rm = TRUE): object 'Value' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 224667</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'Value' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'Value' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1489744504</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in is.data.frame(x): object 'Value' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 64779790</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in is.data.frame(x): object 'Value' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.196421e+15</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in quantile(as.numeric(x), c(0.25, 0.75), na.rm = na.rm, names = FALSE, : object 'Value' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2364200</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Area)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Area)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-error">
 <pre><code>Error in group_by(., Area): object 'livestock_new' not found</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>Area <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>Area <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-error">
-<pre><code>Error in summarise(., Value_mean = mean(Value, na.rm = TRUE), Value_median = median(Value, : object 'Area' not found</code></pre>
+<pre><code>Error in UseMethod("summarise"): no applicable method for 'summarise' applied to an object of class "character"</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Item)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Item)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-error">
 <pre><code>Error in group_by(., Item): object 'livestock_new' not found</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>Item <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>Item <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-error">
-<pre><code>Error in summarise(., Value_mean = mean(Value, na.rm = TRUE), Value_median = median(Value, : object 'Item' not found</code></pre>
+<pre><code>Error in UseMethod("summarise"): no applicable method for 'summarise' applied to an object of class "character"</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-error">
 <pre><code>Error in group_by(., Year): object 'livestock_new' not found</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>Year <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>Year <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-error">
-<pre><code>Error in summarise(., Value_mean = mean(Value, na.rm = TRUE), Value_median = median(Value, : object 'Year' not found</code></pre>
+<pre><code>Error in UseMethod("summarise"): no applicable method for 'summarise' applied to an object of class "c('double', 'numeric')"</code></pre>
 </div>
 </div>
 <section id="explain-and-interpret" class="level3">
@@ -940,177 +969,178 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb80" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2 Instructions"</span></span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Daniel Manning"</span></span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Data wrangling: using group() and summarise()"</span></span>
-<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "12/28/2022"</span></span>
-<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb80-12"><a href="#cb80-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb80-13"><a href="#cb80-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
-<span id="cb80-14"><a href="#cb80-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb80-15"><a href="#cb80-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-18"><a href="#cb80-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb80-19"><a href="#cb80-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb80-20"><a href="#cb80-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb80-21"><a href="#cb80-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb80-22"><a href="#cb80-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-23"><a href="#cb80-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb80-24"><a href="#cb80-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-25"><a href="#cb80-25" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
-<span id="cb80-26"><a href="#cb80-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb80-27"><a href="#cb80-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-28"><a href="#cb80-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
-<span id="cb80-29"><a href="#cb80-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-30"><a href="#cb80-30" aria-hidden="true" tabindex="-1"></a>Today's challenge is to</span>
-<span id="cb80-31"><a href="#cb80-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-32"><a href="#cb80-32" aria-hidden="true" tabindex="-1"></a>1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)</span>
-<span id="cb80-33"><a href="#cb80-33" aria-hidden="true" tabindex="-1"></a>2)  provide summary statistics for different interesting groups within the data, and interpret those statistics</span>
-<span id="cb80-34"><a href="#cb80-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-35"><a href="#cb80-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the Data</span></span>
-<span id="cb80-36"><a href="#cb80-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-37"><a href="#cb80-37" aria-hidden="true" tabindex="-1"></a>Read in one (or more) of the following data sets, available in the <span class="in">`posts/_data`</span> folder, using the correct R package and command.</span>
-<span id="cb80-38"><a href="#cb80-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-39"><a href="#cb80-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>railroad<span class="sc">\*</span>.csv or StateCounty2012.xlsx ⭐</span>
-<span id="cb80-40"><a href="#cb80-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>FAOstat<span class="sc">\*</span>.csv ⭐⭐⭐</span>
-<span id="cb80-41"><a href="#cb80-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>hotel_bookings ⭐⭐⭐⭐</span>
-<span id="cb80-42"><a href="#cb80-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-45"><a href="#cb80-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb80-46"><a href="#cb80-46" aria-hidden="true" tabindex="-1"></a>livestock <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"posts"</span>,<span class="st">"_data"</span>,<span class="st">"FAOSTAT_livestock.csv"</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb80-47"><a href="#cb80-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span>
-<span id="cb80-48"><a href="#cb80-48" aria-hidden="true" tabindex="-1"></a>livestock</span>
-<span id="cb80-49"><a href="#cb80-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb80-50"><a href="#cb80-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-51"><a href="#cb80-51" aria-hidden="true" tabindex="-1"></a>Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.</span>
-<span id="cb80-52"><a href="#cb80-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-53"><a href="#cb80-53" aria-hidden="true" tabindex="-1"></a>In the above cell, I used read.csv() to store the FAOSTAT dataset within my livestock variable. Based on the output when calling the variable livestock, the variable types are as follows:</span>
-<span id="cb80-54"><a href="#cb80-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-55"><a href="#cb80-55" aria-hidden="true" tabindex="-1"></a>Domain.Code: String</span>
-<span id="cb80-56"><a href="#cb80-56" aria-hidden="true" tabindex="-1"></a>Domain: String</span>
-<span id="cb80-57"><a href="#cb80-57" aria-hidden="true" tabindex="-1"></a>Area.Code:Integer</span>
-<span id="cb80-58"><a href="#cb80-58" aria-hidden="true" tabindex="-1"></a>Area:String</span>
-<span id="cb80-59"><a href="#cb80-59" aria-hidden="true" tabindex="-1"></a>Element.Code: Integer</span>
-<span id="cb80-60"><a href="#cb80-60" aria-hidden="true" tabindex="-1"></a>Element:String</span>
-<span id="cb80-61"><a href="#cb80-61" aria-hidden="true" tabindex="-1"></a>Item.Code: Integer</span>
-<span id="cb80-62"><a href="#cb80-62" aria-hidden="true" tabindex="-1"></a>Item: String</span>
-<span id="cb80-63"><a href="#cb80-63" aria-hidden="true" tabindex="-1"></a>Year.Code: Integer</span>
-<span id="cb80-64"><a href="#cb80-64" aria-hidden="true" tabindex="-1"></a>Year: Integer</span>
-<span id="cb80-65"><a href="#cb80-65" aria-hidden="true" tabindex="-1"></a>Unit: String</span>
-<span id="cb80-66"><a href="#cb80-66" aria-hidden="true" tabindex="-1"></a>Value: Integer</span>
-<span id="cb80-67"><a href="#cb80-67" aria-hidden="true" tabindex="-1"></a>Flag: String</span>
-<span id="cb80-68"><a href="#cb80-68" aria-hidden="true" tabindex="-1"></a>Flag.Description String</span>
-<span id="cb80-69"><a href="#cb80-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-70"><a href="#cb80-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
-<span id="cb80-71"><a href="#cb80-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-72"><a href="#cb80-72" aria-hidden="true" tabindex="-1"></a>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</span>
-<span id="cb80-73"><a href="#cb80-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-74"><a href="#cb80-74" aria-hidden="true" tabindex="-1"></a>First I used the head() function to determine that the dataset has fourteen variables. This dataset was likely gathered by survey. Then I used dim() to show that their are 82116 rows, representing the total number of values of livestock counts/estimates spanning various countries (Areas), Types (Items), and years (Years). Next I stored the columns into individual variables for ease of use later on. I used the n_distinct() and distinct() functions to show the number of unique entries in each column and to ouput these values. </span>
-<span id="cb80-75"><a href="#cb80-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-78"><a href="#cb80-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb80-79"><a href="#cb80-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
-<span id="cb80-80"><a href="#cb80-80" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock)</span>
-<span id="cb80-81"><a href="#cb80-81" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(livestock)</span>
-<span id="cb80-82"><a href="#cb80-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-83"><a href="#cb80-83" aria-hidden="true" tabindex="-1"></a>Domain <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Domain</span>
-<span id="cb80-84"><a href="#cb80-84" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Area</span>
-<span id="cb80-85"><a href="#cb80-85" aria-hidden="true" tabindex="-1"></a>Element <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Element</span>
-<span id="cb80-86"><a href="#cb80-86" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Item</span>
-<span id="cb80-87"><a href="#cb80-87" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Year</span>
-<span id="cb80-88"><a href="#cb80-88" aria-hidden="true" tabindex="-1"></a>Unit <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Unit</span>
-<span id="cb80-89"><a href="#cb80-89" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Value</span>
-<span id="cb80-90"><a href="#cb80-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-91"><a href="#cb80-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-92"><a href="#cb80-92" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-93"><a href="#cb80-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
-<span id="cb80-94"><a href="#cb80-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-95"><a href="#cb80-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-96"><a href="#cb80-96" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-97"><a href="#cb80-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
-<span id="cb80-98"><a href="#cb80-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-99"><a href="#cb80-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-100"><a href="#cb80-100" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-101"><a href="#cb80-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
-<span id="cb80-102"><a href="#cb80-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-103"><a href="#cb80-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-104"><a href="#cb80-104" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-105"><a href="#cb80-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
-<span id="cb80-106"><a href="#cb80-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-107"><a href="#cb80-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-108"><a href="#cb80-108" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-109"><a href="#cb80-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
-<span id="cb80-110"><a href="#cb80-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-111"><a href="#cb80-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-112"><a href="#cb80-112" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-113"><a href="#cb80-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
-<span id="cb80-114"><a href="#cb80-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-115"><a href="#cb80-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-116"><a href="#cb80-116" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-117"><a href="#cb80-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
-<span id="cb80-118"><a href="#cb80-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-119"><a href="#cb80-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-120"><a href="#cb80-120" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-121"><a href="#cb80-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
-<span id="cb80-122"><a href="#cb80-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-123"><a href="#cb80-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-124"><a href="#cb80-124" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-125"><a href="#cb80-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb80-126"><a href="#cb80-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-127"><a href="#cb80-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-128"><a href="#cb80-128" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-129"><a href="#cb80-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb80-130"><a href="#cb80-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-131"><a href="#cb80-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-132"><a href="#cb80-132" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-133"><a href="#cb80-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
-<span id="cb80-134"><a href="#cb80-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
-<span id="cb80-135"><a href="#cb80-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-136"><a href="#cb80-136" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
-<span id="cb80-137"><a href="#cb80-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
-<span id="cb80-138"><a href="#cb80-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb80-139"><a href="#cb80-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-140"><a href="#cb80-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb80-141"><a href="#cb80-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-142"><a href="#cb80-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Provide Grouped Summary Statistics</span></span>
-<span id="cb80-143"><a href="#cb80-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-144"><a href="#cb80-144" aria-hidden="true" tabindex="-1"></a>Conduct some exploratory data analysis, using dplyr commands such as <span class="in">`group_by()`</span>, <span class="in">`select()`</span>, <span class="in">`filter()`</span>, and <span class="in">`summarise()`</span>. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.</span>
-<span id="cb80-145"><a href="#cb80-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-146"><a href="#cb80-146" aria-hidden="true" tabindex="-1"></a>I first used the select() function to remove any columns/variables that were redundant or contained only 1 distinct value. I then used the head() to show the first 10 rows our new dataset to confirm that the desired variables were removed. Next, I stored the value (number of a given livestock) in a new variable. I calculated summary statistics of Value, and included the 'na.rm = TRUE' parameter so NA values were ignored. Following this, I created a new variable (Area) using the group_by() function. Using the summarise function, I then computed the mean, median, standard deviation, and IQR for the number of livestock, grouped by country. I calculated the summary statistics of the the data grouped by type of animal (Item) and year using the same method. </span>
-<span id="cb80-147"><a href="#cb80-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-150"><a href="#cb80-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb80-151"><a href="#cb80-151" aria-hidden="true" tabindex="-1"></a>livestock_new <span class="ot">&lt;-</span> livestock <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Domain'</span>, <span class="st">'Domain.Code'</span>, <span class="st">'Area.Code'</span>, <span class="st">'Element'</span>, <span class="st">'Element.Code'</span>, <span class="st">'Item.Code'</span>, <span class="st">'Year.Code'</span>, <span class="st">'Unit'</span>, <span class="st">'Flag'</span>))</span>
-<span id="cb80-152"><a href="#cb80-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-153"><a href="#cb80-153" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock_new)</span>
-<span id="cb80-154"><a href="#cb80-154" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock_new<span class="sc">$</span>Value</span>
-<span id="cb80-155"><a href="#cb80-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-156"><a href="#cb80-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-157"><a href="#cb80-157" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-158"><a href="#cb80-158" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-159"><a href="#cb80-159" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-160"><a href="#cb80-160" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-161"><a href="#cb80-161" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-162"><a href="#cb80-162" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-163"><a href="#cb80-163" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb80-164"><a href="#cb80-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-165"><a href="#cb80-165" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Area)</span>
-<span id="cb80-166"><a href="#cb80-166" aria-hidden="true" tabindex="-1"></a>Area <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb80-167"><a href="#cb80-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-168"><a href="#cb80-168" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Item)</span>
-<span id="cb80-169"><a href="#cb80-169" aria-hidden="true" tabindex="-1"></a>Item <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb80-170"><a href="#cb80-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-171"><a href="#cb80-171" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Year)</span>
-<span id="cb80-172"><a href="#cb80-172" aria-hidden="true" tabindex="-1"></a>Year <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb80-173"><a href="#cb80-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb80-174"><a href="#cb80-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-175"><a href="#cb80-175" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explain and Interpret</span></span>
-<span id="cb80-176"><a href="#cb80-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-177"><a href="#cb80-177" aria-hidden="true" tabindex="-1"></a>Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.</span>
-<span id="cb80-178"><a href="#cb80-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-179"><a href="#cb80-179" aria-hidden="true" tabindex="-1"></a>I chose to group the data by Area, Unit, and Year in order to see how the values differed across these observations. I noticed that the mean Values differed by country, year, and animal type. One interesting observation was that greatest average Value was the number of Cattle while the smallest average Value was mules. In addition, the total Value tended to increase every year. </span>
+<div class="sourceCode" id="cb64" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2"</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Daniel Manning"</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Data wrangling: using group() and summarise()"</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "12/28/2022"</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-19"><a href="#cb64-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb64-20"><a href="#cb64-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb64-21"><a href="#cb64-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb64-22"><a href="#cb64-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-23"><a href="#cb64-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb64-24"><a href="#cb64-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb64-25"><a href="#cb64-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-26"><a href="#cb64-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb64-27"><a href="#cb64-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-28"><a href="#cb64-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-29"><a href="#cb64-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
+<span id="cb64-30"><a href="#cb64-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-31"><a href="#cb64-31" aria-hidden="true" tabindex="-1"></a>Today's challenge is to</span>
+<span id="cb64-32"><a href="#cb64-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-33"><a href="#cb64-33" aria-hidden="true" tabindex="-1"></a>1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)</span>
+<span id="cb64-34"><a href="#cb64-34" aria-hidden="true" tabindex="-1"></a>2)  provide summary statistics for different interesting groups within the data, and interpret those statistics</span>
+<span id="cb64-35"><a href="#cb64-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-36"><a href="#cb64-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the Data</span></span>
+<span id="cb64-37"><a href="#cb64-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-38"><a href="#cb64-38" aria-hidden="true" tabindex="-1"></a>Read in one (or more) of the following data sets, available in the <span class="in">`posts/_data`</span> folder, using the correct R package and command.</span>
+<span id="cb64-39"><a href="#cb64-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-40"><a href="#cb64-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>railroad<span class="sc">\*</span>.csv or StateCounty2012.xlsx ⭐</span>
+<span id="cb64-41"><a href="#cb64-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>FAOstat<span class="sc">\*</span>.csv ⭐⭐⭐</span>
+<span id="cb64-42"><a href="#cb64-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>hotel_bookings ⭐⭐⭐⭐</span>
+<span id="cb64-43"><a href="#cb64-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-46"><a href="#cb64-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-47"><a href="#cb64-47" aria-hidden="true" tabindex="-1"></a>livestock <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"posts"</span>,<span class="st">"_data"</span>,<span class="st">"FAOSTAT_livestock.csv"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb64-48"><a href="#cb64-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span>
+<span id="cb64-49"><a href="#cb64-49" aria-hidden="true" tabindex="-1"></a>livestock</span>
+<span id="cb64-50"><a href="#cb64-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-51"><a href="#cb64-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-52"><a href="#cb64-52" aria-hidden="true" tabindex="-1"></a>Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.</span>
+<span id="cb64-53"><a href="#cb64-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-54"><a href="#cb64-54" aria-hidden="true" tabindex="-1"></a>In the above cell, I used read.csv() to store the FAOSTAT dataset within my livestock variable. Based on the output when calling the variable livestock, the variable types are as follows:</span>
+<span id="cb64-55"><a href="#cb64-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-56"><a href="#cb64-56" aria-hidden="true" tabindex="-1"></a>Domain.Code: String</span>
+<span id="cb64-57"><a href="#cb64-57" aria-hidden="true" tabindex="-1"></a>Domain: String</span>
+<span id="cb64-58"><a href="#cb64-58" aria-hidden="true" tabindex="-1"></a>Area.Code:Integer</span>
+<span id="cb64-59"><a href="#cb64-59" aria-hidden="true" tabindex="-1"></a>Area:String</span>
+<span id="cb64-60"><a href="#cb64-60" aria-hidden="true" tabindex="-1"></a>Element.Code: Integer</span>
+<span id="cb64-61"><a href="#cb64-61" aria-hidden="true" tabindex="-1"></a>Element:String</span>
+<span id="cb64-62"><a href="#cb64-62" aria-hidden="true" tabindex="-1"></a>Item.Code: Integer</span>
+<span id="cb64-63"><a href="#cb64-63" aria-hidden="true" tabindex="-1"></a>Item: String</span>
+<span id="cb64-64"><a href="#cb64-64" aria-hidden="true" tabindex="-1"></a>Year.Code: Integer</span>
+<span id="cb64-65"><a href="#cb64-65" aria-hidden="true" tabindex="-1"></a>Year: Integer</span>
+<span id="cb64-66"><a href="#cb64-66" aria-hidden="true" tabindex="-1"></a>Unit: String</span>
+<span id="cb64-67"><a href="#cb64-67" aria-hidden="true" tabindex="-1"></a>Value: Integer</span>
+<span id="cb64-68"><a href="#cb64-68" aria-hidden="true" tabindex="-1"></a>Flag: String</span>
+<span id="cb64-69"><a href="#cb64-69" aria-hidden="true" tabindex="-1"></a>Flag.Description String</span>
+<span id="cb64-70"><a href="#cb64-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-71"><a href="#cb64-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
+<span id="cb64-72"><a href="#cb64-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-73"><a href="#cb64-73" aria-hidden="true" tabindex="-1"></a>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</span>
+<span id="cb64-74"><a href="#cb64-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-75"><a href="#cb64-75" aria-hidden="true" tabindex="-1"></a>First I used the head() function to determine that the dataset has fourteen variables. This dataset was likely gathered by survey. Then I used dim() to show that their are 82116 rows, representing the total number of values of livestock counts/estimates spanning various countries (Areas), Types (Items), and years (Years). Next I stored the columns into individual variables for ease of use later on. I used the n_distinct() and distinct() functions to show the number of unique entries in each column and to ouput these values. </span>
+<span id="cb64-76"><a href="#cb64-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-79"><a href="#cb64-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-80"><a href="#cb64-80" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
+<span id="cb64-81"><a href="#cb64-81" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock)</span>
+<span id="cb64-82"><a href="#cb64-82" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(livestock)</span>
+<span id="cb64-83"><a href="#cb64-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-84"><a href="#cb64-84" aria-hidden="true" tabindex="-1"></a>Domain <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Domain</span>
+<span id="cb64-85"><a href="#cb64-85" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Area</span>
+<span id="cb64-86"><a href="#cb64-86" aria-hidden="true" tabindex="-1"></a>Element <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Element</span>
+<span id="cb64-87"><a href="#cb64-87" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Item</span>
+<span id="cb64-88"><a href="#cb64-88" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Year</span>
+<span id="cb64-89"><a href="#cb64-89" aria-hidden="true" tabindex="-1"></a>Unit <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Unit</span>
+<span id="cb64-90"><a href="#cb64-90" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock<span class="sc">$</span>Value</span>
+<span id="cb64-91"><a href="#cb64-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-92"><a href="#cb64-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-93"><a href="#cb64-93" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-94"><a href="#cb64-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
+<span id="cb64-95"><a href="#cb64-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb64-96"><a href="#cb64-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-97"><a href="#cb64-97" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-98"><a href="#cb64-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Domain) <span class="sc">%&gt;%</span></span>
+<span id="cb64-99"><a href="#cb64-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb64-100"><a href="#cb64-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-101"><a href="#cb64-101" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-102"><a href="#cb64-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
+<span id="cb64-103"><a href="#cb64-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb64-104"><a href="#cb64-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-105"><a href="#cb64-105" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-106"><a href="#cb64-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Area) <span class="sc">%&gt;%</span></span>
+<span id="cb64-107"><a href="#cb64-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb64-108"><a href="#cb64-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-109"><a href="#cb64-109" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-110"><a href="#cb64-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
+<span id="cb64-111"><a href="#cb64-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb64-112"><a href="#cb64-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-113"><a href="#cb64-113" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-114"><a href="#cb64-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Element) <span class="sc">%&gt;%</span></span>
+<span id="cb64-115"><a href="#cb64-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb64-116"><a href="#cb64-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-117"><a href="#cb64-117" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-118"><a href="#cb64-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
+<span id="cb64-119"><a href="#cb64-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb64-120"><a href="#cb64-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-121"><a href="#cb64-121" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-122"><a href="#cb64-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item) <span class="sc">%&gt;%</span></span>
+<span id="cb64-123"><a href="#cb64-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb64-124"><a href="#cb64-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-125"><a href="#cb64-125" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-126"><a href="#cb64-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb64-127"><a href="#cb64-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb64-128"><a href="#cb64-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-129"><a href="#cb64-129" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-130"><a href="#cb64-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb64-131"><a href="#cb64-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb64-132"><a href="#cb64-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-133"><a href="#cb64-133" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-134"><a href="#cb64-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
+<span id="cb64-135"><a href="#cb64-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb64-136"><a href="#cb64-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-137"><a href="#cb64-137" aria-hidden="true" tabindex="-1"></a>livestock <span class="sc">%&gt;%</span> </span>
+<span id="cb64-138"><a href="#cb64-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Unit) <span class="sc">%&gt;%</span></span>
+<span id="cb64-139"><a href="#cb64-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb64-140"><a href="#cb64-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-141"><a href="#cb64-141" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-142"><a href="#cb64-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-143"><a href="#cb64-143" aria-hidden="true" tabindex="-1"></a><span class="fu">## Provide Grouped Summary Statistics</span></span>
+<span id="cb64-144"><a href="#cb64-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-145"><a href="#cb64-145" aria-hidden="true" tabindex="-1"></a>Conduct some exploratory data analysis, using dplyr commands such as <span class="in">`group_by()`</span>, <span class="in">`select()`</span>, <span class="in">`filter()`</span>, and <span class="in">`summarise()`</span>. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.</span>
+<span id="cb64-146"><a href="#cb64-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-147"><a href="#cb64-147" aria-hidden="true" tabindex="-1"></a>I first used the select() function to remove any columns/variables that were redundant or contained only 1 distinct value. I then used the head() to show the first 10 rows our new dataset to confirm that the desired variables were removed. Next, I stored the value (number of a given livestock) in a new variable. I calculated summary statistics of Value, and included the 'na.rm = TRUE' parameter so NA values were ignored. Following this, I created a new variable (Area) using the group_by() function. Using the summarise function, I then computed the mean, median, standard deviation, and IQR for the number of livestock, grouped by country. I calculated the summary statistics of the the data grouped by type of animal (Item) and year using the same method. </span>
+<span id="cb64-148"><a href="#cb64-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-151"><a href="#cb64-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-152"><a href="#cb64-152" aria-hidden="true" tabindex="-1"></a>livestock_new <span class="ot">&lt;-</span> livestock <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Domain'</span>, <span class="st">'Domain.Code'</span>, <span class="st">'Area.Code'</span>, <span class="st">'Element'</span>, <span class="st">'Element.Code'</span>, <span class="st">'Item.Code'</span>, <span class="st">'Year.Code'</span>, <span class="st">'Unit'</span>, <span class="st">'Flag'</span>))</span>
+<span id="cb64-153"><a href="#cb64-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-154"><a href="#cb64-154" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(livestock_new)</span>
+<span id="cb64-155"><a href="#cb64-155" aria-hidden="true" tabindex="-1"></a>Value <span class="ot">&lt;-</span> livestock_new<span class="sc">$</span>Value</span>
+<span id="cb64-156"><a href="#cb64-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-157"><a href="#cb64-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-158"><a href="#cb64-158" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb64-159"><a href="#cb64-159" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb64-160"><a href="#cb64-160" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb64-161"><a href="#cb64-161" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb64-162"><a href="#cb64-162" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb64-163"><a href="#cb64-163" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb64-164"><a href="#cb64-164" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb64-165"><a href="#cb64-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-166"><a href="#cb64-166" aria-hidden="true" tabindex="-1"></a>Area <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Area)</span>
+<span id="cb64-167"><a href="#cb64-167" aria-hidden="true" tabindex="-1"></a>Area <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb64-168"><a href="#cb64-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-169"><a href="#cb64-169" aria-hidden="true" tabindex="-1"></a>Item <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Item)</span>
+<span id="cb64-170"><a href="#cb64-170" aria-hidden="true" tabindex="-1"></a>Item <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb64-171"><a href="#cb64-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-172"><a href="#cb64-172" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> livestock_new <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Year)</span>
+<span id="cb64-173"><a href="#cb64-173" aria-hidden="true" tabindex="-1"></a>Year <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Value_mean =</span> <span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_median =</span> <span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_sd =</span> <span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Value_IQR =</span> <span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb64-174"><a href="#cb64-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-175"><a href="#cb64-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-176"><a href="#cb64-176" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explain and Interpret</span></span>
+<span id="cb64-177"><a href="#cb64-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-178"><a href="#cb64-178" aria-hidden="true" tabindex="-1"></a>Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.</span>
+<span id="cb64-179"><a href="#cb64-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-180"><a href="#cb64-180" aria-hidden="true" tabindex="-1"></a>I chose to group the data by Area, Unit, and Year in order to see how the values differed across these observations. I noticed that the mean Values differed by country, year, and animal type. One interesting observation was that greatest average Value was the number of Cattle while the smallest average Value was mules. In addition, the total Value tended to increase every year. </span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
