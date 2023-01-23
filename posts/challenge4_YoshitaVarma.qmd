@@ -1,6 +1,6 @@
 ---
-title: "Challenge 4 Instructions"
-author: "Sean Conway"
+title: "Challenge 4"
+author: "Yoshita Varma Annam"
 description: "More data wrangling: mutate"
 date: "1/2/2022"
 format:
