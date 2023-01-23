@@ -1,6 +1,6 @@
 ---
-title: "Challenge 7 Instructions"
-author: "Meredith Rolfe & Sean Conway"
+title: "Challenge 7"
+author: "Yoshita Varma Annam"
 description: "Visualizing Multiple Dimensions"
 date: "1/13/2023"
 format:
