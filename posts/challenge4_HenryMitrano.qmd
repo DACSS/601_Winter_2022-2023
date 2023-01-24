@@ -1,8 +1,8 @@
 ---
-title: "Challenge 4 Instructions"
-author: "Sean Conway"
+title: "Challenge 4"
+author: "Henry Mitrano"
 description: "More data wrangling: mutate"
-date: "1/2/2022"
+date: "1/20/2023"
 format:
   html:
     toc: true
