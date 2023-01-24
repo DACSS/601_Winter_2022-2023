@@ -76,7 +76,6 @@ debt_piv <- debt %>%
         names_to = "Loan Type", 
         values_to = "Loan Value"
     )
-  #mutate(Loan = as.factor(Loan))
 head(debt_piv)
 ```
 
