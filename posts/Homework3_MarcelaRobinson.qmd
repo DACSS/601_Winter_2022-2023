@@ -1,0 +1,151 @@
+---
+title: "Homework 3 Marcela Robinson"
+author: "Marcela Robinson"
+description: "Exploratory data analysis"
+date: "January 24, 2023"
+categories:
+  - airbnb
+  - homework_3
+---
+
+```{r}
+library(tidyverse)
+library(here)
+library(ggplot2)
+library(summarytools)
+library(shiny)
+library(ggmap)
+```
+
+## Read the data
+
+```{r}
+listings<- here("posts", "_data", "AB_NYC_2019.csv")%>%
+  read_csv()
+
+```
+
+## Tidy the data
+
+```{r}
+#Rename variables 
+listings<-listings%>%
+rename(borough = neighbourhood_group, neighborhood = neighbourhood) %>% 
+  select(-c(host_id,host_name, last_review))
+
+
+```
+
+```{r}
+print(summarytools::dfSummary(listings, 
+                              varnumbers = FALSE,
+                              plain.ascii = FALSE,
+                              style = "grid",
+                              graph.magnif = 0.60,
+                              valid.col = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+The dataset contains listing information for Airbnb properties in New York. It has 48895 observances (listings) and 16 variables.
+
+## Clean the data
+
+My next step is cleaning up the dataset. I first removed the variables that I consider unnecessary: host_id, host_name and last_review. I also renamed the variables neighbourhood_group to borough and neighbourhood to neighborhood since these are more commonly used terms in the US. My next step is to determine if there is there is any missing data from this dataset.
+
+```{r}
+colSums(is.na(listings))
+
+```
+
+There are 10052 missing data from the reviews_per_month column. I assume the information is missing because there are no reviews yet for those particular listings.
+
+```{r}
+# Mutate availability as minimal, low, moderate or high
+listings<-listings%>%
+  mutate(availability = case_when(
+    availability_365 <90 ~ "Minimal",
+    availability_365 >90 & availability_365 <180 ~ "Low", 
+    availability_365 >180 & availability_365 <270 ~ "Moderate",
+    availability_365>270 ~ "High"))
+
+```
+
+## Data Questions
+
+The first question I would like to answer is the price distribution per borough. More specifically, I'm interested in the relationship between borough and the price for the different types of rooms available.
+
+Next, I would like to determine the most and least expensive listings by neighborhoods and see if the distribution is similar to the price distribution per borough.
+
+## Descriptive Statistics
+
+```{r}
+#Calculate basic statistics for price 
+listings%>%
+  group_by(borough)%>%
+summarize(mean.price=mean(price, na.rm = TRUE), median.price=median(price, na.rm=TRUE), min.price = min(price), max.price = max(price), sd.price = sd(price, na.rm=TRUE))
+  
+```
+
+```{r}
+#Percentage of listings based on room type
+prop.table(xtabs(~ room_type + borough, listings))*100
+
+
+```
+
+By creating a proportional crosstabs for room_type and borough, I can determine that Manhattan has the most listings for entire home/apt with 27%, followed by Brooklyn with 19.5%. For private room, Brooklyn has the most listings with 21%. I can also determine from this crosstabs that there are is a small number of shared rooms compared to the other types of rooms and most of the shared rooms are in Manhattan. We can also notice that Staten Island has the least number of listings.
+
+## Visualizations
+
+```{r}
+##Filter price for better visualization
+borough_price<-listings%>%
+  filter(price>0 & price<3000)
+
+#Create a graph that represents price per borough 
+  ggplot(borough_price, aes(x = borough, y = price)) + 
+  geom_point(colour = "blue") + 
+  labs(title = "NY Listing Price by Borough", y = "Price", x = "Borough")+
+    theme(plot.title = element_text(hjust=0.5, face = "italic"))
+  
+```
+
+From this graph, we can determine that Manhattan and Brooklyn have the listings with the highest prices.
+
+```{r}
+#Create a graph that represents price per borough and room type
+ ggplot(borough_price, aes(x = borough, y = price, fill = room_type)) + 
+  geom_col() + 
+  labs(title = "NY Listing Price by Borough", y = "Price", x = "Borough")+
+    theme(plot.title = element_text(hjust=0.5, face = "italic"), axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))+
+ scale_fill_discrete(name = "Room Type")
+ 
+  
+
+```
+
+Not surprisingly, Manhattan has the highest price per listing and the highest distribution for room type.
+
+```{r}
+#Create a graph that represents price and availability
+ ggplot(borough_price, aes(x = borough, y = price, fill = availability)) + 
+  geom_col() + 
+  labs(title = "NY Listing Price by Availability", y = "Price", x = "Borough")+
+    theme(plot.title = element_text(hjust=0.5, face = "italic"), axis.text.x = element_text(vjust = 0.5, hjust = 1))+
+ scale_fill_discrete(name = "Availability")+
+  facet_wrap(vars(borough), scales = "free_x")
+```
+
+This graph represents the price for listings based on their availability. Manhattan has the highest prices per listing compared to other boroughs. Also, I can determine that the distribution for minimal available listings is larger in Brookyn and Manhattan than any of the other availability listings.
+
+Lastly, I wanted to see where the listings are in a map. Since the number is so large, I filter to see only listings that are less than \$1000.
+
+```{r}
+map<-listings%>%
+  filter(price>0 & price<1000)
+
+qmplot(longitude, latitude, data = map, maptype = "toner-lite", color = I("blue"))+
+  facet_wrap(vars(room_type))
+
+```
