@@ -99,6 +99,9 @@ jobs:
             any::ggfortify
             any::moments
             any::mapdata
+            any::ggmap
+            any::shiny
+            any::summarytools
             any::maptools
             any::mapproj
           cache-version: 1
