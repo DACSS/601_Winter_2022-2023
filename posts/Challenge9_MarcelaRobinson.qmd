@@ -1,0 +1,45 @@
+---
+title: "Challenge9_MarcelaRobinson"
+author: "Marcela Robinson"
+editor: visual
+date: January 25, 2023
+description: "Creating a function"
+categories:
+- challenge9
+- writing_functions
+- descriptive_statistics
+---
+
+```{r}
+library(tidyverse)
+library(here)
+
+```
+
+## Create a function 
+```{r}
+#Create a function to obtain descriptive statistics
+descrip_statistics<-function(x){
+  st_mean <- mean(x, na.rm = TRUE)
+  st_median <- median(x, na.rm = TRUE)
+  st_sd <- sd(x, na.rm = TRUE)
+  st_min <- min(x, na.rm = TRUE)
+  st_max <- max(x, na.rm = TRUE)
+  st_range <- range(x, na.rm = TRUE)
+  st_var <- var(x, na.rm = TRUE)
+  return(list(mean=st_mean, median=st_median, sd = st_sd, min = st_min, max = st_max, range = st_range, var = st_var))
+}
+```
+
+## Test my function
+```{r}
+#Read in a dataset
+testdf<- here("posts", "_data", "AB_NYC_2019.csv")%>%
+  read_csv
+```
+
+```{r}
+#test my function
+descrip_statistics(testdf$price)
+
+```
