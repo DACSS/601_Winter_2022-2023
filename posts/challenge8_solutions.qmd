@@ -330,6 +330,13 @@ birds <- left_join(birds, fao_regions_wide,
 
 Now, you can summarize across countries grouped by income, development status, major region, or Annex/non-Annex.
 
+```{r}
+eggs_chicken <- here("posts","_data","FAOSTAT_egg_chicken.csv") %>%
+  read_csv()
+cattle <- here("posts","_data","FAOSTAT_egg_chicken.csv") %>%
+  read_csv()
+dat <- left_join(eggs_chicken, cattle, by="Area")
+```
 ## FAOstat: Regions
 
 The FAOSTAT sheets are excerpts of the [FAOSTAT database](https://www.fao.org/faostat/en/#home) provided by the [Food and Agriculture Association](https://www.fao.org/home/en), an agency of the United Nations. There are two approaches we could use to joining these data. In this section, we are going to join livestock estimates from multiple "faostat..." files. 
