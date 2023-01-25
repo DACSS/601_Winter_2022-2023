@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Marcela Robinson">
+<meta name="dcterms.date" content="2023-01-24">
+<meta name="description" content="Exploratory data analysis">
+
+<title>Homework 3 Marcela Robinson</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="Homework 3 Marcela Robinson">
+<meta name="twitter:description" content="Exploratory data analysis">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/DACSS">
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Homework 3 Marcela Robinson</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Course information</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course_schedule.html" class="sidebar-item-text sidebar-link">Course Schedule</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Weekly materials</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Posts</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#read-the-data" id="toc-read-the-data" class="nav-link active" data-scroll-target="#read-the-data">Read the data</a></li>
+  <li><a href="#tidy-the-data" id="toc-tidy-the-data" class="nav-link" data-scroll-target="#tidy-the-data">Tidy the data</a></li>
+  <li><a href="#clean-the-data" id="toc-clean-the-data" class="nav-link" data-scroll-target="#clean-the-data">Clean the data</a></li>
+  <li><a href="#data-questions" id="toc-data-questions" class="nav-link" data-scroll-target="#data-questions">Data Questions</a></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive Statistics</a></li>
+  <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">Visualizations</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Homework 3 Marcela Robinson</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">airbnb</div>
+    <div class="quarto-category">homework_3</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Exploratory data analysis
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Marcela Robinson </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 24, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
+✔ tibble  3.1.8      ✔ dplyr   1.0.10
+✔ tidyr   1.3.0      ✔ stringr 1.5.0 
+✔ readr   2.1.3      ✔ forcats 0.5.2 
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at /home/runner/work/601_Winter_2022-2023/601_Winter_2022-2023</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: no DISPLAY variable so Tk is not available</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>system might not have X11 capabilities; in case of errors when using dfSummary(), set st_options(use.x11 = FALSE)
+
+Attaching package: 'summarytools'
+
+The following object is masked from 'package:tibble':
+
+    view</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in library(ggmap): there is no package called 'ggmap'</code></pre>
+</div>
+</div>
+<section id="read-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-the-data">Read the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>listings<span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"posts"</span>, <span class="st">"_data"</span>, <span class="st">"AB_NYC_2019.csv"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 48895 Columns: 16
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (5): name, host_name, neighbourhood_group, neighbourhood, room_type
+dbl  (10): id, host_id, latitude, longitude, price, minimum_nights, number_o...
+date  (1): last_review
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+</section>
+<section id="tidy-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-the-data">Tidy the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Rename variables </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>listings<span class="ot">&lt;-</span>listings<span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(<span class="at">borough =</span> neighbourhood_group, <span class="at">neighborhood =</span> neighbourhood) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(host_id,host_name, last_review))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(listings, </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style =</span> <span class="st">"grid"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.60</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''
+
+Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''
+
+Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''
+
+Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''
+
+Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''
+
+Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''
+
+Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''
+
+Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''
+
+Warning in png(png_loc &lt;- tempfile(fileext = ".png"), width = 150 *
+graph.magnif, : unable to open connection to X11 display ''</code></pre>
+</div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">listings</h4>
+<strong>Dimensions</strong>: 48895 x 13
+  <br><strong>Duplicates</strong>: 0
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">id
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 19017143 (10983108)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2539 ≤ 19677284 ≤ 36487245</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 19680234 (0.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">48895 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGAAAABGCAQAAACZZFmYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAMM92CHAAABPElEQVRo3u2Y2xHCIBBFg5Pq6MAUGDuwPf1QIyYgLI/c3Zl7/jIxDEf2AbjHZJsLegIUQE+glTl8cOjZRFnfabps0wvzdhaOBpi+//vefAhRAA0F0FAAzU8fWLcOsXTtaaPGPQhMk68bJctr3PuAkdV1YulqqRP4xEDpaplPYgqgUZcDX9ai47pYYF8lxtX4stIrFjhWiVG9o4yTQ+h4PFQsEIthL/htV4HcyTSOpCnVBqL5MkoBNJkcqEkuyTf1yVsoULeTl3zTelJICLT/M2eREJDuynHSHRtZjbQqAQn9Vgsk0G+1zPcB8wINIaSj1DYIjLuskmA+hCiAhgJoKICGAmjMCyi+nd4T7L2Ci0lDAvEzhPkQogAaCqChABoKoKEAGgqgceH94E3FZWGea7CddkbmnMR8CFEAzROGFDjTNIKWWAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMS0yNVQxMzoxNjowMyswMDowMJHePpkAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDEtMjVUMTM6MTY6MDMrMDA6MDDgg4YlAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">name
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Hillside Hotel</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Home away from home</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. New york Multi-unit build</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Brooklyn Apartment</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Loft Suite @ The Box Hous</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Private Room</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Artsy Private BR in Fort </td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Private room</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Beautiful Brooklyn Browns</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Cozy Brooklyn Apartment</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 47884 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">18</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">17</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">16</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">48758</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">99.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGYAAACiCAQAAAAZr3BLAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAXllMWyAAABK0lEQVR42u3XQWrCUBhGUVNcXRfaJbg9nb4UHNRJzvt7j6MgyLskwpfjeZvj6+oDFPMfYm7P5fOz4R9oPf+oO1OMqhhVMapiVMWojnWOHVef5gPr+UfdmVPMjqv5bczuilEVoypGVYyqGFWrWdVqVhWjKkZVjKoYVTGqUTFzXwFazZBiVMWoilEVoypGNSpm7mreXa8AqmJUxaiKURWjKkbVala1mlXFqIpRFaMqRlWMqtWsajWrilEVoypGVYyqGFWrWdVqVhWjKkZVjKoYVTGqUTFzXwFazZBiVMWoilEVoypGNSpm7mreXa8AqmJUxaiKURWjKkbValbd14stV/PyON3P33xffbQ/epyuRj1mxaiKURWjKkb1awE8PvsVxLHjHHtn1GNWjOoFEx028xwe35sAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDEtMjVUMTM6MTY6MDUrMDA6MDDyDgujAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAxLTI1VDEzOjE2OjA1KzAwOjAwg1OzHwAAAABJRU5ErkJggg=="></td>
+      <td align="center">16
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">borough
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Bronx</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Brooklyn</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Manhattan</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Queens</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Staten Island</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1091</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">20104</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">41.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">21661</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">44.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5666</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">11.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">373</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADQAAABOCAQAAADFyP3HAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAXllMWyAAAApUlEQVRYw+3ZsRGAIAyF4eAxgHO5gQ6oG7geNhZBCgsCePFPBQ3fSbiHpyFJn5o6OQ6hqCdHEhHZgtXiuv/+tg4ICAiorKCDzyxN7xoSqtk1safFaNm52Bx/hwEICKi+Yj49m0Hu09t4dbVFjx5ZXRNl+TveQECOoabpvarxL9Pb5pPNa3pbdc3f8QYCAqovf+mdQebv3sOfCAgICKgvFPiz/HnoArSJF/tm0dfcAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAxLTI1VDEzOjE2OjA1KzAwOjAw8g4LowAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMS0yNVQxMzoxNjowNSswMDowMINTsx8AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">neighborhood
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Williamsburg</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Bedford-Stuyvesant</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Harlem</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Bushwick</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Upper West Side</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Hell's Kitchen</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. East Village</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Upper East Side</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Crown Heights</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Midtown</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 211 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3920</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3714</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">7.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2658</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2465</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1971</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1958</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1853</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1798</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1564</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1545</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">25449</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">52.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADsAAACiCAQAAABVRX2zAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAXllMWyAAABMklEQVR42u3bQQ7CIBCFYWp6uh7BA9IbeC5ugAtNHFrqhs4AmX/caEz8QqG8jOiSQ496dFGdsat8sR8m+rncSckPX8u3NvH8pThaX3MLCwvbUIddSnNnkrXInfLWLfhUUhrhIscige7Nnz9smUCa5esGgoWFnY8lgYJu+pzYXwLFrAv7WsmwsLDzsRetl/ae3Cn4Rkog/S7X10qGhYWdj+XLP4Mq2JhTTjkZnDaOMFpYWFjY6yKBDKraemk3XqfRbkYHUL5uIFhY2IYigQyKBIKFhYUdhyWBSCBYWFjYPqyv1quSQPr5E0LI4vE5fopKx09S8rWSYWFh52MrCWSxJ/tqvSo/gDBnO40WFhYW9rp89UAjXGSt7udb4mKa/f+2XDW+biBYWNiGGiGB7MrX3HZi3yOPWHxoWyZsAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAxLTI1VDEzOjE2OjA1KzAwOjAw8g4LowAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMS0yNVQxMzoxNjowNSswMDowMINTsx8AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">latitude
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 40.7 (0.1)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">40.5 ≤ 40.7 ≤ 40.9</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0.1 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">19048 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGAAAABGCAQAAACZZFmYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAXllMWyAAABNElEQVRo3u2bwQ3CMAxFHdQBmKsbwIBlA+bKBuEAVQMClDS2fy39d+OS5imxY4c2FYnNCT0BCqAnMMpU/0gGD1heQXZVHLyO22n3KI3MIiJyNxvfTGBxSm+GKzC7CIQPYgqgoQAaCrSSSy656J8OXAE0FEBDATTm/cAn2g2Ou4B2g+MusJKLiMh5eB3CxwAF0FAADQXQhBdQP8i8buTMBOxvQ98Jv4UogIYCaCiAhgJowgvAmvqarX7qv2w5hMBI/QQWGK9dwQLjlWv4IA4voLaFvDsxdQHvTsxAQIP+y/eDCfSvYvggpgCa8AIKQfz8s0g3fT6zUUsuOlgWWml/345byJKWY22HwFK8ioaW5wytgM+bof/pEEDVm1ue+7aVUj2rW5CvIS6VSAoy55+ET6MUQPMAyCU1iKzU2TsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDEtMjVUMTM6MTY6MDUrMDA6MDDyDgujAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAxLTI1VDEzOjE2OjA1KzAwOjAwg1OzHwAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">longitude
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : -74 (0)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">-74.2 ≤ -74 ≤ -73.7</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">14718 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGAAAABGCAQAAACZZFmYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAXllMWyAAAA4UlEQVRo3u2bwQ2DMAwAS8V0bNAOmG7AXN2AfhNQ1So4vVq6exEhOTlhIgWbabvk5kovQAF6AWeZ68EUGLjsXq57YPA69Nwd5SNLdb0OmyV9CilAowCNAjQK0ChAowCNAjQK0ChAM/BM3NIe8uOO+D8TWJpR2aIU0qeQAjQK0ChAowCNAjQK0ChAowCNAjQK0ChAowCNAjQK0KQXCPu8XqAO2sD6QFsBGNfm12IK9fKsUm49UXLyCcTQ3+f7JwL7DeD7muYJgZEbZ9u2fJipEprqe48kf0Pc3glkJP0upADNCxxFHNVqao4dAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAxLTI1VDEzOjE2OjA1KzAwOjAw8g4LowAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMS0yNVQxMzoxNjowNSswMDowMINTsx8AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">room_type
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Entire home/apt</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Private room</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Shared room</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">25409</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">52.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">22326</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">45.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1160</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADsAAAAxCAQAAADOtxleAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAXllMWyAAAAfklEQVRYw+3YwQ2AMAgF0I9xOjewA+oGXU+vYNKkNmKtfG5c+kIgkFQO9IipixqMnXWyuzZ6lQILLG5oNlms3pIlS3Y89rIcc9srt0P09pfmZ2pCS6ba7fELlAqVvHaBbMSaZLJkyY7Hhr9AyVcHEG2kyJIlS/bbrPCr87fsCW5VDx/1p/uPAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAxLTI1VDEzOjE2OjA1KzAwOjAw8g4LowAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMS0yNVQxMzoxNjowNSswMDowMINTsx8AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">price
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 152.7 (240.2)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 106 ≤ 10000</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 106 (1.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">674 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGAAAABGCAQAAACZZFmYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAXllMWyAAAAqElEQVRo3u3bQQ5AMBBA0an0dI7ggNzA9diIlDRCLH6b/LfDZr7obqQt+jbQAxhAD/BXLi+W80BMiR7sSXlu8/XRGBERKz3hB91/QgbQDKAZQDOAZgDNAJoBNANoBtAMoBlAM4BmAM0AmgE0A2gG0AygGUAzgGYAzQCaATQDaAbQDKAZQDOA1n1Art+ej/XktneoKwH3rem5zf8jitea2pzwve7PgAG0HfddCu3r2ziqAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAxLTI1VDEzOjE2OjA1KzAwOjAw8g4LowAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMS0yNVQxMzoxNjowNSswMDowMINTsx8AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">minimum_nights
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 7 (20.5)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 3 ≤ 1250</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 4 (2.9)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">109 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGAAAABGCAQAAACZZFmYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAXllMWyAAAAm0lEQVRo3u3bwQnCQABFQVdSnSVYoHZge3rdCILiYbLw5pSQy3+Q3DbjeVrbWQ8oQA/41zbf3HcfxHXocZ/MM7f9o4ve9rPlX6ECtAK0ArQCtAK0ArQCtAK0ArQCtAK0ArQCtAK0ArQCtAK0ArQCtAK0ArQCtAK0ArQCtAK0ArQCtAK0t7PTj+n6dtx/I6Zj6eO4K7+z/CtUgPYCTwQINSyPewEAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDEtMjVUMTM6MTY6MDUrMDA6MDDyDgujAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAxLTI1VDEzOjE2OjA1KzAwOjAwg1OzHwAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">number_of_reviews
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 23.3 (44.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 5 ≤ 629</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 23 (1.9)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">394 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGAAAABGCAQAAACZZFmYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAXllMWyAAAAvUlEQVRo3u3bsQ2DQAxA0Vx002WDMCBswHqkjK9wRITEx+i/DtH4g6GCtj1qe9IDGEAPcFSPB8vwQEyNHi4Tx+zjqRc929/Kr5ABNANoBtAMoBlAM4BmAM0AmgE0A2gG0AygGUAzgGYAzQCaATQDaAbQDKAZQDOAZgDNAJoBNANoPT81l/gI80dA/ARzpedM3XmFRnGhrrROuwO+C3WtddodEM3pTwfn35sWZ1mK/A3xDpepFZk5Vf4tZADtA/YMEN8b+QdEAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAxLTI1VDEzOjE2OjA1KzAwOjAw8g4LowAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMS0yNVQxMzoxNjowNSswMDowMINTsx8AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">reviews_per_month
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1.4 (1.7)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0.7 ≤ 58.5</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 1.8 (1.2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">937 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGAAAABGCAQAAACZZFmYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAXllMWyAAAAp0lEQVRo3u3bsQmAMBBAUSOZzg10wWyQudxA21NUBIvvwX+VkuY+Jl0s25DbSA9gAD3AVzW+tNOBWAo93rU4Zj0uTeG503O+kn4LGUAzgGYAzQCaATQDaAbQDKAZQDOAZgDNAJoBNANoBtAMoBlAM4BmAM0AmgE0A2gG0AygGUAzgGYAzQBafVpcwx3f/tOLyOm/QIkXqVuSvyHmsBdKkplvpd9CBtB2y8EMjUBv1lcAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDEtMjVUMTM6MTY6MDUrMDA6MDDyDgujAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAxLTI1VDEzOjE2OjA1KzAwOjAwg1OzHwAAAABJRU5ErkJggg=="></td>
+      <td align="center">10052
+(20.6%)</td>
+    </tr>
+    <tr>
+      <td align="left">calculated_host_listings_count
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 7.1 (33)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 1 ≤ 327</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 1 (4.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">47 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGAAAABGCAQAAACZZFmYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAXllMWyAAAAr0lEQVRo3u3bzQmFMBAA4ZdHqrMDLVA7sD29KK5gwJ/DsDDfRTQoO2BuWpZfbn96AAPoAb6q8WQKG2Io9Ghtcd/W81K3HWd6xtvSv0IG0AygGUAzgGYAzQCaATQDaAbQDKAZQDOAZgDNAJoBNANoBtAMoBlAM4BmAM0AmgE0A2gG0AygGUAzgJY+oLYWxosfC/bvqY+1919YP33GaZ5wR4nXpyR/Q/StgIzS7wEDaCtCDhEz38W1KAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMS0yNVQxMzoxNjowNSswMDowMPIOC6MAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDEtMjVUMTM6MTY6MDUrMDA6MDCDU7MfAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">availability_365
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 112.8 (131.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 45 ≤ 365</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 227 (1.2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">366 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGAAAABGCAQAAACZZFmYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnARkNEAZ8nZQIAAAA7klEQVRo3u2byxGCMAAFiZPq7EALlA6oyw7whAQwBBBnzczuDfJ7Sz6nEPqmbi50AAXoAN8S04f2vSHugQ62Rrpv47ToSmfbTfVLSAEaBWgUoFGARgEaBWgUoFGARgEaBWgUoFGARgEaBWgUoFGARgEaBWgUoFGARgEaBWgUoFGARgGa6gXi59ePP7y/OGZqkkwZgeH2YrcoefZDyW/Vxrjzm5TTTHF7R/uHPqI4D94V6hcFhm723CjdNvRa2+2tiwJ55nOzHDo/e2PdIx/oJIHy0OfFzFP9MRrSWW4r+RvilhwOoZLMWapfQgrQvABaUiboY/tj1AAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMS0yNVQxMzoxNjowNiswMDowMMPmET4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDEtMjVUMTM6MTY6MDYrMDA6MDCyu6mCAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.2)<br>2023-01-25</p>
+</div>
+</div>
+</div>
+<p>The dataset contains listing information for Airbnb properties in New York. It has 48895 observances (listings) and 16 variables.</p>
+</section>
+<section id="clean-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="clean-the-data">Clean the data</h2>
+<p>My next step is cleaning up the dataset. I first removed the variables that I consider unnecessary: host_id, host_name and last_review. I also renamed the variables neighbourhood_group to borough and neighbourhood to neighborhood since these are more commonly used terms in the US. My next step is to determine if there is there is any missing data from this dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(listings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            id                           name 
+                             0                             16 
+                       borough                   neighborhood 
+                             0                              0 
+                      latitude                      longitude 
+                             0                              0 
+                     room_type                          price 
+                             0                              0 
+                minimum_nights              number_of_reviews 
+                             0                              0 
+             reviews_per_month calculated_host_listings_count 
+                         10052                              0 
+              availability_365 
+                             0 </code></pre>
+</div>
+</div>
+<p>There are 10052 missing data from the reviews_per_month column. I assume the information is missing because there are no reviews yet for those particular listings.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mutate availability as minimal, low, moderate or high</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>listings<span class="ot">&lt;-</span>listings<span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">availability =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    availability_365 <span class="sc">&lt;</span><span class="dv">90</span> <span class="sc">~</span> <span class="st">"Minimal"</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    availability_365 <span class="sc">&gt;</span><span class="dv">90</span> <span class="sc">&amp;</span> availability_365 <span class="sc">&lt;</span><span class="dv">180</span> <span class="sc">~</span> <span class="st">"Low"</span>, </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    availability_365 <span class="sc">&gt;</span><span class="dv">180</span> <span class="sc">&amp;</span> availability_365 <span class="sc">&lt;</span><span class="dv">270</span> <span class="sc">~</span> <span class="st">"Moderate"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    availability_365<span class="sc">&gt;</span><span class="dv">270</span> <span class="sc">~</span> <span class="st">"High"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-questions" class="level2">
+<h2 class="anchored" data-anchor-id="data-questions">Data Questions</h2>
+<p>The first question I would like to answer is the price distribution per borough. More specifically, I’m interested in the relationship between borough and the price for the different types of rooms available.</p>
+<p>Next, I would like to determine the most and least expensive listings by neighborhoods and see if the distribution is similar to the price distribution per borough.</p>
+</section>
+<section id="descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate basic statistics for price </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>listings<span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(borough)<span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">mean.price=</span><span class="fu">mean</span>(price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median.price=</span><span class="fu">median</span>(price, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">min.price =</span> <span class="fu">min</span>(price), <span class="at">max.price =</span> <span class="fu">max</span>(price), <span class="at">sd.price =</span> <span class="fu">sd</span>(price, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  borough       mean.price median.price min.price max.price sd.price
+  &lt;chr&gt;              &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 Bronx               87.5           65         0      2500     107.
+2 Brooklyn           124.            90         0     10000     187.
+3 Manhattan          197.           150         0     10000     291.
+4 Queens              99.5           75        10     10000     167.
+5 Staten Island      115.            75        13      5000     278.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percentage of listings based on room type</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">xtabs</span>(<span class="sc">~</span> room_type <span class="sc">+</span> borough, listings))<span class="sc">*</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 borough
+room_type               Bronx    Brooklyn   Manhattan      Queens Staten Island
+  Entire home/apt  0.77513038 19.55005624 26.99458022  4.28673689    0.35995501
+  Private room     1.33346968 20.72195521 16.32477758  6.89641068    0.38449739
+  Shared room      0.12271193  0.84466714  0.98169547  0.40494938    0.01840679</code></pre>
+</div>
+</div>
+<p>By creating a proportional crosstabs for room_type and borough, I can determine that Manhattan has the most listings for entire home/apt with 27%, followed by Brooklyn with 19.5%. For private room, Brooklyn has the most listings with 21%. I can also determine from this crosstabs that there are is a small number of shared rooms compared to the other types of rooms and most of the shared rooms are in Manhattan. We can also notice that Staten Island has the least number of listings.</p>
+</section>
+<section id="visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="visualizations">Visualizations</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Filter price for better visualization</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>borough_price<span class="ot">&lt;-</span>listings<span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(price<span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> price<span class="sc">&lt;</span><span class="dv">3000</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a graph that represents price per borough </span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(borough_price, <span class="fu">aes</span>(<span class="at">x =</span> borough, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">"blue"</span>) <span class="sc">+</span> </span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NY Listing Price by Borough"</span>, <span class="at">y =</span> <span class="st">"Price"</span>, <span class="at">x =</span> <span class="st">"Borough"</span>)<span class="sc">+</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"italic"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Homework3_MarcelaRobinson_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>From this graph, we can determine that Manhattan and Brooklyn have the listings with the highest prices.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a graph that represents price per borough and room type</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggplot</span>(borough_price, <span class="fu">aes</span>(<span class="at">x =</span> borough, <span class="at">y =</span> price, <span class="at">fill =</span> room_type)) <span class="sc">+</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NY Listing Price by Borough"</span>, <span class="at">y =</span> <span class="st">"Price"</span>, <span class="at">x =</span> <span class="st">"Borough"</span>)<span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"italic"</span>), <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a> <span class="fu">scale_fill_discrete</span>(<span class="at">name =</span> <span class="st">"Room Type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Homework3_MarcelaRobinson_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Not surprisingly, Manhattan has the highest price per listing and the highest distribution for room type.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a graph that represents price and availability</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggplot</span>(borough_price, <span class="fu">aes</span>(<span class="at">x =</span> borough, <span class="at">y =</span> price, <span class="at">fill =</span> availability)) <span class="sc">+</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NY Listing Price by Availability"</span>, <span class="at">y =</span> <span class="st">"Price"</span>, <span class="at">x =</span> <span class="st">"Borough"</span>)<span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"italic"</span>), <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a> <span class="fu">scale_fill_discrete</span>(<span class="at">name =</span> <span class="st">"Availability"</span>)<span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(borough), <span class="at">scales =</span> <span class="st">"free_x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Homework3_MarcelaRobinson_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This graph represents the price for listings based on their availability. Manhattan has the highest prices per listing compared to other boroughs. Also, I can determine that the distribution for minimal available listings is larger in Brookyn and Manhattan than any of the other availability listings.</p>
+<p>Lastly, I wanted to see where the listings are in a map. Since the number is so large, I filter to see only listings that are less than $1000.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>map<span class="ot">&lt;-</span>listings<span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(price<span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> price<span class="sc">&lt;</span><span class="dv">1000</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qmplot</span>(longitude, latitude, <span class="at">data =</span> map, <span class="at">maptype =</span> <span class="st">"toner-lite"</span>, <span class="at">color =</span> <span class="fu">I</span>(<span class="st">"blue"</span>))<span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(room_type))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in qmplot(longitude, latitude, data = map, maptype = "toner-lite", : could not find function "qmplot"</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

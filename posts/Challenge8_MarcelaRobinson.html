@@ -8,7 +8,7 @@
 
 <meta name="author" content="Marcela Robinson">
 
-<title>Challenge3_MarcelaRobinson(animal_weights)</title>
+<title>Challenge8_MarcelaRobinson</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -127,8 +127,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }</script>
 
 
-<meta name="twitter:title" content="Challenge3_MarcelaRobinson(animal_weights)">
-<meta name="twitter:description" content="##Read in “animal_weight.csv”">
+<meta name="twitter:title" content="Challenge8_MarcelaRobinson">
+<meta name="twitter:description" content="For this challenge, I’ll be joining two sets of data. Both sets of data are provided by the Food and Agriculture Organization of the United Nations.">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:site" content="@UMassDACSS">
 <meta name="twitter:card" content="summary">
@@ -177,7 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Challenge3_MarcelaRobinson(animal_weights)</h1>
+      <h1 class="quarto-secondary-nav-title">Challenge8_MarcelaRobinson</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -230,14 +230,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#clean-the-data" id="toc-clean-the-data" class="nav-link active" data-scroll-target="#clean-the-data">Clean the data</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Challenge3_MarcelaRobinson(animal_weights)</h1>
+<h1 class="title d-none d-lg-block">Challenge8_MarcelaRobinson</h1>
 </div>
 
 
@@ -259,10 +265,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
+<pre><code>here() starts at /home/runner/work/601_Winter_2022-2023/601_Winter_2022-2023</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2
+──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
 ✔ tibble  3.1.8      ✔ dplyr   1.0.10
 ✔ tidyr   1.3.0      ✔ stringr 1.5.0 
 ✔ readr   2.1.3      ✔ forcats 0.5.2 
@@ -270,91 +283,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>##Read in “animal_weight.csv”</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>animal_weights<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"_data/animal_weight.csv"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>animal_weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            IPCC.Area Cattle...dairy Cattle...non.dairy Buffaloes
-1 Indian Subcontinent            275                110       295
-2      Eastern Europe            550                391       380
-3              Africa            275                173       380
-4             Oceania            500                330       380
-5      Western Europe            600                420       380
-6       Latin America            400                305       380
-7                Asia            350                391       380
-8         Middle east            275                173       380
-9    Northern America            604                389       380
-  Swine...market Swine...breeding Chicken...Broilers Chicken...Layers Ducks
-1             28               28                0.9              1.8   2.7
-2             50              180                0.9              1.8   2.7
-3             28               28                0.9              1.8   2.7
-4             45              180                0.9              1.8   2.7
-5             50              198                0.9              1.8   2.7
-6             28               28                0.9              1.8   2.7
-7             50              180                0.9              1.8   2.7
-8             28               28                0.9              1.8   2.7
-9             46              198                0.9              1.8   2.7
-  Turkeys Sheep Goats Horses Asses Mules Camels Llamas
-1     6.8  28.0  30.0    238   130   130    217    217
-2     6.8  48.5  38.5    377   130   130    217    217
-3     6.8  28.0  30.0    238   130   130    217    217
-4     6.8  48.5  38.5    377   130   130    217    217
-5     6.8  48.5  38.5    377   130   130    217    217
-6     6.8  28.0  30.0    238   130   130    217    217
-7     6.8  48.5  38.5    377   130   130    217    217
-8     6.8  28.0  30.0    238   130   130    217    217
-9     6.8  48.5  38.5    377   130   130    217    217</code></pre>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Read the first dataset</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cattle<span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"posts"</span>, <span class="st">"_data"</span>, <span class="st">"FAOSTAT_cattle_dairy.csv"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 36449 Columns: 14
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (8): Domain Code, Domain, Area, Element, Item, Unit, Flag, Flag Description
+dbl (6): Area Code, Element Code, Item Code, Year Code, Year, Value
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Read second dataset </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>chicken<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">"posts"</span>, <span class="st">"_data"</span>, <span class="st">"FAOSTAT_egg_chicken.csv"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 38170 Columns: 14
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (8): Domain Code, Domain, Area, Element, Item, Unit, Flag, Flag Description
+dbl (6): Area Code, Element Code, Item Code, Year Code, Year, Value
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 </div>
-<p>The csv file “animal_weights” contains the weight of 16 different animals (Cattle - dairy, Cattle - non-dairy, Buffaloes, Swine - market, Swine - breeding, Chicken - Broilers, Chicken - Layers, Ducks, Turkeys, Sheep, Goats, Horses, Asses, Mules, Camels, and Llamas) in 9 different areas of the world (Indian Subcontinent, Eastern Europe, Africa, Oceania,Western Europe,Latin America, Asia, Middle East and Northern America). This data was provided by the Intergovernmental Panel on Climate Change, a United Nations body assessing the science related to climate change.</p>
-<p>This dataset can provide relevant information to determine underfeeding/overfeeding in certain areas of the world and check the measurements with the standards of the industry. It can also be useful in determining market values for the animals.</p>
-<p>The dataset is wide and difficult to read. Therefore, I want to use the function pivot_longer() to make the data longer. However, I first want to check on what is the expected row/cases for the data.</p>
-<p>##Determine the expected row/cases</p>
+<p>For this challenge, I’ll be joining two sets of data. Both sets of data are provided by the Food and Agriculture Organization of the United Nations. The first set, <strong>cattle</strong>, represent the vaues of livestock (Milk Animals, Yield, or Production) in different areas of the world over the years. Other variables include unit, flag, flag description, and different codes.</p>
+<p>The second set of data that I’ll be joining, <strong>chicken</strong>, contains values of chickens (Laying, Yield, or Production) in different areas of the world over the years.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Existing rows/cases</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(animal_weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Join both datasets </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>joined<span class="ot">&lt;-</span><span class="fu">bind_rows</span>(cattle, chicken)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 9</code></pre>
+<pre><code># A tibble: 74,619 × 14
+   Domain Cod…¹ Domain Area …² Area  Eleme…³ Element Item …⁴ Item  Year …⁵  Year
+   &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1961  1961
+ 2 QL           Lives…       2 Afgh…    5420 Yield       882 Milk…    1961  1961
+ 3 QL           Lives…       2 Afgh…    5510 Produc…     882 Milk…    1961  1961
+ 4 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1962  1962
+ 5 QL           Lives…       2 Afgh…    5420 Yield       882 Milk…    1962  1962
+ 6 QL           Lives…       2 Afgh…    5510 Produc…     882 Milk…    1962  1962
+ 7 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1963  1963
+ 8 QL           Lives…       2 Afgh…    5420 Yield       882 Milk…    1963  1963
+ 9 QL           Lives…       2 Afgh…    5510 Produc…     882 Milk…    1963  1963
+10 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1964  1964
+# … with 74,609 more rows, 4 more variables: Unit &lt;chr&gt;, Value &lt;dbl&gt;,
+#   Flag &lt;chr&gt;, `Flag Description` &lt;chr&gt;, and abbreviated variable names
+#   ¹​`Domain Code`, ²​`Area Code`, ³​`Element Code`, ⁴​`Item Code`, ⁵​`Year Code`</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Existing column/cases</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(animal_weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 17</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Expected row/cases</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(animal_weights)<span class="sc">*</span>(<span class="fu">ncol</span>(animal_weights)<span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 144</code></pre>
-</div>
-</div>
-<p>According to the test, my new dataframe should have 144 rows.</p>
-<p>##Pivot_Longer the data #Pivot every column except the first</p>
+<p>I’m using the bind_rows function since both datasets have the same variables. As I result, my new dataset called <strong>joined</strong> has 74619 observations and 14 variables.</p>
+<section id="clean-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="clean-the-data">Clean the data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>animal_weights_PL<span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(animal_weights, <span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">names_to =</span> <span class="st">"Animals"</span>, <span class="at">values_to =</span> <span class="st">"Weights"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>animal_weights_PL</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove unnecessary columns </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>joined<span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">"Domain Code"</span>, <span class="st">"Domain"</span>, <span class="st">"Area Code"</span>,<span class="st">"Element Code"</span>, <span class="st">"Flag"</span>, <span class="st">"Flag Description"</span>, <span class="st">"Year Code"</span>, <span class="st">"Item Code"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 144 × 3
-   IPCC.Area           Animals            Weights
-   &lt;chr&gt;               &lt;chr&gt;                &lt;dbl&gt;
- 1 Indian Subcontinent Cattle...dairy       275  
- 2 Indian Subcontinent Cattle...non.dairy   110  
- 3 Indian Subcontinent Buffaloes            295  
- 4 Indian Subcontinent Swine...market        28  
- 5 Indian Subcontinent Swine...breeding      28  
- 6 Indian Subcontinent Chicken...Broilers     0.9
- 7 Indian Subcontinent Chicken...Layers       1.8
- 8 Indian Subcontinent Ducks                  2.7
- 9 Indian Subcontinent Turkeys                6.8
-10 Indian Subcontinent Sheep                 28  
-# … with 134 more rows</code></pre>
+<pre><code># A tibble: 74,619 × 6
+   Area        Element      Item                   Year Unit    Value
+   &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+ 1 Afghanistan Milk Animals Milk, whole fresh cow  1961 Head   700000
+ 2 Afghanistan Yield        Milk, whole fresh cow  1961 hg/An    5000
+ 3 Afghanistan Production   Milk, whole fresh cow  1961 tonnes 350000
+ 4 Afghanistan Milk Animals Milk, whole fresh cow  1962 Head   700000
+ 5 Afghanistan Yield        Milk, whole fresh cow  1962 hg/An    5000
+ 6 Afghanistan Production   Milk, whole fresh cow  1962 tonnes 350000
+ 7 Afghanistan Milk Animals Milk, whole fresh cow  1963 Head   780000
+ 8 Afghanistan Yield        Milk, whole fresh cow  1963 hg/An    5128
+ 9 Afghanistan Production   Milk, whole fresh cow  1963 tonnes 400000
+10 Afghanistan Milk Animals Milk, whole fresh cow  1964 Head   780000
+# … with 74,609 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 74,619 × 14
+   Domain Cod…¹ Domain Area …² Area  Eleme…³ Element Item …⁴ Item  Year …⁵  Year
+   &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1961  1961
+ 2 QL           Lives…       2 Afgh…    5420 Yield       882 Milk…    1961  1961
+ 3 QL           Lives…       2 Afgh…    5510 Produc…     882 Milk…    1961  1961
+ 4 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1962  1962
+ 5 QL           Lives…       2 Afgh…    5420 Yield       882 Milk…    1962  1962
+ 6 QL           Lives…       2 Afgh…    5510 Produc…     882 Milk…    1962  1962
+ 7 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1963  1963
+ 8 QL           Lives…       2 Afgh…    5420 Yield       882 Milk…    1963  1963
+ 9 QL           Lives…       2 Afgh…    5510 Produc…     882 Milk…    1963  1963
+10 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1964  1964
+# … with 74,609 more rows, 4 more variables: Unit &lt;chr&gt;, Value &lt;dbl&gt;,
+#   Flag &lt;chr&gt;, `Flag Description` &lt;chr&gt;, and abbreviated variable names
+#   ¹​`Domain Code`, ²​`Area Code`, ³​`Element Code`, ⁴​`Item Code`, ⁵​`Year Code`</code></pre>
 </div>
 </div>
-<p>I first wanted to pivot the data longer to decrease the number of columns and create a couple of new columns called “Animals” and “Weights”. The first column “Animals”, contains the names of the animals. The second column, “Weights” contains the weight for each of the animals. Once I pivot my data, they were 144 observations and 3 variables.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
