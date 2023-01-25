@@ -1,0 +1,14 @@
+{
+  "hash": "0b4a210caae6207e57c46e0592692d33",
+  "result": {
+    "markdown": "---\ntitle: \"Challenge 10 Instructions\"\nauthor: \"Sean Conway\"\ndescription: \"purrr\"\ndate: \"1/25/2023\"\nformat:\n  html:\n    toc: true\n    code-copy: true\n    code-tools: true\ncategories:\n  - challenge_10\n---\n\n\n\n\n## Challenge Overview\n\nThe [purrr](https://purrr.tidyverse.org/) package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call. \n\nFor example, we can draw `n` random samples from 10 different distributions using a vector of 10 means.  \n\n\n::: {.cell}\n\n```{.r .cell-code}\nn <- 100 # sample size\nm <- seq(1,10) # means \nsamps <- map(m,rnorm,n=n) \n```\n:::\n\n\nWe can then use `map_dbl` to verify that this worked correctly by computing the mean for each sample.  \n\n\n::: {.cell}\n\n```{.r .cell-code}\nsamps %>%\n  map_dbl(mean)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n [1] 1.055891 1.996461 3.153889 3.928594 4.967611 6.162530 6.995742 7.809955\n [9] 9.116414 9.917863\n```\n:::\n:::\n\n\n`purrr` is tricky to learn (but beyond useful once you get a handle on it). Therefore, it's imperative that you complete the `purr` and `map` readings before attempting this challenge.  \n\n## The challenge  \n\nUse `purrr` with a function to perform *some* data science task. What this task is is up to you. It could involve computing summary statistics, reading in multiple datasets, running a random process multiple times, or anything else you might need to do in your work as a data analyst. You might consider using `purrr` with a function you wrote for challenge 9.  \n\n\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
