@@ -1,0 +1,63 @@
+---
+title: "Challenge 9"
+author: "Cristhian Barba Garzon"
+description: "Creating a function"
+date: "1/25/2023"
+format:
+  html:
+    df-print: paged
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_9
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Reading in Data
+The data set that was chosen was the hotel bookings csv file. This was chosen because many of the variables have numerical observations, and summary statistics (mean, median, max, etc) can be calculated. 
+```{r}
+hotel = read_csv("_data/hotel_bookings.csv")
+hotel
+
+```
+
+
+
+## Creating and Describing Function
+I created a function that takes in one input, a chosen column from a dataset, and finds basic summary statistics for the chosen column. The statistics were also formatted to be 3 decimal points in the function. The function then returns the results in their respective labelled columns. Three columns were chosen as examples of how the function works. 
+```{r}
+func <- function(column){
+  meanHotel <- round(mean(column, na.rm = TRUE), 3)
+  medianHotel <- round(median(column, na.rm = TRUE), 3)
+  maxHotel <- round(max(column, na.rm = TRUE), 3)
+  minHotel <- round(min(column, na.rm = TRUE),3) #finds basic summary stats and formats them to 3 decimal points
+  return(c(Mean = meanHotel, Median = medianHotel, Max = maxHotel, Min = minHotel)) #returns the values in their respective columns 
+}
+
+adultsAnswer = func(hotel$adults)
+adultsAnswer
+
+childrenAnswer = func(hotel$children)
+childrenAnswer
+
+babiesAnswer = func(hotel$babies)
+babiesAnswer
+
+```
+
+
+
+
+
