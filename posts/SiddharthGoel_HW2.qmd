@@ -27,7 +27,7 @@ library(dplyr)
 
 
 ```{r}
-data = read_csv("S:/Winter 2022/601 - Intro to Data Science/601_Winter_2022-2023/posts/_data/hotel_bookings.csv")
+data = read_csv("_data/hotel_bookings.csv")
 ```
 ## Taking an initial look into the data
 ```{r}
