@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tanmay Agrawal">
+<meta name="dcterms.date" content="2023-01-24">
+
+<title>Homework 3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<meta name="twitter:title" content="Homework 3">
+<meta name="twitter:description" content="We first load the necessary libraries">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/DACSS">
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Homework 3</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Course information</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course_schedule.html" class="sidebar-item-text sidebar-link">Course Schedule</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Weekly materials</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Posts</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#cleaning-the-data" id="toc-cleaning-the-data" class="nav-link active" data-scroll-target="#cleaning-the-data">Cleaning the data</a></li>
+  <li><a href="#eda-lets-explore-the-data-a-little-more" id="toc-eda-lets-explore-the-data-a-little-more" class="nav-link" data-scroll-target="#eda-lets-explore-the-data-a-little-more">EDA: Let’s explore the data a little more</a></li>
+  <li><a href="#potential-research-questions" id="toc-potential-research-questions" class="nav-link" data-scroll-target="#potential-research-questions">Potential research questions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Homework 3</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">hw3</div>
+    <div class="quarto-category">hotel_bookings.csv</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tanmay Agrawal </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 24, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>We first load the necessary libraries</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.0      ✔ purrr   1.0.0 
+✔ tibble  3.1.8      ✔ dplyr   1.0.10
+✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+✔ readr   2.1.3      ✔ forcats 0.5.2 
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now we load the data. I sorted the datasets by size and picked the largest one which is “hotel_bookings.csv”. I will use the <code>read_csv()</code> function as it’s the recommend way to load files.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/hotel_bookings.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 119390 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (13): hotel, arrival_date_month, meal, country, market_segment, distrib...
+dbl  (18): is_canceled, lead_time, arrival_date_year, arrival_date_week_numb...
+date  (1): reservation_status_date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We inspect the columns in this dataset using the head command</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["hotel"],"name":[1],"type":["chr"],"align":["left"]},{"label":["is_canceled"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lead_time"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["arrival_date_year"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["arrival_date_month"],"name":[5],"type":["chr"],"align":["left"]},{"label":["arrival_date_week_number"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["arrival_date_day_of_month"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["stays_in_weekend_nights"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["stays_in_week_nights"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["adults"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["children"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["babies"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["meal"],"name":[13],"type":["chr"],"align":["left"]},{"label":["country"],"name":[14],"type":["chr"],"align":["left"]},{"label":["market_segment"],"name":[15],"type":["chr"],"align":["left"]},{"label":["distribution_channel"],"name":[16],"type":["chr"],"align":["left"]},{"label":["is_repeated_guest"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["previous_cancellations"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["previous_bookings_not_canceled"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["reserved_room_type"],"name":[20],"type":["chr"],"align":["left"]},{"label":["assigned_room_type"],"name":[21],"type":["chr"],"align":["left"]},{"label":["booking_changes"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["deposit_type"],"name":[23],"type":["chr"],"align":["left"]},{"label":["agent"],"name":[24],"type":["chr"],"align":["left"]},{"label":["company"],"name":[25],"type":["chr"],"align":["left"]},{"label":["days_in_waiting_list"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["customer_type"],"name":[27],"type":["chr"],"align":["left"]},{"label":["adr"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["required_car_parking_spaces"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["total_of_special_requests"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["reservation_status"],"name":[31],"type":["chr"],"align":["left"]},{"label":["reservation_status_date"],"name":[32],"type":["date"],"align":["right"]}],"data":[{"1":"Resort Hotel","2":"0","3":"342","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"0","10":"2","11":"0","12":"0","13":"BB","14":"PRT","15":"Direct","16":"Direct","17":"0","18":"0","19":"0","20":"C","21":"C","22":"3","23":"No Deposit","24":"NULL","25":"NULL","26":"0","27":"Transient","28":"0","29":"0","30":"0","31":"Check-Out","32":"2015-07-01"},{"1":"Resort Hotel","2":"0","3":"737","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"0","10":"2","11":"0","12":"0","13":"BB","14":"PRT","15":"Direct","16":"Direct","17":"0","18":"0","19":"0","20":"C","21":"C","22":"4","23":"No Deposit","24":"NULL","25":"NULL","26":"0","27":"Transient","28":"0","29":"0","30":"0","31":"Check-Out","32":"2015-07-01"},{"1":"Resort Hotel","2":"0","3":"7","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"1","10":"1","11":"0","12":"0","13":"BB","14":"GBR","15":"Direct","16":"Direct","17":"0","18":"0","19":"0","20":"A","21":"C","22":"0","23":"No Deposit","24":"NULL","25":"NULL","26":"0","27":"Transient","28":"75","29":"0","30":"0","31":"Check-Out","32":"2015-07-02"},{"1":"Resort Hotel","2":"0","3":"13","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"1","10":"1","11":"0","12":"0","13":"BB","14":"GBR","15":"Corporate","16":"Corporate","17":"0","18":"0","19":"0","20":"A","21":"A","22":"0","23":"No Deposit","24":"304","25":"NULL","26":"0","27":"Transient","28":"75","29":"0","30":"0","31":"Check-Out","32":"2015-07-02"},{"1":"Resort Hotel","2":"0","3":"14","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"2","10":"2","11":"0","12":"0","13":"BB","14":"GBR","15":"Online TA","16":"TA/TO","17":"0","18":"0","19":"0","20":"A","21":"A","22":"0","23":"No Deposit","24":"240","25":"NULL","26":"0","27":"Transient","28":"98","29":"0","30":"1","31":"Check-Out","32":"2015-07-03"},{"1":"Resort Hotel","2":"0","3":"14","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"2","10":"2","11":"0","12":"0","13":"BB","14":"GBR","15":"Online TA","16":"TA/TO","17":"0","18":"0","19":"0","20":"A","21":"A","22":"0","23":"No Deposit","24":"240","25":"NULL","26":"0","27":"Transient","28":"98","29":"0","30":"1","31":"Check-Out","32":"2015-07-03"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The dataset contains booking information for hotels, and includes information such as the time of booking, length of stay, the number of guests, cancellations, etc. We look at the first few rows of the data to get a visual outline of the dataset and we observe that columns <code>agent</code>, <code>company</code> and <code>country</code> have a lot of <code>NULL</code> values. We can use the following to get a column-wise representation of all the garbage values.</p>
+<section id="cleaning-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-the-data">Cleaning the data</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_all</span>(<span class="fu">list</span>(<span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["hotel"],"name":[1],"type":["int"],"align":["right"]},{"label":["is_canceled"],"name":[2],"type":["int"],"align":["right"]},{"label":["lead_time"],"name":[3],"type":["int"],"align":["right"]},{"label":["arrival_date_year"],"name":[4],"type":["int"],"align":["right"]},{"label":["arrival_date_month"],"name":[5],"type":["int"],"align":["right"]},{"label":["arrival_date_week_number"],"name":[6],"type":["int"],"align":["right"]},{"label":["arrival_date_day_of_month"],"name":[7],"type":["int"],"align":["right"]},{"label":["stays_in_weekend_nights"],"name":[8],"type":["int"],"align":["right"]},{"label":["stays_in_week_nights"],"name":[9],"type":["int"],"align":["right"]},{"label":["adults"],"name":[10],"type":["int"],"align":["right"]},{"label":["children"],"name":[11],"type":["int"],"align":["right"]},{"label":["babies"],"name":[12],"type":["int"],"align":["right"]},{"label":["meal"],"name":[13],"type":["int"],"align":["right"]},{"label":["country"],"name":[14],"type":["int"],"align":["right"]},{"label":["market_segment"],"name":[15],"type":["int"],"align":["right"]},{"label":["distribution_channel"],"name":[16],"type":["int"],"align":["right"]},{"label":["is_repeated_guest"],"name":[17],"type":["int"],"align":["right"]},{"label":["previous_cancellations"],"name":[18],"type":["int"],"align":["right"]},{"label":["previous_bookings_not_canceled"],"name":[19],"type":["int"],"align":["right"]},{"label":["reserved_room_type"],"name":[20],"type":["int"],"align":["right"]},{"label":["assigned_room_type"],"name":[21],"type":["int"],"align":["right"]},{"label":["booking_changes"],"name":[22],"type":["int"],"align":["right"]},{"label":["deposit_type"],"name":[23],"type":["int"],"align":["right"]},{"label":["agent"],"name":[24],"type":["int"],"align":["right"]},{"label":["company"],"name":[25],"type":["int"],"align":["right"]},{"label":["days_in_waiting_list"],"name":[26],"type":["int"],"align":["right"]},{"label":["customer_type"],"name":[27],"type":["int"],"align":["right"]},{"label":["adr"],"name":[28],"type":["int"],"align":["right"]},{"label":["required_car_parking_spaces"],"name":[29],"type":["int"],"align":["right"]},{"label":["total_of_special_requests"],"name":[30],"type":["int"],"align":["right"]},{"label":["reservation_status"],"name":[31],"type":["int"],"align":["right"]},{"label":["reservation_status_date"],"name":[32],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"4","12":"0","13":"0","14":"0","15":"0","16":"0","17":"0","18":"0","19":"0","20":"0","21":"0","22":"0","23":"0","24":"0","25":"0","26":"0","27":"0","28":"0","29":"0","30":"0","31":"0","32":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>We observe that only <code>children</code> column has <code>na</code> values even our manual inspection told us a different story. Let’s dig in a bit more and identify why the code block above doesn’t give us the expected results.</p>
+<p>We observe that the columns like <code>agent</code> and <code>company</code> have “NULL” values, but they don’t show up with the method above. The challenge here is that these values are still character data types and can’t be detected if we’re looking for <code>na</code> or <code>nan</code> values. We can simply use the <code>stringr</code> package and calculate the percentage of “NULL” strings each column has.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we use the stringr package for this</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get the null percentages</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>null_percentages <span class="ot">&lt;-</span> <span class="fu">sapply</span>(data, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">str_detect</span>(x, <span class="st">"NULL"</span>))<span class="sc">/</span><span class="fu">length</span>(x))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># put it into a tibble and arrange it</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>null_percentages_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">column =</span> <span class="fu">names</span>(data), <span class="at">null_percentage =</span> null_percentages)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>null_percentages_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(null_percentage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["column"],"name":[1],"type":["chr"],"align":["left"]},{"label":["null_percentage"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"company","2":"0.943068934"},{"1":"agent","2":"0.136862384"},{"1":"country","2":"0.004087445"},{"1":"hotel","2":"0.000000000"},{"1":"is_canceled","2":"0.000000000"},{"1":"lead_time","2":"0.000000000"},{"1":"arrival_date_year","2":"0.000000000"},{"1":"arrival_date_month","2":"0.000000000"},{"1":"arrival_date_week_number","2":"0.000000000"},{"1":"arrival_date_day_of_month","2":"0.000000000"},{"1":"stays_in_weekend_nights","2":"0.000000000"},{"1":"stays_in_week_nights","2":"0.000000000"},{"1":"adults","2":"0.000000000"},{"1":"babies","2":"0.000000000"},{"1":"meal","2":"0.000000000"},{"1":"market_segment","2":"0.000000000"},{"1":"distribution_channel","2":"0.000000000"},{"1":"is_repeated_guest","2":"0.000000000"},{"1":"previous_cancellations","2":"0.000000000"},{"1":"previous_bookings_not_canceled","2":"0.000000000"},{"1":"reserved_room_type","2":"0.000000000"},{"1":"assigned_room_type","2":"0.000000000"},{"1":"booking_changes","2":"0.000000000"},{"1":"deposit_type","2":"0.000000000"},{"1":"days_in_waiting_list","2":"0.000000000"},{"1":"customer_type","2":"0.000000000"},{"1":"adr","2":"0.000000000"},{"1":"required_car_parking_spaces","2":"0.000000000"},{"1":"total_of_special_requests","2":"0.000000000"},{"1":"reservation_status","2":"0.000000000"},{"1":"reservation_status_date","2":"0.000000000"},{"1":"children","2":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>We can see that <code>company</code>, <code>agent</code> and <code>country</code> have “NULL” strings as values which are functionally equivalent to <code>na</code> / <code>nan</code> or garbage values. Addtionally, <code>children</code> has some <code>na</code> values. We can replace these strings with meaningful values.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>replace_garbage <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">country =</span> <span class="st">"Unknown"</span>, <span class="at">agent =</span> <span class="dv">0</span>, <span class="at">company =</span> <span class="dv">0</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># find indices that have `na`</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>na_indices <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(data<span class="sc">$</span>children))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>children[na_indices] <span class="ot">&lt;-</span> <span class="fl">0.0</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use a for loop to replace missing values in each column</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> <span class="fu">names</span>(replace_garbage)) {</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  data[data[,col] <span class="sc">==</span> <span class="st">"NULL"</span>, col] <span class="ot">&lt;-</span> replace_garbage[col]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["hotel"],"name":[1],"type":["chr"],"align":["left"]},{"label":["is_canceled"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lead_time"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["arrival_date_year"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["arrival_date_month"],"name":[5],"type":["chr"],"align":["left"]},{"label":["arrival_date_week_number"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["arrival_date_day_of_month"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["stays_in_weekend_nights"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["stays_in_week_nights"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["adults"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["children"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["babies"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["meal"],"name":[13],"type":["chr"],"align":["left"]},{"label":["country"],"name":[14],"type":["chr"],"align":["left"]},{"label":["market_segment"],"name":[15],"type":["chr"],"align":["left"]},{"label":["distribution_channel"],"name":[16],"type":["chr"],"align":["left"]},{"label":["is_repeated_guest"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["previous_cancellations"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["previous_bookings_not_canceled"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["reserved_room_type"],"name":[20],"type":["chr"],"align":["left"]},{"label":["assigned_room_type"],"name":[21],"type":["chr"],"align":["left"]},{"label":["booking_changes"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["deposit_type"],"name":[23],"type":["chr"],"align":["left"]},{"label":["agent"],"name":[24],"type":["chr"],"align":["left"]},{"label":["company"],"name":[25],"type":["chr"],"align":["left"]},{"label":["days_in_waiting_list"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["customer_type"],"name":[27],"type":["chr"],"align":["left"]},{"label":["adr"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["required_car_parking_spaces"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["total_of_special_requests"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["reservation_status"],"name":[31],"type":["chr"],"align":["left"]},{"label":["reservation_status_date"],"name":[32],"type":["date"],"align":["right"]}],"data":[{"1":"Resort Hotel","2":"0","3":"342","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"0","10":"2","11":"0","12":"0","13":"BB","14":"PRT","15":"Direct","16":"Direct","17":"0","18":"0","19":"0","20":"C","21":"C","22":"3","23":"No Deposit","24":"0","25":"0","26":"0","27":"Transient","28":"0","29":"0","30":"0","31":"Check-Out","32":"2015-07-01"},{"1":"Resort Hotel","2":"0","3":"737","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"0","10":"2","11":"0","12":"0","13":"BB","14":"PRT","15":"Direct","16":"Direct","17":"0","18":"0","19":"0","20":"C","21":"C","22":"4","23":"No Deposit","24":"0","25":"0","26":"0","27":"Transient","28":"0","29":"0","30":"0","31":"Check-Out","32":"2015-07-01"},{"1":"Resort Hotel","2":"0","3":"7","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"1","10":"1","11":"0","12":"0","13":"BB","14":"GBR","15":"Direct","16":"Direct","17":"0","18":"0","19":"0","20":"A","21":"C","22":"0","23":"No Deposit","24":"0","25":"0","26":"0","27":"Transient","28":"75","29":"0","30":"0","31":"Check-Out","32":"2015-07-02"},{"1":"Resort Hotel","2":"0","3":"13","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"1","10":"1","11":"0","12":"0","13":"BB","14":"GBR","15":"Corporate","16":"Corporate","17":"0","18":"0","19":"0","20":"A","21":"A","22":"0","23":"No Deposit","24":"304","25":"0","26":"0","27":"Transient","28":"75","29":"0","30":"0","31":"Check-Out","32":"2015-07-02"},{"1":"Resort Hotel","2":"0","3":"14","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"2","10":"2","11":"0","12":"0","13":"BB","14":"GBR","15":"Online TA","16":"TA/TO","17":"0","18":"0","19":"0","20":"A","21":"A","22":"0","23":"No Deposit","24":"240","25":"0","26":"0","27":"Transient","28":"98","29":"0","30":"1","31":"Check-Out","32":"2015-07-03"},{"1":"Resort Hotel","2":"0","3":"14","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"2","10":"2","11":"0","12":"0","13":"BB","14":"GBR","15":"Online TA","16":"TA/TO","17":"0","18":"0","19":"0","20":"A","21":"A","22":"0","23":"No Deposit","24":"240","25":"0","26":"0","27":"Transient","28":"98","29":"0","30":"1","31":"Check-Out","32":"2015-07-03"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(data) <span class="co"># 119390x32</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 119390     32</code></pre>
+</div>
+</div>
+<p>We can use hints from manual inspection and dig in a little more.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">count</span>(meal) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="sc">-</span>n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["meal"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"BB","2":"92310"},{"1":"HB","2":"14463"},{"1":"SC","2":"10650"},{"1":"Undefined","2":"1169"},{"1":"FB","2":"798"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>according to the dataset description, Undefined/SC = no meal. So we can convert all the “Undefined” values to SC.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>meal <span class="ot">&lt;-</span> <span class="fu">replace</span>(data<span class="sc">$</span>meal, data<span class="sc">$</span>meal <span class="sc">==</span> <span class="st">"Undefined"</span>, <span class="st">"SC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We can also look the # of guests in each room and see if we get some insight. Let’s plot them into three bins: &lt;1, 1-2, and &gt;=3. We’ll use a polar coordinate pie chart for this as it’s easy to show the relative differences in loose self-constructed bins that way.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">guests =</span> adults <span class="sc">+</span> children <span class="sc">+</span> babies) <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">guests =</span> <span class="fu">ifelse</span>(guests <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"0"</span>, <span class="fu">ifelse</span>(guests <span class="sc">&lt;=</span> <span class="dv">2</span>, <span class="st">"1 to 2"</span>, <span class="st">"&gt;=3"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> guests, <span class="at">y =</span> count, <span class="at">fill =</span> guests)) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Total number of guests"</span>) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#F8766D"</span>, <span class="st">"#00BFC4"</span>, <span class="st">"#619CFF"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="hw3_tanmay_agrawal_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We observe that there are non-zero entries in the pie with # of <code>adults</code> + <code>children</code> + <code>babies</code> = 0. Let’s get rid of those rows.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(adults <span class="sc">!=</span> <span class="dv">0</span> <span class="sc">|</span> children <span class="sc">!=</span> <span class="dv">0</span> <span class="sc">|</span> babies <span class="sc">!=</span> <span class="dv">0</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(data) <span class="co"># 119210x32</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 119210     32</code></pre>
+</div>
+</div>
+</section>
+<section id="eda-lets-explore-the-data-a-little-more" class="level2">
+<h2 class="anchored" data-anchor-id="eda-lets-explore-the-data-a-little-more">EDA: Let’s explore the data a little more</h2>
+<p>Since we don’t know where these hotels are located, we can try to get hints from the guests that visit these hotels. Let’s plot them on a pie chart and check what countries are represented in this data.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get number of guests by country who haven't cancelled</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>country_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_canceled <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">number_of_guests =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the percentage of guests by country</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>total_guests <span class="ot">&lt;-</span> <span class="fu">sum</span>(country_data<span class="sc">$</span>number_of_guests)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>country_data<span class="sc">$</span>Guests_in_percent <span class="ot">&lt;-</span> <span class="fu">round</span>(country_data<span class="sc">$</span>number_of_guests <span class="sc">/</span> total_guests <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># group countries with less representation</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>country_data<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(country_data<span class="sc">$</span>Guests_in_percent <span class="sc">&lt;</span> <span class="dv">2</span>, <span class="st">"Other"</span>, country_data<span class="sc">$</span>country)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co"># polar pie plot</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(country_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> number_of_guests, <span class="at">fill =</span> country)) <span class="sc">+</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Home country of guests"</span>) <span class="sc">+</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="hw3_tanmay_agrawal_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We observe that Portugal and Great Britain are the countries that are over represented in this data. Which could mean that the hotels are close to those two countries and likely in Europe.</p>
+</section>
+<section id="potential-research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="potential-research-questions">Potential research questions</h2>
+<p>We can see that the data also records some interesting columns like <code>lead_time</code>, <code>market_segment</code>, <code>distribution_channel</code>, <code>is_repeated_guest</code>, <code>previous_cancellations</code>, <code>booking_changes</code> which could be used as predictive signals to determine the potential value of a customer. For instance, if a customer is making too many changes, have a history of cancelling, and from a particular distribution channel that might lead us to think that they are likely to make a last minute cancellation. This could be used to make predictions about availability and dynamic pricing of rooms – akin to what the airline industry does. A lot of questions still remain unanswered from this preliminary EDA.</p>
+<p>For instance, - if we can figure out how much guests pay for a room per night we can figure out how the price per night changes over the year? This would help us to know what the best time of the year is to get the best price.</p>
+<ul>
+<li><p>We similarly check which months are the busiest and compare those two charts. This would tell us how closely the price of a room is tied to the availability of a room.</p></li>
+<li><p>Finally we could use these insights among others to inform our statistical models for predicting the cancellations before they happen. We can use a part of the dataset to make predictions and calculate how accurate our models are.</p></li>
+</ul>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Homework 3"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Tanmay Agrawal"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Exploratory Data Analysis"</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "01/24/2023"</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - hw3</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - hotel_bookings.csv</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>We first load the necessary libraries</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>Now we load the data. I sorted the datasets by size and picked the largest one which is "hotel_bookings.csv". I will use the <span class="in">`read_csv()`</span> function as it's the recommend way to load files.</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/hotel_bookings.csv"</span>)</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co"># We inspect the columns in this dataset using the head command</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>The dataset contains booking information for hotels, and includes information such as the time of booking, length of stay, the number of guests, cancellations, etc. We look at the first few rows of the data to get a visual outline of the dataset and we observe that columns <span class="in">`agent`</span>, <span class="in">`company`</span> and <span class="in">`country`</span> have a lot of <span class="in">`NULL`</span> values. We can use the following to get a column-wise representation of all the garbage values.</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cleaning the data</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_all</span>(<span class="fu">list</span>(<span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.))))</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>We observe that only <span class="in">`children`</span> column has <span class="in">`na`</span> values even our manual inspection told us a different story. Let's dig in a bit more and identify why the code block above doesn't give us the expected results. </span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>We observe that the columns like <span class="in">`agent`</span> and <span class="in">`company`</span> have "NULL" values, but they don't show up with the method above. The challenge here is that these values are still character data types and can't be detected if we're looking for <span class="in">`na`</span> or <span class="in">`nan`</span> values. We can simply use the <span class="in">`stringr`</span> package and calculate the percentage of "NULL" strings each column has.</span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a><span class="co"># we use the stringr package for this</span></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a><span class="co"># get the null percentages</span></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>null_percentages <span class="ot">&lt;-</span> <span class="fu">sapply</span>(data, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">str_detect</span>(x, <span class="st">"NULL"</span>))<span class="sc">/</span><span class="fu">length</span>(x))</span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="co"># put it into a tibble and arrange it</span></span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>null_percentages_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">column =</span> <span class="fu">names</span>(data), <span class="at">null_percentage =</span> null_percentages)</span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>null_percentages_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(null_percentage))</span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a>We can see that <span class="in">`company`</span>, <span class="in">`agent`</span> and <span class="in">`country`</span> have "NULL" strings as values which are functionally equivalent to <span class="in">`na`</span> / <span class="in">`nan`</span> or garbage values. Addtionally, <span class="in">`children`</span> has some <span class="in">`na`</span> values. We can replace these strings with meaningful values.</span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>replace_garbage <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">country =</span> <span class="st">"Unknown"</span>, <span class="at">agent =</span> <span class="dv">0</span>, <span class="at">company =</span> <span class="dv">0</span>)</span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a><span class="co"># find indices that have `na`</span></span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a>na_indices <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(data<span class="sc">$</span>children))</span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>children[na_indices] <span class="ot">&lt;-</span> <span class="fl">0.0</span></span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Use a for loop to replace missing values in each column</span></span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> <span class="fu">names</span>(replace_garbage)) {</span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a>  data[data[,col] <span class="sc">==</span> <span class="st">"NULL"</span>, col] <span class="ot">&lt;-</span> replace_garbage[col]</span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(data) <span class="co"># 119390x32</span></span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a>We can use hints from manual inspection and dig in a little more.</span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">count</span>(meal) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="sc">-</span>n)</span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>according to the dataset description, Undefined/SC = no meal. So we can convert all the "Undefined" values to SC.</span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>meal <span class="ot">&lt;-</span> <span class="fu">replace</span>(data<span class="sc">$</span>meal, data<span class="sc">$</span>meal <span class="sc">==</span> <span class="st">"Undefined"</span>, <span class="st">"SC"</span>)</span>
+<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a>We can also look the <span class="sc">\#</span> of guests in each room and see if we get some insight. Let's plot them into three bins: &lt;1, 1-2, and &gt;=3. We'll use a polar coordinate pie chart for this as it's easy to show the relative differences in loose self-constructed bins that way.</span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">guests =</span> adults <span class="sc">+</span> children <span class="sc">+</span> babies) <span class="sc">%&gt;%</span></span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">guests =</span> <span class="fu">ifelse</span>(guests <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"0"</span>, <span class="fu">ifelse</span>(guests <span class="sc">&lt;=</span> <span class="dv">2</span>, <span class="st">"1 to 2"</span>, <span class="st">"&gt;=3"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> guests, <span class="at">y =</span> count, <span class="at">fill =</span> guests)) <span class="sc">+</span></span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Total number of guests"</span>) <span class="sc">+</span></span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#F8766D"</span>, <span class="st">"#00BFC4"</span>, <span class="st">"#619CFF"</span>))</span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a>We observe that there are non-zero entries in the pie with <span class="sc">\#</span> of <span class="in">`adults`</span> + <span class="in">`children`</span> + <span class="in">`babies`</span> = 0. Let's get rid of those rows.</span>
+<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(adults <span class="sc">!=</span> <span class="dv">0</span> <span class="sc">|</span> children <span class="sc">!=</span> <span class="dv">0</span> <span class="sc">|</span> babies <span class="sc">!=</span> <span class="dv">0</span>)</span>
+<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(data) <span class="co"># 119210x32</span></span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a><span class="fu">## EDA: Let's explore the data a little more</span></span>
+<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a>Since we don't know where these hotels are located, we can try to get hints from the guests that visit these hotels. Let's plot them on a pie chart and check what countries are represented in this data.</span>
+<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a><span class="co"># get number of guests by country who haven't cancelled</span></span>
+<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a>country_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_canceled <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">number_of_guests =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the percentage of guests by country</span></span>
+<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a>total_guests <span class="ot">&lt;-</span> <span class="fu">sum</span>(country_data<span class="sc">$</span>number_of_guests)</span>
+<span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a>country_data<span class="sc">$</span>Guests_in_percent <span class="ot">&lt;-</span> <span class="fu">round</span>(country_data<span class="sc">$</span>number_of_guests <span class="sc">/</span> total_guests <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a><span class="co"># group countries with less representation</span></span>
+<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a>country_data<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(country_data<span class="sc">$</span>Guests_in_percent <span class="sc">&lt;</span> <span class="dv">2</span>, <span class="st">"Other"</span>, country_data<span class="sc">$</span>country)</span>
+<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a><span class="co"># polar pie plot</span></span>
+<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(country_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> number_of_guests, <span class="at">fill =</span> country)) <span class="sc">+</span></span>
+<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Home country of guests"</span>) <span class="sc">+</span></span>
+<span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>)</span>
+<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a>We observe that Portugal and Great Britain are the countries that are over represented in this data. Which could mean that the hotels are close to those two countries and likely in Europe.</span>
+<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a><span class="fu">## Potential research questions</span></span>
+<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a>We can see that the data also records some interesting columns like <span class="in">`lead_time`</span>, <span class="in">`market_segment`</span>, <span class="in">`distribution_channel`</span>, <span class="in">`is_repeated_guest`</span>, <span class="in">`previous_cancellations`</span>, <span class="in">`booking_changes`</span> which could be used as predictive signals to determine the potential value of a customer. For instance, if a customer is making too many changes, have a history of cancelling, and from a particular distribution channel that might lead us to think that they are likely to make a last minute cancellation. This could be used to make predictions about availability and dynamic pricing of rooms -- akin to what the airline industry does. A lot of questions still remain unanswered from this preliminary EDA.</span>
+<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a>For instance, </span>
+<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>if we can figure out how much guests pay for a room per night we can figure out how the price per night changes over the year? This would help us to know what the best time of the year is to get the best price.</span>
+<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>We similarly check which months are the busiest and compare those two charts. This would tell us how closely the price of a room is tied to the availability of a room.</span>
+<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Finally we could use these insights among others to inform our statistical models for predicting the cancellations before they happen. We can use a part of the dataset to make predictions and calculate how accurate our models are.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
