@@ -286,8 +286,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="tidying-of-dataset" class="level2">
@@ -297,32 +298,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cattle_dairy <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"posts"</span>,<span class="st">"_data"</span>,<span class="st">"FAOSTAT_cattle_dairy.csv"</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cattle_dairy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in here("posts", "_data", "FAOSTAT_cattle_dairy.csv"): could not find function "here"</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 36,449 × 14
+   Domain Cod…¹ Domain Area …² Area  Eleme…³ Element Item …⁴ Item  Year …⁵  Year
+   &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1961  1961
+ 2 QL           Lives…       2 Afgh…    5420 Yield       882 Milk…    1961  1961
+ 3 QL           Lives…       2 Afgh…    5510 Produc…     882 Milk…    1961  1961
+ 4 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1962  1962
+ 5 QL           Lives…       2 Afgh…    5420 Yield       882 Milk…    1962  1962
+ 6 QL           Lives…       2 Afgh…    5510 Produc…     882 Milk…    1962  1962
+ 7 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1963  1963
+ 8 QL           Lives…       2 Afgh…    5420 Yield       882 Milk…    1963  1963
+ 9 QL           Lives…       2 Afgh…    5510 Produc…     882 Milk…    1963  1963
+10 QL           Lives…       2 Afgh…    5318 Milk A…     882 Milk…    1964  1964
+# … with 36,439 more rows, 4 more variables: Unit &lt;chr&gt;, Value &lt;dbl&gt;,
+#   Flag &lt;chr&gt;, `Flag Description` &lt;chr&gt;, and abbreviated variable names
+#   ¹​`Domain Code`, ²​`Area Code`, ³​`Element Code`, ⁴​`Item Code`, ⁵​`Year Code`</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cattle_dairy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new <span class="ot">&lt;-</span> cattle_dairy <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Domain'</span>, <span class="st">'Domain Code'</span>, <span class="st">'Area Code'</span>, <span class="st">'Element'</span>, <span class="st">'Element Code'</span>, <span class="st">'Item Code'</span>, <span class="st">'Year Code'</span>, <span class="st">'Unit'</span>, <span class="st">'Flag'</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'cattle_dairy' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new <span class="ot">&lt;-</span> cattle_dairy <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Domain'</span>, <span class="st">'Domain Code'</span>, <span class="st">'Area Code'</span>, <span class="st">'Element'</span>, <span class="st">'Element Code'</span>, <span class="st">'Item Code'</span>, <span class="st">'Year Code'</span>, <span class="st">'Unit'</span>, <span class="st">'Flag'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., -c("Domain", "Domain Code", "Area Code", "Element", : object 'cattle_dairy' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'cattle_dairy_new' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 36,449 × 5
+   Area        Item                   Year  Value `Flag Description`
+   &lt;chr&gt;       &lt;chr&gt;                 &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;             
+ 1 Afghanistan Milk, whole fresh cow  1961 700000 FAO estimate      
+ 2 Afghanistan Milk, whole fresh cow  1961   5000 Calculated data   
+ 3 Afghanistan Milk, whole fresh cow  1961 350000 FAO estimate      
+ 4 Afghanistan Milk, whole fresh cow  1962 700000 FAO estimate      
+ 5 Afghanistan Milk, whole fresh cow  1962   5000 Calculated data   
+ 6 Afghanistan Milk, whole fresh cow  1962 350000 FAO estimate      
+ 7 Afghanistan Milk, whole fresh cow  1963 780000 FAO estimate      
+ 8 Afghanistan Milk, whole fresh cow  1963   5128 Calculated data   
+ 9 Afghanistan Milk, whole fresh cow  1963 400000 FAO estimate      
+10 Afghanistan Milk, whole fresh cow  1964 780000 FAO estimate      
+# … with 36,439 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -341,72 +358,550 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Mean of Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Median Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Standard Deviation of Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Mean of Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Median Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Standard Deviation of Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in summarize(., `Mean of Milk Value` = mean(Value, na.rm = TRUE), : object 'cattle_dairy_new' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  `Mean of Milk Value` `Median Milk Value` `Standard Deviation of Milk Value`
+                 &lt;dbl&gt;               &lt;dbl&gt;                              &lt;dbl&gt;
+1             4410235.               43266                          25744621.</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cattle_dairy_new<span class="sc">$</span>Area)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cattle_dairy_new<span class="sc">$</span>Area)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in table(cattle_dairy_new$Area): object 'cattle_dairy_new' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                                         Afghanistan 
+                                                 174 
+                                              Africa 
+                                                 174 
+                                             Albania 
+                                                 174 
+                                             Algeria 
+                                                 174 
+                                      American Samoa 
+                                                 174 
+                                            Americas 
+                                                 174 
+                                              Angola 
+                                                 174 
+                                 Antigua and Barbuda 
+                                                 174 
+                                           Argentina 
+                                                 174 
+                                             Armenia 
+                                                  81 
+                                                Asia 
+                                                 174 
+                                           Australia 
+                                                 174 
+                           Australia and New Zealand 
+                                                 174 
+                                             Austria 
+                                                 174 
+                                          Azerbaijan 
+                                                  81 
+                                             Bahamas 
+                                                 174 
+                                             Bahrain 
+                                                 174 
+                                          Bangladesh 
+                                                 174 
+                                            Barbados 
+                                                 174 
+                                             Belarus 
+                                                  81 
+                                             Belgium 
+                                                  57 
+                                  Belgium-Luxembourg 
+                                                 117 
+                                              Belize 
+                                                 174 
+                                               Benin 
+                                                 174 
+                                             Bermuda 
+                                                 174 
+                                              Bhutan 
+                                                 174 
+                    Bolivia (Plurinational State of) 
+                                                 174 
+                              Bosnia and Herzegovina 
+                                                  81 
+                                            Botswana 
+                                                 174 
+                                              Brazil 
+                                                 174 
+                              British Virgin Islands 
+                                                  52 
+                                   Brunei Darussalam 
+                                                  76 
+                                            Bulgaria 
+                                                 174 
+                                        Burkina Faso 
+                                                 174 
+                                             Burundi 
+                                                 174 
+                                          Cabo Verde 
+                                                 174 
+                                            Cambodia 
+                                                 174 
+                                            Cameroon 
+                                                 174 
+                                              Canada 
+                                                 174 
+                                           Caribbean 
+                                                 174 
+                            Central African Republic 
+                                                 174 
+                                     Central America 
+                                                 174 
+                                        Central Asia 
+                                                  81 
+                                                Chad 
+                                                 174 
+                                               Chile 
+                                                 150 
+                                China, Hong Kong SAR 
+                                                 174 
+                                     China, mainland 
+                                                 174 
+                           China, Taiwan Province of 
+                                                 174 
+                                            Colombia 
+                                                 174 
+                                             Comoros 
+                                                 174 
+                                               Congo 
+                                                 174 
+                                          Costa Rica 
+                                                 174 
+                                       Côte d'Ivoire 
+                                                 174 
+                                             Croatia 
+                                                  81 
+                                                Cuba 
+                                                 174 
+                                              Cyprus 
+                                                 174 
+                                             Czechia 
+                                                  78 
+                                      Czechoslovakia 
+                                                  96 
+               Democratic People's Republic of Korea 
+                                                 174 
+                    Democratic Republic of the Congo 
+                                                 174 
+                                             Denmark 
+                                                 174 
+                                            Djibouti 
+                                                 174 
+                                            Dominica 
+                                                 174 
+                                  Dominican Republic 
+                                                 174 
+                                      Eastern Africa 
+                                                 174 
+                                        Eastern Asia 
+                                                 174 
+                                      Eastern Europe 
+                                                 174 
+                                             Ecuador 
+                                                 174 
+                                               Egypt 
+                                                 174 
+                                         El Salvador 
+                                                 174 
+                                             Eritrea 
+                                                  78 
+                                             Estonia 
+                                                  81 
+                                            Eswatini 
+                                                 174 
+                                            Ethiopia 
+                                                  78 
+                                        Ethiopia PDR 
+                                                  96 
+                                              Europe 
+                                                 174 
+                         Falkland Islands (Malvinas) 
+                                                 174 
+                                                Fiji 
+                                                 174 
+                                             Finland 
+                                                 174 
+                                              France 
+                                                 174 
+                                       French Guyana 
+                                                 174 
+                                    French Polynesia 
+                                                 174 
+                                               Gabon 
+                                                 174 
+                                              Gambia 
+                                                 174 
+                                             Georgia 
+                                                  81 
+                                             Germany 
+                                                 174 
+                                               Ghana 
+                                                 174 
+                                              Greece 
+                                                 174 
+                                             Grenada 
+                                                 174 
+                                          Guadeloupe 
+                                                 174 
+                                           Guatemala 
+                                                 174 
+                                              Guinea 
+                                                 174 
+                                       Guinea-Bissau 
+                                                 174 
+                                              Guyana 
+                                                 174 
+                                               Haiti 
+                                                 174 
+                                            Honduras 
+                                                 174 
+                                             Hungary 
+                                                 174 
+                                             Iceland 
+                                                 174 
+                                               India 
+                                                 174 
+                                           Indonesia 
+                                                 174 
+                          Iran (Islamic Republic of) 
+                                                 174 
+                                                Iraq 
+                                                 174 
+                                             Ireland 
+                                                 174 
+                                              Israel 
+                                                 174 
+                                               Italy 
+                                                 174 
+                                             Jamaica 
+                                                 174 
+                                               Japan 
+                                                 174 
+                                              Jordan 
+                                                 174 
+                                          Kazakhstan 
+                                                  81 
+                                               Kenya 
+                                                 174 
+                                              Kuwait 
+                                                 174 
+                                          Kyrgyzstan 
+                                                  81 
+                    Lao People's Democratic Republic 
+                                                 174 
+                                              Latvia 
+                                                  81 
+                                             Lebanon 
+                                                 174 
+                                             Lesotho 
+                                                 174 
+                                             Liberia 
+                                                 174 
+                                               Libya 
+                                                 174 
+                                       Liechtenstein 
+                                                 174 
+                                           Lithuania 
+                                                  81 
+                                          Luxembourg 
+                                                  57 
+                                          Madagascar 
+                                                 174 
+                                              Malawi 
+                                                 174 
+                                            Malaysia 
+                                                 174 
+                                                Mali 
+                                                 174 
+                                               Malta 
+                                                 174 
+                                          Martinique 
+                                                 174 
+                                          Mauritania 
+                                                 174 
+                                           Mauritius 
+                                                 174 
+                                           Melanesia 
+                                                 174 
+                                              Mexico 
+                                                 174 
+                                       Middle Africa 
+                                                 174 
+                                            Mongolia 
+                                                 174 
+                                          Montenegro 
+                                                  39 
+                                          Montserrat 
+                                                 174 
+                                             Morocco 
+                                                 174 
+                                          Mozambique 
+                                                 174 
+                                             Myanmar 
+                                                 174 
+                                             Namibia 
+                                                 174 
+                                               Nepal 
+                                                 174 
+                                         Netherlands 
+                                                 174 
+                       Netherlands Antilles (former) 
+                                                 174 
+                                       New Caledonia 
+                                                 174 
+                                         New Zealand 
+                                                 174 
+                                           Nicaragua 
+                                                 174 
+                                               Niger 
+                                                 174 
+                                             Nigeria 
+                                                 174 
+                                                Niue 
+                                                 174 
+                                     North Macedonia 
+                                                  81 
+                                     Northern Africa 
+                                                 174 
+                                    Northern America 
+                                                 174 
+                                     Northern Europe 
+                                                 174 
+                                              Norway 
+                                                 174 
+                                             Oceania 
+                                                 174 
+                                                Oman 
+                                                 174 
+                                            Pakistan 
+                                                 174 
+                                           Palestine 
+                                                  81 
+                                              Panama 
+                                                 174 
+                                    Papua New Guinea 
+                                                 174 
+                                            Paraguay 
+                                                 174 
+                                                Peru 
+                                                 174 
+                                         Philippines 
+                                                 174 
+                                              Poland 
+                                                 174 
+                                           Polynesia 
+                                                 174 
+                                            Portugal 
+                                                 174 
+                                         Puerto Rico 
+                                                 174 
+                                               Qatar 
+                                                 174 
+                                   Republic of Korea 
+                                                 174 
+                                 Republic of Moldova 
+                                                  81 
+                                             Réunion 
+                                                 174 
+                                             Romania 
+                                                 174 
+                                  Russian Federation 
+                                                  81 
+                                              Rwanda 
+                                                 174 
+                                         Saint Lucia 
+                                                 174 
+                    Saint Vincent and the Grenadines 
+                                                 174 
+                                               Samoa 
+                                                 174 
+                               Sao Tome and Principe 
+                                                 174 
+                                        Saudi Arabia 
+                                                 174 
+                                             Senegal 
+                                                 174 
+                                              Serbia 
+                                                  39 
+                               Serbia and Montenegro 
+                                                  42 
+                                          Seychelles 
+                                                 174 
+                                        Sierra Leone 
+                                                 174 
+                                            Slovakia 
+                                                  78 
+                                            Slovenia 
+                                                  81 
+                                     Solomon Islands 
+                                                 174 
+                                             Somalia 
+                                                 174 
+                                        South Africa 
+                                                 174 
+                                       South America 
+                                                 174 
+                                         South Sudan 
+                                                  21 
+                                  South-eastern Asia 
+                                                 174 
+                                     Southern Africa 
+                                                 174 
+                                       Southern Asia 
+                                                 174 
+                                     Southern Europe 
+                                                 174 
+                                               Spain 
+                                                 174 
+                                           Sri Lanka 
+                                                 174 
+                                               Sudan 
+                                                  21 
+                                      Sudan (former) 
+                                                 153 
+                                            Suriname 
+                                                 174 
+                                              Sweden 
+                                                 174 
+                                         Switzerland 
+                                                 174 
+                                Syrian Arab Republic 
+                                                 174 
+                                          Tajikistan 
+                                                  81 
+                                            Thailand 
+                                                 174 
+                                                Togo 
+                                                 174 
+                                               Tonga 
+                                                 174 
+                                 Trinidad and Tobago 
+                                                 174 
+                                             Tunisia 
+                                                 174 
+                                              Turkey 
+                                                 174 
+                                        Turkmenistan 
+                                                  81 
+                                              Uganda 
+                                                 174 
+                                             Ukraine 
+                                                  81 
+                                United Arab Emirates 
+                                                 174 
+United Kingdom of Great Britain and Northern Ireland 
+                                                 174 
+                         United Republic of Tanzania 
+                                                 174 
+                            United States of America 
+                                                 174 
+                        United States Virgin Islands 
+                                                 174 
+                                             Uruguay 
+                                                 174 
+                                                USSR 
+                                                  93 
+                                          Uzbekistan 
+                                                  81 
+                                             Vanuatu 
+                                                 174 
+                  Venezuela (Bolivarian Republic of) 
+                                                 174 
+                                            Viet Nam 
+                                                 174 
+                           Wallis and Futuna Islands 
+                                                 174 
+                                      Western Africa 
+                                                 174 
+                                        Western Asia 
+                                                 174 
+                                      Western Europe 
+                                                 174 
+                                               World 
+                                                 174 
+                                               Yemen 
+                                                 174 
+                                        Yugoslav SFR 
+                                                  93 
+                                              Zambia 
+                                                 174 
+                                            Zimbabwe 
+                                                 174 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cattle_dairy_new<span class="sc">$</span><span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cattle_dairy_new<span class="sc">$</span><span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in table(cattle_dairy_new$`Flag Description`): object 'cattle_dairy_new' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Aggregate, may include official, semi-official, estimated or calculated data 
+                                                                        3070 
+                                                             Calculated data 
+                                                                       13136 
+                                                          Data not available 
+                                                                          74 
+                                    FAO data based on imputation methodology 
+                                                                        2270 
+                                                                FAO estimate 
+                                                                        7045 
+                                                               Official data 
+                                                                       10044 
+                                                           Unofficial figure 
+                                                                         810 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>area_average <span class="ot">&lt;-</span> cattle_dairy_new <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Median Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Standard Deviation of Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>area_average <span class="ot">&lt;-</span> cattle_dairy_new <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Median Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Standard Deviation of Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>area_average</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in group_by(., Area): object 'cattle_dairy_new' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>area_average</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'area_average' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 232 × 4
+   Area                `Mean of Value by Area` `Median Value by Area` Standard…¹
+   &lt;chr&gt;                                 &lt;dbl&gt;                  &lt;dbl&gt;      &lt;dbl&gt;
+ 1 Afghanistan                         903662.               600000     1001961.
+ 2 Africa                            18861019.             15058869    19310283.
+ 3 Albania                             275446.               198000      290691.
+ 4 Algeria                             599219.               440000      742649.
+ 5 American Samoa                        3611.                   31.5      5349.
+ 6 Americas                          56060267.             45081600.   55005137.
+ 7 Angola                              164004.               157000      135649.
+ 8 Antigua and Barbuda                   6402.                 6200        2652.
+ 9 Argentina                          3279105.              2400000     3381678.
+10 Armenia                             276119.               277840      217086.
+# … with 222 more rows, and abbreviated variable name
+#   ¹​`Standard Deviation of Value by Area`</code></pre>
 </div>
 </div>
 <p>In this section, I plotted a bar chart of the top 20 average values by Area in order to compare the magnitudes of these values. The limitation of this plot is that the consolidated values, such as the World and continent totals are plotted alongside the individual countries, which makes it difficult to compare the average values of the top individual countries. For a more refined ananlysis, I could remove consolidated values so individual countries are the only ones remaining.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>area_average <span class="ot">&lt;-</span> area_average[<span class="fu">order</span>(<span class="sc">-</span>area_average<span class="sc">$</span><span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span>),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>area_average <span class="ot">&lt;-</span> area_average[<span class="fu">order</span>(<span class="sc">-</span>area_average<span class="sc">$</span><span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span>),]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>area_average_top20 <span class="ot">&lt;-</span> area_average[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>area_average_top20 <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Area,<span class="at">y=</span><span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'area_average' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>area_average_top20 <span class="ot">&lt;-</span> area_average[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'area_average' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>area_average_top20 <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Area,<span class="at">y=</span><span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span>)) <span class="sc">+</span> </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in ggplot(., aes(x = Area, y = `Mean of Value by Area`)): object 'area_average_top20' not found</code></pre>
+<div class="cell-output-display">
+<p><img src="HW3_DanielManning_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
@@ -717,98 +1212,99 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb26" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "HW 3"</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Daniel Manning"</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Reading in Data"</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "1/28/2023"</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - HW 3</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tidying of Dataset</span></span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>First I loaded the "FAOSTAT_cattle_dairy.csv dataset. This dataset was already largely tidy, but I finished the process by removing variables that were redundant or only had one case, leaving each column with its own variable and each row as an occurrence. </span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>cattle_dairy <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"posts"</span>,<span class="st">"_data"</span>,<span class="st">"FAOSTAT_cattle_dairy.csv"</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span>
-<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>cattle_dairy</span>
-<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new <span class="ot">&lt;-</span> cattle_dairy <span class="sc">%&gt;%</span> </span>
-<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Domain'</span>, <span class="st">'Domain Code'</span>, <span class="st">'Area Code'</span>, <span class="st">'Element'</span>, <span class="st">'Element Code'</span>, <span class="st">'Item Code'</span>, <span class="st">'Year Code'</span>, <span class="st">'Unit'</span>, <span class="st">'Flag'</span>))</span>
-<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new</span>
-<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Narrative, Variables, and Research Question</span></span>
-<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>This dataset consists of five variables with the following types:</span>
-<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>Area: string</span>
-<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>Item: string</span>
-<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>Year: double</span>
-<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>Value: double</span>
-<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>Flag Description: string</span>
-<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>The overall dataset represents values for whole fresh cow milk in different countries across different years, as well as whether the data was estiamted/calculated. </span>
-<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a>One potential research question could investigate the difference in values with respect to the area. For example: Which area produced the most whole fresh cow milk? What country produced the least whole fresh cow milk? What was the distribution of average whole fresh cow milk production for each area?</span>
-<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a>Another research question could investigate the change in milk production with respect to year. For example: Did the production of whole fresh cow milk increase from 1961 to 2018? During which year was the most cow milk produced and during which year was the least produced? </span>
-<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a>A third research question could investigate the relationship between the method of estimating/calculating values and the values themselves. For example: Is there a difference between the average of values described as "Calculated data" and "FAO estimates". </span>
-<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a>Lastly, this dataset could be used to investigate relationships between multiple variables, such as year and area. For example: Did some areas see an increase in production from 1961 to 2018 while others saw a decrease? Was the magnitude of change in production different across areas? </span>
-<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descriptive Statistics</span></span>
-<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a>I calculated statistics for the numerical variable, value, including mean, median, and standard deviation. I also calculated frequencies of the categorical variables, including Area, and Flag Description. Lastly, I grouped the values by Area and calculated the same statistics.</span>
-<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new <span class="sc">%&gt;%</span></span>
-<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Mean of Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Median Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Standard Deviation of Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cattle_dairy_new<span class="sc">$</span>Area)</span>
-<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cattle_dairy_new<span class="sc">$</span><span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span>
-<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a>area_average <span class="ot">&lt;-</span> cattle_dairy_new <span class="sc">%&gt;%</span> </span>
-<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Median Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Standard Deviation of Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a>area_average</span>
-<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-89"><a href="#cb26-89" aria-hidden="true" tabindex="-1"></a>In this section, I plotted a bar chart of the top 20 average values by Area in order to compare the magnitudes of these values. The limitation of this plot is that the consolidated values, such as the World and continent totals are plotted alongside the individual countries, which makes it difficult to compare the average values of the top individual countries. For a more refined ananlysis, I could remove consolidated values so individual countries are the only ones remaining. </span>
-<span id="cb26-92"><a href="#cb26-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-93"><a href="#cb26-93" aria-hidden="true" tabindex="-1"></a>area_average <span class="ot">&lt;-</span> area_average[<span class="fu">order</span>(<span class="sc">-</span>area_average<span class="sc">$</span><span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span>),]</span>
-<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a>area_average_top20 <span class="ot">&lt;-</span> area_average[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,]</span>
-<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a>area_average_top20 <span class="sc">%&gt;%</span></span>
-<span id="cb26-96"><a href="#cb26-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Area,<span class="at">y=</span><span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span>)) <span class="sc">+</span> </span>
-<span id="cb26-97"><a href="#cb26-97" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb26-98"><a href="#cb26-98" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span>
-<span id="cb26-99"><a href="#cb26-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-100"><a href="#cb26-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "HW 3"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Daniel Manning"</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Reading in Data"</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "1/28/2023"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - HW 3</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tidying of Dataset</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>First I loaded the "FAOSTAT_cattle_dairy.csv dataset. This dataset was already largely tidy, but I finished the process by removing variables that were redundant or only had one case, leaving each column with its own variable and each row as an occurrence. </span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>cattle_dairy <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"posts"</span>,<span class="st">"_data"</span>,<span class="st">"FAOSTAT_cattle_dairy.csv"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>cattle_dairy</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new <span class="ot">&lt;-</span> cattle_dairy <span class="sc">%&gt;%</span> </span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Domain'</span>, <span class="st">'Domain Code'</span>, <span class="st">'Area Code'</span>, <span class="st">'Element'</span>, <span class="st">'Element Code'</span>, <span class="st">'Item Code'</span>, <span class="st">'Year Code'</span>, <span class="st">'Unit'</span>, <span class="st">'Flag'</span>))</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Narrative, Variables, and Research Question</span></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>This dataset consists of five variables with the following types:</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>Area: string</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>Item: string</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>Year: double</span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>Value: double</span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>Flag Description: string</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>The overall dataset represents values for whole fresh cow milk in different countries across different years, as well as whether the data was estiamted/calculated. </span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>One potential research question could investigate the difference in values with respect to the area. For example: Which area produced the most whole fresh cow milk? What country produced the least whole fresh cow milk? What was the distribution of average whole fresh cow milk production for each area?</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>Another research question could investigate the change in milk production with respect to year. For example: Did the production of whole fresh cow milk increase from 1961 to 2018? During which year was the most cow milk produced and during which year was the least produced? </span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>A third research question could investigate the relationship between the method of estimating/calculating values and the values themselves. For example: Is there a difference between the average of values described as "Calculated data" and "FAO estimates". </span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>Lastly, this dataset could be used to investigate relationships between multiple variables, such as year and area. For example: Did some areas see an increase in production from 1961 to 2018 while others saw a decrease? Was the magnitude of change in production different across areas? </span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descriptive Statistics</span></span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>I calculated statistics for the numerical variable, value, including mean, median, and standard deviation. I also calculated frequencies of the categorical variables, including Area, and Flag Description. Lastly, I grouped the values by Area and calculated the same statistics.</span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>cattle_dairy_new <span class="sc">%&gt;%</span></span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Mean of Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Median Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Standard Deviation of Milk Value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cattle_dairy_new<span class="sc">$</span>Area)</span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cattle_dairy_new<span class="sc">$</span><span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>area_average <span class="ot">&lt;-</span> cattle_dairy_new <span class="sc">%&gt;%</span> </span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Median Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Standard Deviation of Value by Area</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Value</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>area_average</span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a>In this section, I plotted a bar chart of the top 20 average values by Area in order to compare the magnitudes of these values. The limitation of this plot is that the consolidated values, such as the World and continent totals are plotted alongside the individual countries, which makes it difficult to compare the average values of the top individual countries. For a more refined ananlysis, I could remove consolidated values so individual countries are the only ones remaining. </span>
+<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a>area_average <span class="ot">&lt;-</span> area_average[<span class="fu">order</span>(<span class="sc">-</span>area_average<span class="sc">$</span><span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span>),]</span>
+<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a>area_average_top20 <span class="ot">&lt;-</span> area_average[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,]</span>
+<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a>area_average_top20 <span class="sc">%&gt;%</span></span>
+<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Area,<span class="at">y=</span><span class="st">`</span><span class="at">Mean of Value by Area</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span>
+<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
