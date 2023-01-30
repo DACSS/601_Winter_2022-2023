@@ -265,10 +265,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
-✔ tibble  3.1.8      ✔ dplyr   1.0.10
-✔ tidyr   1.3.0      ✔ stringr 1.5.0 
-✔ readr   2.1.3      ✔ forcats 0.5.2 
+✔ ggplot2 3.4.0     ✔ purrr   1.0.1
+✔ tibble  3.1.8     ✔ dplyr   1.1.0
+✔ tidyr   1.3.0     ✔ stringr 1.5.0
+✔ readr   2.1.3     ✔ forcats 1.0.0
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
@@ -361,8 +361,10 @@ dbl (10): Year, Month, Day, Federal Funds Target Rate, Federal Funds Upper T...
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Median_Unemployment=</span><span class="fu">median</span>(<span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>))<span class="sc">%&gt;%</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">treemap</span>(<span class="at">index =</span> <span class="st">"Year"</span>, <span class="at">vSize =</span> <span class="st">"Median_Unemployment"</span>, <span class="at">type =</span> <span class="st">"index"</span>, <span class="at">title=</span> <span class="st">"Unemployment Median Rate Comparison from 2007 to 2017"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in Year == 2007:2017: longer object length is not a multiple of shorter
-object length</code></pre>
+<pre><code>Warning: There was 1 warning in `filter()`.
+ℹ In argument: `Year == 2007:2017`.
+Caused by warning in `Year == 2007:2017`:
+! longer object length is not a multiple of shorter object length</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="MarcelaRobinson_Challenge6-FedFunds-_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
