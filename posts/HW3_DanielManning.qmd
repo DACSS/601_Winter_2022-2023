@@ -1,0 +1,92 @@
+---
+title: "HW 3"
+author: "Daniel Manning"
+description: "Reading in Data"
+date: "1/28/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - HW 3
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Tidying of Dataset
+
+First I loaded the "FAOSTAT_cattle_dairy.csv dataset. This dataset was already largely tidy, but I finished the process by removing variables that were redundant or only had one case, leaving each column with its own variable and each row as an occurrence. 
+
+
+```{r}
+cattle_dairy <- here("posts","_data","FAOSTAT_cattle_dairy.csv")%>%
+  read_csv()
+cattle_dairy
+cattle_dairy_new <- cattle_dairy %>% 
+  select(-c('Domain', 'Domain Code', 'Area Code', 'Element', 'Element Code', 'Item Code', 'Year Code', 'Unit', 'Flag'))
+cattle_dairy_new
+```
+
+
+## Narrative, Variables, and Research Question
+
+This dataset consists of five variables with the following types:
+Area: string
+Item: string
+Year: double
+Value: double
+Flag Description: string
+
+The overall dataset represents values for whole fresh cow milk in different countries across different years, as well as whether the data was estiamted/calculated. 
+
+One potential research question could investigate the difference in values with respect to the area. For example: Which area produced the most whole fresh cow milk? What country produced the least whole fresh cow milk? What was the distribution of average whole fresh cow milk production for each area?
+
+Another research question could investigate the change in milk production with respect to year. For example: Did the production of whole fresh cow milk increase from 1961 to 2018? During which year was the most cow milk produced and during which year was the least produced? 
+
+A third research question could investigate the relationship between the method of estimating/calculating values and the values themselves. For example: Is there a difference between the average of values described as "Calculated data" and "FAO estimates". 
+
+Lastly, this dataset could be used to investigate relationships between multiple variables, such as year and area. For example: Did some areas see an increase in production from 1961 to 2018 while others saw a decrease? Was the magnitude of change in production different across areas? 
+
+## Descriptive Statistics
+
+I calculated statistics for the numerical variable, value, including mean, median, and standard deviation. I also calculated frequencies of the categorical variables, including Area, and Flag Description. Lastly, I grouped the values by Area and calculated the same statistics.
+
+```{r}
+cattle_dairy_new %>%
+  summarize(`Mean of Milk Value` = mean(`Value`,na.rm=TRUE),
+            `Median Milk Value` = median(`Value`, na.rm=TRUE),
+            `Standard Deviation of Milk Value` = sd(`Value`, na.rm = TRUE))
+
+table(cattle_dairy_new$Area)
+table(cattle_dairy_new$`Flag Description`)
+
+area_average <- cattle_dairy_new %>% 
+  group_by(Area) %>% 
+  summarize(`Mean of Value by Area` = mean(`Value`,na.rm=TRUE),
+            `Median Value by Area` = median(`Value`, na.rm=TRUE),
+            `Standard Deviation of Value by Area` = sd(`Value`, na.rm = TRUE))
+
+area_average
+
+```
+
+In this section, I plotted a bar chart of the top 20 average values by Area in order to compare the magnitudes of these values. The limitation of this plot is that the consolidated values, such as the World and continent totals are plotted alongside the individual countries, which makes it difficult to compare the average values of the top individual countries. For a more refined ananlysis, I could remove consolidated values so individual countries are the only ones remaining. 
+```{r}
+area_average <- area_average[order(-area_average$`Mean of Value by Area`),]
+area_average_top20 <- area_average[1:20,]
+area_average_top20 %>%
+  ggplot(aes(x=Area,y=`Mean of Value by Area`)) + 
+    geom_bar(stat = "identity") +
+    theme(axis.text.x = element_text(angle = 90))
+
+```
