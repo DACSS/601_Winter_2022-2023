@@ -1,0 +1,53 @@
+---
+title: "Challenge 9"
+author: "Daniel Manning"
+description: "Creating a function"
+date: "1/28/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_9
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(here)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Create a function
+
+```{r}
+plot_hist <-function(d, x){
+  ggplot(d, aes(x=x)) + geom_histogram() +
+  geom_histogram(binwidth=1000)
+}
+
+```
+
+## Load Dataset 
+
+```{r}
+
+egg <- here("posts","_data","FAOSTAT_egg_chicken.csv")%>%
+  read_csv()
+egg
+```
+## Test function
+
+
+```{r}
+plot_hist(egg, egg$Value)
+```
+
