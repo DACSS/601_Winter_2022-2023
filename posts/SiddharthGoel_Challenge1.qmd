@@ -1,0 +1,61 @@
+---
+title: "Challenge 1"
+author: "Siddharth Goel"
+description: "Reading in data and creating a post"
+date: "01/20/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+```{r}
+birds_set = read_csv('_data/birds.csv')
+spec(birds_set)
+head(birds_set)
+
+```
+
+This dataset has 14 columns and 30977 data values. All the columns are either of the type `col_character` or `col_double`
+
+
+## Describe the data
+From the columns and the data, we can see that there are multiple columns that represent the same data in multiple forms. For example, `Area` and `Area code`, `Domain` and `Domain Code`, `Element` and `Element Code`, `Item` and `Item Code`, and `Year` and `Year Code`. We can de-duplicate these columns and create separate mappings to reduce the size of the data.
+Also, the columns `Domain` and `Element` have a single value which means that these columns can also be eliminated.
+
+```{r}
+#| label: summary
+unique(birds_set$Domain)
+length(unique(birds_set$Area))
+unique(birds_set$Item)
+unique(birds_set$Element)
+length(unique(birds_set$Year))
+unique(birds_set$Flag)
+```
+
+By analyzing the data values and the unique column values, we can assert that the dataset contains the livestock data about five birds over a certain period of time. This dataset is over a single domain, which is `Live Animals` and mainly contains information about birds and the regions they belong to. 

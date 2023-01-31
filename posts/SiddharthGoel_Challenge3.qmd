@@ -1,0 +1,69 @@
+---
+title: "Challenge 3"
+author: "Siddharth Goel"
+description: "Tidy Data: Pivoting"
+date: "01/27/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+  - animal_weights.csv
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+```{r}
+animal_weights_df <- read_csv("_data/animal_weight.csv")
+
+animal_weights_df
+spec(animal_weights_df)
+```
+
+
+### Briefly describe the data
+
+The input dataset describes the weights of different animals and the overall category-wise weights for 9 IPCC areas. For this dataset, I plan to move the animals to rows and the areas to columns using pivot_longer so that it is easy to get statistics based on specific animals and categories. 
+
+### Challenge: Describe the final dimensions
+
+Document your work here.
+
+```{r}
+# Existing Rows
+expected_rows <- nrow(animal_weights_df) # 9
+
+# Existing Columns
+expected_cols <- ncol(animal_weights_df) # 17
+
+# Expected Rows
+nrow(animal_weights_df) * (expected_cols - 1) # -1 for the header
+
+# expected columns 
+3 # IPCC Area, Animal, Weight
+```
+
+The dataset currently has 9 rows and 17 columns.
+When we pivot the dataset, the targeted rows and columns will be 144 rows and 3 columns (Area, Animal and Weight). 
+
+## Pivot the Data
+
+Now we will pivot the data, and compare our pivoted data dimensions to the dimensions calculated above as a "sanity" check.
+
+```{r}
+pivoted_df <- pivot_longer(animal_weights_df, 2:ncol(animal_weights_df), names_to = "Animal", values_to = "Weight")
+head(pivoted_df)
+```
+Yes, once it is pivoted long, our resulting data are $144 x 3$ - exactly what we expected!

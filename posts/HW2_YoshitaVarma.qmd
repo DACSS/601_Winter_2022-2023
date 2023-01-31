@@ -1,0 +1,113 @@
+---
+title: "Homework 2"
+author: "Yoshita Varma"
+desription: "Reading in and Desribing Data"
+date: "01/20/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - hw2
+  - WDI.csv
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#install.packages("dyplr")
+library(tidyverse)
+library(dplyr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading in and Describing Data
+
+```{r}
+Indicators = read_csv("_data/WDI/Indicators.csv")
+Indicators %>%
+  view()
+
+Indicators %>%
+  dim() 
+
+Indicators %>% 
+  colnames()
+```
+```{r}
+Indicators %>%
+  distinct(CountryName) 
+
+```
+
+```{r}
+Indicators %>% 
+  distinct(IndicatorName)
+```
+
+```{r}
+Indicators %>% 
+  distinct(Year)
+```
+I have used the World Development Indicators dataset to identify the factors contributing towards a country's development. Describes data for a period of 60 years(1960-2020) for 247 countries. Has 5.6 million rows with 1344 indicators. For the analysis, the World Development Indicators dataset was used. The data is a slightly modified version from the dataset that’s actually available from the World Bank, a group which provides a wide array of financial products. It’s an informative dataset containing factors which contribute to world development.
+
+Dataset link - https://www.kaggle.com/datasets/kaggle/world-development-indicators
+
+
+## Tidying Data
+
+Most, if not all, of this data is already in a tidy format. All variables have their own respective columns and values within them, and all observations have their own rows. The data is very large, but that is because there are many different Countries to examine for various factors of the development. I faced many challenges with the dataset preparation. After this, cleaning and handling the dataset also took some modidications to csv file itself primarily because of its size.
+
+Dataset cleaning and preparation - As the dataset had 5.6 million rows with 1344 indicators with any missing values. We had to handle multiple blank chunks of data and import this information from other sources while getting these csv files. 
+
+
+## Narative/Analysis of the data
+
+The following indicators will be our major area of research - 
+
+- Life expectancy at birth, total (years)
+
+- Adjusted net national income (current US$)
+
+- Population, total
+
+- GDP per capita (constant 2005 US$)
+
+- Gross national expenditure (constant 2005 US$)
+
+- Merchandise exports (current US$)
+
+- Net official development assistance received (current US$)
+
+
+-Health expenditure per capita (current US$)
+
+-GDP per capita (current US$)
+
+-Government expenditure on education (% of GDP)
+
+-Prevalence of overweight in children, weight for height (% of children under 5)
+
+-Logistics performance index: Quality of trade and transport-related infrastructure
+
+-Research and development expenditure (% of GDP)
+
+I think everyone would be interested in their country's development. Especially to know how long their ancestors might have lived right?
+What if you get to visualize this data? Thats sounds interesting right. So yes we have picked up this interest as our research question. Here it is today we will be presenting a visualizaiton through which you can easily analy your country's development and also gauge the life expectancy’s trends. 
+
+
+## Research Questions for Data
+
+MOTIVATION:Life expectancy in every country has been increasing since the 19th century. My hypothesis is that, one of main factors contributing to the life expectancy increase, has been advancements in technology and infrastructure. It will be interesting to validate this fact, with the help of the data correlation. Hence, to shed light on this in a more empirical way, I wanted to research various factors that might have driven this change. I shortlisted a few factors relating to technology and infrastructure and also some other miscellaneous health related factors that might have an impact on life expectancy in a country. 
+
+RESEARCH QUESTIONS: Following question will be addressed using this dataset:
+
+1) Is life expectancy getting better for countries across the globe?
+
+2) Does a country's development and growth cause life expectancy to increase?
+
+3) What are the other major factors and how much impact these factors are contributing to the increase of country’s life expectancy?
+
+Country’s development and growth are not directly measured as it is not part of this dataset. However, it is measured by combining a few indicators (from the dataset) which attribute a country's overall performance in advancement.

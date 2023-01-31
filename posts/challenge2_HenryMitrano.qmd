@@ -1,0 +1,84 @@
+---
+title: "Challenge 2"
+author: "Henry Mitrano"
+description: "Data wrangling: using group() and summarise()"
+date: "12/21/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+-   railroad\*.csv or StateCounty2012.xlsx ⭐
+-   FAOstat\*.csv ⭐⭐⭐
+-   hotel_bookings ⭐⭐⭐⭐
+
+```{r}
+# Here, I read in the data set, the same railroad worker info that I imported in challenge 1. I run the 'head' command to again see the first state (Alaska), a few of its counties, and how many rail employees work in each. 
+railroad_data = read_csv("_data/railroad_2012_clean_county.csv")
+head(railroad_data)
+
+```
+
+Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+# I plan to work with different data sets in challenges going forward, but since I'm fairly comfortable now with the railroad data, I feel confident developing the GSS for this one.
+
+# From what we garnered by running 'head', the column that keeps an employee count is called 'total_employees'. We will use this variable name in the commands to find the central tendency and dispersion of the data.
+```
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+```{r}
+# Here, we use the 'summarize' command to find the average number of rail employees per county in the country.
+summarize(railroad_data, mean(total_employees), na.rm = TRUE)
+# It comes out as 87; surprisingly high, seeing that none of the counties listed from the 'head' command exceed 7 employees... the context clue that gives it away is our knowledge of the population of Alaska; pretty sparse! But we will figure out through more statistical summarizing how the mean number of employees per county is so high
+
+# One of the ways we could do this is by trying to find the standard deviation of the data set.
+summarize(railroad_data, sd(total_employees), na.rm = TRUE)
+# Here, we realize how our mean could be so high despite seeing so many low, single-digit values when looking at individual table entries- the standard deviation is extremely high. Because of the nature of this data set, counting people, no county can have less than zero, or a negative number of rail workers. But since the standard deviation is high, we can assume there are some statistically significant outliers on the high end.
+
+summarize(railroad_data, median(total_employees), na.rm = TRUE)
+
+railroad_data %>%
+  summarize(
+    range_railroadt=max(total_employees)-min(total_employees))
+# We confirm our beliefs with these commands- we find the median of the data set for number of railroad workers per county, and it is a mere 21. And when we do the range, knowing there are some counties with only one railroad workers, we get 8,206. Some places have a massive amount of rail workers compared to most, accounting for the skew in data.
+```
+
+### Explain and Interpret
+
+Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.

@@ -1,0 +1,39 @@
+---
+title: "Challenge 3: Pivoting"
+author: "Surya Praneeth Reddy Chirasani"
+desription: "Pivoting data in a dataset"
+date: "01/07/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge3
+  - tidydata
+  - pivot_longer
+---
+
+```{r}
+#| label: setup
+#| warning: false
+library(tidyverse)
+library(readr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+animal_weights <-read_csv("_data/animal_weight.csv", show_col_types = FALSE)
+animal_weights
+```
+The data for each animal for each area is in one row, I want to pivot the data from the columns to rows using pivot_longer, so that I can group by each area and get summary statistics for each area. These statistics cannot be calculated easily in the present format, for this reason I want to pivot the data. There are 16 lifestock types across the 9 regions which when we pivot to rows, the total number of results will be 16*9=144 rows
+
+
+```{r}
+pivot_longer(animal_weights, 2:ncol(animal_weights), names_to = "animal", values_to = "weight")
+```
+
+
+After pivoting the data, the dimension of the tibble is 144x3 which is as expected
+

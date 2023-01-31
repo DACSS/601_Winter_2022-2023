@@ -1,0 +1,53 @@
+---
+title: "Challenge8_MarcelaRobinson"
+author: "Marcela Robinson"
+editor: visual
+Date: January 22, 2023
+Description: "Reading multiple data sets"
+Categories:
+ - Challenge_8
+ - FAOSTAT 
+ - cattle
+ - egg_chicken
+
+---
+
+```{r}
+library(here)
+library(tidyverse)
+```
+
+```{r}
+#Read the first dataset
+cattle<- here("posts", "_data", "FAOSTAT_cattle_dairy.csv")%>%
+read_csv()
+
+#Read second dataset 
+chicken<-here("posts", "_data", "FAOSTAT_egg_chicken.csv")%>%
+read_csv()
+```
+
+For this challenge, I'll be joining two sets of data. Both sets of data are provided by the Food and Agriculture Organization of the United Nations. The first set, **cattle**, represent the vaues of livestock (Milk Animals, Yield, or Production) in different areas of the world over the years. Other variables include unit, flag, flag description, and different codes. 
+
+The second set of data that I'll be joining, **chicken**, contains values of chickens (Laying, Yield, or Production) in different areas of the world over the years. 
+
+```{r}
+
+#Join both datasets 
+joined<-bind_rows(cattle, chicken)
+print(joined)
+
+```
+I'm using the bind_rows function since both datasets have the same variables. As I result, my new dataset called **joined** has 74619 observations and 14 variables. 
+
+## Clean the data
+
+```{r}
+#Remove unnecessary columns 
+joined%>%
+  select(-c("Domain Code", "Domain", "Area Code","Element Code", "Flag", "Flag Description", "Year Code", "Item Code"))
+
+print(joined)
+```
+
+
