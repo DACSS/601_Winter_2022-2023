@@ -1,0 +1,163 @@
+---
+title: "Challenge 7"
+author: "Priya Marla"
+description: "Visualizing Multiple Dimensions"
+date: "1/24/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_7
+  - hotel_bookings
+  - australian_marriage
+  - air_bnb
+  - eggs
+  - abc_poll
+  - faostat
+  - us_hh
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(epiDisplay)
+library(dbplyr)
+library(tidyverse)
+library(here)
+library(lubridate)
+library(summarytools)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  Recreate at least two graphs from previous exercises, but introduce at least one additional dimension that you omitted before using ggplot functionality (color, shape, line, facet, etc) The goal is not to create unneeded [chart ink (Tufte)](https://www.edwardtufte.com/tufte/), but to concisely capture variation in additional dimensions that were collapsed in your earlier 2 or 3 dimensional graphs.
+   - Explain why you choose the specific graph type
+5) If you haven't tried in previous weeks, work this week to make your graphs "publication" ready with titles, captions, and pretty axis labels and other viewer-friendly features
+
+[R Graph Gallery](https://r-graph-gallery.com/) is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code. And anyone not familiar with Edward Tufte should check out his [fantastic books](https://www.edwardtufte.com/tufte/books_vdqi) and [courses on data visualizaton.](https://www.edwardtufte.com/tufte/courses)
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+  - eggs ⭐
+  - abc_poll ⭐⭐
+  - australian_marriage ⭐⭐
+  - hotel_bookings ⭐⭐⭐
+  - air_bnb  ⭐⭐⭐
+  - us_hh ⭐⭐⭐⭐
+  - faostat ⭐⭐⭐⭐⭐
+
+```{r}
+dataset <- here("posts","_data","hotel_bookings.csv") %>%
+  read_csv()
+
+dataset
+```
+
+### Briefly describe the data
+
+This dataset describes the information of the reservations made in Resort Hotel and City Hotel. There are 119390 rows and 32 columns. Each columns represents various data such as for what dates and what hotel the booking was made, whether reservation is called or not and if the payment is made or not etc.
+
+## Tidy Data (as needed)
+
+Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
+
+The country column is placed in the 14th place, it should be moved up to 2nd place i.e after the hotel column. Created a new column arrival_date by getting the date from "arrival_date_day_of_month", "arrival_date_month","arrival_date_year" columns. Removing these 3 columns and moving the arrival date column to column after "lead_time". 
+Creating the new column booking_date to know the date of booking with the information from columns lead_time and arrival_date.
+Created a new column "child" to get the total of children plus babies to replace the columns children and babies.
+Modifying the acronyms of the meal column values to full meal names for better understanding.
+After tidying up the data, total columns remaining are 28
+
+```{r}
+dplyr::select(dataset, 3:7 )
+
+#tidying the dataset
+tidy_data <- dataset %>%
+  relocate("country",.after = "hotel") %>% #relocating the country column
+  mutate(arrival_date = (str_c("01",arrival_date_month,arrival_date_year, sep = "/")), arrival_date = dmy(arrival_date), .after = lead_time) %>% #variable for arrival date
+  mutate(booking_date = arrival_date-days(lead_time), .after = lead_time) %>% #variable to know the date of booking
+  mutate(childs = children + babies, .after = adults) %>%
+  mutate(meal=recode(meal,
+                     BB="Bed and Breakfast",
+                     FB="Full board",
+                     HB="Half board",
+                     SC="Undefined")) %>%
+  dplyr::select(-c("lead_time","children","babies")) 
+tidy_data <- tidy_data[,-6:-9] #removed columns with arrival date information
+tidy_data
+```
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+Document your work here.
+
+Three additional data frames have been constructed to get the statistics of number of customer_types, number of meals and number of deposit_types when grouping the data based on the month of arrival and hotel type. 
+
+```{r}
+#counting the various customer types
+customers <- tidy_data %>%
+  group_by(hotel, arrival_date, customer_type) %>%
+  count(arrival_date, hotel, customer_type,.drop=F)
+customers
+
+#counting various meal types
+meals <- tidy_data %>%
+  group_by(hotel, arrival_date, meal) %>%
+  count(arrival_date, hotel, meal,.drop=F)
+meals
+
+#counting various deposit types
+deposits <- tidy_data %>%
+  group_by(hotel, arrival_date, deposit_type) %>%
+  count(arrival_date, hotel, deposit_type,.drop=F)
+deposits
+```
+
+## Visualization with Multiple Dimensions
+
+This visualization plots how many different type of customers are booking their stays in the city hotel and resort hotel over the time.
+
+```{r}
+#customer_type plots
+ggplot(customers,aes(arrival_date, n, col=customer_type))+
+  geom_line()+
+  facet_wrap(vars(hotel))+
+  scale_x_date()+
+  theme(axis.text.x=element_text(angle=45))
+```
+This visualization plots how many different type of meals the customers are booking during their stays in the city hotel and resort hotel over the time.
+
+```{r}
+#meals plots
+ggplot(meals,aes(arrival_date, n, col=meal))+
+  geom_line()+
+  facet_wrap(vars(hotel))+
+  scale_x_date()+
+  theme(axis.text.x=element_text(angle=45))
+```
+
+This visualization plots how many different type of customers like to pay for their bookings in the city hotel and resort hotel over the time.
+
+```{r}
+#deposits plots
+ggplot(deposits,aes(arrival_date, n, col=deposit_type))+
+  geom_line()+
+  facet_wrap(vars(hotel))+
+  scale_x_date()+
+  theme(axis.text.x=element_text(angle=45))
+```

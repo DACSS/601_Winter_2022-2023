@@ -1,0 +1,14 @@
+{
+  "hash": "2d3d461f0890830b73e71c86db176897",
+  "result": {
+    "markdown": "---\ntitle: \"Challenge 9 Instructions\"\nauthor: \"Sean Conway\"\ndescription: \"Creating a function\"\ndate: \"1/23/2023\"\nformat:\n  html:\n    toc: true\n    code-copy: true\n    code-tools: true\ncategories:\n  - challenge_9\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(ggplot2)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n```\n:::\n\n\n## Challenge Overview\n\nToday's challenge is simple. Create a function, and use it to perform a data analysis / cleaning / visualization task:\n\nExamples of such functions are:\n1) A function that reads in and cleans a dataset.  \n2) A function that computes summary statistics (e.g., computes the z score for a variable).  \n3) A function that plots a histogram.  \n\nThat's it!\n\n\n\n\n\n\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

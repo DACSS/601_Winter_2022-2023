@@ -1,0 +1,70 @@
+---
+title: "Challenge 4"
+author: "Paarth Tandon"
+description: "More data wrangling: mutate"
+date: "01/04/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+    df-print: kable
+categories:
+  - challenge_4
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+set.seed(42)
+# read in the data using readr
+poul <- read_csv("_data/poultry_tidy.csv")
+# sample a few data points
+poul[sample(nrow(poul), 10), ]
+# products
+table(select(poul, Product))
+```
+
+### Briefly describe the data
+
+This dataset describes the `Price <dbl>` of poultry meat given the `Product <chr>`, `Year <dbl>`, and `Month <dbl>`. We can see that there are 5 types of meat.
+
+## Tidy Data (as needed)
+
+There is no work to be done as the data is already very tidy.
+
+## Identify variables that need to be mutated
+
+The `Product` category can be mutated into a `<dbl>` so that we can work with numbers instead of strings. The `Month` category should also be mutated into `<dbl>`, in case we wanted to do something like a one month ahead comparison (of course we would need to implement some sort of rollover function for the new year).
+
+I will also create a `Date` column based on the `Month` and `Year`, as it will make plotting over time simpler.
+
+
+```{r}
+set.seed(42)
+
+# product ids
+poul_mut <- mutate(poul, Product_ID = recode(Product, "B/S Breast" = 1, "Bone-in Breast" = 2, "Thighs" = 3, "Whole" = 4, "Whole Legs" = 5))
+
+# month number
+poul_mut <- mutate(poul_mut, Month_num = recode(Month, "January" = 1, "February" = 2, "March" = 3, "April" = 4, "May" = 5, "June" = 6, "July" = 7, "August" = 8, "September" = 9, "October" = 10, "November" = 11, "December" = 12))
+
+# date
+poul_mut <- mutate(poul_mut, Date=make_date(Year, Month_num))
+
+poul_mut[sample(nrow(poul_mut), 10), ]
+```
+
+One comment to make is that since `<date>` requires a specific day (not just a month,year combo) it extrapolates that the date is the first of the month. This should be fine for most month-to-month visualizations, but should be noted as technically incorrect.

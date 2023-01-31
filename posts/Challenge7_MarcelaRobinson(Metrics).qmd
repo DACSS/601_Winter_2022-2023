@@ -1,0 +1,124 @@
+---
+title: "Challenge7_MarcelaRobinson"
+author: "Marcela Robinson"
+editor: visual
+Date: January 20, 2023
+description: "Visualizing Multiple Dimensions"
+---
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(stringr)
+library(lubridate)
+library(here)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+```{r}
+report<-here("posts", "_data", "End of the Semester Report Fall 2022.csv")%>%
+read_csv()
+
+print(report, table.classes = 'table-condensed')
+
+```
+
+For this challenge, I've decided to use the data set **report**. This data set contains information regarding appointments, student login information, event, and other relevant metrics for a Career Services Office. The report measures counts and percentages from July 2021 through December 2021; and July 2022 through December 2022.
+
+**Clean the data**
+
+```{r}
+ #Pivot my data longer to reduce the number of columns
+report_dates <- pivot_longer(report,-1, names_to = "Date", values_to = "Values")%>%
+  #Mutate the Date column to convert into a date format
+mutate(Date=mdy(Date))
+
+#Pivot data wider to assign each metric a value
+report_dates<-pivot_wider(report_dates, names_from = Metrics, values_from = Values) 
+
+#Mutate columns with percentages to remove the % symbol and convert to numeric values 
+report_dates<-report_dates%>% 
+  mutate(`% of student with a completed profile`= str_remove(`% of student with a completed profile`,"%"), `% of student with a completed profile` = as.numeric(`% of student with a completed profile`)/100)%>%
+    mutate(`% of Public Profiles to Employers`= str_remove(`% of Public Profiles to Employers`,"%"),`% of Public Profiles to Employers` = as.numeric(`% of Public Profiles to Employers`)/100)%>%
+  mutate(`First Year Student Logins Percentage` = str_remove(`First Year Student Logins Percentage`, "%"), `First Year Student Logins Percentage` = as.numeric(`First Year Student Logins Percentage`)/100)%>%
+  mutate(`Sophomore Student Logins Percentage` = str_remove(`Sophomore Student Logins Percentage`, "%"), `Sophomore Student Logins Percentage` = as.numeric(`Sophomore Student Logins Percentage`)/100)%>%
+  mutate(`Junior Student Logins Percentage` = str_remove(`Junior Student Logins Percentage`, "%"), `Junior Student Logins Percentage` = as.numeric(`Junior Student Logins Percentage`)/100)%>%
+  mutate(`Senior Student Logins Percentage` = str_remove(`Senior Student Logins Percentage`, "%"),`Senior Student Logins Percentage` = as.numeric(`Senior Student Logins Percentage`)/100)
+
+```
+
+**Visualizations**
+
+```{r}
+
+#Select login metrics for visualization
+Logins<-report_dates%>%   
+select(`Total Unique Student Logins`, `Total logins`, Date)%>%
+#Pivot the data to reduce number of columns   
+pivot_longer(`Total Unique Student Logins`:`Total logins`, names_to = "Metrics", values_to = "Values")%>% 
+#Remove "," from Values and convert to numeric values
+mutate(Values = str_remove(Values, ","))%>%   
+mutate(Values = as.numeric(Values))%>% 
+#Create a new column with the year       
+mutate(Date =ymd(Date), month = month(Date), year = year(Date))
+
+#Plot a grapth for Logins
+ggplot(Logins, aes(x = Date, y = Values))+
+  geom_line(aes(colour = Metrics))+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.4, hjust=1), plot.title = element_text(hjust = 0.5), legend.title = element_blank())+
+  labs(x = "Total Logins by Date", y = "Count of Logins", title = "Student Logins")+
+#scale_fill_brewer(labels = c("Total Logins", "Unique Student Logins"))+
+  scale_x_date(NULL, date_labels = "%b %y",breaks="1 months")+
+  scale_y_continuous(limits=c(0, 3240))+
+  facet_wrap(vars(year), scales="free_x")
+ 
+```
+
+For the first graph, I chose the geom_line and facet_wrap functions to compare the number of logins and unique student logins by year.
+
+```{r}
+#Select appointment metrics for visualization
+Appointments<-report_dates%>%
+  select(`First Year Completed Appointments`, `Sophomore Completed Appointments`, `Junior Completed Appointments`, `Senior Completed Appointments`, `Alumni Completed Appointments`, Date)%>% 
+#Pivot the data to reduce number of columns 
+  pivot_longer(`First Year Completed Appointments`:`Alumni Completed Appointments`, names_to = "Metrics", values_to = "Values")%>%
+#Remove "," from Values and convert to numeric values
+   mutate(Values = str_remove(Values, ","))%>%
+   mutate(Values = as.numeric(Values))%>%
+#Create a new column with the year   
+   mutate(Date =ymd(Date), month = month(Date), year = year(Date))
+
+ggplot(Appointments, aes(x= Date, y = Values, fill = Metrics))+
+  geom_col(colour = "black")+  
+  labs(x="Month", y="Count of Completed Appointments", title = "Completed Appointments by Class Year")+ scale_fill_brewer(palette = 12, name = "Class Year", labels = c("Alumni", "First Year", "Junior", "Senior", "Sophomore"))+
+   scale_x_date(NULL, date_labels = "%b %y",breaks="1 months")+
+   theme(axis.text.x = element_text(angle = 90, vjust = 0.4, hjust=1))+
+   facet_wrap(vars(year), scales="free_x")
+```
+
+My next graph represent the number of appointments per class year. I also used the function facet_wrap to compare 2021 and 2022. Based on this graph, I can easily see the number of appointments were much higher in September 2021 for alumni and first year students.
+
+```{r}
+Appointment_type<-report_dates%>%
+  select(`Total Count of Completed Appointments`,`Total Count of No Show Appointments`, `Total Count of Cancellations`, `Total Count of Peer Appointments`, Date)%>%
+  #mutate(Month=as.character(Month), Month=recode(Month, “7”=“July”,”8”=“August”),
+         #mutate(Month=factor(Month,levels=c(“July”,”August”), ordered=T)
+  #Pivot the data to reduce number of columns 
+  pivot_longer(`Total Count of Completed Appointments`:`Total Count of Peer Appointments`, names_to = "Metrics", values_to = "Values")%>%
+#Remove "," from Values and convert to numeric values
+   mutate(Values = str_remove(Values, ","))%>%
+   mutate(Values = as.numeric(Values))
+
+#Plot a graph for appointment types
+ggplot(Appointment_type, aes(x = Date, y = Values, fill = Metrics))+
+         geom_col(colour = "black")+coord_flip()+
+  facet_wrap(vars(Metrics), scales="free_x")+
+   scale_x_date(NULL, date_labels = "%b %y",breaks="1 months")+
+  scale_fill_brewer(palette = 12, name = "Appointment Types", labels = c("Cancelled", "Completed", "No Show", "Peer Appointment"))+
+  theme(strip.text.x = element_text(size=8, face="italic", color="purple"))
+                             
+```
+
+Lastly, for my third graph, I also use the function facet_wrap again to compare by appointment types.

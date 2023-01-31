@@ -1,0 +1,107 @@
+---
+title: "Challenge 2"
+author: "Yoshita Varma Annam"
+description: "Data wrangling: using group() and summarise()"
+date: "12/21/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+-   railroad\*.csv or StateCounty2012.xlsx ⭐
+-   FAOstat\*.csv ⭐⭐⭐
+-   hotel_bookings ⭐⭐⭐⭐
+
+```{r}
+library(readr)
+
+HotelBookings_csv <- read_csv("_data/hotel_bookings.csv")
+```
+
+Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+
+```{r}
+#| label: understanding the data
+HotelBookings_csv
+```
+
+By just viewing the data it looks like the data is about 119,390 hotel entries and detailing for 32 features. The features mainly describe the booking entirely based on their arrival, cancellations and timings. It also accounts the number of babies, children, adults across the world. There is a separate field to verify for the repeated guests.  To understand further we need to perform more operations.
+
+```{r}
+#| label: summary of the data
+summary(HotelBookings_csv)
+```
+```{r}
+#| label: column names the data
+colnames(HotelBookings_csv)
+```
+```{r}
+#| label: finding unique values of the data
+unique(HotelBookings_csv$deposit_type)
+length(unique(HotelBookings_csv$market_segment))
+unique(HotelBookings_csv$market_segment)
+length(unique(HotelBookings_csv$market_segment))
+unique(HotelBookings_csv$distribution_channel)
+length(unique(HotelBookings_csv$distribution_channel))
+unique(HotelBookings_csv$hotel)
+length(unique(HotelBookings_csv$hotel))
+unique(HotelBookings_csv$country)
+length(unique(HotelBookings_csv$country))
+```
+
+After the following analysis it is clear that the data has been collected across the world for different countries approximately 150-180 from 2015 to 2017. The data is very specific to two kinds of hotels- "Resort Hotel", "City Hotel". There are majorly 8 kinds of bookings which include all the professional to personal types like- Corporate, Aviation etc. If we observe the mean from the summaries it can be said that there were approximately 185% adults, children 10%, and 1% baby have come to stay in the hotels. Similarly, on an average people stayed for 2.5 days during the week and 1 day during the weekends. The stats are only based on the summaries. To further colcude more accurately for this data need more analysis.
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+```{r}
+Hotel_Bookings_Market <- HotelBookings_csv %>%
+  group_by(market_segment)
+view(Hotel_Bookings_Market)
+```
+```{r}
+Hotel_Bookings_Market %>%
+summarise(Adults_count = sum(adults,na.rm = TRUE),
+          Children_count = sum(children,na.rm = TRUE),
+          Babies_count = sum(babies, na.rm = TRUE))
+```
+```{r}
+Hotel_Bookings_Market %>%
+summarise(Week_stays_count = mean(stays_in_week_nights, nr.rm = TRUE),
+          Weekend_stays_count = mean(stays_in_weekend_nights, nr.rm = TRUE))
+```
+### Explain and Interpret
+
+I choose market segment to understand what kind of bookings are done. As you can see when the professional kind of bookings done it is majorly for adults and very few children and babies come. Whereas when bookings are made through Online, Offline TA/TO or Direct a lot of children and babies come. This can explain that these kind of bookings can be for personal vacations or stays. Also, based on the type of days each market segment choose the hotels can make arrangements accordingly. For example- for Offline TA/TO booking has highest week and weekend stays. Therefore, hotels can give more importance for the booking coming from this medium as there are high chances of them not cancelling their booking.

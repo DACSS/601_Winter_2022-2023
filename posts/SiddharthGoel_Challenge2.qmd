@@ -1,0 +1,101 @@
+---
+title: "Challenge 2"
+author: "Siddharth Goel"
+description: "Data wrangling: using group() and summarise()"
+date: "01/21/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+  - hotel_bookings.csv
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readr)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Dataset Description
+I am reading the dataset `hotel_bookings` which contains booking information of 2 hotels `Resort Hotel` and `City Hotel`. This data contains information ranging from the booking agency of used by the guest to their arrival and departure time. In this challenge, I will attempt to provide more statistical information relevant to our inpu dataset.   
+
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+```{r}
+bookings<-read_csv("_data/hotel_bookings.csv")
+```
+
+## Describe the data
+
+```{r}
+#| label: summary
+spec(bookings)
+head(bookings)
+
+unique(bookings$hotel)
+unique(bookings$arrival_date_year)
+unique(bookings$distribution_channel)
+unique(bookings$customer_type)
+```
+
+The input data contains 119390 rows and 32 columns. It contains the booking data for 2 hotels over 3 years (2015 - 2017)
+
+## Provide Grouped Summary Statistics
+
+I will be providing Grouped Summary Statistics as well as their interpretation and explanation in this section.
+
+### Number of bookings per hotel per year
+```{r}
+count(bookings, hotel, arrival_date_year)
+```
+Starting with a basic metric here to see which hotel gets more bookings and the trend of bookings with year.
+
+
+### Number of bookings per market segment
+
+```{r}
+count(bookings, hotel, market_segment) %>%
+  arrange(hotel, desc(n))
+```
+This information can give us the count of complementary bookings per hotel, which is a very important number considering that complementary bookings are loss making for the hotels.
+Moreover, we also find out which market segment is contributing the most towards bookings at the hotels (Online bookings seem to account for most bookings in both the hotels)
+
+### Percentage of canceled bookings per year
+
+```{r}
+canceled_df <- count(bookings, hotel, arrival_date_year, is_canceled)
+
+canceled_df %>%
+  group_by(hotel, arrival_date_year) %>%
+  mutate(percent = n / sum(n)) %>%
+  subset(select = -c(n)) %>%
+  filter(is_canceled==1)
+```
+This metric gives us the percentage of bookings canceled every year per hotel. From the metric, we can see that the percentage of canceled bookings has been high in `City Hotel` as compared to `Resort Hotel`
+
+### Percentage of canceled bookings per year
+
+```{r}
+country_df <- count(bookings, hotel, arrival_date_year, arrival_date_month)
+country_df %>% group_by(hotel, arrival_date_year) %>% slice_max(order_by = arrival_date_month, n = 5)
+```
+This metric gives us the months of the year where the bookings are maximum. This helps the hotels prepare for the busy months of the year in terms of pricing, capacity, staffing, etc. 
+

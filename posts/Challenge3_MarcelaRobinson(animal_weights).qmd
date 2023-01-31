@@ -1,0 +1,43 @@
+---
+title: "Challenge3_MarcelaRobinson(animal_weights)"
+author: "Marcela Robinson"
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+```
+
+##Read in "animal_weight.csv"
+```{r}
+animal_weights<-read.csv("_data/animal_weight.csv")
+animal_weights
+```
+
+The csv file "animal_weights" contains the weight of 16 different animals (Cattle - dairy, Cattle - non-dairy, Buffaloes, Swine - market, Swine - breeding, Chicken - Broilers, Chicken - Layers, Ducks, Turkeys, Sheep, Goats, Horses, Asses, Mules, Camels, and Llamas) in 9 different areas of the world (Indian Subcontinent, Eastern Europe, Africa, Oceania,Western Europe,Latin America, Asia, Middle East and Northern America). This data was provided by the Intergovernmental Panel on Climate Change, a United Nations body assessing the science related to climate change. 
+
+This dataset can provide relevant information to determine underfeeding/overfeeding in certain areas of the world and check the measurements with the standards of the industry. It can also be useful in determining market values for the animals. 
+
+The dataset is wide and difficult to read. Therefore, I want to use the function pivot_longer() to make the data longer. However, I first want to check on what is the expected row/cases for the data.
+
+##Determine the expected row/cases
+```{r}
+##Existing rows/cases
+nrow(animal_weights)
+##Existing column/cases
+ncol(animal_weights)
+##Expected row/cases
+nrow(animal_weights)*(ncol(animal_weights)-1)
+
+```
+According to the test, my new dataframe should have 144 rows.
+
+##Pivot_Longer the data
+#Pivot every column except the first
+```{r}
+animal_weights_PL<- pivot_longer(animal_weights, cols = -1, names_to = "Animals", values_to = "Weights")
+animal_weights_PL
+```
+
+I first wanted to pivot the data longer to decrease the number of columns and create a couple of new columns called "Animals" and "Weights". The first column "Animals", contains the names of the animals. The second column, "Weights" contains the weight for each of the animals.  Once I pivot my data, they were 144 observations and 3 variables. 

@@ -1,0 +1,104 @@
+---
+title: "HW 2"
+author: "Paarth Tandon"
+description: "Reading in Data"
+date: "01/04/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+    df-print: kable
+categories:
+  - hw2
+  - emissions
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in Data
+
+I will be using an emissions dataset for my homework. I downloaded it from [this Kaggle page](https://www.kaggle.com/datasets/thedevastator/global-fossil-co2-emissions-by-country-2002-2022).
+
+```{r}
+set.seed(42)
+# read in the data using readr
+emissions <- read_csv("_data/emissions.csv")
+# sample a few data points
+emissions[sample(nrow(emissions), 10), ]
+```
+
+## Clean Data
+
+The poster of this dataset claims that it ranges from 2002-2022, but for some reason the data includes many samples from before this data (ranging all the way to 1750?!?). I am going to assume they claimed 2002 because that is when the data is accurate and complete. Because of this, I will drop any samples before 1750.
+
+```{r}
+set.seed(42)
+
+# remove old samples
+emissions_clean <- filter(emissions, Year >= 2002)
+
+# sample a few data points
+emissions_clean[sample(nrow(emissions_clean), 10), ]
+```
+
+As you can see, there are many missing data points. This is most likely due to lack of reporting in those categories that year. I do not think that there is a blanket way to deal with this. It will be dealt with case by case when doing analysis on the data. One may ask: Why not set it to zero? Well, there are issues with doing that. For example, is it really fair to say a country had zero emissions in Coal just because they did not report it?
+
+Another way to deal with the missing data problem is to sample from the total distribution in that category. For example, if we wanted to fill in the emissions due to Coal for KNA in 2012, we could fit a gaussian distribution onto *all* the data in the Coal category and sample from it. This method could also be problematic when doing analysis as it may misrepresent the data point, but is probably better than setting it to zero. Of course the gaussian distribution could also be replaced with other distributions, or even a simple mean/median.
+
+Another common method is to drop rows containing missing data. This ranges in strictness. For example we could drop all rows that contain *any* missing data, or we could drop rows that contain a certain threshold amount. I don't believe that I will be able to apply this strategy, as it will remove far too much crucial data.
+
+In the end, it is difficult to deal with missing data, and each strategy will have downsides. It may be worth it to compare different methods to see how they affect the analysis. Nothing will be perfect and we can only try our best to replace the data. But hey thats the point of stats `¯\_(ツ)_/¯`, estimation with reasoning.
+
+## Data Narrative
+
+### Carbon Emissions
+
+This dataset presents us with carbon emission reports. You may be wondering: What are carbon emissions? According to the European Union: "Carbon dioxide emissions or CO2 emissions are emissions stemming from the burning of fossil fuels and the manufacture of cement; they include carbon dioxide produced during consumption of solid, liquid, and gas fuels as well as gas flaring."
+
+Our data presents this concept precisely, reporting emissions from coal, oil, gas, cement, flaring, and other sources. The data is presented per year and per country, and ranges from 2002 to 2022. 
+
+### Variables Explained
+
+* `Country <chr>`: Country from where emissions were reported
+* `ISO 3166-1 alpha-3 <chr>`: 3 character code for the country
+* `Year <dbl>`: The year the emissions were reported
+* `Total <dbl>`: Total emissions measured in kt
+* `Coal <dbl>`: Emission from burning coal measured in kt
+* `Oil <dbl>`: Emission from burning oil measured in kt
+* `Gas <dbl>`: Emission from burning gas measured in kt
+* `Cement <dbl>`: Emission from cement manufacturing measured in kt
+* `Flaring <dbl>`: Emission from flaring measured in kt
+    * a flare is a gas combustion device used in places such as petroleum refineries, chemical plants and natural gas processing plants, oil or gas extraction sites having oil wells, gas wells, offshore oil and gas rigs and landfills. (Wikipedia)
+* `Other <dbl>`: Emission from other causes measured in kt
+
+## Potential Research Questions
+
+* In the past year, how do countries compare in emissions?
+    * Breakdown based on emission type and continent
+    * Compare countries using null hypothesis testing
+* Have countries changed over time?
+    * Breakdown based on emission type and continent
+    * Compare countries using null hypothesis testing
+* How do the different emission types compare overall?
+    * Over time and past year
+    * Compare using null hypothesis testing
+* What about reporting?
+    * Which countries fail to report the most and how has it changed?
+    * How about overall reporting?
+    * Have there been significant changes in any specific types?
+* Can we predict future emissions based on this data?
+    * Regression models...
+    * Probably need some sort of basis expansion (polynomial/trigonometric) if I want to use linear regression.
+    * Probably limited by data size for high-parameter model types.
+

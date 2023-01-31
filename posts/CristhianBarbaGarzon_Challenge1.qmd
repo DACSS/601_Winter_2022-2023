@@ -1,0 +1,81 @@
+---
+title: "Challenge 1 "
+author: "Cristhian Barba Garzon"
+description: "Reading in data and creating a post"
+date: "12/26/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, using the correct R package and command.
+
+-   railroad_2012_clean_county.csv ⭐
+-   birds.csv ⭐⭐
+-   FAOstat\*.csv ⭐⭐
+-   wild_bird_data.xlsx ⭐⭐⭐
+-   StateCounty2012.xlsx ⭐⭐⭐⭐
+
+Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
+
+```{r}
+x = read_csv("_data/railroad_2012_clean_county.csv")
+view(x)
+
+summary(x)
+#in the employees column, the summary functions provides the min, max, and mean
+#the max number of employees is about 8,207
+
+x%>%
+  select(state)%>%
+  distinct()
+#tells us how many distinct values are in the states column
+#there are 53 distinct values 
+
+x%>%
+  select(county)%>%
+  distinct()
+#this tells us how many distinct counties were used to record data
+```
+
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+
+## Data Summary 
+
+Using commands in R, I was able to establish that this data was recorded in about 53 states/territoriess in the US. That information was found out by using the select() and distinct() functions, which helped find the unique values in the states column. Additionally, using the same functions, I was able to find out the amount of counties that data was recorded in. The summary() command was used to provide a quick summary of what the data consists of; this function provided information on the maximum, minimum, and mean amount of employees in each state, in each county.
+
+```{r}
+#| label: summary
+ 
+```
+---

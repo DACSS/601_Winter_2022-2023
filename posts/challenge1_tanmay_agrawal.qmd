@@ -1,0 +1,94 @@
+---
+title: "Challenge 1 Submission"
+author: "Tanmay Agrawal"
+description: "Reading in data and creating a post"
+date: "12/20/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, using the correct R package and command.
+
+-   railroad_2012_clean_county.csv ⭐
+-   birds.csv ⭐⭐
+-   FAOstat\*.csv ⭐⭐
+-   wild_bird_data.xlsx ⭐⭐⭐
+-   StateCounty2012.xlsx ⭐⭐⭐⭐
+
+Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
+
+```{r}
+# load the libs
+library(readr)
+library(readxl)
+
+# read the data using standard csv loading function
+data = read_csv("../posts/_data/railroad_2012_clean_county.csv")
+```
+
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+
+# describe the data using str, brief summary of the columns, datatypes, sizes tell us that there are 3 columns with 2930 rows.
+str(data)
+
+# show the first few entries using the head command
+head(data)
+
+# from a cursory analysis, it looks like the dataset describes the number of rail road employees by counties and their corresponding states.
+
+
+# We can show the top-3 counties along with their states with the highest `total_employees` count
+data %>%
+  distinct(state, total_employees) %>%
+  arrange(desc(total_employees)) %>%
+  top_n(3)
+
+# Similarly we could also look at the bottom 3.
+data %>%
+  distinct(state, total_employees) %>%
+  arrange(total_employees) %>%
+  head(3)
+```  
+
+We can also look at the distinct states, turns out they have more than 50 unique entries in the state column. This means that the state column has some additional entries that represent places that can be considered a state for all intents and purposes for railroad employee data. These could be overseas territories.
+
+```{r}
+
+data %>%
+  distinct(state)
+```
+
+Overall the dataset is a simple record of railroad employee by state and counties which could be used to allocate resources to these states based on their needs and requirements.

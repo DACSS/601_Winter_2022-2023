@@ -1,0 +1,89 @@
+---
+title: "Challenge 3"
+author: "Cristhian Barba Garzon"
+description: "Tidy Data: Pivoting"
+date: "01/02/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1.  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2.  identify what needs to be done to tidy the current data
+3.  anticipate the shape of pivoted data
+4.  pivot the data into tidy format using `pivot_longer`
+
+## Reading in data
+"animal_weight.csv" was the chosen data set to read into R. 
+
+```{r}
+weights = read_csv("_data/animal_weight.csv")
+weights
+```
+
+### Briefly describe the data
+
+The data is a tibble; it is a representation of the weights of different animals in different countries. It appears to be a comparison of the animals and their weights across different countries. When the data is loaded in, you can see that there are many different animals--about 17 different types--and there are about 9 different regions that the data was recorded from. 
+
+## Anticipate the End Result
+
+The end result of pivoting this data will be with new columns. There will be two new columns--types of animals and their respective weights. The original column "IPCC Area" will remain unchanged because that is not the focus in cleaning up this data set. The original columns of the animal types will be pivoted to become values under one column, and the respective weights will be pivoted under one column. This will reduce the amount of columns from 17 to 3, which will allow an audience to view and understand a cleaner data set. With this in mind, we can calculate what our expected rows and columns will be after pivoting our data.
+
+
+### Challenge: Describe the final dimensions
+
+Computing and printing the original data set's dimensions and the pivoted data set's expected dimensions.
+
+```{r}
+#dimensions
+weights %>% 
+  dim() 
+#number of rows
+rows = weights %>% 
+  nrow()
+#number of columns
+columns = weights %>% 
+  ncol()
+#number of expected rows 
+rows * (columns-1) #subtracting one column because the first column has the IPCC Areas as observations; it's 144
+
+#number of expected columns 
+1 + 2 #one left over column + two additional columns going to be created in 
+
+#Considering I will be pivoting longer, the new columns will most likely be the left over Countries and the newly created columns--the animal types as the values and the animal weights as the values. 
+```
+
+Currently, the dimensions of the data set "animal_weights.csv" are 9 rows and 17 columns.
+When pivoted longer, the data will most likely have 144 rows and 3 columns 
+
+
+### Challenge: Pivot the Chosen Data
+
+
+```{r}
+pivoted_weights = pivot_longer(weights, "Cattle - dairy":"Llamas", names_to = "Animal Types", values_to = "Weights")
+pivoted_weights
+
+dim(pivoted_weights) 
+```
+
+As expected, the dimensions for the data when pivoted longer are 144 rows by 3 columns. 

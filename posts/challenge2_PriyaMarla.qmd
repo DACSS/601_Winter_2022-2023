@@ -1,0 +1,137 @@
+---
+title: "Challenge 2"
+author: "Priya Marla"
+description: "Data wrangling: using group() and summarise()"
+date: "12/27/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+-   railroad\*.csv or StateCounty2012.xlsx ⭐
+-   FAOstat\*.csv ⭐⭐⭐
+-   hotel_bookings ⭐⭐⭐⭐
+
+```{r}
+#loading the data from posts/_data folder
+railroad <- read_csv("_data/railroad_2012_clean_county.csv")
+#executed dim to know the dimentions i.e number of rows and columns of the dataset
+dim(railroad)
+```
+
+Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+#executed colnames to get the column names in the dataset
+colnames(railroad)
+#executed head to get the first 5 rows of the dataset
+head(railroad)
+#getting the distinct number of states and counties in the dataset
+railroad%>%
+  select(state)%>%
+  n_distinct(.)
+railroad%>%
+  select(county)%>%
+  n_distinct(.)
+#maximum of total employees in the dataset
+max_count <- summarise(railroad, max(total_employees))
+max_count
+#minimum of total employees in the dataset
+min_count <- summarise(railroad, min(total_employees))
+min_count
+#mean of total employees in the dataset
+mean_count <- summarise(railroad, mean(total_employees))
+mean_count
+
+```
+By reading the data from "railroad_2012_clean_county.csv" dataset, I can see that this dataset describes the statistics of number of employees working in the different states and counties for the railroad in the year 2012. There are about 2930 rows and 3 columns where each row represents the total number of employees in each state and county. There a total of 53 states and 1709 counties. The maximum number of employee count recorded is 8207 and minimum count is 1. The average of total_employees in the entire dataset is 87.17816.
+
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+```{r}
+#total employees in all states and counties
+summarise(railroad, sum(total_employees, na.rm = TRUE))
+
+#total employees in county addison
+railroad %>%
+  filter(county == "ADDISON") %>%
+  select_all() %>%
+  summarise(total_employees = sum(total_employees, na.rm = TRUE))
+  
+
+#sum of total employees of each state
+railroad %>%
+  group_by(state) %>%
+  select_all() %>%
+  summarise(sum_total_employees = sum(total_employees)) %>%
+  arrange(desc(sum_total_employees), .by_group=FALSE)
+
+#mean of total employees of each state
+railroad %>%
+  group_by(state) %>%
+  select_all() %>%
+  summarise(mean_total_employees = mean(total_employees)) %>%
+  arrange(desc(mean_total_employees), .by_group=FALSE)
+
+#median of total employees of each state
+railroad %>%
+  group_by(state) %>%
+  select_all() %>%
+  summarise(median_total_employees = median(total_employees))%>%
+  arrange(desc(median_total_employees), .by_group=FALSE)
+
+#min of total employees of each state
+railroad %>%
+  group_by(state) %>%
+  select_all() %>%
+  summarise(min_total_employees = min(total_employees)) %>%
+  arrange(desc(min_total_employees), .by_group=FALSE)
+
+#max of total employees of each state
+railroad %>%
+  group_by(state) %>%
+  select_all() %>%
+  summarise(max_total_employees = max(total_employees)) %>%
+  arrange(desc(max_total_employees), .by_group=FALSE)
+
+```
+
+### Explain and Interpret
+
+Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.
+
+Data Analysis has been performed on the column state. Here each row represents a state and there are 53 unique states in the data set. State "TX" has recorded highest number of employees i.e 19839 and least is "AP" with 1 employee. Even though "TX" recorded highest employee count, the minimum number of employee in one of the counties is 1 and highest is 4235 making the average as 89.76. Highest average of employees are recorded in state "DE" and least in "AP". The minimum employees in most of the states in a particular county is 1 which is way less than state mean. 

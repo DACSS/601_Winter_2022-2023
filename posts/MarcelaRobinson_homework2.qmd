@@ -1,0 +1,63 @@
+---
+title: "Homework 2 Marcela Robinson"
+author: "Marcela Robinson"
+editor: visual
+df-print: paged
+---
+
+```{r}
+library(tidyverse)
+
+```
+
+##Read the file "_data/AB_NYC_2019.csv"
+```{r}
+Listings<-read_csv("_data/AB_NYC_2019.csv")%>%
+           rename(borough = neighbourhood_group, neighborhood = neighbourhood) %>% 
+  select(-c(host_id,host_name, last_review))
+Listings
+```
+##Get the summary of listings 
+```{r}
+summary(Listings)
+```
+The dataset contains listing information for Airbnb properties in New York. It has 48895 observances (listings) and 16 variables. The variables contain the following information: 
+- id: unique value assigned to each of the listings 
+- name: name of the property/brief description of the listing 
+- host_id and host_name: information regarding the hosts
+- neighbourhood_group: this variable is aggregated data, in which the neighbourhood was combined by borough. 
+- neighbourhood: location of the neighbourhood.
+- latitude and longitude: exact location of the listing. This is an individual-level data. It may not be unique as there might be some listings in the same address (such as apartment rentals) or multiple rooms within the same property 
+-room_type: this variable specifies if the rental is for the entire place or a private room. 
+-price: price per night for each of the listings
+-minimun_nights: the minimum number of nights the property has to be rented out  
+-number of reviews: count of reviews given by previous renters 
+- last review: date of the last review given to the property 
+- reviews per month: number of reviews per month  
+- calculated_host_listings_count: number of listings available for that particular host
+- availability_365: how many days of the year is the listing available
+
+I can also determine from the summary that the average price per night is $152.70 and the median $106. However, it appears that are some extreme values that we may have to remove later on for better visualization like $0 and $10000 on the price column.  
+
+My next step is cleaning up the dataset. I first removed the variables that I consider unnecessary: host_id, host_name and last_review. I also renamed the variables neighbourhood_group to borough and neighbourhood to neighborhood since these are more commonly used terms in the US. My next step is to determine if there is there is any missing data from this dataset. 
+
+##Determine is there is any missing data 
+```{r}
+colSums(is.na(Listings))
+
+```
+There are 10052 missing data from the reviews_per_month column. I assume the information is missing because there are no reviews yet for those particular listings. 
+
+Some potential research questions that the dataset listing can help answer:
+-What are the most popular boroughs for rentals? 
+-Where are the most/least expensive listings in NY? 
+-Does the neighborhood and/or borough drive the prices for the listings?
+-Is there a correlation between the number of reviews and the prices of the listing? 
+-Can the name of the property have any influence on the price of the listing? 
+-What type of accommodation is more popular in each borough? 
+-Can I create visualization based on the coordinates? 
+-Is there any correction between the number of minimum nights and the location of the listing? 
+
+
+
+

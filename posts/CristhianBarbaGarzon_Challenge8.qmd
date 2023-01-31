@@ -1,0 +1,83 @@
+---
+title: "Challenge 8"
+author: "Cristhian Barba Garzon"
+description: "Joining Data"
+date: "1/16/2022"
+format:
+  html:
+    df-print: paged
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+  - faostat
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+library(treemap)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Reading and Describing Data
+
+
+```{r}
+
+chicken = read_csv("_data/FAOSTAT_egg_chicken.csv")
+chicken
+
+country = read_csv("_data/FAOSTAT_country_groups.csv")
+country
+```
+## Tidy Data (as needed)
+
+Data is already tidy; all columns have their respective values--none of the columns need to be mutated to further understand the data. We could possibly remove the column "year" or "year code" as they both represent the same values.
+
+## Joining and Describing Data
+
+First, I downsized both data frames in order to choose what specific columns I wanted to look at. This would help minimize time looking through all columns in each data frame. To join the columns, I used a left_join with the country groups as the x-value and the chicken products as the y-value. I wanted to join them using their countries as the equal values, so I had to equate the columns "Country Code" and "Area Code" in the "by" parameter because they represent the same things in both data frames. I also placed the "keep" parameter as TRUE in order to see if all the column data matched once the data frame printed. Afterwards, I removed the similar columns, the area code and the area, to reduce the size of the data frame--both columns were already represented by other similar columns. As you can see in the produce table, the M49 codes from the country groups are now matched with their respective domains, items, and units from the chickens table. If we wanted to add additional columns from the original country groups data, we could simply backtrack to the select portion, and select any additional columns to add before joining the two data sets. 
+
+## Joining Data
+```{r}
+
+chicken_new = chicken %>%
+  select(Domain, `Area Code`, Area, Item, Unit, Value ) #downsides data frame to necessary columns 
+chicken_new
+
+country_new = country %>%
+  select(`Country Group`, `Country Code`, Country, `M49 Code`) #downsized data frame to necessary columns
+country_new
+
+joined = country_new %>%
+  left_join(chicken_new, by = c("Country Code"="Area Code"), keep = TRUE) %>% #joins common values from chicken_new to country_new
+  subset(select = -c(`Area Code`, Area)) #removed area code and area to clean data/duplicate columns used to join
+joined
+
+
+```
+
+
+## Analyzing Joined Data
+Now that the data is joined, I chose to use a treemap to analyze the value column. This treemap represents the mean values in each country--specifically in the country group of Africa. 
+
+```{r}
+
+joined_plot = joined %>%
+  filter(`Country Group` == "Africa") %>%
+  group_by(Country) %>%
+  summarize(mean_v = mean(Value)) %>%
+  treemap(index = "Country" , vSize = "mean_v", type = "index")
+
+joined_plot
+
+
+```
