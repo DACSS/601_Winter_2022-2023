@@ -1,0 +1,53 @@
+---
+title: "Challenge 10 Instructions"
+author: "Sean Conway"
+description: "purrr"
+date: "1/25/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_10
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+The [purrr](https://purrr.tidyverse.org/) package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call. 
+
+For example, we can draw `n` random samples from 10 different distributions using a vector of 10 means.  
+
+```{r}
+n <- 100 # sample size
+m <- seq(1,10) # means 
+samps <- map(m,rnorm,n=n) 
+```
+
+We can then use `map_dbl` to verify that this worked correctly by computing the mean for each sample.  
+
+```{r}
+samps %>%
+  map_dbl(mean)
+```
+
+`purrr` is tricky to learn (but beyond useful once you get a handle on it). Therefore, it's imperative that you complete the `purr` and `map` readings before attempting this challenge.  
+
+## The challenge  
+
+Use `purrr` with a function to perform *some* data science task. What this task is is up to you. It could involve computing summary statistics, reading in multiple datasets, running a random process multiple times, or anything else you might need to do in your work as a data analyst. You might consider using `purrr` with a function you wrote for challenge 9.  
+
+
+
+
