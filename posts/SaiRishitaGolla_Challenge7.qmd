@@ -30,7 +30,6 @@ library(lubridate)
 
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
-
 ## Read in data
 
 Read in one (or more) of the following datasets, using the correct R package and command.
