@@ -12,7 +12,7 @@
  categories:
    - challenge_5
    - cereal
- ---
+---
 
 ```{r}
  #| label: setup
