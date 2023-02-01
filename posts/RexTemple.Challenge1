@@ -1,0 +1,39 @@
+---
+title: "Challenge 1"
+author: "Rex Temple"
+date: "2022-12-29"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Reading in the Data
+
+I used *setwd()* to set my working directory to the location of the csv file I intended to read. I used *read.csv()* to store my own dataset within my BostonAirbnb variable. This dataset holds values for 6 variables: ID, Average.Rating, Latitude, and Longitude are doubles while Person.Capacity is an integer, and Price is a character.
+
+```{r}
+setwd('/Users/rexoh/Desktop/601_Winter_2022-2023/posts/_data')
+BostonAirbnb <- read.csv("boston_listings.csv")
+BostonAirbnb
+```
+
+## Interpreting the Data
+
+Using *dim()*, I can see that there are 3929 rows, which would indicate that there are 3929 records with unique listing information.
+
+```{r}
+dim(BostonAirbnb)
+```
+
+## Omitting Blank Values
+
+I'm interested in complete cases, so I wanted to omit listings with incomplete information. With *na.omit()* I was able to omit blank records.
+
+```{r}
+BostonAirbnb <- na.omit(BostonAirbnb)
+BostonAirbnb
+```

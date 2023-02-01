@@ -1,0 +1,33 @@
+---
+title: "Challenge 10"
+author: "Daniel Manning"
+description: "Purrr"
+date: "1/30/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_10
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Read in multiple csv files with specified string in name
+
+```{r}
+snl_datasets <-
+  list.files(path = "~/Desktop/601_Winter_2022-2023/posts/_data", pattern = "snl") %>% 
+  map_df(~read_csv(.))
+```
+

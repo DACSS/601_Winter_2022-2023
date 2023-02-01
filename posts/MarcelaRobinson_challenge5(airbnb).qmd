@@ -1,0 +1,85 @@
+---
+title: "Challenge 5 Marcela Robinson"
+author: "Marcela Robinson"
+editor: visual
+df-print: paged
+---
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+
+```
+
+##Read the file "\_data/AB_NYC_2019.csv"
+
+```{r}
+Listings<-read_csv("_data/AB_NYC_2019.csv")%>%
+           rename(borough = neighbourhood_group, neighborhood = neighbourhood) %>% 
+  select(-c(contains("host"),last_review, reviews_per_month))
+head(Listings)
+
+```
+
+The dataset contains listing information for Airbnb properties in New York. It has 48895 observances (listings) and 16 variables. The variables include the location of the property (coordinates, neighborhood, and borough), room type, price, minimum number of nights, reviews (total reviews and reviews per month), host information (id, name, listing counts per host), and availability.
+
+Tidy Data
+
+In order to tidy the data, I first removed the variables that I consider unnecessary: host_id, host_name, last_review, and reviews per month. I also renamed the variables neighbourhood_group to borough and neighbourhood to neighborhood since these are more commonly used terms in the US. My next step is to determine if there is any missing data from this dataset.
+
+##Determine is there is any missing data
+
+```{r}
+colSums(is.na(Listings))
+
+```
+
+There are 16 names missing from the dataset.
+
+##Summary of the dataset
+
+```{r}
+summary(Listings)
+```
+
+After using the function summary(), I can determine that my dataset has extreme values that would make my graphs difficult to see. Therefore, I'll filter the price between \$50 and \$500 per night.
+
+##Filtering price per night and compare prices by borough
+
+```{r}
+Listings %>%
+  filter(price >= 50 & price <= 500)%>%
+  ggplot(aes(borough, price))+geom_violin()+
+  theme_classic()+
+  stat_summary(fun = "mean", geom = "point", color = "black")+
+  labs(title = "Airbnb Price Comparison by Borough", y = "Price per night", x = "NY Borough")
+ 
+
+  
+  
+```
+
+By creating a violin plot I can determine the distribution of the prices for listings by borough. For this graph, I have set a point to represent the mean. Looking at the graph, I can observe that Manhattan has the highest prices for listings, followed by Brooklyn.
+
+##Create a graph using to compare prices by room type
+```{r}
+Listings%>%
+  ggplot(aes(room_type, price)) + geom_point()+
+  theme_bw()+
+  labs(title = "Airbnb Price Comparison by Room Type", y = "Price per night", x = "Room Type")+
+  facet_wrap(vars(room_type))
+
+```
+
+I also wanted to see and compare prices by room type. By using the function facet_wrap(), I was able to divide a geom_point by room type: entire home, private room, and shared room. Although there are some outliers, we can determine that the prices for the entire home are higher than the other type of rooms. 
+
+#Make proportional crosstabs for room_type and borough
+
+```{r}
+prop.table(xtabs(~ room_type + borough, Listings))*100
+
+```
+
+By creating a proportional crosstabs for room_type and borough, I can determine that Manhattan has the most listings for entire home/apt with 27%, followed by Brooklyn with 19.5%. For private room, Brooklyn has the most listings with 21%. I can also determine from this crosstabs that there are is a small number of shared rooms compared to the other types of rooms and most of the shared rooms are in Manhattan. We can also notice that Staten Island has the least number of listings.
+
+

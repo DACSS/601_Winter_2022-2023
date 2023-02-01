@@ -1,0 +1,80 @@
+---
+title: "Homework 2"
+author: "Siddharth Goel"
+desription: "Homework 2: Reading in Data"
+date: "01/16/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+    df-print: paged
+categories:
+  - hw2
+  - hotel_bookings.csv
+---
+
+### Importing the libraries
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+```
+
+### Reading the dataset
+
+
+```{r}
+data = read_csv("_data/hotel_bookings.csv")
+```
+## Taking an initial look into the data
+```{r}
+# looking at the schema
+spec(data)
+# looking at the data values
+head(data)
+```
+
+We got the descriptors of each column by using the `spec` method.
+The complete schema of the data was shown in this command. The noticeable points were the varying data types of the columns.  
+Columns like `hotel` and `meal` have the data type `col_character` which indicates a text data type. `lead_time` is of the type `col_double` which is used for numerical values and the column `reservation_status_date` is of the type `col_date` which is used for date type values.  
+We can also see that the dataset has `119390` total rows and `32` columns.
+
+
+## Cleaning the data
+
+By looking at the top values in the dataset, character type columns with values such as `NULL` can be noticed. Also, `0` valued numerical columns can be seen in the dataset as well. It will be great to find out the percentage of these values in the columns and remove these columns if the percentages are high. 
+
+```{r}
+# get zero percentage in data
+zero_percent <- (colSums(data == 0) / nrow(data)) * 100
+# get null percent in data
+null_percent <- sapply(data, function(x) sum(str_detect(x, "NULL")) / length(x))
+
+aggregated_df <- data.frame(null_percent = null_percent, zero_percent = zero_percent)
+
+arrange(aggregated_df, desc(null_percent), desc(zero_percent))
+```
+
+As we can see from the stats above, it is safe to remove columns `company` and `babies` due to the high percentage of insignificant `"NULL"` and `0` values. 
+
+```{r}
+filtered_data = select(data, -company, -babies)
+spec(filtered_data)
+```
+
+As we can see now, the 2 columns have been removed from the data and the data is ready for interpretations
+.
+## Research opportunities within the data
+
+Following are the columns and the corresponding research questions in the data:
+
+* `children` and `adults`: These columns will help determine the ratio between adults and children. If the ratio points out that more children stay in the hotel, then those hotels can be made more kids friendly to increase ratings
+* `stays_in_week_nights` and `stays_in_weekend_nights`: These columns can be used to calculate the footfall of customers during weekdays and weekends and together with the `customer_type` column, we can find out the demographic which tye of customers come in during what time of the week. This can be used to determine pricing
+* `meal`: Meal column can be used to anticipate the type of meals the guests prefer
+* `is_repeated_guest`: This column can be used to provide special offers to repeat guests
+* `previous_cancellations` and `previous_bookings_not_canceled`: These columns can be used to anticipate which type of guests are more likely to cancel their booking_changes
+* `agent`: This column can be used to calculate agent performance for bonus and commission related purposes
+

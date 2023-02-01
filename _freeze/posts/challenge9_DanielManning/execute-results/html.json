@@ -1,0 +1,16 @@
+{
+  "hash": "e3b0c0d2f0b6c8ca9ac850204fc379d0",
+  "result": {
+    "markdown": "---\ntitle: \"Challenge 9\"\nauthor: \"Daniel Manning\"\ndescription: \"Creating a function\"\ndate: \"1/28/2023\"\nformat:\n  html:\n    toc: true\n    code-fold: true\n    code-copy: true\n    code-tools: true\ncategories:\n  - challenge_9\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(ggplot2)\nlibrary(here)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n```\n:::\n\n\n\n## Create a function\n\n\n::: {.cell}\n\n```{.r .cell-code}\nplot_hist <-function(d, x){\n  ggplot(d, aes(x=x)) + geom_histogram() +\n  geom_histogram(binwidth=1000)\n}\n```\n:::\n\n\n## Load Dataset \n\n\n::: {.cell}\n\n```{.r .cell-code}\negg <- here(\"posts\",\"_data\",\"FAOSTAT_egg_chicken.csv\")%>%\n  read_csv()\negg\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 38,170 × 14\n   `Domain Code` Domain     `Area Code` Area  `Element Code` Element `Item Code`\n   <chr>         <chr>            <dbl> <chr>          <dbl> <chr>         <dbl>\n 1 QL            Livestock…           2 Afgh…           5313 Laying         1062\n 2 QL            Livestock…           2 Afgh…           5410 Yield          1062\n 3 QL            Livestock…           2 Afgh…           5510 Produc…        1062\n 4 QL            Livestock…           2 Afgh…           5313 Laying         1062\n 5 QL            Livestock…           2 Afgh…           5410 Yield          1062\n 6 QL            Livestock…           2 Afgh…           5510 Produc…        1062\n 7 QL            Livestock…           2 Afgh…           5313 Laying         1062\n 8 QL            Livestock…           2 Afgh…           5410 Yield          1062\n 9 QL            Livestock…           2 Afgh…           5510 Produc…        1062\n10 QL            Livestock…           2 Afgh…           5313 Laying         1062\n# … with 38,160 more rows, and 7 more variables: Item <chr>, `Year Code` <dbl>,\n#   Year <dbl>, Unit <chr>, Value <dbl>, Flag <chr>, `Flag Description` <chr>\n```\n:::\n:::\n\n## Test function\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nplot_hist(egg, egg$Value)\n```\n\n::: {.cell-output-display}\n![](challenge9_DanielManning_files/figure-html/unnamed-chunk-4-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "challenge9_DanielManning_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

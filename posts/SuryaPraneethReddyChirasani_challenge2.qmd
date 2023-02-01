@@ -1,0 +1,67 @@
+---
+title: "Challenge 2: Data Wrangling"
+author: "Surya Praneeth Reddy Chirasani"
+description: "Data wrangling: summary statistics of dataset"
+date: "01/06/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge2
+  - dataset
+  - Data Wrangling
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+library("readxl")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+railroad_employment <-read_excel("_data/StateCounty2012.xls",
+                     skip = 4,
+                     col_names= c("state", "2nd_column",  "county",
+                                  "4th_column", "employees"))%>%
+  select(!contains("column"))%>%
+  filter(!str_detect(state, "Total"))
+head(railroad_employment)
+```
+The dataset has some intial rows that are not relevant for analysis to form a dataframe which I have skipped and remaining rows can be explained in 3 columns with *State*, *county* and *employees*. Each row has information on total number of employees working in a particular state and a particular county in that county. I have deleted rows which has information of total number of employees in a given state, which is redundant and can be calculated by summary statistics analysis
+
+```{r}
+railroad_employment<-head(railroad_employment, -2)
+tail(railroad_employment)
+```
+
+```{r}
+railroad_employment <- mutate(railroad_employment, county = ifelse(state=="CANADA", "CANADA", county))
+tail(railroad_employment)
+```
+
+
+```{r}
+railroad_employment %>% select(state, county) %>% summarise_all(list(~n_distinct(.)))
+```
+There are total of 54 states of which 50 are US states, 1 federal district(Washington DC), 2 military designation places and last one is Canada.
+Total counties are 1710 including those of Canada and minitary designation places
+
+```{r}
+sum(railroad_employment[, "employees"])
+```
+Total number of railway employees employed are 256094 which is about 0.08% of the total population of US(2011 Census Total population of 310 million)
+
+```{r}
+railroad_employment %>%
+  group_by(state) %>%
+  summarise(total_employees = sum(employees),
+            num_counties = n())%>%
+  arrange(desc(total_employees))
+```
+The top 5 states with highest employees are states which has geographically large area and large number of counties which makes sense since you need more employees to canter to the area and the population

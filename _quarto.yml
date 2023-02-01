@@ -7,6 +7,19 @@ website:
   twitter-card:
     creator: "@UMassDACSS"
     site: "@UMassDACSS"
+    
+  sidebar:  
+     search: true
+     collapse-level: 2
+     contents:
+       - section: "Course information"
+         contents:
+           - href: course_schedule.qmd
+             text: Course Schedule
+       - section: "Weekly materials"
+         contents:
+           - href: index.qmd
+             text: Posts
   favicon: images/DACSS_Round_Network.png
   navbar:
     background: "#881c1c"

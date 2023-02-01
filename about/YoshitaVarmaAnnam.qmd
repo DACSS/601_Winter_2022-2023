@@ -1,0 +1,31 @@
+---
+title: "Yoshita Varma Annam"
+image: images/YoshitaVarmaAnnam.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/YoshitaVarmaAnnam.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/yoshivarma
+---
+
+## Education/Work Background
+I am a computer science student with a focus on machine learning and natural language processing. I have a bachelor's degree in computer science and am currently pursuing a master's degree at the University of Massachusetts Amherst. I have work experience as an associate success engineer at Salesforce, where I developed Apex APIs and provided technical support. I have also completed an internship at MathWorks, where I developed Matlab components. I have completed projects including a word sense disambiguation project using Wikipedia data, a sentiment analysis project using Twitter data, and a predictive model for life expectancy across the world. I have a wide range of technical skills, including experience with various programming languages, libraries, and databases.
+
+## R experience
+Beginner
+
+## Research interests
+In my independent study, I researched about extracting noun phrases based on the relevance to the content. As the explored data was in the form of audios this interested me to further research in Dlalogue and information flow. Within this theme, the main focus is on areas of inference, reasoning and argumentation in dialogue, question generation in dialogue and dialogue generation for information presentation. This might give better data from the incomplete audios on extraction.
+
+## Hometown
+Hyderabad, India
+
+## Hobbies
+I like to travel and learn more about different cultures and their histories. I like to go to beaches and do hiking. Exploring new cuisines has been one of my new interests. I like dance, P.S. not a trained dancer.
+
+## Fun fact
+I love to watch tech memes, it ease up my mind by seeing those.

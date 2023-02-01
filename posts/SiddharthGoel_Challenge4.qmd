@@ -1,0 +1,100 @@
+---
+title: "Challenge 4"
+author: "Siddharth Goel"
+description: "More data wrangling: mutate"
+date: "01/28/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+  - hotel_bookings.csv
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+data = read_csv("_data/hotel_bookings.csv")
+```
+
+### Briefly describe the data
+```{r}
+# looking at the schema
+spec(data)
+# looking at the data values
+head(data)
+unique(data$hotel)
+unique(data$arrival_date_year)
+```
+
+We got the descriptors of each column by using the `spec` method and the top 10 rows in the data using the `head` method. As we can see, this is the hotel booking data for 2 hotels over 3 years.
+We can also see that the dataset has `119390` total rows and `32` columns.
+
+## Tidy Data (as needed)
+
+Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
+
+The data is not tidy as we can see a lot of `NULL` and `0` values in the data in the output of the `head` command. Now, we will attempt to find the percentage of these values in the data and remove the columns if the percentage is significant 
+
+```{r}
+# get zero percentage in data
+zero_percent <- (colSums(data == 0) / nrow(data)) * 100
+# get null percent in data
+null_percent <- sapply(data, function(x) sum(str_detect(x, "NULL")) / length(x))
+
+aggregated_df <- data.frame(null_percent = null_percent, zero_percent = zero_percent)
+
+arrange(aggregated_df, desc(null_percent), desc(zero_percent))
+```
+
+
+As we can see from the stats above, it is safe to remove columns `company` and `babies` due to the high percentage of insignificant `"NULL"` and `0` values. 
+
+```{r}
+filtered_data = select(data, -company, -babies)
+head(filtered_data)
+```
+## Identify variables that need to be mutated
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, are all time variables correctly coded as dates? Are all string variables reduced and cleaned to sensible categories? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+Even after we removed columns from the data, there still remain some columns which have NULL and 0 values which can be hard to intercept. NULL values in the `agent` column and binary values in the `is_canceled` and `is_repeated_guest` columns can be confusing to interpret
+
+Mutations:
+- NULL values in `agent` to `NO AGENT`
+- 0 values in `is_canceled` to `NO`
+- 1 values in `is_canceled` to `YES`
+- 0 values in `is_repeated_guest` to `NO`
+- 1 values in `is_repeated_guest` to `YES`
+
+```{r}
+mutated_data <- filtered_data %>% mutate(agent = str_replace(agent, "NULL", "NO AGENT"))
+mutated_data$is_canceled <- as.character(mutated_data$is_canceled)
+mutated_data <- mutated_data %>% mutate(is_canceled = str_replace(is_canceled, "0", "NO"))
+mutated_data <- mutated_data %>% mutate(is_canceled = str_replace(is_canceled, "1", "YES"))
+mutated_data <- mutated_data %>% mutate(is_repeated_guest = str_replace(is_repeated_guest, "0", "NO"))
+mutated_data <- mutated_data %>% mutate(is_repeated_guest = str_replace(is_repeated_guest, "1", "YES"))
+
+unique(mutated_data$is_canceled)
+unique(mutated_data$is_repeated_guest)
+yes_percent <- sapply(mutated_data, function(x) sum(str_detect(x, "YES")) / length(x))
+aggregated_df_mutated <- data.frame(yes_percent = yes_percent)
+arrange(aggregated_df_mutated, desc(yes_percent))
+```
+
+As we can see above, the final dataframe `mutated_data` contains data in a very clean and understandable format as compared to the original data. Moreover, as a sanity check, it has been verified that the percentages of `YES` and `NO` in the final dataframe match the percentages of `0` and `1` in the original dataframe for columns `is_canceled` and `is_repeated_guest` 
