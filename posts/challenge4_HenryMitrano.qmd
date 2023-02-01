@@ -1,0 +1,68 @@
+---
+title: "Challenge 4"
+author: "Henry Mitrano"
+description: "More data wrangling: mutate"
+date: "1/20/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  identify variables that need to be mutated
+4)  mutate variables and sanity check all mutations
+
+## Read in data
+
+```{r}
+hotel_bookings = read_csv("_data/hotel_bookings.csv")
+head(hotel_bookings)
+```
+
+### Briefly describe the data
+It appears this is some kind of data regarding hotels in different countries, and statistics about their bookings. These statistics include number of people in a reservation, whether they're kids or adults, how their room was booked, whether they've been there before, etc. The data isn't organized horribly, but some stuff definitely stands out as needing tidying.
+
+
+```{r}
+tidy_bookings <- 
+  hotel_bookings %>%
+      mutate(arrival=str_c(arrival_date_day_of_month, arrival_date_month,arrival_date_year, sep="/"), arrival=dmy(arrival)) 
+
+tidy_bookings = select(tidy_bookings, select = -starts_with("arrival_date") )
+
+
+
+```
+
+Any additional comments?
+
+## Identify variables that need to be mutated
+
+For starters, one of the more confusing things I found when looking through the data was that the arrival dates of the visits are kept in 3 separate columns (arrival date year, arrival date month, and arrival date day), while the checkout or "reservation status" date is stored in 1 column, normally. I'll want to replicate that mm-dd-yyyy format in one column for arrivals. We can doing that by importing an R library at the top of the file, "lubridate", that includes a bunch of date formatting tools.
+
+```{r}
+tidy_bookings<-transform(tidy_bookings,valued_customer=ifelse(is_repeated_guest >0 && previous_cancellations == 0, "yes", "no"))
+head(tidy_bookings)
+```
+Additionally, I've added a column at the end that distingushes certain booking as important guests, based on historical data. If a customer has been booked at the hotel before and is a repeat visitor, and has never canceled a booking, they are listed as "yes" under the "valued_customer" column at the end of the data. 
