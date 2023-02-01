@@ -10,12 +10,7 @@ format:
     code-tools: true
 categories:
   - challenge_6
-  - hotel_bookings
-  - air_bnb
-  - fed_rate
   - debt
-  - usa_hh
-  - abc_poll
 ---
 
 ```{r}
