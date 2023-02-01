@@ -1,0 +1,79 @@
+---
+title: "Challenge 8"
+author: "Rishita Golla"
+description: "Joining Data"
+date: "2/1/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+  - railroads
+  - snl
+  - faostat
+  - debt
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+actors <- read_csv('_data/snl_actors.csv')
+casts <- read_csv('_data/snl_casts.csv')
+seasons <- read_csv('_data/snl_seasons.csv')
+
+view(actors)
+view(casts)
+view(seasons)
+```
+
+### Briefly describe the data
+
+This data set contains three tables - actors, casts, and seasons of Saturday Night Live show. The actors table contains actors name, type (cast/guest), gender. The casts table contains name, season id, and other information. The seasons table contains season Id, year, and number of episodes. There are a total of 46 seasons from 1975 to 2020.
+
+## Join Data
+
+We can first join two tables - casts and seasons by sid. The new table contains information about sid, year, no.of episodes (per season), and number of episodes for each cast member in a season. We can then plot a graph for season number against number of episodes for cast member.
+
+```{r}
+ data <- left_join(seasons, casts, by = "sid" )
+ data
+```
+
+```{r}
+ data %>%
+ ggplot(aes(x = sid, y = n_episodes.y)) +
+ geom_bar(stat = "identity") 
+```
+For another plot, we can then merge actors and casts by aid. This table can later be joined with seasons table by sid. Below, we plot another graph to depict the number of male and female in each season of SNL. 
+
+```{r}
+actors_casts <- merge(actors, casts, by = 'aid')
+```
+
+```{r}
+actors_casts_gender <- actors_casts %>%
+merge(seasons, by = 'sid') %>%
+group_by(sid, year, gender) %>%
+count(sid, gender)
+```
+
+```{r}
+actors_casts_gender %>%
+ggplot(aes(sid, n, col = gender)) +
+geom_line() +
+ylab("count")
+```
