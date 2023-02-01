@@ -11,6 +11,7 @@
      code-tools: true
  categories:
    - challenge_4
+---
 
 ```{r}
  #| label: setup
