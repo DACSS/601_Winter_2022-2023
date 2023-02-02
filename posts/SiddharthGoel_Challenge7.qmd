@@ -1,0 +1,125 @@
+---
+title: "Challenge 7"
+author: "Siddharth Goel"
+description: "Visualizing Multiple Dimensions"
+date: "01/31/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_7
+  - hotel_bookings
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  Recreate at least two graphs from previous exercises, but introduce at least one additional dimension that you omitted before using ggplot functionality (color, shape, line, facet, etc) The goal is not to create unneeded [chart ink (Tufte)](https://www.edwardtufte.com/tufte/), but to concisely capture variation in additional dimensions that were collapsed in your earlier 2 or 3 dimensional graphs.
+   - Explain why you choose the specific graph type
+5) If you haven't tried in previous weeks, work this week to make your graphs "publication" ready with titles, captions, and pretty axis labels and other viewer-friendly features
+
+[R Graph Gallery](https://r-graph-gallery.com/) is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code. And anyone not familiar with Edward Tufte should check out his [fantastic books](https://www.edwardtufte.com/tufte/books_vdqi) and [courses on data visualizaton.](https://www.edwardtufte.com/tufte/courses)
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+I read in the hotel_booking dataset, the same one which I read in challenge 4, just to be able to use the results here.
+```{r}
+data = read_csv("_data/hotel_bookings.csv")
+spec(data)
+head(data)
+```
+
+### Briefly describe the data
+As we can see, this is the hotel booking data for 2 hotels over 3 years.
+We can also see that the dataset has `119390` total rows and `32` columns.
+
+## Tidy Data (as needed)
+
+I will use the results from challenge 4 in this challenge and remove columns `babies` and `company` as they contain a lot of unwanted NULL/0 values. Moreover, the column `arrival_date_week_number` is also removed as it does not provide any special information.
+```{r}
+filtered_data = select(data, -company, -babies, -arrival_date_week_number)
+head(filtered_data)
+```
+
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+I performed the following mutations on the data following the results of Challenge 4
+
+Mutations:
+- NULL values in `agent` to `NO AGENT`
+- 0 values in `is_canceled` to `NO`
+- 1 values in `is_canceled` to `YES`
+- 0 values in `is_repeated_guest` to `NO`
+- 1 values in `is_repeated_guest` to `YES`
+
+```{r}
+mutated_data <- filtered_data %>% mutate(agent = str_replace(agent, "NULL", "NO AGENT"))
+mutated_data$is_canceled <- as.character(mutated_data$is_canceled)
+mutated_data <- mutated_data %>% mutate(is_canceled = str_replace(is_canceled, "0", "NO"))
+mutated_data <- mutated_data %>% mutate(is_canceled = str_replace(is_canceled, "1", "YES"))
+mutated_data <- mutated_data %>% mutate(is_repeated_guest = str_replace(is_repeated_guest, "0", "NO"))
+mutated_data <- mutated_data %>% mutate(is_repeated_guest = str_replace(is_repeated_guest, "1", "YES"))
+head(mutated_data)
+```
+
+## Visualization with Multiple Dimensions
+
+First, I plot the graph of the number of arrivals in each hotel every month
+
+```{r}
+monthly_arrivals <- mutated_data %>% group_by(hotel, arrival_date_year, arrival_date_month) %>% count(hotel, arrival_date_year, arrival_date_month)
+
+head(monthly_arrivals)
+```
+
+```{r}
+monthly_arrival_plot <- ggplot(monthly_arrivals, aes(arrival_date_month, n, col=arrival_date_month)) +
+geom_line()+
+facet_wrap(vars(hotel))+
+scale_x_discrete(breaks = c('April', 'February', 'June', 'November'))+
+labs(y= "Total Arrivals", x = "Month")
+
+monthly_arrival_plot
+```
+
+
+Now, we will attempt to achieve the same graph, but for different distribution channels.
+
+```{r}
+distribution_channel_arrivals <- mutated_data %>% group_by(hotel, arrival_date_year, arrival_date_month, distribution_channel) %>% count(hotel, arrival_date_year, arrival_date_month, distribution_channel)
+
+head(distribution_channel_arrivals)
+```
+
+```{r}
+dc_arrival_plot <- ggplot(distribution_channel_arrivals, aes(arrival_date_month, n, col=distribution_channel)) +
+geom_line()+
+facet_wrap(vars(hotel))+
+scale_x_discrete(breaks = c('April', 'February', 'June', 'November'))+
+labs(y= "Total Arrivals", x = "Month")
+
+dc_arrival_plot
+```
+As we can see from the graph above, `TA.TO` channel contributes to the most bookings.
+
