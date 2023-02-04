@@ -1,0 +1,54 @@
+---
+title: "Challenge 10"
+author: "Rishita Golla"
+description: "purrr"
+date: "2/3/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_10
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library("readxl")
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+I'm reusing the data set from Challenge 9 - debt_in_trillions.
+
+```{r}
+data <-read_excel("_data/debt_in_trillions.xlsx")
+data
+```
+I will be using the map function to compute z-score for all the columns in the given data. Below, is a defined z-score function.
+
+```{r}
+zscore <- function(val) {
+  result <- (val - mean(val)) / sd(val)
+  return(result)
+}
+```
+
+```{r}
+result <- map(
+  list(data$Mortgage, 
+       data$`HE Revolving`, 
+       data$`Auto Loan`, 
+       data$`Credit Card`, 
+       data$`Student Loan`,  
+       data$Other, 
+       data$Total), 
+  zscore)
+result
+```
+
