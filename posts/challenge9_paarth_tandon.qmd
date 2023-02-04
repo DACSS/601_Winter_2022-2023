@@ -1,0 +1,65 @@
+---
+title: "Challenge 9"
+author: "Paarth Tandon"
+description: "Creating a function"
+date: "1/25/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_9
+  - poultry
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+set.seed(42)
+poul <- read_csv('_data/poultry_tidy.csv')
+head(poul)
+```
+
+## Create Functions
+
+Create date from year and month:
+
+```{r}
+add_date <- function(data) {
+    data <- mutate(data, Month_num = recode(Month, "January" = 1, "February" = 2, "March" = 3, "April" = 4, "May" = 5, "June" = 6, "July" = 7, "August" = 8, "September" = 9, "October" = 10, "November" = 11, "December" = 12))
+    data <- mutate(data, Date=make_date(Year, Month_num))
+    return(data)
+}
+
+add_date(poul)
+```
+
+Plot a trend line given a product name:
+
+```{r}
+plot_trend <- function(data, product) {
+    data <- filter(data, Product == product)
+    ggplot(data, aes(x = Date, y = Price_Dollar)) +
+        geom_line() +
+        ggtitle(paste('Price of Poultry (', product, ')'))
+}
+
+plot_trend(add_date(poul), 'Thighs')
+```
+
+```{r}
+plot_trend(add_date(poul), 'Whole')
+```
