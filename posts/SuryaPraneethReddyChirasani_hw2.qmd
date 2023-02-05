@@ -1,0 +1,156 @@
+---
+title: "Homework2"
+author: "Surya Praneeth Reddy Chirasani"
+description: ""
+date: "02/01/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - hw2
+  - road_accidents
+---
+
+```{r}
+#| label: setup
+#| warning: false
+library(tidyverse)
+library(readr)
+library(lubridate)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading Dataset
+
+For this homework, I am going to use US Road Accidents dataset from Kaggle(https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents)
+
+```{r}
+accidents_data <-read_csv("_data/US_Accidents_Dec21_updated.csv", show_col_types = FALSE)
+head(accidents_data)
+```
+```{r}
+spec(accidents_data)
+```
+
+
+## Data Cleaning
+
+Starting the data cleaning by renaming some of the columns for easy data handling down the line
+```{r}
+accidents_data <-  accidents_data %>%
+  rename("Distance" = `Distance(mi)`, "Temperature" = `Temperature(F)`, "Humidity" = `Humidity(%)`, 
+         "Pressure" = `Pressure(in)`, "Visibility" = `Visibility(mi)`, "Wind_Speed" = `Wind_Speed(mph)`, "Wind_Chill" = `Wind_Chill(F)`, "Precipitation" = `Precipitation(in)`)
+```
+
+
+
+```{r}
+percentage_of_missing_data <- accidents_data %>%
+    summarise(across(everything(), ~ (sum(is.na(.))/nrow(accidents_data)) *100  )) %>% 
+    pivot_longer(cols = everything(), names_to = "columns", values_to = "missing_data")  %>%
+    arrange(desc(missing_data))%>%
+    filter(missing_data > 0)
+percentage_of_missing_data
+```
+Looking at the amount of missing data, one column "Number" has lot of missing data. So we can safely drop this column. There are few more columns with not so considerable missing data, at the same time it is not very high such as "Precipitation" and "Wind_chill" which can be dropped later based on the data analysis that is done as a part of the research. Also there are lot of other columns that can be dropped based on the data analysis I will be doing. For now I will be dropping "Number" Column. We can also safely drop "Description" Column
+```{r}
+accidents_data_clean <- accidents_data %>% select(-Number, -Description)
+accidents_data_clean <- accidents_data_clean %>%
+  mutate(Accident_Duration = as.numeric(End_Time - Start_Time)) %>%
+  filter(!(Accident_Duration < 0)) %>%
+  separate(Start_Time, into = c("Date", "Time"), sep = " ")
+accidents_data_clean <- accidents_data_clean %>% select(-End_Time)
+```
+
+For the analysis for road accidents, major variable to consider is "Weather_condition" and this has "NA" values i.e. missing data which means the weather condition information is missing.
+
+We can deal with this using the following two methods:
+
+1) Treat NA as a new level and not lose other features' information.
+2) Remove all rows containing this variable's NA value.
+
+Since in the data, when weather condition is missing,  other weather related variables are missing too. so can can drop all rows containing NA values
+
+```{r}
+accidents_data_clean <- accidents_data_clean %>% filter(!is.na(Weather_Condition))
+```
+
+```{r}
+rmarkdown::paged_table(accidents_data_clean)
+```
+
+## Data Narrative
+
+### Data Introduction
+This is a countrywide traffic accident dataset, which covers 49 states of the United States. The data is collected from February 2016 to 2021, and contains 2,845,342 rows and 47 columns. It is collected from multiple APIs that provide streaming traffic event data. These APIs broadcast traffic events captured by a variety of entities, such as the US and state departments of transportation, law enforcement agencies, traffic cameras, and traffic sensors within the road-networks.
+
+### Variables
+
+* `ID <chr>`: unique identifier of the accident record
+* `Severity <dbl>`: unique identifier of the accident record, 1 indicates the least impact on the traffic
+* `Start_Time <S3: POSIXct>(datetime)`: Start time of the accident in local time zone
+* `End_Time <S3: POSIXct>(datetime)`: Total emissions measured in kt
+* `Start_lat <dbl>`: latitude in GPS coordinate of the start point
+* `Start_Lng <dbl>`: longitude in GPS coordinate of the start point
+*  End_Lat <dbl>: latitude in GPS coordinate of the end point
+*  End_Lng <dbl>: longitude in GPS coordinate of the end point
+*  `Distance(mi)` <dbl>: length of the road extent affected by the accident
+*  Description  <chr>: natural language description of the accident
+*  Number <dbl>: street number in address field
+*  Street <chr>: street name in address field
+*  Side <chr>: relative side of the street (Right/Left) in address field
+*  City <chr>: city in address field
+*  County <chr>: county in address field
+*  State <chr>: state in address field
+*  Zipcode <chr>: zipcode in address field
+*  Country <chr>: country in address field
+*  Timezone <chr>: timezone based on the location of the accident (eastern, central, etc.)
+*  Airport_Code <chr>: Denotes an airport-based weather station which is the closest one to location of the accident
+*  Weather_Timestamp <S3: POSIXct>(datetime): time-stamp of weather observation record (in local time) 
+*  `Temperature(F)` <dbl>: temperature (in Fahrenheit)
+*  `Wind_Chill(F)` <dbl>: wind chill (in Fahrenheit)
+* `Humidity(%)` <dbl>: humidity (in percentage)
+*  `Pressure(in)` <dbl>: air pressure (in inches)
+*  `Visibility(mi)` <dbl>: visibility (in miles)
+*  Wind_Direction <chr>: wind direction
+*  `Wind_Speed(mph)` <dbl>: wind speed (in miles per hour)
+*  `Precipitation(in)` <dbl>: precipitation amount in inches, if there is any
+*  Weather_Condition <chr>: Shows the weather condition (rain, snow, thunderstorm, fog, etc.)	
+*  Amenity <lgl>: POI annotation which indicates presence of amenity in a nearby location
+*  Bump <lgl>: POI annotation which indicates presence of speed bump or hump in a nearby location
+*  Crossing <lgl>: POI annotation which indicates presence of crossing in a nearby location
+*  Give_Way <lgl>: POI annotation which indicates presence of give_way in a nearby location
+*  Junction <lgl>: POI annotation which indicates presence of junction in a nearby location
+*  No_Exit <lgl>: POI annotation which indicates presence of no_exit in a nearby location
+*  Railway <lgl>: POI annotation which indicates presence of railway in a nearby location
+*  Roundabout <lgl>: POI annotation which indicates presence of roundabout in a nearby location
+*  Station <lgl>: POI annotation which indicates presence of station in a nearby location
+*  Stop <lgl>: POI annotation which indicates presence of stop in a nearby location
+*  Traffic_Calming <lgl>: POI annotation which indicates presence of traffic_calming in a nearby location
+*  Traffic_Signal <lgl>: POI annotation which indicates presence of traffic_signal in a nearby location
+*  Turning_Loop <lgl>: POI annotation which indicates presence of turning_loop in a nearby location
+*  Sunrise_Sunset <chr>: period of day (i.e. day or night) based on sunrise/sunset
+*  Civil_Twilight <chr>: period of day (i.e. day or night) based on civil twilight
+*  Nautical_Twilight <chr>: period of day (i.e. day or night) based on nautical twilight
+*  Astronomical_Twilight <chr>: period of day (i.e. day or night) based on astronomical twilight
+
+
+## Research Questions
+
+We can answer the following research questions based on the dataset
+
+* In which states there are more density of accidents?
+    * How does accident occurrence vary based on weather or environmental stimuli
+* How does accident severity relate to accident distance?
+    * Accident distance is the length of the road extent affected by the accident and we can try to understand how this distance is distributed over each accident severity
+* What kind of effect does Weather condition have on accident severity?
+    * Intuitively it makes sense to think bad weather can play a role in the cause of accidents and worse the weather is, the more severe the accidents are. For this reason this would be a very interesting question to explore
+* Is there a pattern in the time of accident?
+    * We can compare number of accidents occurring during the day vs night
+    * We can also explore if there is pattern in the hour of the day, there are majority of accidents
+* Based on the yearly data, we can analyze if there are any seasonal patterns to the accidents
+    * Using this can we predict accident occurrences in the future?
+* How does accident severity compare to the duration of accident impact on traffic flow was dismissed and the distance?

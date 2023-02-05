@@ -1,0 +1,36 @@
+---
+title: "Surya Praneeth Reddy Chirasani"
+image: images/praneeth.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/praneeth.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/schirasani
+---
+
+##Instructions
+
+  - save a copy of this document as *FirstLast.qmd* in the **about** folder
+  - replace *Your Name* in yaml header with your first and last name
+  - save an image (jpeg, png) to use in the **about/images** folder
+  - replace image names in yaml header
+  - replace github user name
+  - fill in information below, as appropriate
+  - commit to github and submit pull request
+
+## Education/Work Background
+Masters in Computer Science, 3 Years Work experience as Software Development Engineer and 1 year experience as AI Engineer
+
+## R experience
+I have a very basic experience with R programming
+
+
+## Hometown
+Guntur, India
+
+## Hobbies
+Doing outdoor activities, watching movies/TV shows
