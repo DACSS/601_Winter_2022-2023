@@ -1,0 +1,162 @@
+---
+title: "Homwework 3"
+author: "Rishita Golla"
+date: "6/3/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - homework_3
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library("readxl")
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+I will be using a new data set -  Kaggle Data Science responses for R, conducted in 2020. This data contains insights into Data Science enthusiasts and their information from all over the world. The information consists of age, gender, country of residence, education level, current occupation, experience with writing code, and programming languages used.
+
+### Read the data set
+```{r}
+data <- read.csv("kaggle_survey_2020_responses.csv")
+head(data)
+```
+
+Later, we find basic descriptives about data such as col names and dimensions
+```{r}
+dim(data)
+
+colnames(data)
+```
+### Understanding the data
+
+Understanding the data:
+
+The data set contains 20036 rows representing 20037 participants in the survey. The 21 columns in the data set represent the survey questions, with exception to the time taken for survey column. Each column in the data represents respondent's answer to each survey question.
+
+1. age - represents age of the respondent.
+2. gender - represents the respondent’s gender.
+3. In which country do you currently reside? - country of respondent.
+4. highest level of formal education - The four categories of responses to the questionnaire are as follows: people who have less education than a bachelor's degree, people who have a master's degree, and people who have more education than a master's degree (like a doctorate)
+5. Select the title most similar to your current role (or most recent title if retired): - Selected Choice - the current profession of the respondent.
+6. For how many years have you been writing code and/or programming? - experience with writing code or programming for each participant.
+7. What programming languages do you use on a regular basis? (Select all that apply) - Selected Choice - Python - programming languages that are generally used by participants.
+The following columns have the selected answers to the above question. The answers span from Q7_part_1 to Q7_Other.
+8. What programming language would you recommend an aspiring data scientist to learn first? - Selected Choice - The respondent's recommendation of which programming language to learn.
+
+### Data tidying and mutation
+
+```{r}
+
+options(warn = -1)
+options(scipen = 10000)
+
+library(tidyverse)
+library(scales)
+library(RColorBrewer)
+library(viridis)
+library(ggrepel)
+library(dplyr)
+annotate <- ggplot2::annotate
+```
+
+We first mutate the data and create groups - Doctoral degree, Professional degree are mapped to "Doctoral" and "Some college/university study without earning a bachelor’s degree,No formal education past high school" are mapped to "College/High school".
+
+```{r}
+data <- data %>%
+  mutate(Edu = case_when(Q4 == "Bachelor’s degree" ~ "Bachelor",
+  Q4 == "Master’s degree" ~ "Master",
+  Q4 %in% c("Doctoral degree","Professional degree") ~ "Doctoral",
+  Q4 %in% c("Some college/university study without earning a bachelor’s degree","No formal education past high school") ~ "College/High school"))  
+```
+
+We further mutate the data. The given countries are changed based on the continents. All countries in Europe are mapped to Europe, countries like India, China, etc are mapped to Asia.
+
+```{r}
+data <- data %>%
+  mutate(Continent = case_when(Q3 %in% c("Austria", "Belgium", "Bulgaria", "Croatia", "Czech Republic",
+                                        "Denmark", "Estonia", "Finland", "France", "Germany", "Greece",
+                                        "Hungary", "Ireland", "Italy", "Lativia", "Lithuania", 
+                                        "Netherlands", "Poland", "Portugal", "Romania", "Slovakia",
+                                        "United Kingdom of Great Britain and Northern Ireland",
+                                        "Slovenia","Spain", "Sweden", "Russia", "Switzerland",
+                                        "Ukraine", "Belarus", "Norway") ~ "Europe",
+  Q3 %in% c("Canada", "United States of America", "Mexico") ~ "North America",
+  Q3 %in% c("India", "China", "Japan", "Turkey", "South Korea", "Isreal", "Indonesia", "Hong Kong (S.A.R.) ",
+            "Singapore", "Viet Nam", "Pakistan", "Malaysia", "Bangladesh", "Philippines", "Sri Lanka", 
+            "Thailand", "Republic of Korea", "Saudi Arabia", "Taiwan", "Nepal", "United Arab Emirates") ~ "Asia",
+  Q3 %in% c("Argentina", "Brazil", "Chile", "Colombia", "Peru", "Venezuela") ~ "South America",
+  Q3 %in% c("Egypt", "Nigeria", "Kenya", "South Africa", "Morocco", "Algeria", "Ghana", "Tunisia") ~ "Africa",
+  Q3 %in% c("Australia", "New Zealand") ~ "Australia"))
+```
+
+### Statistics and group by functions
+
+Using group by for continent-
+```{r}
+data_group <- data %>%
+  group_by(Continent)
+data_group
+```
+
+```{r}
+summarize(data, mean(Time.from.Start.to.Finish..seconds.), na.rm = TRUE)
+```
+```{r}
+summarize(data, sd(Time.from.Start.to.Finish..seconds.), na.rm = TRUE)
+```
+
+```{r}
+summarize(data, median(Time.from.Start.to.Finish..seconds.), na.rm = TRUE)
+```
+
+### Visualization
+
+Education level against number of respondents (count).
+```{r}
+education <- as.data.frame(table(data$Edu))
+ggplot(education, aes(reorder(Var1, +Freq), Freq))+
+  geom_bar(col = "gray10", stat = "identity", width = 0.6, fill = "lightblue")+
+  scale_x_discrete(limits = c("Doctoral","Master", "Bachelor", "College/High school"))+
+  labs(title = "Education level", y = "count", x = "Education level")
+```
+2. Gender vs education level
+
+```{r}
+tile2 <- data %>%
+  filter(Q2 %in% c("Woman", "Man")) %>%
+  group_by(Q2, Edu) %>%
+  summarise(count = n(), .groups = 'drop') 
+ggplot(tile2, aes(Edu, Q2))+
+  geom_tile(aes(fill = count), colour = "gray10", alpha = 0.5)+
+  scale_x_discrete(limits = c("Doctoral","Master", "Bachelor", "College/High school"))+
+  geom_text(aes(label = paste0(round(count/sum(tile2$count) * 100,1), "%")), size = 7)+
+  labs(title = "Education level", subtitle = "count by education level and gender", y = "Gender", x = "Education level")
+```
+
+In this homework, I have only used group_by(), statistics commands and visualizations using ggplot. The conclusions drawn from this data are Masters degree is the most popular among participants who took the survey.  Follwing are the quetions that will be answered using plots and analysis in final project- 
+
+
+1. Number of countries involved in the data set and is the data set skewed towards a specific continent given the population?
+
+2. Most recommended language for Data Science aspirants irrespective of gender, age, or country.
+
+3. Which continent in the world has highest number of skilled Data Scientists based on the experience level?
+
+4. Which education level is currently the most popular?
+
+5. Respondents of which continents are majorly picking up skills in Data Science?
+
+6. Can we explain education level based on gender(man and women) and age?
+
+7. Is a highest level of education required to work in professions such as Research Scientist, Machine Learning Engineer, Data Scientist, Statiscian?
