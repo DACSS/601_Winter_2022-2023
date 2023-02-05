@@ -1,0 +1,48 @@
+---
+title: "Challenge 10: Using purrr package"
+author: "Surya Praneeth Reddy Chirasani"
+description: ""
+date: "01/28/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_10
+  - debt
+---
+
+```{r}
+#| label: setup
+#| warning: false
+library(tidyverse)
+library("readxl")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Using purrr library to apply a function on multiple columns
+
+I am using debt dataset which I have used in Challenge 9 too, where I have written a function to calculate z_score on a numeric column
+```{r}
+data <-read_excel("_data/debt_in_trillions.xlsx")
+data
+```
+
+This is the z_score function I have written in Challenge 9
+```{r}
+z_score <- function(x){
+  stat <- (x - mean(x,na.rm=T))/sd(x,na.rm=T)
+  return(stat)
+}
+```
+
+I am applying map function to calculate z_score for all values of a column in given columns below. The output is a list object with values printed in the same order of the given input columns. 
+
+```{r}
+mtcars_stats <- map(list(data$Mortgage, data$`HE Revolving`, data$`Auto Loan`, data$`Credit Card`, data$`Student Loan`,  data$Other, data$Total), z_score)
+mtcars_stats
+```
+
+

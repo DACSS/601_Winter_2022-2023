@@ -1,0 +1,77 @@
+---
+title: "Homework 2"
+author: "Tanmay Agrawal"
+desription: "Reading in Data"
+date: "01/06/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+    df-print: paged
+categories:
+  - hw2
+  - hotel_bookings.csv
+---
+
+We first load the neccessary libraries
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Now we load the data. I sorted the datasets by size and picked the largest one which is "hotel_bookings.csv". I will use the `read_csv()` function as it's the recommend way to load files.
+
+```{r}
+data = read_csv("_data/hotel_bookings.csv")
+
+# We spec the columns in this dataset using the spec command
+spec(data)
+```
+
+Using the `spec` command we get the descriptions of the data types of each column.
+  
+Here all the column names are followed by their data type.
+We see `col_double` which is a double precision number typically used for continuous values but can be used for rankings or categories described using numbers like the years in a date range or month in a year. There is also a `col_character` type which is a character data type used for non-numerical values (generally categorical) or `col_date` which is a reserved data type for dates.
+
+We look at the first few rows of the data to get a visual outline of the dataset.
+
+```{r}
+head(data)
+```
+
+## Cleaning the data
+
+We observe that some columns like `agent` and `company` have "NULL" values, the challenge here is that these values are still character data types and have to be detected using different methods. We can simply look at each column and calculate the percentage of "NULL" values it has and get rid of the ones with more that 10% of these values.
+
+```{r}
+# we use the stringr package for this
+library(stringr)
+
+# get the null percentages
+null_percentages <- sapply(data, function(x) sum(str_detect(x, "NULL"))/length(x))
+
+# put it into a dataframe so that it's visually appealing
+
+null_percentages_df <- data.frame(column = names(data), null_percentage = null_percentages)
+
+null_percentages_df %>%
+  arrange(desc(null_percentage))
+```
+
+We can get rid of the columns `company` and `agent` since they have a high percentage of "NULL" values.
+
+```{r}
+tidy_data = select(data, -company, -agent)
+head(tidy_data)
+```
+
+Our data is cleaner now.
+
+## Potential research questions
+
+We can see that it describes hotel bookings across different countries and records some interesting columns like `lead_time`, `market_segment`, `distribution_channel`, `is_repeated_guest`, `previous_cancellations`, `booking_changes` which could be used as predictive signals to determine the potential value of a customer. For instance, if a customer is making too many changes, have a history of cancelling, and from a particular distribution channel that might lead us to think that they are likely to make a last minute cancellation. This could be used to make predictions about availability and dynamic pricing of rooms -- akin to what the airline industry does.

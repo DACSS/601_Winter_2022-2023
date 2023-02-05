@@ -1,0 +1,119 @@
+---
+title: "Homework 2"
+author: "Cristhian Barba Garzon"
+desription: "Reading in and Desribing Data"
+date: "01/03/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - hw2
+  - hotel_bookings.csv
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#install.packages("dyplr")
+library(tidyverse)
+library(dplyr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading in and Describing Data
+
+Reading in this data tells us many things about hotel reservations. It provides about 32 different variables relating to how many people reserve hotels, when they reserve their hotels, when they check-out, if they had previous cancellations and much more information. We can also see, through R functions, that this data was taken from the years 2015, 2016, and 2017. Additionally, the data was recorded from all 12 months in each year. We can see that there are about 119,390 observations, which is a lot of information to use. 
+
+```{r}
+
+data = read_csv("_data/hotel_bookings.csv")
+data %>%
+  view()
+
+data %>%
+  dim() # 119390 rows by 32 columns
+
+data %>% 
+  colnames() #displays column names
+
+data %>%
+  distinct(arrival_date_year) %>% #chooses distinct value of the years (only recorded over 3 years)
+  arrange(desc(arrival_date_year)) #sets most recent year as most recent to view
+  
+data %>% 
+  distinct(arrival_date_month) #recorded over 12 months in each year
+
+data %>% 
+  distinct(hotel)
+
+```
+
+## Tidying Data
+
+Most, if not all, of this data is already in a tidy format. All variables have their own respective columns and values within them, and all observations have their own rows. The data is very large, but that is because there are many different variables to examine. 
+With this in mind, we can make this data set look more presentable by mutating columns; we can reduce the amount of columns there are by combining values--specifically with the columns that have dates. We can combine the day, month, and year columns to create one singular date, further arranging our data into a better format to view. Using the case_when() function within mutate(), the string values in the month column can be converted to their ordered values; since the values in the day and year columns are already numerical, we do not have to change them. By creating an empty vector and using the sprintf() function, we can use a for loop to iterate through the length of the columns and format the values in dd/mm/yyyy. The formatted values can be appended to the empty vector, which then allows us to add the vector to the data set. After this is done, we can remove the used columns using the subset() and select() functions, and we can move our new column over using the relocate() function. Using the mutate() function again, we can change values in the columns "is_canceled" and "is_repeated_guest" to be string values for "yes" and "no"; this can be done to allow the viewer to see what data is being recorded rather than inferring what zeros and ones mean. 
+We can also change the names of some columns, using the rename() function, to appear more viewer-friendly. Using the relocate() function, we can also move columns around to make the data set easier to read and compare column values. 
+
+
+```{r}
+
+mutated.data = data %>%
+  mutate(arrival_date_month = case_when(
+    arrival_date_month == "January" ~ 1,
+    arrival_date_month == "February" ~ 2,
+    arrival_date_month == "March" ~ 3,
+    arrival_date_month == "April" ~ 4,
+    arrival_date_month == "May" ~ 5 ,
+    arrival_date_month == "June" ~ 6,
+    arrival_date_month == "July" ~ 7,
+    arrival_date_month == "August" ~ 8,
+    arrival_date_month == "September" ~ 9,
+    arrival_date_month == "October" ~ 10,
+    arrival_date_month == "November" ~ 11,
+    arrival_date_month == "December" ~ 12
+  ))
+
+mutated.data %>%
+  arrange(arrival_date_month)
+
+arrival_date = c() # Create an empty vector to store the dates
+
+for (i in 1:length(mutated.data$arrival_date_year)) { #for loop -- in range 1 to total length of Year column
+  date_string = sprintf("%02d/%02d/%04d",mutated.data$arrival_date_day_of_month[i], mutated.data$arrival_date_month[i], mutated.data$arrival_date_year[i]) # Format as a string
+  arrival_date = c(arrival_date, date_string)  # Append the date string to the vector
+}
+
+new = mutated.data %>%
+   mutate(Arrival_date = arrival_date, is_canceled = case_when(
+     is_canceled == 0 ~ "no",
+     is_canceled == 1 ~ "yes",
+     TRUE ~ "Not Available"
+   ), is_repeated_guest = case_when(
+     is_repeated_guest == 0 ~ "no",
+     is_repeated_guest == 1 ~ "yes",
+     TRUE ~ "Not Available"
+   )) %>% #adds new column Date with the vector dates from for-loop
+  subset(select = -c(arrival_date_year,arrival_date_month,arrival_date_day_of_month)) %>% #drops Year and Month columns so new date column will replace
+  relocate(Arrival_date,.before = 2, .after = NULL) %>%
+  relocate(reservation_status_date, .before = 2, .after = NULL) %>% #moves the column to the left hand side 
+  relocate(reservation_status, .before = 3, .after = NULL) %>%
+  rename("Arrival Week #"="arrival_date_week_number","Weekend Nights"= "stays_in_weekend_nights","Week Nights"= "stays_in_week_nights")
+
+new
+
+```
+
+
+## Research Questions for Data
+
+This data can be useful for many research questions. It can help answer questions that compare the amount of adults and children in reservations, which in turn could indicate if families or couples travel to hotels more often than others. We can also look at the types of hotels and see if people canceled their reservations, and this can lead to some hypotheses regarding people's preferences. Using statistical summary functions can also help answer how many nights people stay during the weekend or week; these functions can also help create visualizations to better see any trends in the data. Two example questions that we can answer are the following:
+
+1) What is the most amount of adults in a reservation?
+- We can answer this question by using R functions to select the specific column that indicates number of adults in a reservation. This column would be the "adults" column, and we would use the max() function within the summarize() function to find the maximum amount of adults. 
+
+2) Provide a statistical summary of the number of adults, children, and babies.
+- We can use the summary() function to begin summarizing this data. Functions like max(), mean(), median(), and sd() are all examples that we can use to summarize our data--specifically any columns we like. These functions can help us understand the average amount of people in a reservation, the maximum amount, and the deviation of amount of people. This information can tell us about large and small reservations, families and couples, or single people who possibly travel for work. 
+

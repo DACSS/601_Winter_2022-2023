@@ -1,0 +1,81 @@
+---
+title: "Challenge 3"
+author: "Henry Mitrano"
+description: "Tidy Data: Pivoting"
+date: "01/11/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1.  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2.  identify what needs to be done to tidy the current data
+3.  anticipate the shape of pivoted data
+4.  pivot the data into tidy format using `pivot_longer`
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+-   animal_weights.csv ⭐
+-   eggs_tidy.csv ⭐⭐ or organicpoultry.xls ⭐⭐⭐
+-   australian_marriage\*.xlsx ⭐⭐⭐
+-   USA Households\*.xlsx ⭐⭐⭐⭐
+-   sce_labor_chart_data_public.csv 🌟🌟🌟🌟🌟
+
+```{r}
+animal_weights = read_csv("_data/animal_weight.csv")
+head(animal_weights)
+```
+
+### Briefly describe the data
+
+From reading in the data, we can see that this is some kind of table listing different regions in the world, and the number of different kinds of cattle and livestock attributed to that region.
+
+
+## Anticipate the End Result
+
+Since we have to come up with a kind of final vision for how we expect our data to look, we first have to acknowledge the form which it is in now, and how we can translate that to our end goal. Currently, the data is in a tibble, listing 17 columns for each row- 1 column with country name, the other 16 columns being names of different livestock. We can pivot this data by finding a way to create a new column, this one with animal names, so we dont need a new column for each separate animal. This will make our data longer.
+
+
+### Example: find current and future data dimensions
+
+Currently, we have 6 rows and 17 columns. If we were to want to reduce the number of columns, we could keep 1 column for IPCC area, and 1 for specific type of animal. That would get rid of all of those excess columns. We could also add a column for weight, so each animals weight wouldn't have to be logged repeatedly like it currently is in the data. So ideally we will have three columns.
+
+## Pivot the Data
+
+Here, we actually pivot the data and write out our column names so we can start viewing the data with far less columns-
+
+```{r}
+cols <- colnames(animal_weights)[-1]
+
+
+pivoted<-pivot_longer(animal_weights, col = cols,
+                names_to="animal",
+                values_to = "weight")
+
+head(pivoted)
+```
+
+
+
+Document your work here. What will a new "case" be once you have pivoted the data? How does it meet requirements for tidy data?
+
+There are only 3 now- "IPCC area", "animal", and "weight", just like we intended! Our data is still not perfect- now, we have a lot of redundancy in the rows, listing each IPCC area repeatedly for every individual animal that comes out of there. But we can know how many rows we have by taking the number of IPCC areas and multiplying by the number of total animals we have (16). Again, not perfect, but now we have had experience reading in and pivoting data to our will, to make it closer to tidy! 

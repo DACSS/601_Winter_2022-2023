@@ -1,0 +1,42 @@
+---
+title: "Challenge 10"
+author: "Paarth Tandon"
+description: "purrr"
+date: "1/30/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_10
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## The Challenge   
+
+I am going to create a function that maps months to numbers.
+
+```{r}
+
+month_num <- function(vec) {
+    out <- map_int(vec, function(m) {
+        return(which(month.name == m))
+    })
+    return(out)
+}
+
+vec <- c("March", "May", "April")
+month_num(vec)
+```
+

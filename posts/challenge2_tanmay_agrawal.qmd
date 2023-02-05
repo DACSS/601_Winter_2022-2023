@@ -1,0 +1,144 @@
+---
+title: "Challenge 2 Submission"
+author: "Tanmay Agrawal"
+description: "Data wrangling: using group() and summarise()"
+date: "12/21/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+-   railroad\*.csv or StateCounty2012.xlsx ⭐
+-   FAOstat\*.csv ⭐⭐⭐
+-   hotel_bookings ⭐⭐⭐⭐
+
+```{r}
+# load the libs
+library(readr)
+library(readxl)
+
+# read the data using standard csv loading function
+data = read_csv("../posts/_data/railroad_2012_clean_county.csv")
+```
+
+Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+
+# describe the data using str, brief summary of the columns, datatypes, sizes tell us that there are 3 columns with 2930 rows.
+str(data)
+
+# show the first few entries using the head command
+head(data)
+
+# from a cursory analysis, it looks like the dataset describes the number of rail road employees by counties and their corresponding states.
+
+
+# We can show the top-3 counties along with their states with the highest `total_employees` count
+data %>%
+  distinct(state, total_employees) %>%
+  arrange(desc(total_employees)) %>%
+  top_n(3)
+
+# Similarly we could also look at the bottom 3.
+data %>%
+  distinct(state, total_employees) %>%
+  arrange(total_employees) %>%
+  head(3)
+```  
+
+We can also look at the distinct states, turns out they have more than 50 unique entries in the state column. This means that the state column has some additional entries that represent places that can be considered a state for all intents and purposes for railroad employee data. These could be overseas territories.
+
+```{r}
+
+data %>%
+  distinct(state)
+```
+
+Overall the dataset is a simple record of railroad employee by state and counties which could be used to allocate resources to these states based on their needs and requirements.
+
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+```{r}
+# We look at the states arranged by the standard deviation of total_employee count among the counties in that state alongside other central tendencies.
+
+data %>%
+  group_by(state) %>%
+  summarise(mean_=mean(total_employees),
+            median_=median(total_employees),
+            sd_=sd(`total_employees`)) %>%
+              arrange(desc(sd_)
+            )
+```
+
+We can use an arbitrary threshold of `sd>300` to check which states have the biggest disparity in terms of employee counts in different counties. We also only look at the states with a mean employee count of at most `100` to better investigate states where the high spread is a function of very high variability in the employee counts of the counties of those states.
+
+```{r}
+
+
+data %>%
+  group_by(state) %>%
+  summarise(mean_=mean(total_employees),
+            median_=median(total_employees),
+            sd_=sd(`total_employees`)) %>%
+              filter(mean_<100, sd_>300) %>%
+              arrange(desc(sd_))
+```
+
+We get 2 such states, Texas (TX) and Virginia (VA). We can do further analysis on these two states.
+
+```{r}
+
+data %>%
+  filter(`state`=='TX' | `state`=='VA') %>%
+  arrange(total_employees) # 313 total counties
+
+data %>%
+  filter(`state`=='TX') %>%
+  arrange(desc(total_employees)) # 221 total counties with "Tarrant" and "Harris" accounting for most of the disparity
+
+data %>%
+  filter(`state`=='VA') %>%
+  arrange(desc(total_employees)) # 92 counties with "Independent City" being the anomaly. This could mean that these employees aren't counted as part of any of the counties, hence the high spread.
+
+```
+
+### Explain and Interpret
+
+We observed some interesting things in this data. We started by looking at all of the data as in challenge 1 and learn that the dataset is a record of employee counts who work in the railroad industry grouped by counties and their corresponding states, an interesting observation was that the `state` variable has 53 unique entries which means that the term is used loosely here and it also includes overseas employees. 
+
+After that we used grouped summary statistics to look at the states with the highest and lowest employee counts along with the mean/median employee counts. We observed that some states have a high dispersion of employee count values across counties. This could be a useful metric to determine which counties are understaffed compared to what they need. `Texas` and `Virginia` jumped out to me during the analysis because the mean employee count was low and the standard deviation was very high. This could imply disproportionate allocation of resources, which seems true in the case of `Texas` but further analysis showed that `Virginia` uses a catchall term called `Independent City` to count employees that don't necessarily belong to a county. This accounts for most of the spread.

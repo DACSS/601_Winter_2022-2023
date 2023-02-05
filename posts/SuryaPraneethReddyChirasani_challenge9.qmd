@@ -1,0 +1,62 @@
+---
+title: "Challenge 9: Creating a Function"
+author: "Surya Praneeth Reddy Chirasani"
+description: ""
+date: "01/29/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_9
+  - debt
+---
+
+```{r}
+#| label: setup
+#| warning: false
+library(tidyverse)
+library(readr)
+library("readxl")
+library(lubridate)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Function that reads a dataset and cleans it
+
+Created a function to read in the "Debt in Trillions" dataset and create a new column with readable dates from the "Year and Quarter" Column
+
+```{r}
+debt_data <- function(x) {
+  data <-read_excel("_data/debt_in_trillions.xlsx")
+  data <- data%>%
+        mutate(Date = parse_date_time(`Year and Quarter`, orders="yq"),
+        .before=`Year and Quarter`)
+  return(data)
+} 
+```
+
+```{r}
+debt_data()
+```
+
+
+## Function to calculate summary statistics
+
+I have used the debt dataset for this task as it has lot of numeric data
+
+```{r}
+data <-read_excel("_data/debt_in_trillions.xlsx")
+```
+
+I created a function to calculate z score for a variable. It takes a vector as input, calculates z score for each value in the vector and returns the vector as output
+
+```{r}
+z_score <- function(x){
+  stat <- (x - mean(x,na.rm=T))/sd(x,na.rm=T)
+  return(stat)
+}
+z_score(data$Mortgage)
+```

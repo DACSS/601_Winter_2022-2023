@@ -1,0 +1,41 @@
+---
+title: "Marcela Robinson"
+image: images/MarcelaRobinson.pgn
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/MarcelaRobinson.png
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/mmrobinson
+---
+
+##Instructions
+
+  - save a copy of this document as *FirstLast.qmd* in the **about** folder
+  - replace *Your Name* in yaml header with your first and last name
+  - save an image (jpeg, png) to use in the **about/images** folder
+  - replace image names in yaml header
+  - replace github user name
+  - fill in information below, as appropriate
+  - commit to github and submit pull request
+
+## Education/Work Background
+I received my BA in Spanish and MBA from UMass. I have been working for the past seven years in higher education, as part of the operations team. 
+
+## R experience
+I do not have any experience with R.
+
+## Research interests
+I am interested in topics related to higher education such as diversity and inclusion in higher education, student accessibility to career services, intersectionality in career guidance, post graduate outcomes, particularly for underrepresented communities. 
+
+## Hometown
+Pereira, COLOMBIA.
+
+## Hobbies
+I enjoy practicing yoga, spending time with my husband and 1 year old son, and cooking. 
+
+## Fun fact
+I was born and raised in the coffee region of Colombia (located in the foothills of the Andes). 

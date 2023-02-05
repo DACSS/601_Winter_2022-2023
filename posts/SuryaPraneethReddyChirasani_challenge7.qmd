@@ -1,0 +1,60 @@
+---
+title: "Challenge 7: Visualizing Multiple Dimensions"
+author: "Surya Praneeth Reddy Chirasani"
+description: ""
+date: "01/27/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_7
+  - eggs
+---
+
+```{r}
+#| label: setup
+#| warning: false
+library(tidyverse)
+library("readxl")
+library(ggplot2)
+library(lubridate)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data Description
+
+For this challenge, I have decided to work with eggs dataset. This dataset has monthly price amount of different sizes(large and extra large) of half dozen and dozen eggs. 
+
+```{r}
+eggs_data <-read_csv("_data/eggs_tidy.csv")
+eggs_data
+```
+## Tidying Data
+
+In order to plot a graph of varying prices for different sizes and amount of eggs, I need to pivot the data longer and separate the data based on size and amount. This is done as follows
+
+```{r}
+eggs_tidy <- eggs_data %>%
+  pivot_longer(cols=3:6, names_to="type", values_to = "price") %>%
+  mutate(type=str_replace(type,"extra_large","extra large"),
+         type=str_replace(type,"half_dozen","half dozen")) %>%
+  separate(type,into=c("size","amount"),sep="_") %>%
+  mutate(date = str_c(year, month, sep=" ")) %>%
+  mutate(date = ym(date))
+eggs_tidy
+```
+
+```{r}
+ggplot(eggs_tidy,aes(date,price)) +
+  geom_line(color = "steelblue", size = 1)+
+  scale_x_date()+
+  scale_y_continuous(labels=scales::dollar_format(), limits=c(0,300)) +
+  facet_grid(size ~ amount) +
+  labs(x="Date",y="Average Price Per Carton")+
+  theme(axis.text.x=element_text(angle=90))
+```
+
+Since we are just trying to visualize variation of price with time for different sizes and amount, I decided to plot a simple line graph in a 4x4 grid, plotting all the four different kinds

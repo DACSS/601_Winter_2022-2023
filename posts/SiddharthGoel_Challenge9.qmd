@@ -1,0 +1,94 @@
+---
+title: "Challenge 9"
+author: "Siddharth Goel"
+description: "Creating a function"
+date: "01/31/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_9
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is simple. Create a function, and use it to perform a data analysis / cleaning / visualization task:
+
+Examples of such functions are:
+1) A function that reads in and cleans a dataset.  
+2) A function that computes summary statistics (e.g., computes the z score for a variable).  
+3) A function that plots a histogram.  
+
+That's it!
+
+# Function to read and clean a dataset
+This function reads in a csv and removes the N/A columns in the file
+
+```{r}
+read_and_clean_csv <- function(x) {
+  data <- read_csv(x)
+  data <- data %>% select_if(~ !any(is.na(.)))
+  return(data)
+} 
+```
+
+Running the function on the dataset hotel_bookings.csv
+```{r}
+data <- read_and_clean_csv("_data/hotel_bookings.csv")
+head(data)
+```
+
+# Function to compute statistics (z-score)
+z-score = (x - mean) / std_dev
+
+```{r}
+z_score <- function(col) {
+  output <- (col - mean(col)) / sd(col)
+  return(output)
+}
+```
+
+
+Evaluating Z-Score for a column in hotel_bookings.csv
+```{r}
+z_score_output <- z_score(data$stays_in_week_nights)
+head(z_score_output)
+```
+
+
+# Function that plots a histogram
+
+```{r}
+plot_histogram <- function(input_path) {
+  tidy_data <- read_csv(input_path)
+  tidy_data <- tidy_data %>% replace_na(list(reviews_per_month = 0))
+  df_agg = tidy_data %>% group_by(neighbourhood_group)  %>%
+                    summarise(total_reviews_per_month = sum(reviews_per_month),
+                              .groups = 'drop')
+  head(df_agg)
+  ggplot(data=df_agg, aes(x=neighbourhood_group, y=total_reviews_per_month)) +
+  geom_bar(stat="identity") + labs(title = "Total Reviews Per Month")
+}
+
+plot_histogram("_data/AB_NYC_2019.csv")
+```
+
+
+
+
+
+

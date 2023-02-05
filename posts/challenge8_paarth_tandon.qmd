@@ -1,0 +1,104 @@
+---
+title: "Challenge 8"
+author: "Paarth Tandon"
+description: "Joining Data"
+date: "1/18/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+    df-print: kable
+categories:
+  - challenge_8
+  - snl
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+set.seed(42)
+actors <- read_csv('_data/snl_actors.csv')
+casts <- read_csv('_data/snl_casts.csv')
+seasons <- read_csv('posts/_data/snl_seasons.csv')
+head(actors)
+```
+
+```{r}
+head(casts)
+```
+
+```{r}
+head(seasons)
+```
+
+### Briefly describe the data
+
+This dataset contains three tables about the actors and seasons of SNL, a late night comedy show (that I have never seen). The first table, actors, contains the name, gender, and cast type of each actor. The second table, casts, contains the relation between an actor and which seasons they appeared in. It also contains how many episodes of the season they were in, and some analygous information. The third table, seasons, contains information about the year, number of episodes, and episode ids of each season. Essentially, actor and seasons contains rows that represent one entity, and casts describes the relation between the two tables of entities.
+
+## Tidy Data (as needed)
+
+Data does not need to be preprocessed.
+
+## Join Data
+
+It seems like the only data we can really work with that involves joins would be gender. Originally, I wanted to consider the ratio of guests per season, but it seems as though there is no guest data in the casts table.
+
+Because of this, I will answer the question: What is the ratio of males to non-males per year?
+
+First, let's join the tables together. Then I will group by the year and a new column I created, is_male. This column is true when the actor is a male and false otherwise. Then, I count how many episodes land in each column.
+
+```{r}
+gender_counts = actors %>%
+    left_join(casts, by = 'aid') %>%
+    left_join(seasons, by = 'sid') %>%
+    mutate(is_male = `gender` == 'male') %>%
+    select(sid, year, gender, is_male, n_episodes.x) %>%
+    group_by(`year`, `is_male`) %>%
+    summarise(ep_count = sum(n_episodes.x))
+
+head(gender_counts, 10)
+```
+
+Now, I need the total counts per year. The way I did it is way too overengineerd (reused my code) but it made it easier than re-doing everything. For a one-time calculation I don't think this is an issue.
+
+```{r}
+season_counts = actors %>%
+    left_join(casts, by = 'aid') %>%
+    left_join(seasons, by = 'sid') %>%
+    mutate(is_male = `gender` == 'male') %>%
+    select(sid, year, gender, is_male, n_episodes.x, n_episodes.y) %>%
+    group_by(`year`) %>%
+    summarise(ep_count = sum(n_episodes.x))
+head(season_counts, 10)
+```
+
+Finally, I calculate the ratio using both tables.
+
+```{r}
+gender_ratio = gender_counts %>%
+    left_join(season_counts, by = 'year') %>%
+    mutate(ep_ratio = ep_count.x / ep_count.y)
+
+head(gender_ratio, 10)
+```
+
+```{r}
+ggplot(gender_ratio, aes(x = `year`, y = `ep_ratio`, col = `is_male`)) +
+    geom_bar(position = "stack", stat = "identity") +
+    ggtitle('Ratio of Males to Non-Males on SNL') +
+    labs(x = 'Year', y = 'Ratio of Males to Non-Males', color = 'Is Male')
+```
+
+As we can see, the disparity in gender is decreasing year on year. A stacked bar chart is probably a controversial choice here, but I think it helps visualize that the height of the plot is the whole cast. A line plot makes it seem like the empty space is no one or may cause other confusion. This is almost like a pie chart per year, which I like.

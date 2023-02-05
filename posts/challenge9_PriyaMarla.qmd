@@ -1,0 +1,129 @@
+---
+title: "Challenge 9"
+author: "Priya Marla"
+description: "Creating a function"
+date: "1/26/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_9
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(here)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is simple. Create a function, and use it to perform a data analysis / cleaning / visualization task:
+
+Examples of such functions are:
+1) A function that reads in and cleans a dataset.  
+2) A function that computes summary statistics (e.g., computes the z score for a variable).  
+3) A function that plots a histogram.  
+
+That's it!
+
+## Functions
+
+Below are few functions for reading the data, getting the summary of the data, getting the stats of the data and plotting the histogram for the data
+
+```{r}
+#function for reading data
+read_data <- function(file_name, file_type, n_max = 1000, skip = 0) {
+  if (file_type == "excel"){
+    read_excel(here("posts","_data",file_name), skip = skip, n_max = n_max)
+  }
+  else if (file_type == "csv"){
+    read_csv(here("posts","_data",file_name))
+  }
+}
+
+#function for getting the summary of the entire dataset
+get_summary <- function(dataset){
+  s <- summary(dataset)
+  print(s)
+}
+
+#function for getting the stats of a particular column
+get_stats <- function(col) {
+  if (class(col) == "numeric"){
+    print(paste("Max: ",max(col, na.rm = TRUE)))
+    print(paste("Min: ", min(col, na.rm = TRUE)))
+    print(paste("Mean: ", mean(col, na.rm = TRUE)))
+    print(paste("Median: ", median(col, na.rm = TRUE)))
+    print(paste("sum: ", sum(col, na.rm = TRUE)))
+  }
+  else if (class(col) == "character") {
+    table(col)
+  }
+}
+
+#function for plotting histogram
+get_hist <- function(cols,colname) {
+  title <- str_c("Histogram for ",colname)
+  hist(cols, col = "purple", main = title, xlab = colname)
+}
+```
+
+### Analysis for Airbnb in New York City dataset:
+
+"AB_NYC_2019.csv" dataset consists of a list of airbnb's in 5 boroughs in New York City. There are 48895 rows and 16 columns. Each column represents specific data about the airbnb like location, owner, rating, etc.
+
+Calling the above defined functions for further analysis
+
+```{r}
+#calling the function read_data (csv file)
+data <- read_data("AB_NYC_2019.csv","csv")
+
+data #printing the data
+
+#calling the function get_stats
+get_stats(data$price) #getting stats for price column
+get_stats(data$neighbourhood_group) #getting stats for neighbourhood_group column
+
+#calling the function get_summary
+get_summary(data) #getting summary of entire dataset
+
+#calling the function get_hist
+get_hist(data$price,"price") #plotting histogram for price column
+
+```
+### Analysis for USA households dataset
+
+This dataset describes the income statistics of various races over the years. The data shows what percentage of people fall under each income category i.e ranging from under $15,000 to $200,000 per year. The mean and median of the income is also calculated in the columns 13 and 15. The statistics are calculated all races combine and also separate for different races.
+
+For this analysis considering only "All Race" data. Calling various function to get the analysis
+```{r}
+#calling the function read_data
+db <- read_data("USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019.xlsx","excel", 55, 5)
+
+db #to print the data
+
+#calling the function get_stats
+get_stats(db$...4) #getting stats for income under $15,000
+get_stats(db$...15) #getting stats for mean of total income for the year
+
+#calling the function get_summary
+get_summary(db)
+
+#calling the function get_hist
+get_hist(db$...15,"Mean Income")
+```
+
+
+
+
+

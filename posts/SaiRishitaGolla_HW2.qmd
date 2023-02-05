@@ -1,0 +1,54 @@
+---
+ title: "HW 2"
+ author: "Rishita Golla"
+ description: "Reading in Data"
+ date: "1/21/2023"
+ format:
+   html:
+     toc: true
+     code-copy: true
+     code-tools: true
+     df-print: kable
+---
+ 
+```{r}
+ #| label: setup
+ #| warning: false
+ #| message: false
+
+ library(tidyverse)
+ library(ggplot2)
+
+ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+ data <- read_csv("_data/FAOSTAT_country_groups.csv")
+ view(data)
+```
+
+The data is already tidy and doesn't require more cleaning.
+
+## Narrative, Variables, and Research Question
+
+This data set contains seven variables:
+Country Group Code: integer
+Country Group: string
+Country Code: integer
+Country: string
+M49 Code: integer
+ISO2 Code: integer
+ISO3 Code: integer
+
+Country Group Code are codes for Country Group (second column). The data also contains country code, country name, and three codes for countries - M49 code (codes for statistical use), ISO2 code (representing country name in 2 letters), and ISO3 code (representing country name in 3 letters).
+
+Hence the overall data set contains countries in the world grouped by different types of country groups (Eg: Africa, America, low-income economies etc). It also contains metadata about countries such as the different types of codes.
+
+One research question we could investigate based on the data is the number of high-income economies that are present in important country groups? When we look closely at the data we see that 5100, 5200, 5300, 5400, 5500, 5600 represent Africa, Americas, Asia, Europe, Oceania, and Antarctic Region resp. We can deduce data such as which world group has the most high-income countries?
+
+The country groups are further divided into sub-country groups. For example, Europe contains Northern Europe, Eastern Europe, Western Europe, and Southern Europe. Another research question we can deduce is which part of Europe has highest number of low-income countries?
+
+Another research question is - the least developed countries belong to which major country groups?
+To get this data, we can extract the ISO3 code (choosing this has less probability for redundancy) corresponding to least developed countries (which is a country group) and check their continent occurrence. 

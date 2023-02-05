@@ -1,0 +1,120 @@
+---
+title: "Challenge 1"
+author: "Marcela Robinson"
+description: "Reading in data and creating a post"
+date: "12/25/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+##Read the data 
+Import data into R as a cvs file. This dataset contains information about the total number of railroad employees per county in the US. 
+
+```{r}
+railroad <- read.csv("_data/railroad_2012_clean_county.csv")
+head(railroad)
+```
+
+
+##Get dimension for railroad dataset
+This dataset has 3 different columns and 2930 rows. 
+```{r}
+dim(railroad)
+
+```
+
+
+
+##Get column names of railroad 
+This dataset contains 3 columns named "state", "county", and "total_employees."
+```{r}
+colnames(railroad)
+```
+
+##Select station_county and total_employees columns
+Focus on the total number of employees per county. 
+
+```{r}
+select(railroad, county, total_employees)
+head(railroad)
+```
+
+
+##Arrange data by the total number of employees in descending order
+Arranging the dataset by the total number of employees in descending order help us determine that Cook, IL has the highest number of employees.
+```{r}
+railroad %>%
+select(total_employees, state, county) %>%
+  arrange(desc(total_employees))
+
+
+
+```
+
+##Arrange dataset based on the total number of employees per state 
+
+```{r}
+railroad%>%
+  arrange(desc(total_employees))%>%
+  select(total_employees,state, county) %>%
+  group_by(state) %>%
+    slice(1)%>%
+  arrange(desc(total_employees))
+  
+```
+##Find the mean of total_employees per state with label
+```{r}
+summarise(railroad, mean(total_employees))
+
+```
+
+##Find basic statistical information on the dataset
+
+```{r}
+summarise(railroad, mean.employees = mean(total_employees), min.employees = min(total_employees), max.employees = max(total_employees), sd.employees = sd(total_employees))
+
+```
+##Find the mean of total_employees per state 
+
+```{r}
+railroad %>%
+  group_by(state) %>%
+  select(state, total_employees) %>%
+  summarise_all(mean, na.rm=TRUE)%>%
+  arrange(desc(total_employees))
+
+```
+##Find the mean of total_employees per county
+Finding the mean and arranging the dataset by the total number of employees indicated that Delaware has the highest number of employees per station compared to the rest of the states. However, Texas has the most employees per state. 
+```{r}
+railroad%>%
+  group_by(state)%>%
+  select(total_employees)%>%
+  summarise_all(sum, na.rm = TRUE)%>%
+arrange(desc(total_employees))
+
+
+```
+Conclusion - This dataset was likely created by the Railroad system in the United States to document the total number of railroad employees and keep record of its employment. The dataset contains 2930 observations and 3 variables. The county with most employees is in the state of Illinois, however, the state with most employees is in Texas.
+
+```{r}
+#| label: summary
+
+```

@@ -1,0 +1,94 @@
+---
+title: "Challenge 5"
+author: "Paarth Tandon"
+description: "Introduction to Visualization"
+date: "1/9/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+    df-print: kable
+categories:
+  - challenge_5
+  - cereal
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+-   cereal ⭐
+-   pathogen cost ⭐
+-   Australian Marriage ⭐⭐ 
+-   AB_NYC_2019.csv ⭐⭐⭐
+-   railroads ⭐⭐⭐
+-   Public School Characteristics ⭐⭐⭐⭐ 
+-   USA Households ⭐⭐⭐⭐⭐
+
+```{r}
+set.seed(42)
+# read in the data using readr
+cereal <- read_csv("_data/cereal.csv")
+head(cereal, 5)
+```
+
+### Briefly describe the data
+
+This data set contains four columns:
+
+* `Cereal <chr>`: The name of the cereal
+* `Sodium <dbl>`: The amount of sodium in a serving of the cereal
+* `Sugar <dbl>`: The amount of sugar in a serving of cereal
+* `Type <chr>`: The type of the cereal (Child or Adult)
+
+## Tidy Data (as needed)
+
+Data is already tidy. Going to mutate `Type` for visualization reasons.
+
+```{r}
+cereal <- mutate(cereal, `Type` = recode(`Type`,
+    "A" = "Adult",
+    "C" = "Child"
+))
+head(cereal, 5)
+```
+
+## Univariate Visualizations
+
+```{r}
+ggplot(cereal, aes(`Sodium`)) +
+geom_histogram(binwidth = 100) +
+facet_grid(vars(`Type`)) +
+labs(title = "Distribution of Sodium based on Type")
+```
+
+```{r}
+ggplot(cereal, aes(`Sugar`)) +
+geom_histogram(binwidth = 5) +
+facet_grid(vars(`Type`)) +
+labs(title = "Distribution of Sugar based on Type")
+```
+
+I chose histograms, since we are working with univariate, continuous data. I wanted to compare by type, so I applied a facet_grid.
+
+## Bivariate Visualization(s)
+
+```{r}
+ggplot(cereal, aes(`Type`, `Sugar`)) +
+geom_boxplot() +
+labs(title = "Amount of Sugar in Cereal by Type")
+```
+
+Here we can see that children's cereal has more sugar in it than adult's cereal, on average. I chose a box plot, since the data is very sparse. With only 20 points, we can only extrapolate so much.

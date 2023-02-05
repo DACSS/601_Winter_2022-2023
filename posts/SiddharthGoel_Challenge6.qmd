@@ -1,0 +1,116 @@
+---
+title: "Challenge 6"
+author: "Siddharth Goel"
+description: "Visualizing Time and Relationships"
+date: "01/30/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+  - debt
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  create at least one graph including time (evolution)
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+5)  Create at least one graph depicting part-whole or flow relationships
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+  - debt  ⭐
+  - fed_rate ⭐⭐
+  - abc_poll ⭐⭐⭐
+  - usa_hh ⭐⭐⭐
+  - hotel_bookings ⭐⭐⭐⭐
+  - air_bnb  ⭐⭐⭐⭐⭐
+
+```{r}
+data <- read_excel("_data/debt_in_trillions.xlsx")
+head(data)
+nrow(data)
+unique(data$`Year and Quarter`)
+```
+
+### Briefly describe the data
+This dataset contains the total debt for a country in trillion dollars over a period of 19 years. This data is split into quarters and is subdivided into categories like `Mortgage`, `Auto Loan`, etc.   
+
+## Tidy Data (as needed)
+
+Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+This input dataset is tidy but needs some mutations to the column `Year and Quarter`. This column needs to be split into 2 columns to make it easier to group on `Year` or    `Quarter` independently 
+
+```{r}
+tidy_data <- data %>%
+  separate(`Year and Quarter`, c('Year', 'Quarter'), sep = ":")
+head(tidy_data)
+nrow(tidy_data)
+unique(tidy_data$Year)
+```
+
+As you can see, we now have 9 columns as the column `Year and Quarter` has been split into 2.
+As a sanity check, it has been verified that the data still has 74 rows and that the `Year` column still has 19 unique values ranging from 03 to 21, just like before.
+
+## Time Dependent Visualization
+Here, I try to visualize the total debt how it behaves every year.
+
+```{r}
+scatter <- tidy_data %>%
+  ggplot(mapping=aes(x = Year)) +  
+  geom_line(aes(y = `Total`), color = "blue")
+scatter
+```
+
+## Visualizing Part-Whole Relationships
+
+Here, I try to visualize the trends of the different types of debts over the years.
+
+First, the data is pivoted so that the data is in a compact form
+
+```{r}
+pivot_data <- tidy_data %>%
+  pivot_longer(!c(Year, Quarter), names_to = "Type", values_to = "Value" )
+
+pivot_data
+```
+
+
+```{r}
+data_plot <- pivot_data %>% ggplot(mapping = aes(x = Year, y = Value))
+
+data_plot +
+  geom_point(aes(color = Quarter,)) +
+  facet_wrap(~Type, scales = "free_y") + 
+  guides() +
+  labs(title="Debt trends from '03 - '21")+
+  scale_x_discrete(breaks = c('04', '08', '12', '16', '20'))
+```
+

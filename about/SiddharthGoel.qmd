@@ -1,0 +1,47 @@
+---
+title: "Siddharth Goel"
+image: images/SiddharthGoel.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/YourName.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/siddgoel
+---
+
+##Instructions
+
+  - save a copy of this document as *FirstLast.qmd* in the **about** folder
+  - replace *Your Name* in yaml header with your first and last name
+  - save an image (jpeg, png) to use in the **about/images** folder
+  - replace image names in yaml header
+  - replace github user name
+  - fill in information below, as appropriate
+  - commit to github and submit pull request
+
+## Education/Work Background
+
+- EDUCATION
+University of Massachusetts Amherst, Amherst, MA (Sep 2021 - May 2023 Expected)
+Master of Science in Computer Science
+Coursework: Neural Networks, Systems for Data Science, Secure Distributed Systems, Machine Learning, Distributed and Operating Systems, Game Programming
+
+- WORK BACKGROUND
+Software Engineer Intern at Meta Platforms Inc.
+
+## R experience
+Experience Level: Beginner
+
+## Research interests
+- Distributed Systems
+- ML Systems
+
+## Hometown
+- Chandigarh, India
+
+## Hobbies
+- Sports
+- E-Sports

@@ -1,0 +1,44 @@
+---
+title: "MarcelaRobinson_challenge4"
+author: "Marcela Robinson"
+editor: visual
+df-print: paged
+---
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(stringr)
+
+```
+
+##Read in data 
+```{r}
+poultry<-read_csv("_data/poultry_tidy.csv")
+head(poultry)
+```
+The dataset poultry contains information related to the price per month of poultry cuts from 2004 - 2013. The dataset contains 600 observations and 4 different variables. The variables for this dataset are:
+-Product: This variable contains different poultry cuts including whole, breast, boneless breast, bone-in breast, whole legs, and thighs. 
+-Year and month: These variables contain the month and the year for each poultry cut price. 
+Price_dollar: The dollar amount per month for each poultry cut.
+
+The first step I want to do to clean the data is to combine the month and the year to reduce the number of columns. Next, I would like to use the mutate_if function to have 2 decimals for the price of the cuts.
+
+##Combine year and month to reduce number of columns
+```{r}
+poultry_date<-poultry%>%
+  mutate(date = str_c(Month, Year, sep=" "),
+         date = my(date))%>%
+  select(Product, Price_Dollar,date)
+
+head(poultry_date)
+
+```
+
+##Move decimal place 
+```{r}
+poultry_date%>%
+  mutate_if(is.numeric, ~round(., 2))
+```
+
+

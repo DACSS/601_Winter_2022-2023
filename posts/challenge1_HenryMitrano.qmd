@@ -1,0 +1,75 @@
+---
+title: "Challenge 1"
+author: "Henry Mitrano"
+description: "Reading in data and creating a post"
+date: "12/20/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, using the correct R package and command.
+
+-   railroad_2012_clean_county.csv ⭐
+-   birds.csv ⭐⭐
+-   FAOstat\*.csv ⭐⭐
+-   wild_bird_data.xlsx ⭐⭐⭐
+-   StateCounty2012.xlsx ⭐⭐⭐⭐
+
+Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
+
+```{r}
+
+railroad_data = read_csv("_data/railroad_2012_clean_county.csv")
+
+
+```
+Here I read in the railroad information data set so I can start running commands on it to analyze its contents. I can see initially that there are 2930 "observations", and 3 different variable categories.
+
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+head(railroad_data)
+# After I run the "head" command, it is revealed that state, county, and total_employees are the variables. So I can assume that this data is meant to record the total number of railroad employees in each county in each state.
+
+summarize(railroad_data, mean(total_employees))
+# After this I run the "summarize" command, which I recently learned in one of the R tutorials, using a statistic, "mean", to find the average number of railroad employees per state. It is approximately 87! Using this, I can sort the states and seee which ones have a higher than average number of rail workers, and which have less.
+
+railroad_data %>%
+  distinct(state, total_employees) %>%
+  arrange(desc(total_employees)) %>%
+  top_n(5)
+# Here, I sort each state by its total number of employees. I can see the 5 states with the highest number; Illinois, Texas, Nebraska, New York, and Virginia. Who knew there were so many railroad workers out in the midwest!
+```
+Now I feel confident understanding the data I read in at a high level. It lists the number of railroad workers in all their counties, and this will allow me to see where railroads are more prominent industries! There is plenty of more manipulation I could do as well, to see the biggest counties, smallest states, and more.

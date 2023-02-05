@@ -1,0 +1,86 @@
+---
+title: "Challenge 8"
+author: "Siddharth Goel"
+description: "Joining Data"
+date: "01/31/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+  - faostat
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in multiple data sets, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  join two or more data sets and analyze some aspect of the joined data
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+```{r}
+group_df <- read_csv("_data/FAOSTAT_country_groups.csv")
+spec(group_df)
+head(group_df)
+cattle_df <- read_csv("_data/FAOSTAT_cattle_dairy.csv")
+spec(cattle_df)
+head(cattle_df)
+```
+
+### Briefly describe the data
+I have read in 2 datasets -> FAOSTAT_cattle_dairy.csv and FAOSTAT_country_groups.csv which represent the dairy data for areas accross different countries and the country details respectively.
+
+## Tidy Data (as needed)
+
+As we can see from the data, the `Area Code` column in the cattle_df contains values from the `Country Code` column in group_df.
+To make it less confusing, I am renaming the `Area Code` column to `Country Code` in cattle_df.
+```{r}
+cattle_df <- cattle_df %>%  rename ("Country Code" = "Area Code")
+head(cattle_df)
+```
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+No variables require mutation here and the datasets are ready for joining.
+
+## Join Data
+
+```{r}
+join_df <- left_join(cattle_df, group_df, by = "Country Code" )
+head(join_df)
+spec(join_df)
+nrow(join_df)
+ncol(join_df)
+n_distinct(cattle_df$`Country Code`)
+n_distinct(group_df$`Country Code`)
+```
+
+As an analytical example, I will calculate the total value of items per country group per year
+
+```{r}
+output_df <- join_df %>% group_by(`Country Group`) %>%
+                    summarise(total_value = sum(Value))
+head(output_df)
+```
+
+
