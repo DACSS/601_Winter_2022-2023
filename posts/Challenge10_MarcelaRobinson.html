@@ -323,32 +323,32 @@ dbl (16): Cattle - dairy, Cattle - non-dairy, Buffaloes, Swine - market, Swi...
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dfr</span>(<span class="fu">list</span>(a,b,c),weights_stats,<span class="at">pivot=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 6
-  id    st_mean st_median st_sd    st_min st_max
-  &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;
-1 a      0.0596     0.116 0.919 -2.30      2.52 
-2 b      0.521      0.534 0.283  0.000779  0.979
-3 c      1.00       0.603 0.991  0.00718   4.67 </code></pre>
+  id    st_mean st_median st_sd  st_min st_max
+  &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1 a     -0.0290    0.0543 0.994 -2.42    1.76 
+2 b      0.475     0.499  0.273  0.0122  0.988
+3 c      0.879     0.629  0.891  0.0135  5.35 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dfr</span>(<span class="fu">list</span>(a,b,c),weights_stats,<span class="at">pivot=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 15 × 3
-   id    name          value
-   &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;
- 1 a     st_mean    0.0596  
- 2 a     st_median  0.116   
- 3 a     st_sd      0.919   
- 4 a     st_min    -2.30    
- 5 a     st_max     2.52    
- 6 b     st_mean    0.521   
- 7 b     st_median  0.534   
- 8 b     st_sd      0.283   
- 9 b     st_min     0.000779
-10 b     st_max     0.979   
-11 c     st_mean    1.00    
-12 c     st_median  0.603   
-13 c     st_sd      0.991   
-14 c     st_min     0.00718 
-15 c     st_max     4.67    </code></pre>
+   id    name        value
+   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+ 1 a     st_mean   -0.0290
+ 2 a     st_median  0.0543
+ 3 a     st_sd      0.994 
+ 4 a     st_min    -2.42  
+ 5 a     st_max     1.76  
+ 6 b     st_mean    0.475 
+ 7 b     st_median  0.499 
+ 8 b     st_sd      0.273 
+ 9 b     st_min     0.0122
+10 b     st_max     0.988 
+11 c     st_mean    0.879 
+12 c     st_median  0.629 
+13 c     st_sd      0.891 
+14 c     st_min     0.0135
+15 c     st_max     5.35  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">weights_stats</span>(animal_weight<span class="sc">$</span>Buffaloes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
