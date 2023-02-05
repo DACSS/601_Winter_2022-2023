@@ -1,0 +1,100 @@
+---
+title: "Challenge 9"
+author: "Rishita Golla"
+description: "Creating a function"
+date: "2/3/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_9
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library("readxl")
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is simple. Create a function, and use it to perform a data analysis / cleaning / visualization task:
+
+Examples of such functions are:
+1) A function that reads in and cleans a dataset.  
+2) A function that computes summary statistics (e.g., computes the z score for a variable).  
+3) A function that plots a histogram.  
+
+That's it!
+
+## Create a function to read in and clean a dataset.
+
+I will be reusing the dataset - debt_in_trillion as I'm already familiar with it (Challenge 6).
+Here using a function, I'm creating a new column called Date which parses date and quarter column into a single `Date` column. Q1, Q2, Q3, Q4 will be mapped to 01, 04, 07, and 10 respectively.
+
+```{r}
+data <- read_xlsx("_data/debt_in_trillions.xlsx")
+view(data)
+```
+
+```{r}
+debt_data <- function(x) {
+  data <-read_excel("_data/debt_in_trillions.xlsx")
+  data <- data%>%
+         mutate(Date = parse_date_time(`Year and Quarter`, orders="yq"))
+  return(data)
+}
+debt_data()
+```
+## Function to calculate summary statistics - z-score of a variable
+
+Below is a new function to calculate z-score for a variable, that is a column in the data for our use case.
+
+```{r}
+z_score <- function(val) {
+  result <- (val - mean(val)) / sd(val)
+  return(result)
+}
+```
+
+Calculating z-score for total column in the data.
+
+```{r}
+data <-read_excel("_data/debt_in_trillions.xlsx")
+z_score(data$Total) 
+```
+
+## Function to plot graph
+```{r}
+data <- data %>%
+mutate(Date = parse_date_time(`Year and Quarter`, orders="yq"))
+```
+
+```{r}
+ data <- data %>%
+     pivot_longer(
+         cols = c(`Mortgage`, `HE Revolving`, `Auto Loan`, `Credit Card`, `Student Loan`, `Other`, `Total`),
+         names_to = "Type", 
+         values_to = "Value"
+     )
+```
+
+```{r}
+ plot_trend <- function(data) {
+ ggplot(data, aes(x=`Date`, y=`Value`, fill=`Type`)) +
+ geom_area()
+ }
+```
+
+```{r}
+plot_trend(data)
+```
