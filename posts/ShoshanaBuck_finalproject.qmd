@@ -1,0 +1,453 @@
+---
+title: "601 Final Project"
+editor: visual
+desription: "Capital Punishment in the U.S"
+date: "2/04/23"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - 601_final project
+  - Shoshana Buck
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+library(ggplot2)
+library(usmap)
+library(plotly)
+library(wordcloud)
+library(RColorBrewer)
+library(wordcloud2)
+library(tm)
+library(corpus)
+library(quanteda)
+library(quanteda.textplots)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r read in data}
+load("~/Documents/GitHub/601_Winter_2022-2023/posts/_data/DS0001/08451-0001-Data.rda")
+
+
+DA0 <- (da08451.0001)
+```
+
+# Project overview
+
+[Executions in the United States, 1608-2002: The Espy file.](https://www.icpsr.umich.edu/web/ICPSR/studies/8451)is a database of individual executions in the United States starting with the first documentation in the early colonies of Virginia in 1608 ending in 2002. The file has 15268 observations and 21 variables, some of the variables include age, race, sex, name,occupation, state of execution, jurisdiction, and crime committed.The data was collected from 1970- 2002 by M. Watt Espy and John Ortiz Smykla both who are professors at the University of Alabama in the Department of Political Science and Criminal Justice. The methodology of data collection varied from State Department of Corrections records, newspapers, county histories, proceedings of state and local courts, holdings of historical societies, and other listings of executions. The project is ongoing and as a result is not completely finished,therefor some executions could be omitted.
+
+The death penalty is a highly debated topic that has plagued the United States since its inspection. My goal of this project is to show that there is a disproportional amount of black males targeted with the death penalty than to white males. Additionally, I predict that southern states like Alabama, Georgia, and Texas are going to have a higher death rates. I hypothesize that black males in southern states are going to be disproportionately targeted because of the deep colonial and racial ties that the death penalty stems from.
+
+Because there are 21 variables in "The Espy File" I wanted to narrow down the variables in order to do some meaningful analysis with the data. Of the 21 I chose nine variables: case number, race, place of execution, jurisdiction of execution, crime committed, the method of execution, year, state, and sex of the offender. I re coded the variables so that the viewer would be able to make sense of variable names.
+
+```{r renaming variables}
+DA0_select<- DA0 %>% 
+  select(V4,V5,V8,V9,V10,V11,V14,V16,V19) %>% 
+  rename(case_number = V4,
+        race = V5,
+        place_of_ex = V8,
+        jurisdiction_of_ex = V9,
+        crime_committed = V10,
+        method_of_ex = V11,
+        year = V14,
+        state_of_ex = V16,
+        sex = V19)
+head(DA0_select)
+```
+
+After reading in the data, I found that the data looked fairly tidy. The main issue that arose was the variables were mostly factors or characters which is why some variables have a number in a parentheses next to it. In order to assign value to the factor the previous researchers assigned a numeric value to the factor. I decided to take the numeric value out and used mutate and to re code for the variable names.
+
+```{r tidying values}
+DA0_tidy<- DA0_select %>% mutate(race = recode(race, '(1) White' = "White", '(2) Black' = "Black", '(3) Native American' = "Native American", '(4) Asian-PacificI1' = "Asian-PacificI1",'(4) Asian-Pacific II' = "Asian-Pacific II", '(5) Hispanic' = "Hispanic", '(6) Other' = "Other")) %>% 
+mutate(place_of_ex = recode(place_of_ex, '(1) City-Local Juris' = "City-Local Juris",'(2) County-Local Jur' = "County-local Jur", '(3) State-ST Prison' = "State-ST Prison", '(4) Other' = "Other" )) %>% 
+  mutate(jurisdiction_of_ex = recode(jurisdiction_of_ex, '(1) Local-Colonial' = "Local-Colonial", '(2) State' ="State", '(3) Federal' = "Federal", '(4) Territorial' = "Territorial", '(5) Indian Tribunal'= "Indian Tribunal", '(6) Other-Military' = "Other-Military" )) %>%   
+mutate(crime_committed = recode(crime_committed, '(01) Murder' = "Murder", '(02) Rape' = "Rape", '(03) Criminal Assault' = "Criminal Assault", '(04) Housebrkng-Burgl' = "Housebrkng-Burgl", '(05) Horse Stealing'= "Horse Stealing", '(06) Consp to Murder' = "Consp to Murder", '(07) Treason' = "Treason", '(08) Slave Revolt' = "Slave Revolt", '(09) Witchcraft' = "Witchcraft", '(10) Robbery-Murder' = "Robbery-Murder", '(11) Rape-Murder' = "Rape-Murder", '(12) Piracy' = "Piracy", '(13) Accessory to Mur' = "Accessory to Mur", '(14) Desertion' = "Desertion", '(15) Robbery' = "Robbery", '(16) Arson' = "Arson", '(17) Guerilla Activit' = "Guerilla Activit", '(18) Spying-Espionage' = "Spying-Espionage", '(19) Murder-Rape-Rob' = "Murder-Rape-Rob", '(20) Burg-Att Rape' = "Burg-Att Rape", '(21) Rioting' = "Rioting", '(22) Attempted Rape' = "Attempted Rape",'(23) Murder-Burglary' = "Murder- Burglary", '(24) Kidnap-Murder' = "Kidnap-Murder", '(25) Kidnap-Murder-Rob' = "Kidnap-Murder-Rob", '(26) Arson-Murder' = "Arson-Murder",' (27) Rape-Robbery' = "Rape-Robbery", '(28) Kidnapping'= "Kidnapping", '(29) Prisn Brk-Kidnap'= "Prisn Brk-Kidnap", '(30) Sodmy-Buggry-Bst'= "Sodmy-Buggry-Bst", '(31) Adultery'= "Adultery", '(33) Poisoning' = "Poisoning", '(35) Concealing Birth' = "Concealing Birth", '(36) Unspec Felony' = "Unspec Felony", '(37) Aid Runaway Slve' = "Aid Runaway Slve", '(39) Counterfeiting' = "Counterfeiting", '(40) Attempted Murder' = "Attempted Murder", '(41) Forgery' = "Forgery", '(43) Theft-Stealing' = "Theft-Stealing", '(44) Other' = "Other")) %>% 
+mutate(method_of_ex= recode(method_of_ex, '(01) Hanging' = "Hanging", '(02) Electrocution'= "Electrocution", '(03) Asphyxiation-Gas' = "Asphyxiation-Gas", '(04) Shot' = "Shot",'(05) Injection' = "Injection", '(06) Pressing'= "Pressing", '(08) Break on Wheel'= "Break on Wheel",'(10) Burned' = "Burned", '(11) Hung in Chains' ="Hung in Chains", '(13) Bludgeoned' = "Bludgeoned",'(14) Gibbetted' ="Gibbetted", '(15) Other' = "Other")) %>% 
+mutate(state_of_ex = recode(state_of_ex, '(01) Alabama' = "Alabama", '(02) Alaska' = "Alaska", '(04) Arizona'= "Arizona", '(05) Arkansas' = "Arkansas", '(06) California' = "California", '(08) Colorado'= "Colorado", '(09) Connecticut'="Connecticut", '(10) Delaware' = "Delaware", '(11) Washington, D.C.' = "Washington, D.C.", '(12) Florida' = "Florida", '(13) Georgia' ="Georgia", '(15) Hawaii' = "Hawaii", '(16) Idaho' = "Idaho", '(17) Illinois'= "Illinois", '(18) Indiana' = "Indiana",'(19) Iowa'= "Iowa",'(20) Kansas'= "Kansas", '(21) Kentucky'= "Kentucky", '(22) Louisiana'= "Louisiana", '(23) Maine'= "Maine", '(24) Maryland'= "Maryland", '(25) Massachusetts'= "Massachusetts", '(26) Michigan'= "Michigan", '(27) Minnesota'= "Minnesota",'(28) Mississippi'= "Mississippi", '(29) Missouri'= "Missouri", '(30) Montana'= "Montana", '(31) Nebraska'= "Nebraska", '(32) Nevada'= "Nevada", '(33) New Hampshire'= "New Hampshire", '(34) New Jersey' = "New Jersey", '(35) New Mexico'= "New Mexico", '(36) New York'= "New York", '(37) North Carolina' = "North Carolina", '(38) North Dakota' = "North Dakota", '(39) Ohio' = "Ohio", '(40) Oklahoma' = "Oklahoma", '(41) Oregon' = "Oregon", '(42) Pennsylvania' = "Pennsylvania", '(44) Rhode Island' = "Rhode Island", '(45) South Carolina' = "South Carolina", '(46) South Dakota' = "South Dakota", '(47) Tennessee' = "Tennessee",'(48) Texas' = "Texas", '(49) Utah'= "Utah",'(50) Vermont' = "Vermont",'(51) Virginia' = "Virginia",'(53) Washington' = "Washington",'(54) West Virginia' = "West Virginia",'(55) Wisconsin'= "Wisconsin", '(56) Wyoming'= "Wyoming"))%>%
+mutate(sex= recode(sex, '(1) Male'= "Male", '(2) Female'= "Female"))
+head(DA0_tidy)
+```
+
+```{r filtered data}
+DA0_filter<-DA0_tidy %>% 
+  group_by(state_of_ex,crime_committed,race, sex) %>% 
+  mutate((x= sequence(rle(as.character(state_of_ex))$length))) %>% 
+ summarise(year) %>% 
+  arrange(state_of_ex)
+DA0_filter
+
+```
+
+Next, I want to see what the cleaned up data looks like and become a little more familiar with the information. I am interested in seeing the state where someone was executed, the crime they committed, the race, sex, and year. The first execution that took place in Alabama was in 1812 and something that is interesting is that the first ten executions were all white men; which goes against my hypothesis. It is important to remember is that these are documented executions coming from state departments and correctional records. It is not accounting for undocumented deaths.
+
+```{r top 10 states that have the most deaths in a year}
+ new_DA0_tidy<- DA0_tidy %>% 
+  mutate(across(c(method_of_ex, state_of_ex,year), as.factor)) %>% 
+  count(method_of_ex, state_of_ex, year, .drop=F) %>% 
+  rename(deaths = n) %>% 
+  top_n(10,deaths) %>%   
+  arrange(deaths)
+new_DA0_tidy
+```
+
+Now, I want to see what the most common method of execution. Hangings were most common in the 1600s-1800s, however, the development electrocution became frequently used in the 1900s and now present day lethal injection is most common. I focus in on method of execution because, in slave- states black people were typically killed in extreme violent ways. Showing that unequal treatment of black people was seen even in death. (Ndulue, N. (2020)).
+
+Then the top_n() function allows to see the top 10 deaths that happened in a year in each state. Texas had 4 out of the 10 top deaths a year (1997,1999, 2000,2002).Though North Carolina, is on the the top ten states that had the most amount of deaths in a year, they have been one of the more progressive states that have had reforms on capital punishment. Further, I want to note that the data for capital punishment ends in 2002, so there is not complete records for deaths in the 2000s.
+
+```{r top 10 deaths that happened in a century}
+new<- DA0_tidy %>% 
+  mutate(timeframe=case_when( year >= 1600 & year < 1700 ~ "1600s", year >= 1700 & year < 1800 ~ "1700s", year >= 1800 & year < 1900 ~ "1800s", year >= 1900 & year < 2000 ~"1900s", year >= 2000 & year <2003 ~ "2000s")) %>% 
+mutate(across(c(method_of_ex, state_of_ex, race, timeframe), as.factor)) %>%
+count(method_of_ex, state_of_ex,race, timeframe, .drop=F) %>% 
+  rename( deaths = n)
+#new
+
+new%>%
+  top_n(10,deaths) #%>% 
+   #group_by(timeframe)
+```
+
+I want to create a table that shows the total amount of deaths in state in a given time frame. For this, I will create a new column that captures the deaths within each century 1600s, 1700s, 1800s, 1900s, and 2000s\* (not complete data). Additionally, this table shows that in the southern states of Alabama, Georgia, Virginia, and Texas, black people were killed more than white people.
+
+# Map visualizations
+
+The next set of Maps show two graphs one of the United States and the Southern region of the United States. I want to see the progression of deaths within the five time frames (1600s, 1700s, 1800s, 1900s, 2000s) to see which states have the most deaths.
+
+```{r map of the United States 1600s}
+us_16<-new %>% 
+  filter(timeframe== "1600s")%>% 
+  mutate(across(c(state_of_ex), as.character)) %>% 
+ rename(state = state_of_ex) %>% 
+  select(state, deaths)%>%
+  mutate(state=str_trim(state))
+
+us_16<- us_16 %>% 
+  group_by(state) %>% 
+  summarise(deaths = sum(deaths))
+
+a<- plot_usmap (data = us_16, values = "deaths", color = "red", labels = TRUE, region = "state") + 
+  scale_fill_continuous( low = "white", high = "red", name = "Number of deaths", labels = scales:: comma) + labs(title = "Deaths in United States, 1600s") +theme(legend.position = "right")
+
+ggplotly(a)
+```
+
+```{r map of the southern region in the 1600s}
+south_16<-new %>% 
+  filter(timeframe== "1600s")%>% 
+  mutate(across(c(state_of_ex), as.character)) %>% 
+ rename(state = state_of_ex) %>% 
+  select(state, deaths)%>%
+  mutate(state=str_trim(state))
+
+south_16<- south_16 %>% 
+  group_by(state) %>% 
+  summarise(deaths = sum(deaths))
+
+b<- plot_usmap(data = south_16, values = "deaths", color = "red", include = .south_region , labels = TRUE) + 
+  scale_fill_continuous (low = "white", high = "red", name = "deaths in each state", label = scales::comma) + 
+  labs(title ="Deaths in Southern States, 1600s") +
+  theme(legend.position = "right")
+
+ggplotly(b)
+```
+
+These graphs are from the 1600s which show that there are very few amount of deaths, but Virginia, Maryland, DC and Delaware have the most deaths. The first recorded execution happened in 1608 in the colony of Virginia. Sargent Kendall George was shot for being a spy for Spain.
+
+```{r map of total amount of deaths in the 1700s}
+us_17<-new %>% 
+  filter(timeframe== "1700s") %>% 
+  rename(state= state_of_ex) %>% 
+  select(state, deaths)%>%
+  mutate(state=str_trim(state))
+us_17<- us_17 %>% 
+  group_by(state) %>% 
+  summarise(deaths = sum(deaths))
+
+c<- plot_usmap (data = us_17, values = "deaths", color = "blue", labels = TRUE, region = "state") + 
+  scale_fill_continuous( low = "white", high = "blue", name = "Number of deaths", labels = scales:: comma) + labs(title = "Deaths in United States, 1700s")+ theme(legend.position = "right")
+
+ggplotly(c)
+```
+
+```{r map of the total amount of death in the south}
+south_17<-new %>% 
+  filter(timeframe== "1700s")%>% 
+  mutate(across(c(state_of_ex), as.character)) %>% 
+ rename(state = state_of_ex) %>%
+  select(state, deaths)%>%
+  mutate(state=str_trim(state))
+
+south_17<- south_17 %>% 
+  group_by(state) %>% 
+  summarise(deaths = sum(deaths))
+
+d<- plot_usmap(data = south_17, values = "deaths", color = "blue", include = .south_region , labels = TRUE) + 
+  scale_fill_continuous (low = "white", high = "blue", name = "deaths in each state", label = scales::comma) + 
+  labs(title ="Deaths in Southern States, 1700s") +
+  theme(legend.position = "right")
+ggplotly(d)
+```
+
+With the development of the states you can see an uptick in deaths spreading more across the south. Louisiana had 61 deaths in the 1700s and you can see that the New England area is starting to have less deaths.
+
+```{r map of the total amount of deaths in the 1800s}
+us_18<- new %>% 
+  filter(timeframe== "1800s")%>% 
+  rename(state= state_of_ex) %>% 
+  select(state, deaths)%>%
+  mutate(state=str_trim(state))
+
+us_18<- us_18 %>% 
+  group_by(state) %>% 
+  summarise(deaths = sum(deaths))
+
+e<- plot_usmap (data = us_18, values = "deaths", color = "orange", labels = TRUE, region = "state") + 
+  scale_fill_continuous( low = "white", high = "orange", name = "Number of deaths", labels = scales:: comma) + labs(title = "Deaths in United States, 1800s")+ theme(legend.position = "right")
+
+ggplotly(e)
+
+```
+
+```{r map of the total amount of deaths in the south, 1800s}
+south_18 <-new %>% 
+  filter(timeframe== "1800s")%>% 
+  mutate(across(c(state_of_ex), as.character)) %>% 
+ rename(state = state_of_ex) %>%
+  select(state, deaths)%>%
+  mutate(state=str_trim(state))
+
+south_18<- south_18 %>% 
+  group_by(state) %>% 
+  summarise(deaths = sum(deaths))
+
+f<- plot_usmap(data = south_18, values = "deaths", color = "orange", include = .south_region , labels = TRUE) + 
+  scale_fill_continuous (low = "white", high = "orange", name = "deaths in each state", label = scales::comma) + 
+  labs(title ="Deaths in Southern States, 1800s") +
+  theme(legend.position = "right")
+ggplotly(f)
+```
+
+With the expansion of the United States deaths across the states are becoming more frequent. The 1800s is when Texas starts to execute it citizens with 262 people and sadly it has only grown from there. Virginia in the 1800s still has the record for the most executions with 577 deaths.
+
+```{r map of the total amount of deaths in 1900s}
+us_19<- new %>% 
+  filter(timeframe== "1900s")%>% 
+  rename(state= state_of_ex) %>% 
+  select(state, deaths)%>%
+  mutate(state=str_trim(state)) 
+
+  us_19<- us_19 %>% 
+  group_by(state) %>% 
+  summarise(deaths = sum(deaths))
+
+g<- plot_usmap (data = us_19, values = "deaths", color = "green", labels = TRUE, region = "state") + 
+  scale_fill_continuous( low = "white", high = "green", name = "Number of deaths", labels = scales:: comma) + labs(title = "Deaths in United States, 1900s") + theme(legend.position = "right")
+
+ ggplotly(g)
+```
+
+```{r map of the total amount of deaths in the south, 1900s}
+south_19<-new %>% 
+  filter(timeframe== "1900s")%>% 
+  mutate(across(c(state_of_ex), as.character)) %>% 
+ rename(state = state_of_ex) %>%  
+  select(state, deaths)%>%
+  mutate(state=str_trim(state))
+
+south_19<- south_19 %>% 
+  group_by(state) %>% 
+  summarise(deaths = sum(deaths))
+
+h<- plot_usmap(data = south_19, values = "deaths", color = "green", include = .south_region , labels = TRUE) + 
+  scale_fill_continuous (low = "white", high = "green", name = "deaths in each state", label = scales::comma) + 
+  labs(title = "Deaths in Southern States, 1900s") +
+  theme(legend.position = "right")
+ggplotly(h)
+```
+
+Now in the 1900s the United States is established in the sense that there are functional prison systems, police officers, and courts. Texas had the most amount of deaths with 688 and Georgia comes in close with 647 deaths. Virginia no longer is the front runner of executions however, they still have plenty of executions with 375 deaths in the 1900s.
+
+```{r map of the total* amount of deaths in 2000}
+us_20<- new %>% 
+  filter(timeframe== "2000s")%>% 
+  rename(state= state_of_ex) %>% 
+  select(state, deaths)%>%
+  mutate(state=str_trim(state))
+
+us_20<- us_20 %>% 
+  group_by(state) %>% 
+  summarise(deaths = sum(deaths))
+
+I<- plot_usmap (data = us_20, values = "deaths", color = "pink", labels = TRUE, region = "state") + 
+  scale_fill_continuous( low = "white", high = "pink", name = "Number of deaths", labels = scales:: comma) + labs(title = "Deaths in United States, 2000s") +theme(legend.position = "right")
+
+ggplotly(I)
+```
+
+```{r map of the total* amount of deaths in the south 2000}
+south_20<-new %>% 
+  filter(timeframe== "2000s")%>% 
+  mutate(across(c(state_of_ex), as.character)) %>% 
+ rename(state = state_of_ex) %>% 
+  select(state, deaths)%>%
+  mutate(state=str_trim(state))
+
+south_20<- south_20 %>% 
+  group_by(state) %>% 
+  summarise(deaths = sum(deaths))
+
+J<- plot_usmap(data = south_20, values = "deaths", color= "pink", include = .south_region , labels = TRUE) + 
+  scale_fill_continuous (low = "white", high = "pink", name = "deaths in each state", label = scales::comma) + 
+  labs(title = "Deaths in Southern States, 2000s") +
+  theme(legend.position = "right")
+ggplotly(J)
+```
+
+As I have stated before the data for the 2000s only has two years before they stopped capturing data. The amount of deaths is not completely accurate for the whole century of 2000s. But, it shows the projection of each state. In just two years Texas had 81 executions and Oklahoma had 32.
+
+# Bar graph visualizations
+
+```{r method of execution_race_deaths}
+new<- new %>% 
+  group_by(method_of_ex, race) %>% 
+  summarise(deaths = sum(deaths))
+
+bgraph<- new%>%  ggplot(aes(x= method_of_ex, y= deaths,fill=method_of_ex),width=0.7) +
+  geom_bar(stat="identity", width=1) +
+ scale_fill_brewer(palette="Dark2") +
+  labs(title = "Method of execution race")+
+  facet_wrap(vars(race))+
+  coord_flip()+
+  theme(legend.position="none")+ 
+  theme(axis.text.x=element_text(angle=90,hjust=1))
+ggplotly(bgraph)
+```
+
+I wanted to create a bar graph that showed the relationship of race, and method of execution to see what was the most common mode and if a race was affected more.
+
+The bar graph is not using a time frame but rather using the spectrum of years 1608-2002. This bar graph confirms that white and black people are the ones predominately affected by capital punishment. The top three most used forms of execution were hanging, electrocution, and asphyxiation-gas.
+
+```{r method of execution and race}
+r<- new %>% 
+  filter(race == "Black"| race == "White") 
+
+  rgraph<- r%>%  ggplot(aes(x= method_of_ex, y= deaths,fill=method_of_ex),width=0.7) +
+  geom_bar(stat="identity", width=1) +
+ scale_fill_brewer(palette="Dark2") +
+  labs(title = "Method of execution race")+
+  facet_wrap(vars(race))+
+  theme(legend.position="none")+ 
+  theme(axis.text.x=element_text(angle=90,hjust=1)) 
+
+ggplotly(rgraph)
+  
+```
+
+This bar graph shows the relationship between method of execution and race. The top three forms of executions that were used by black and white people were hanging, electrocution, and asphyxiation-Gas. Hanging was the most common method of execution for both white and black people, however, 4405 black people were hung compared to 3864 white people. Additionally, being burned and break on the wheel were other methods of executions that were used on black people and not white people.
+
+```{r word cloud}
+
+corpus_og<- DA0_tidy %>% mutate(across(c(crime_committed), as.character))
+
+corpus <- corpus(corpus_og,text_field = "crime_committed")
+dfm <- dfm(tokens(corpus))
+textplot_wordcloud(dfm, min_count = 50, random_order = FALSE)        
+
+```
+
+I created a word cloud to see what were the most popular crimes committed that resulted in a punishment of deaths. Murder was the most common crime that was committed and then robbery-murder that caused people to be executed.
+
+# Critical Reflection
+
+Capital punishment is used as an extreme form of punishment that affects everyone in the United States, especially black males in America. Through this data file my goal was to show the disproportionate amount of black people being targeted than their counter partner. I think it is important to reiterate that the data in this file just shows the recorded deaths in the United States. It does not account for the undocumented deaths that have happened across the U.S. Though some states in the United States have banned capital punishment or have taken steps to reform the laws, the data shows the aggressive progression of executions in the United States, specially in the southern region.
+
+Some limitations that I had with this project is that there were not many numeric values so doing analysis was a little tricky. Furthermore, the data set covered over three hundred years worth of executions in the United States, so much of the analysis was an overview. For future analysis, I think it would be interesting to join another data set that looks at a specific state and or year and compare it to the "Espy File". Additionally, I think it would be better to look at the New England region and compare the data to the southern region to see if more people are executed in the south. Also, I had a little confusion about how race was counted for when using the top_n(). I assumed that it was
+
+# Bibliography
+
+Espy, M. Watt, and Smykla, John Ortiz. Executions in the United States, 1608-2002: The ESPY File . Inter-university Consortium for Political and Social Research \[distributor\], 2016-07-20. https://doi.org/10.3886/ICPSR08451.v5
+
+Death Penalty Information Center. (2020). https://deathpenaltyinfo.org/executions/executions-overview/executions-in-the-u-s-1608-2002-the-espy-file
+
+Di Lorenzo, P. (2011). https://cran.r-project.org/web/packages/usmap/vignettes/mapping.html
+
+Wickham, H., & Grolemund, G. (2016). R for data science: import, tidy, transform, visualize, and model data. " O'Reilly Media, Inc.".
+
+Ndulue, N. (2020). Enduring Injustice: The Persistence of Racial Discrimination in the US Death Penalty.
+
+# Code that didn't work/didn't use
+
+```{r}
+# I tried to use this code to simplify the re coding but then it became more complicated to use for graphing 
+
+#mutate(state_of_ex) %>% 
+  #separate(state_of_ex, into = c("delete", "state_of_ex"), sep = "\\)")%>%
+ # mutate(sex= recode(sex, '(1) Male'= "Male", '(2) Female'= "Female"))
+#DA0_tidy<-DA0_tidy%>%
+  #select(-delete)
+#head(DA0_tidy)
+```
+
+```{r}
+# I think this didn't output the 
+#docs <- Corpus(VectorSource(text))
+
+#dtm <- TermDocumentMatrix(docs) 
+#matrix <- as.matrix(dtm) 
+#words <- sort(rowSums(matrix),decreasing=TRUE) 
+#df <- data.frame(word = names(words),freq=words)
+
+#wordcloud(words = DA0_tidy$crime_commited, min.freq = 1, max.words=200, random.order=FALSE, rot.per=0.35, colors=brewer.pal(8, "Dark2"))
+```
+
+```{r}
+# I tried to use pack circles to see the different methods of executions but the circulars didn't show the different methods.
+
+#data <- data.frame(group=paste("method_of_ex", letters[1:44]), value=sample(seq(1,100),44))
+#packing <- circleProgressiveLayout(data$value, sizetype='area')
+#data <- cbind(data,packing)
+#dat.gg <- circleLayoutVertices(packing, npoints=50)
+
+#ggplot() + geom_polygon(data = dat.gg, aes(x, y, group = id, fill=as.factor(id)), colour = "black", alpha = 0.6) + geom_text(data = data, aes(x, y, size=value, label = group)) +
+  #scale_size_continuous(range = c(1,4)) + theme_void() + 
+  #theme(legend.position="none") +
+  #coord_equal()
+```
+
+```{r}
+# This outputs a blank map.
+#new %>% 
+  #filter(timeframe== "1800s")%>% 
+ # mutate(across(c(state_of_ex), as.character)) %>% 
+ #rename(state = state_of_ex) %>%
+  #select(state, deaths) %>% 
+ #usmap::plot_usmap(regions= "state", values = "deaths", color = "red") + scale_fill_continuous( low = "white", high = "red", name = "Number of deaths", labels = scales:: comma) + theme(legend.position = "right")
+
+
+```
+
+```{r}
+
+#test<-new %>% 
+  #filter(timeframe== "1800s")%>% 
+  #mutate(across(c(state_of_ex), as.character)) %>% 
+ #rename(state = state_of_ex) %>%
+  #select(state, deaths)%>%
+  #mutate(state=str_trim(state))
+
+# This test says 'states' not found but I copied this from the working directory so I literally don't understand
+
+#ggplot(us_16, aes(map_id = state)) + geom_map(aes(fill = deaths), map = state, col = "white") +
+  #expand_limits(x = state$long, y = state$lat) +
+  #scale_fill_distiller(name = "death rate", palette = "Spectral") +
+  #labs(title = "US deaths, in 1600s ", x = "longitude", y = "latitude") +
+  #coord_fixed(1.3) +
+  #theme_minimal()
+```
