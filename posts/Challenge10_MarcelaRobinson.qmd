@@ -1,0 +1,50 @@
+---
+title: "Challenge10_MarcelaRobincon"
+author: "Marcela Robinson"
+editor: visual
+date: "February 5, 2023"
+---
+
+```{r}
+library(tidyverse)
+library(here)
+
+```
+
+```{r}
+animal_weight<- here("posts", "_data", "animal_weight.csv")%>%
+  read_csv()
+```
+
+```{r}
+weights_stats<-function(animal_weight, pivot=F){
+  dat <- tibble(
+    id=ifelse(is.null(names(animal_weight)),NA,names(animal_weight)),
+    st_mean = mean(animal_weight, na.rm = TRUE),
+    st_median = median(animal_weight, na.rm = TRUE),
+    st_sd = sd(animal_weight, na.rm = TRUE),
+    st_min = min(animal_weight, na.rm = TRUE),
+    st_max = max(animal_weight, na.rm = TRUE),
+     )
+  if(pivot){
+    dat <- dat %>%
+      pivot_longer(cols=-id)
+  }
+  return(dat)
+}
+
+n <- 100
+a <- rnorm(n)
+names(a) <- "a"
+b <- runif(n)
+names(b) <- "b"
+c <- rgamma(n,1,1)
+names(c) <- "c"
+
+map_dfr(list(a,b,c),weights_stats,pivot=F)
+map_dfr(list(a,b,c),weights_stats,pivot=T)
+
+# sanity check
+weights_stats(animal_weight$Buffaloes)
+```
+
