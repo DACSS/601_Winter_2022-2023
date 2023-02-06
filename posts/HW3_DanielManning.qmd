@@ -2,7 +2,7 @@
 title: "HW 3"
 author: "Daniel Manning"
 description: "Reading in Data"
-date: "1/28/2023"
+date: "1/29/2023"
 format:
   html:
     toc: true
