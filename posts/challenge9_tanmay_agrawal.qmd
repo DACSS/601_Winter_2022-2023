@@ -1,0 +1,99 @@
+---
+title: "Challenge 9 Submission"
+author: "Tanmay Agrawal"
+description: "Creating a function"
+date: "1/31/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+    df-print: paged
+categories:
+  - challenge_9
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is simple. Create a function, and use it to perform a data analysis / cleaning / visualization task:
+
+Examples of such functions are:
+1) A function that reads in and cleans a dataset.  
+2) A function that computes summary statistics (e.g., computes the z score for a variable).  
+3) A function that plots a histogram.  
+
+That's it!
+
+## Reusable Functions!
+
+My goal here to create generic function templates that work with majority of the datasets. These functions can then be reused and modified based on specific requirements of the dataset. 
+
+```{r}
+# A function that reads in and cleans a dataset
+read_and_clean_data <- function(file) {
+  data <- read.csv(file)
+  
+  # Remove missing values
+  data <- na.omit(data)
+  return(data)
+}
+
+# A function that computes summary statistics
+compute_summary_stats <- function(data, variable) {
+  
+  # Get statistics for only numeric types
+  numeric_data <- select_if(data, is.numeric)
+  general_stats <- summary(numeric_data)
+  
+  # Compute the mean and standard deviation separately for the Z-Score
+  mean_value <- mean(data[, variable])
+  std_value <- sd(data[, variable])
+  
+  # Compute the z score for the variable
+  z_score <- (data[, variable] - mean_value) / std_value
+  
+  # Return the z score
+  return(list(general_stats, z_score))
+
+}
+
+# A function that plots a histogram
+
+plot_histogram <- function(data, variable) {
+  
+  hist(as.numeric(data[, variable]), main = paste("Histogram of", variable), xlab = variable, col = "blue", breaks = "Sturges")
+}
+
+
+
+```
+
+Now that we have our templates ready, let's try it on our dataset, the old faithful: `hotel_bookings`.
+
+```{r}
+# Read and clean the data
+data <- read_and_clean_data("_data/hotel_bookings.csv")
+# As opposed to: data = read_csv("_data/hotel_bookings.csv")
+
+# Compute the z score for a variable
+summary_stats <- compute_summary_stats(data, "stays_in_week_nights")
+
+summary_stats[1] # General stats
+z_scores <- summary_stats[2]
+
+# Plot the histogram of the variable
+plot_histogram(data, "stays_in_week_nights")
+
+```
+

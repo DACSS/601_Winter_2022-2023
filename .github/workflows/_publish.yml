@@ -32,6 +32,7 @@ jobs:
         with:
           packages: |
             any::countrycode
+            any::dplyr
             any::fastDummies
             any::ggeasy
             any::ggforce
@@ -84,6 +85,14 @@ jobs:
             any::Hmisc
             any::ggplotlyExtra
             any::tidyquant
+            any::usmap
+            any::wordcloud
+            any::RColorBrewer
+            any::wordcloud2
+            any::tm
+            any::corpus
+            any::quanteda
+            any::quanteda.textplots
             any::quantmod
             any::gridExtra
             any::timetk

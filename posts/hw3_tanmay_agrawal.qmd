@@ -61,7 +61,7 @@ null_percentages_tibble %>%
 
 ```
 
-We can see that `company`, `agent` and `country` have "NULL" strings as values which are functionally equivalent to `na` / `nan` or garbage values. Addtionally, `children` has some `na` values. We can replace these strings with meaningful values.
+We can see that `company`, `agent` and `country` have "NULL" strings as values which are functionally equivalent to `na` / `nan` or garbage values. Additionally, `children` has some `na` values. We can replace these strings with meaningful values.
 
 ```{r}
 replace_garbage <- c(country = "Unknown", agent = 0, company = 0)
