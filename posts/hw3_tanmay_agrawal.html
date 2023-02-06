@@ -288,10 +288,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.4.0      ✔ purrr   1.0.0 
-✔ tibble  3.1.8      ✔ dplyr   1.0.10
-✔ tidyr   1.2.1      ✔ stringr 1.5.0 
-✔ readr   2.1.3      ✔ forcats 0.5.2 
+✔ ggplot2 3.4.0     ✔ purrr   1.0.1
+✔ tibble  3.1.8     ✔ dplyr   1.1.0
+✔ tidyr   1.3.0     ✔ stringr 1.5.0
+✔ readr   2.1.3     ✔ forcats 1.0.0
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
@@ -378,7 +378,7 @@ date  (1): reservation_status_date
 </div>
 </div>
 </div>
-<p>We can see that <code>company</code>, <code>agent</code> and <code>country</code> have “NULL” strings as values which are functionally equivalent to <code>na</code> / <code>nan</code> or garbage values. Addtionally, <code>children</code> has some <code>na</code> values. We can replace these strings with meaningful values.</p>
+<p>We can see that <code>company</code>, <code>agent</code> and <code>country</code> have “NULL” strings as values which are functionally equivalent to <code>na</code> / <code>nan</code> or garbage values. Additionally, <code>children</code> has some <code>na</code> values. We can replace these strings with meaningful values.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -880,7 +880,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a>We can see that <span class="in">`company`</span>, <span class="in">`agent`</span> and <span class="in">`country`</span> have "NULL" strings as values which are functionally equivalent to <span class="in">`na`</span> / <span class="in">`nan`</span> or garbage values. Addtionally, <span class="in">`children`</span> has some <span class="in">`na`</span> values. We can replace these strings with meaningful values.</span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a>We can see that <span class="in">`company`</span>, <span class="in">`agent`</span> and <span class="in">`country`</span> have "NULL" strings as values which are functionally equivalent to <span class="in">`na`</span> / <span class="in">`nan`</span> or garbage values. Additionally, <span class="in">`children`</span> has some <span class="in">`na`</span> values. We can replace these strings with meaningful values.</span>
 <span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>replace_garbage <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">country =</span> <span class="st">"Unknown"</span>, <span class="at">agent =</span> <span class="dv">0</span>, <span class="at">company =</span> <span class="dv">0</span>)</span>
