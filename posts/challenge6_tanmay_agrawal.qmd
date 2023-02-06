@@ -166,7 +166,7 @@ room_prices_monthly_agg <- room_prices_monthly %>%
   group_by(hotel, arrival_date_month) %>%
   summarise(adr_norm = mean(adr_norm))
 
-ggplot(data = room_prices_monthly, aes(x = arrival_date_month, y = adr_norm, fill = hotel)) + 
+ggplot(data = room_prices_monthly_agg, aes(x = arrival_date_month, y = adr_norm, fill = hotel)) + 
   geom_col() + 
   xlab("Month") + 
   ylab("Price [EUR]") + 
