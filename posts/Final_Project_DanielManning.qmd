@@ -217,3 +217,13 @@ mean(Warriors_bench$"Two Point Percentage")
 Based on the above analysis, the main difference between the Celtics and the Warriors was the greater contribution of the Warriors bench, who averaged a much larger number of games played per player and greater minutes played. This finding tracks with one of the aspects of the Celtics-Warriors NBA Finals that was discussed, the poor performance of Jayson Tatum, the Celtics' best player. Because the Celtics' bench players averaged less games played and minutes played per game, Tatum spent more time on the floor and reported being mentally and physically fatigued during the duration of the series. Clearly Warriors' bench and their prominent contribution played a major role in their Finals victory during the 2021-2022 season.
 
 My analysis of this dataset does not address the less quantifiable aspects of these basketball teams, such as chemistry between players and the influence of coaches or home-town fans. It would be interesting to explore the relationship between the performance of starters and bench players as it relates to these other variables, such as the difference in scoring efficiency for bench players at their home-court versus during away games. In putting together this project, I learned that additional adjustments to datasets that you didn't expect are often necessary, such as the removal of players that don't shoot threes from the analysis of three point efficiency. Overall, it would be fascinating to compare the statistics of the Celtics and Warriors following this season, where the Celtics are off to a fantastic start and the Warriors hover in the middle of their division to see if these findings hold true.
+
+## Bibliography
+
+R Core Team (2022). R: A language and environment for statistical
+  computing. R Foundation for Statistical Computing, Vienna,
+  Austria. URL https://www.R-project.org/.
+  
+Wickham, H., &amp; Grolemund, G. (2016). R for data science: Visualize,     model, transform, tidy, and import data. OReilly Media. 
+
+Etocco. "NBA_Player_Stats.csv." "Data.world." 2022. <https://data.world/etocco/nba-player-stats>
