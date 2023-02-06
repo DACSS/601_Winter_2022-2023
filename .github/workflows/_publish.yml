@@ -32,6 +32,7 @@ jobs:
         with:
           packages: |
             any::countrycode
+            any::dplyr
             any::fastDummies
             any::ggeasy
             any::ggforce
