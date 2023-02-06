@@ -458,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel, arrival_date_month) <span class="sc">%&gt;%</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">adr_norm =</span> <span class="fu">mean</span>(adr_norm))</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> room_prices_monthly, <span class="fu">aes</span>(<span class="at">x =</span> arrival_date_month, <span class="at">y =</span> adr_norm, <span class="at">fill =</span> hotel)) <span class="sc">+</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> room_prices_monthly_agg, <span class="fu">aes</span>(<span class="at">x =</span> arrival_date_month, <span class="at">y =</span> adr_norm, <span class="at">fill =</span> hotel)) <span class="sc">+</span> </span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Month"</span>) <span class="sc">+</span> </span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Price [EUR]"</span>) <span class="sc">+</span> </span>
@@ -946,7 +946,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel, arrival_date_month) <span class="sc">%&gt;%</span></span>
 <span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">adr_norm =</span> <span class="fu">mean</span>(adr_norm))</span>
 <span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> room_prices_monthly, <span class="fu">aes</span>(<span class="at">x =</span> arrival_date_month, <span class="at">y =</span> adr_norm, <span class="at">fill =</span> hotel)) <span class="sc">+</span> </span>
+<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> room_prices_monthly_agg, <span class="fu">aes</span>(<span class="at">x =</span> arrival_date_month, <span class="at">y =</span> adr_norm, <span class="at">fill =</span> hotel)) <span class="sc">+</span> </span>
 <span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
 <span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Month"</span>) <span class="sc">+</span> </span>
 <span id="cb8-184"><a href="#cb8-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Price [EUR]"</span>) <span class="sc">+</span> </span>
