@@ -1,6 +1,6 @@
 ---
 title: "Challenge 9 Submission"
-author: "Sean Conway"
+author: "Tanmay Agrawal"
 description: "Creating a function"
 date: "1/31/2023"
 format:
