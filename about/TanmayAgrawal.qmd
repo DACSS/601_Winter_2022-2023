@@ -1,0 +1,51 @@
+---
+title: "Tanmay Agrawal"
+image: images/YourName.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/trippy_cat.png
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/tanmay7270
+---
+
+##Instructions
+
+  - save a copy of this document as *FirstLast.qmd* in the **about** folder
+  - replace *Your Name* in yaml header with your first and last name
+  - save an image (jpeg, png) to use in the **about/images** folder
+  - replace image names in yaml header
+  - replace github user name
+  - fill in information below, as appropriate
+  - commit to github and submit pull request
+
+## Education/Work Background
+Bachelor's:
+- SRM University: Computer Science
+- UC Berkeley: Computer Science, Data Science
+
+Master's:
+- UMass Amherst: Computer Science
+
+Work:
+Deep Learning Software Intern: NVIDIA
+ML Intern: PathAI, Inc.
+
+
+## R experience
+I have minimal experience with R. I first used it during my sophomore year of undergrad (~4 years ago) for a project and I really enjoyed it. The R community has grown so much and the IDE, the user experience seems much better now.
+
+## Research interests
+Broadly, I am interested in applying Data Science and ML for social good causes.
+
+## Hometown
+Indore, India
+
+## Hobbies
+Learning new things, watching chess, coding
+
+## Fun fact
+I have a fraternal twin and we have rhyming names.

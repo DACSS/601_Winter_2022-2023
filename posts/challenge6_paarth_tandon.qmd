@@ -1,0 +1,88 @@
+---
+title: "Challenge 6"
+author: "Paarth Tandon"
+description: "Visualizing Time and Relationships"
+date: "1/11/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+    df-print: kable
+categories:
+  - challenge_6
+  - hotel_bookings
+  - air_bnb
+  - fed_rate
+  - debt
+  - usa_hh
+  - abc_poll
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+set.seed(42)
+# read in the data using readr
+debt_raw <- read_xlsx("_data/debt_in_trillions.xlsx")
+head(debt_raw, 5)
+```
+
+### Briefly describe the data
+
+This dataset accounts for debt in trillions in various categories. The categories include Mortgage, Revolving, Auto, Credit, Student, and other debt. The dataset also accounts for the total debt. The timescale of this dataset is per-quarter.
+
+## Tidy Data (as needed)
+
+The main thing that needs to be changed is how the date is stored. Currently it is `YY:QQ`, where `YY` is the last two digits of the year, and `QQ` indicates the quarter. 
+
+```{r}
+debt <- debt_raw %>%
+    mutate(date = parse_date_time(`Year and Quarter`, orders="yq"))
+head(debt$date)
+```
+
+## Time Dependent Visualization
+
+```{r}
+ggplot(debt, aes(x=date, y=Total)) +
+    ggtitle('Total Debt in Trillions of $') +
+    geom_line()
+```
+
+I chose this graph because `Total` is a metric of change over time.
+
+## Visualizing Part-Whole Relationships
+
+I want to create a stacked area plot to show each category of depth individually. To do this, I need to pivot the data so that one of the columns represents the type of debt.
+
+```{r}
+debt_piv <- debt %>%
+    pivot_longer(
+        cols = c(`Mortgage`, `HE Revolving`, `Auto Loan`, `Credit Card`, `Student Loan`, `Other`),
+        names_to = "Loan Type", 
+        values_to = "Loan Value"
+    )
+head(debt_piv)
+```
+
+Now I can create the plot.
+
+```{r}
+ggplot(debt_piv, aes(x=`date`, y=`Loan Value`, fill=`Loan Type`)) +
+    ggtitle('Total Debt in Trillions of $') +
+    geom_area()
+```

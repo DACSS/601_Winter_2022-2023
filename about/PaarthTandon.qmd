@@ -1,0 +1,41 @@
+---
+title: "Paarth Tandon"
+image: images/PaarthTandon.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/PaarthTandon.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/paarthtandon
+---
+
+## Education/Work Background
+
+I graduated from UMass in Spring 2022 with a BS in computer science.
+Currently, I am a grad student (MS) studying computer science.
+Most recently, I interned at Moody’s Analytics building real-time NLP features.
+
+## R experience
+
+I had no experience working with R before this course.
+I have worked extensively with the PyData ecosystem, which I heard is pretty similar. 
+
+## Research interests
+
+I am passionate about deep learning, natural language processing, reinforcement learning, and the progress of artificial intelligence.
+
+## Hometown
+
+I was born in New Delhi, moved to Rhode Island when I was three.
+Grew up in Warwick, RI.
+
+## Hobbies
+
+Spending time outdoors, bouldering, playing guitar, and virtual reality.
+
+## Fun fact
+
+I am currently seeking full time employment (MLE/DS roles)!

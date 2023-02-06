@@ -1,0 +1,103 @@
+---
+title: "MarcelaRobinson_Challege6(FedFunds)"
+author: "Marcela Robinson"
+editor: visual
+df-print: paged
+---
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(stringr)
+library(ggplot2)
+install.packages("treemap")
+library(treemap)
+
+```
+
+```{r}
+fedfunds<-read_csv("_data/FedFundsRate.csv")
+head(fedfunds)
+```
+The FedFundsRate data set contains information about federal fund rates from 1954-2017 provided by the Federal Open Markets Committee (FOMC). This data set contains 904 observations and 10 variables, which includes different rates (unemployment, inflation, federal funds target rate), targets (upper, target, and lower), and real GDP. 
+
+```{R}
+colnames(fedfunds)
+```
+##Combine the day, month and year in one column
+```{r}
+fedfunds_date<-fedfunds%>%
+  mutate(date = str_c(Year, Month, Day, sep=" "),
+         date = ymd(date))%>%
+         select(date, "Federal Funds Upper Target","Federal Funds Lower Target", "Effective Federal Funds Rate","Real GDP (Percent Change)","Unemployment Rate","Inflation Rate")
+
+head(fedfunds_date)
+
+```
+For my graph depicting time, I decided to use a a geom_line to show Unemployment Rates over the years. After I initially run the visualization, I noticed there are some values missing from Unemployment Rate. I then decided to use the fill() function to to replace missing values for better visualization. 
+
+##Geom_line to show Unemployment Rate over te years
+```{r}
+fedfunds_date%>%
+  fill(`Unemployment Rate`)%>%
+ggplot(aes(date,`Unemployment Rate`))+
+  geom_line()+
+ theme_classic()+
+  labs(title = "Unemployment Rates Over Time", x = "Years", Y = "Unemployment Rate")
+
+```
+
+For my second graph, I chose a treemap to represent the median values for unemployment rate. I was particularly interested in the rates from 2007 to 2017.  
+```{r}
+fedfunds%>%
+  filter(Year == 2007:2017)%>%
+  group_by(Year)%>%
+  summarize(Median_Unemployment=median(`Unemployment Rate`))%>%
+  treemap(index = "Year", vSize = "Median_Unemployment", type = "index", title= "Unemployment Median Rate Comparison from 2007 to 2017")
+  
+```
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

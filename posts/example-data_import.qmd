@@ -1,0 +1,278 @@
+---
+title: "Data Import"
+author: "Sean Conway"
+editor: visual
+description: "importing data with R"  
+date: "6/5/2022"
+editor_options: 
+  chunk_output_type: console
+format:
+  html:
+    df-print: paged
+    toc: true
+    code-fold: false
+    code-copy: true
+    code-tools: true
+    css: styles.css
+categories:
+  - data import
+  - readr
+---
+
+```{r}
+#| label: setup
+#| include: false 
+#| message: false
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(here)
+```
+
+## Overview
+
+Today, we're going to read in three versions of the `poultry_tidy` data. These data are available in the `_data` in the course blog repo.
+
+We will specifically read in 3 data files:\
+- `poultry_tidy.csv`\
+- `poultry_tidy.xlsx`\
+- `poultry_tidy.RData`
+
+These are the "clean" versions of the raw data files.
+
+To run this file, all 3 datasets should be in **the same directory** on your computer.
+
+I also use the [here](https://here.r-lib.org/) package to manage relative directories.
+
+## Getting Started
+
+To begin, we need to load two packages: `readr` and `readxl`, which contain very useful functions for reading in data to \`R.
+
+```{r}
+#| label: libraries 
+#| message: false 
+#| warning: false
+library(readr)
+library(readxl)
+```
+
+If you're unsure whether or not you have these packages installed, you can run the following command:
+
+```{r}
+#| eval: false
+installed.packages()
+```
+
+We're now ready to get started reading in actual datasets.
+
+## Reading in delimited text files
+
+`.csv` is a common type of *delimited* text file. `.csv` stands for **comma-separated value**. This means that commas separate cells from one another.
+
+`R` has a base `read.csv()` function. However, it comes with a couple of downsides - namely that it imports data as a dataframe rather than a tibble. So we will be using the function `read_csv()` from the `readr` package. In addition to importing data as a tibble, it also does a much better job guessing data types.
+
+`read_csv()` is essentially a wrapper function (a function that calls *another* function) around the more general `read_delim()` function. Also see `read_tsv()` for *tab-separated values*.
+
+```{r}
+?read_delim
+```
+
+Let's look at the data files available for us to read in:
+
+```{r}
+list.files(here("posts","_data"))
+```
+
+There's a lot of data files there, but we are going to import the `poultry_tidy.csv` file. Doing so is very simple using `read_csv()`:
+
+```{r}
+poultry_from_csv <- read_csv(here("posts","_data","poultry_tidy.csv"))
+```
+
+Let's take a look at our dataset (to view the tibble, running the name of the object will print it to the console):
+
+```{r}
+poultry_from_csv
+```
+
+It worked great! The data is all there. To inspect the data types for each of the four columns in `poultry_from_csv`, we can use `spec()` or `typeof()`:
+
+Note: we can also avoid the `setwd()` issue by modifying the name of the file to include the file path:
+
+```{r}
+#| message: false
+poultry_from_csv <- read_csv(here("posts","_data","poultry_tidy.csv"))
+```
+
+```{r}
+spec(poultry_from_csv) # use the spec() function to check the data type for your columns
+
+# can also use typeof() function on individual columns
+typeof(poultry_from_csv$Product)
+typeof(poultry_from_csv$Year)
+typeof(poultry_from_csv$Month)
+typeof(poultry_from_csv$Price_Dollar)
+```
+
+See this `R` section below for some more info on `read_delim()`:
+
+```{r}
+# read_delim() has a number of optional arguments
+args(read_delim)
+# there's too many to list here, so we will just go over a few
+# run ?read_delim() to learn more
+# 1) delim - text delimiter.
+# default is NULL and read_delim() guesses delimiter
+#
+# 2) quote - symbol telling R when to quote a string
+# default is "\""
+# below comes from R documentation on quotes
+# https://stat.ethz.ch/R-manual/R-devel/library/base/html/Quotes.html
+# identical() is a function that returns TRUE if two objects are equal
+identical(1+4, 3+2)
+identical('"It\'s alive!", he screamed.',
+          "\"It's alive!\", he screamed.") # same
+#
+# 3) escape_backlash
+# use backlash to escape special characters?
+# default = FALSE
+#
+# 4) col_names
+# can be TRUE (default), meaning that R reads in the first row of values as column names
+# can FALSE - R creates column names (x1 x2 etc)
+# OR can be a character vector of custom column names
+poultry_custom_cols <- read_csv("_data/poultry_tidy.csv",
+                                col_names = c("prod","yr","mo","$"),
+                                skip = 1) # need this to skip the file's column names
+poultry_custom_cols
+poultry_custom_cols$`$` # note the backticks around the $ sign
+# $ is a "special symbol" in R, because it is an operator used for indexing
+# $ is technically an illegal column name, but we can still use it with ``
+# same goes for column names consisting of numbers or other symbols, etc.
+#
+# 5) col_types
+# default=NULL
+# if NULL R guesses data type from first 1000 rows
+# can also specify manually (but be careful)
+# see ?read_delim and scroll to col_types for details
+#
+# 6) skip
+# number of lines to skip
+# default=0
+# can be very useful with messy data files
+#
+# 7) n_max
+# maximum number of lines to read
+# default=Inf
+#
+#
+```
+
+## Read in `.xls`/`.xlsx` files
+
+`.xls` and `.xlsx` are files created in Microsoft Excel. There are separate functions `read_xls()` and `read_xlsx()`, but I find it's best to use the wrapper function `read_excel()`. This will automatically call the correct function and avoid an error from accidentally mis-specifying the file type.
+
+See below for what happens if we call the wrong function for the file type:
+
+```{r}
+# the try() function will try to run the code
+# see tryCatch() for more error handling 
+# this code doesn't work because it tries to read the wrong file type
+try(read_xls(here("posts","_data","poultry_tidy.xlsx")))
+```
+
+The code below works just fine, however:
+
+```{r}
+#| message: false
+# this code works 
+poultry_from_excel <- try(read_excel(here("posts","_data","poultry_tidy.xlsx"),
+                                     skip = 5,
+                                     col_names = c("prod","year","month","price"))) 
+poultry_from_excel 
+```
+
+Let's take a look at this tibble:
+
+```{r}
+# examining our tibble
+head(poultry_from_excel) # view the first several rows
+colnames(poultry_from_excel) # print column names
+dplyr::glimpse(poultry_from_excel) # tidy little summary of it
+# the package::function() syntax is only necessary if the package isn't loaded
+```
+
+Function documentation:
+
+```{r}
+# to view function documentation
+?read_excel
+
+# optional arguments
+# 1) sheet=NULL
+# number of the sheet to read in
+# by default it reads the first sheet
+
+# 2) range=NULL
+# range of cells to read in
+# uses the cellranger package to work with specific cells in Excel files
+# for more, see the cellranger package
+# https://cran.r-project.org/web/packages/cellranger/index.html
+
+# 3) col_names=TRUE
+# how to get column names (works the same as read_delim())
+
+# 4) col_types=NULL
+# types of data in columns (works the same as read_delim())
+
+# 5) skip = 0
+# number of lines to skip (works the same as read_delim())
+
+# 6) n_max=Inf
+# max lines to read (works the same as read_delim())
+```
+
+## Reading in `.RData` Files
+
+Reading .RData is less commonly needed, but it's still important to know about. `.RData` is a file type exclusively associated with R. It's commonly used when someone has performed operations with data and saved the results to give to collaborators.
+
+We can use the `load()` function to load `R` objects into our `R` environment from a file:
+
+```{r}
+# running the load() function on the data file name will load the objects into your R environment
+load(here("posts","_data","poultry_tidy.RData"))
+poultry_tidy
+# there's now a poultry_tidy object in our R environment
+```
+
+Note that we **do not** assign the data file to an object. Rather, it comes in as an object based on whatever the previous user named it as. If we try to assign it as an object, the object will only have the **name** of the data file, rather than the data itself:
+
+```{r}
+# note that this operation shouldn't include any variable assignment
+test_dat <- load(here("posts","_data","poultry_tidy.RData"))
+test_dat # now it contains the object name, not the object itself
+```
+
+You can also save any number of `R` objects to a `.RData` file using the `save()` function:
+
+```{r}
+a <- rnorm(1000)
+b <- matrix(runif(100),nrow=50,ncol=2)
+c <- as_tibble(mtcars)
+save(a,b,c,file=here("posts","_data","test_objs.RData"))
+# there is now a test_objs.RData file in my working directory: 
+list.files(here("posts","_data/"))
+```
+
+Let's remove these objects from our `R` environment and re-load them from the file we saved:
+
+```{r}
+# remove objects from environment
+rm(list=c("a","b","c"))
+
+# now they're back! (If you save them)
+try(load(here("posts","_data","test_objs.RData")))
+```
+
+## Conclusion
+
+You now know a little bit about how to read in some common data types. Note that these aren't the **only** types of data you'll encounter, but they are by far the most common ones.

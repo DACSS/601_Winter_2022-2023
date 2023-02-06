@@ -1,0 +1,227 @@
+---
+title: "Challenge 6"
+author: "Yoshita Varma Annam"
+description: "Visualizing Time and Relationships"
+date: "1/9/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+  - hotel_bookings
+  - air_bnb
+  - fed_rate
+  - debt
+  - usa_hh
+  - abc_poll
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(treemap)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  create at least one graph including time (evolution)
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+5)  Create at least one graph depicting part-whole or flow relationships
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+
+[R Graph Gallery](https://r-graph-gallery.com/) is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code.
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+  - debt  ⭐
+  - fed_rate ⭐⭐
+  - abc_poll ⭐⭐⭐
+  - usa_hh ⭐⭐⭐
+  - hotel_bookings ⭐⭐⭐⭐
+  - air_bnb  ⭐⭐⭐⭐⭐
+
+
+```{r}
+
+HotelBookings_csv <- read_csv("_data/hotel_bookings.csv")
+```
+As I am already familiar with hotel booking data from challenge 2,4. I choose this data set to work on in challenge 6. Because from challenge 2,4 there is lot of time dependent data which can be better analyzed.
+
+### Briefly describe the data
+Some of my analysis is based on challenge 2,4. Reflecting on those please refer below.
+```{r}
+#| label: understanding the data
+HotelBookings_csv
+```
+By just viewing the data it looks like the data is about 119,390 hotel entries and detailing for 32 features. The features mainly describe the booking entirely based on their arrival, cancellations and timings. It also accounts the number of babies, children, adults across the world. There is a separate field to verify for the repeated guests.  To understand further we need to perform more operations.
+
+```{r}
+#| label: summary of the data
+summary(HotelBookings_csv)
+```
+```{r}
+#| label: column names the data
+colnames(HotelBookings_csv)
+```
+```{r}
+#| label: finding unique values of the data
+unique(HotelBookings_csv$deposit_type)
+length(unique(HotelBookings_csv$market_segment))
+unique(HotelBookings_csv$market_segment)
+length(unique(HotelBookings_csv$market_segment))
+unique(HotelBookings_csv$distribution_channel)
+length(unique(HotelBookings_csv$distribution_channel))
+unique(HotelBookings_csv$hotel)
+length(unique(HotelBookings_csv$hotel))
+unique(HotelBookings_csv$country)
+length(unique(HotelBookings_csv$country))
+```
+
+After the following analysis it is clear that the data has been collected across the world for different countries approximately 150-180 from 2015 to 2017. The data is very specific to two kinds of hotels- "Resort Hotel", "City Hotel". There are majorly 8 kinds of bookings which include all the professional to personal types like- Corporate, Aviation etc. If we observe the mean from the summaries it can be said that there were approximately 185% adults, children 10%, and 1% baby have come to stay in the hotels. Similarly, on an average people stayed for 2.5 days during the week and 1 day during the weekends. The stats are only based on the summaries. To further conclude more accurately for this data need more analysis.
+
+## Tidy Data (as needed)
+
+```{r}
+#Null values in country column
+table(HotelBookings_csv$country)
+
+```
+
+After removing the rows which has NULL values in country coulmn as this is irrelevant to our analysis.
+
+```{r}
+# Removing Null values
+HotelBookings_csv <- HotelBookings_csv %>% 
+  filter(!(country == "NULL"))
+```
+ 
+As arrival year, month, date has been stored in three different columns we can combine the arrival date in year, month and the date into one single field and name it as the arrival date. Also, I feel arrival_date_week_number is irrelevant for my analysis as we can take a good guess of the week number from the new field arrival date.
+
+```{r}
+# Remove Columns by Index
+HotelBookings_csv <- HotelBookings_csv[,-6]
+HotelBookings_csv
+```
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+As the data has been modified as per required I'll go ahead and mutate it to have single field for arrivale date as mentioned above.
+
+```{r}
+#Mutating the arrival date into a single field 
+
+HotelBookings_csv_mutate <- HotelBookings_csv %>% 
+  mutate(arrival_date = str_c(arrival_date_year, 
+                              arrival_date_month, arrival_date_day_of_month, sep="/"),
+         arrival_date = lubridate::ymd(arrival_date)) %>% 
+  select(-c(arrival_date_year,arrival_date_month, arrival_date_day_of_month))
+
+HotelBookings_csv_mutate
+```
+
+Similarly,  changing the datatype of the columns of company and agent as they have numerical values due to some NULL values it has character as datatype. First handling NULL values and changing them NA as the targetted datatype will be numeric.
+
+```{r}
+#Mutating the class of the agent and company field from character to numeric
+
+HotelBookings_csv_mutate <- HotelBookings_csv_mutate %>%
+  mutate(across(c(agent, company),~ replace(.,str_detect(., "NULL"), NA))) %>% mutate_at(vars(agent, company),as.numeric)
+
+```
+
+Now reviewing the summary of the mutated data. 
+
+```{r}
+summary(HotelBookings_csv_mutate)
+```
+
+As you can see there is only one field for arrival date and dataype for columns agent and company has been changed to Numeric.
+
+## Time Dependent Visualization
+
+
+```{r}
+ggplot(HotelBookings_csv_mutate, aes(x=arrival_date, y= stays_in_week_nights, color = `hotel`)) + 
+  geom_line() + 
+  xlab("Year") + 
+  ylab("Number of days stay during week") + 
+  ggtitle("Year vs Stays_in_week_nights")
+```
+
+
+```{r}
+ggplot(HotelBookings_csv_mutate, aes(x=arrival_date, y= stays_in_weekend_nights, color = `hotel`)) + 
+  geom_line() + 
+  xlab("Year") + 
+  ylab("Number of days stay during weekend") + 
+  ggtitle("Year vs Stays_in_weekend_nights")
+```
+
+I choose to visualize the time series for number days stays based on hotel. This will help the hotel owners to estimate their revenue. It is observed that on an average there are 10 days stay during the week for both resort and city hotels. However, there is one more observation there are good number of bookings for 30 days. This shows some might book a hotel instead of renting a place. One common thing observed is the spike in the start of the year.
+
+```{r}
+ggplot(HotelBookings_csv_mutate, aes(x=arrival_date, y= adults, color = `hotel`)) + 
+  geom_line() + 
+  xlab("Year") + 
+  ylab("Number of people") + 
+  ggtitle("Year vs people")
+```
+I have added the count of number of adults, babies, and children in the adults section after mutating the data.Based on this, more number of people have been coming to Resort type of hotel than city hotels. This could be due to families coming for vacation to resort hotel and city hotel is majorly used for more formal purpose. 
+
+## Visualizing Part-Whole Relationships
+
+Presented tree map based on hotel for customer_type, market_segment, and distribution_channel. This gives more details on which kind of customer is coming more to different hotels. Similarly, gives more information on market_segment and distribution_channel.
+
+```{r}
+
+hotel_new1 <- HotelBookings_csv_mutate %>% 
+  group_by(hotel, customer_type) %>% 
+  summarize(n = n())
+
+treemap(hotel_new1,
+       index = c("hotel", "customer_type"),
+       vSize = "n",
+       type = "index")
+```
+```{r}
+
+hotel_new2 <- HotelBookings_csv_mutate %>% 
+  group_by(hotel, market_segment) %>% 
+  summarize(n = n())
+
+treemap(hotel_new2,
+       index = c("hotel", "market_segment"),
+       vSize = "n",
+       type = "index")
+```
+
+```{r}
+
+hotel_new3 <- HotelBookings_csv_mutate %>% 
+  group_by(hotel, distribution_channel) %>% 
+  summarize(n = n())
+
+treemap(hotel_new3,
+       index = c("hotel", "distribution_channel"),
+       vSize = "n",
+       type = "index")
+```

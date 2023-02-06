@@ -1,0 +1,84 @@
+---
+title: "Challenge 3"
+author: "Paarth Tandon"
+description: "Tidy Data: Pivoting"
+date: "01/02/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+    df-print: kable
+categories:
+  - challenge_3
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+# read in the data using readr
+animals <- read_csv("_data/animal_weight.csv")
+# view a few data points
+animals
+# view all columns
+colnames(animals)
+```
+
+### Briefly describe the data
+
+This csv file tracks the weights of various animals in different zones of the world. The zones included are the Indian Subcontinent, Eastern Europe, Africa, Oceania, Western Europe, Latin America, Asia, Middle east, and Northern America. There are 16 different type of animals.
+
+Currently each animal is represented as a column, which is not very tidy. I would like to pivot the dataframe so that there are only three columns: area, animal type, and weight. This means that I have to pivot each of the 16 animal columns.
+
+## Anticipate the End Result
+
+In this case, $n=9$ and $k=17$. I will be using $1$ of those variables to identify a case, so I will be pivoting $17-1=16$ variables. The type of animal will go into the `animal_type` column, and the weight will go into the `weight` column. I would expect $9*16=144$ rows in the pivoted dataframe. Since I would be converting those $16$ columns into $2$ columns, there would be $3$ columns in the pivoted dataframe.
+
+### Challenge: Describe the final dimensions
+
+```{r}
+#existing rows/cases
+nrow(animals)
+
+#existing columns/cases
+ncol(animals)
+
+#expected rows/cases
+nrow(animals) * (ncol(animals)-1)
+
+# expected columns 
+1 + 2
+```
+
+This pivot will make the data much easier to parse using `R`, since each "case" described by a row is one weight, instead of a vector of weights. Yes, this increases the number of samples, but this level of granularity will make calculating statistics about the weights themselves much easier.
+
+## Pivot the Data
+
+### Challenge: Pivot the Chosen Data
+
+Each "case" described by a row is one weight, instead of a vector of weights. This increases the number of samples, but this level of granularity will make calculating statistics about the weights themselves much easier.
+
+```{r}
+#-1 removes the columns we want to keep
+cols <- colnames(animals)[-1]
+
+animals_pivoted<-pivot_longer(animals, col = cols,
+                names_to="animal_type",
+                values_to = "weight")
+
+animals_pivoted[sample(nrow(animals_pivoted), 10), ]
+dim(animals_pivoted)
+```
+
+As we can see in the code output (sample), our calculations were accurate.

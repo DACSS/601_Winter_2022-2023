@@ -1,0 +1,14 @@
+{
+  "hash": "74728981aab18deefe4a1525387971cf",
+  "result": {
+    "markdown": "---\ntitle: \"Challenge 10\"\nauthor: \"Paarth Tandon\"\ndescription: \"purrr\"\ndate: \"1/30/2023\"\nformat:\n  html:\n    toc: true\n    code-copy: true\n    code-tools: true\ncategories:\n  - challenge_10\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(ggplot2)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n```\n:::\n\n\n## The Challenge   \n\nI am going to create a function that maps months to numbers.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmonth_num <- function(vec) {\n    out <- map_int(vec, function(m) {\n        return(which(month.name == m))\n    })\n    return(out)\n}\n\nvec <- c(\"March\", \"May\", \"April\")\nmonth_num(vec)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 3 5 4\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

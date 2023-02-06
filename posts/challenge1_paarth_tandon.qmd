@@ -1,0 +1,68 @@
+---
+title: "Challenge 1"
+author: "Paarth Tandon"
+description: "Reading in data and creating a post"
+date: "12/26/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in the Data
+
+```{r}
+# read in the data using readr
+rail <- read_csv("_data/railroad_2012_clean_county.csv")
+# view a few data points
+head(rail)
+```
+
+Reading the data was very straight forward using `readr`.
+
+## Describe the data
+
+As seen by using `head`, this csv has three columns: `state <chr>`, `county <chr>`, and `total_employees <dbl>`. It contains two character based columns and one double column. Essentially, it contains the number of employees at each `state`, `county` pair.
+
+```{r}
+#| label: summary
+u_states <- rail$state %>%
+                unique() %>%
+                length()
+sprintf('# unique states: %s', u_states)
+
+u_counties <- rail$county %>%
+                unique() %>%
+                length()
+sprintf('# unique counties: %s', u_counties)
+
+range_emp <- rail$total_employees %>%
+                range()
+sprintf('range of total employees: [%s, %s]', range_emp[1], range_emp[2])
+```
+
+One anomaly in this data is that there are 53 unique states, when in reality there are only 50 states in USA. We can find out what is causing this using `filter`.
+
+```{r}
+fifty_states <- c("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY")
+
+filter(rail, ! state %in% fifty_states)
+```
+
+The obvious row in this output is `DC`, as it represents Washington D.C., the capital zone. I was confused about `AE` and `AP`. After further research, I found out that `AE` is the Armed Forces in Europe, Africa, the Middle East, and Canada; `AP` is the Armed Forces in the Pacific. Mystery solved!
+
+I believe that this data was collected from each railroad station in the United States. It is most likely collected for bookkeeping purposes, but I could see it being used for analysis of which railroad stations need more employees, and which are overstaffed. Of course, answering these questions would require more data to be combined with this dataset. 

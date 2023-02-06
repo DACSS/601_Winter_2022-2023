@@ -1,0 +1,103 @@
+---
+title: "HW2"
+author: "Priya Marla"
+desription: "Reading in Data"
+date: "01/20/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - hw2
+  - hotel_booking
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(dbplyr)
+library(tidyverse)
+library(here)
+library(lubridate)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+For this homework, your goal is to read in a more complicated dataset. Please use the category tag "hw2" as well as a tag for the dataset you choose to use.
+1. Read in a dataset from the _data folder in the course blog repository, or choose your own data. If you decide to use one of the datasets we have provided, please use a challenging dataset - check with us if you are not sure. 
+2. Clean the data as needed using dplyr and related tidyverse packages.
+3. Provide a narrative about the data set (look it up if you aren't sure what you have got) and the variables in your dataset, including what type of data each variable is. The goal of this step is to communicate in a visually appealing way to non-experts - not to replicate r-code.
+4. Identify potential research questions that your dataset can help answer.
+
+## Read in data
+
+```{r}
+dataset <- here("posts","_data","hotel_bookings.csv") %>%
+  read_csv()
+
+dataset
+```
+
+### Briefly describe the data
+
+This dataset describes the information of the reservations made in Resort Hotel and City Hotel. There are 119390 rows and 32 columns. Each columns represents various data such as for what dates and what hotel the booking was made, whether reservation is called or not and if the payment is made or not etc.
+
+## Tidy Data (as needed)
+
+The data needs to be cleaned. The date is spread across in multiple columns. If is there in a single column it;'ll will be easy to calculate stats. Can also calculate the date with lead time and date of arrival columns.
+
+The country column is placed in the 14th place, it should be moved up to 2nd place i.e after the hotel column. Created a new column arrival_date by getting the date from "arrival_date_day_of_month", "arrival_date_month","arrival_date_year" columns. Removing these 3 columns and moving the arrival date column to column after "lead_time". 
+Creating the new column booking_date to know the date of booking with the information from columns lead_time and arrival_date.
+Created a new column "child" to get the total of children plus babies to replace the columns children and babies.
+After tidying up the data, total columns remaining are 28
+
+```{r}
+dplyr::select(dataset, 3:7 )
+
+#tidying the dataset
+tidy_data <- dataset %>%
+  relocate("country",.after = "hotel") %>% #relocating the country column
+  mutate(arrival_date = (str_c(arrival_date_day_of_month,arrival_date_month,arrival_date_year, sep = "/")), arrival_date = dmy(arrival_date), .after = lead_time) %>% #variable for arrival date
+  mutate(booking_date = arrival_date-days(lead_time), .after = lead_time) %>% #variable to know the date of booking
+  mutate(childs = children + babies, .after = adults) %>%
+  dplyr::select(-c("lead_time","children","babies"))
+tidy_data <- tidy_data[,-6:-9] #removed columns with arrival date information
+tidy_data
+```
+## Narrative of Dataset
+
+From the summarytools output dataframe, we can see the stats of various values of each column. For example here we can see that there are 2 types of hotels(data type - character) and 66.4% people have their bookings in City hotel and rest in Resort hotel. Is_canceled column describes whether the booking has been canceled (numeric value 1) or not canceled (numeric value 0). 63% of the customers don't cancel their reservations whereas 37% customers cancel their reservations. 
+
+```{r}
+print(summarytools::dfSummary(tidy_data,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+## Potential Research Question
+
+From this dataset following research questions can be answered
+
+- In what location do the customers prefer to stay?
+  It's clear from the statistics that 40.7% of the people are staying in the location PRT. If someone is planning on building or investing in a hotel, then these statistics can give a clear idea.
+  
+- What percent of people stay with children and babies?
+  With this question, hotels can make sure sufficient resources are available for children and babies
+  
+- What kind of meals do customers prefer?
+  This question can answer things like what kind of meals do prefer when living in a hotel and also help hotels to make food arrangements.
+  
+- Customer_type answers what type of customers are staying in hotels.
+
+:::
