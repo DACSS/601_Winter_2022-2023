@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Siddharth Goel">
+<meta name="dcterms.date" content="2023-01-31">
+
+<title>Homework 3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<meta name="twitter:title" content="Homework 3">
+<meta name="twitter:description" content="As we can see from the spec and head command outputs, this is the hotel booking data for 2 hotels over 3 years. We can also see that the dataset has 119390 total rows and 32 columns.">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/DACSS">
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Homework 3</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Course information</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course_schedule.html" class="sidebar-item-text sidebar-link">Course Schedule</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Weekly materials</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Posts</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#importing-the-libraries" id="toc-importing-the-libraries" class="nav-link active" data-scroll-target="#importing-the-libraries">Importing the libraries</a></li>
+  <li><a href="#reading-the-dataset" id="toc-reading-the-dataset" class="nav-link" data-scroll-target="#reading-the-dataset">Reading the dataset</a></li>
+  <li><a href="#taking-an-initial-look-into-the-data" id="toc-taking-an-initial-look-into-the-data" class="nav-link" data-scroll-target="#taking-an-initial-look-into-the-data">Taking an initial look into the data</a></li>
+  <li><a href="#a-bit-detailed-description-about-the-data" id="toc-a-bit-detailed-description-about-the-data" class="nav-link" data-scroll-target="#a-bit-detailed-description-about-the-data">A bit detailed description about the data</a></li>
+  <li><a href="#cleaning-and-mutating-the-data" id="toc-cleaning-and-mutating-the-data" class="nav-link" data-scroll-target="#cleaning-and-mutating-the-data">Cleaning and mutating the data</a></li>
+  <li><a href="#getting-the-summary-of-the-dataset" id="toc-getting-the-summary-of-the-dataset" class="nav-link" data-scroll-target="#getting-the-summary-of-the-dataset">Getting the summary of the dataset</a></li>
+  <li><a href="#deep-dive-into-the-data" id="toc-deep-dive-into-the-data" class="nav-link" data-scroll-target="#deep-dive-into-the-data">Deep dive into the data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Homework 3</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">hw3</div>
+    <div class="quarto-category">hotel_bookings</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Siddharth Goel </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 31, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="importing-the-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="importing-the-libraries">Importing the libraries</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.0     ✔ purrr   1.0.1
+✔ tibble  3.1.8     ✔ dplyr   1.1.0
+✔ tidyr   1.3.0     ✔ stringr 1.5.0
+✔ readr   2.1.3     ✔ forcats 1.0.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'psych'
+
+The following objects are masked from 'package:ggplot2':
+
+    %+%, alpha</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: no DISPLAY variable so Tk is not available</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>system might not have X11 capabilities; in case of errors when using dfSummary(), set st_options(use.x11 = FALSE)
+
+Attaching package: 'summarytools'
+
+The following object is masked from 'package:tibble':
+
+    view</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="reading-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-dataset">Reading the dataset</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"_data/hotel_bookings.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="taking-an-initial-look-into-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="taking-an-initial-look-into-the-data">Taking an initial look into the data</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># looking at the dimensions</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(bookings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 119390     32</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># looking at the schema</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(bookings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>cols(
+  hotel = col_character(),
+  is_canceled = col_double(),
+  lead_time = col_double(),
+  arrival_date_year = col_double(),
+  arrival_date_month = col_character(),
+  arrival_date_week_number = col_double(),
+  arrival_date_day_of_month = col_double(),
+  stays_in_weekend_nights = col_double(),
+  stays_in_week_nights = col_double(),
+  adults = col_double(),
+  children = col_double(),
+  babies = col_double(),
+  meal = col_character(),
+  country = col_character(),
+  market_segment = col_character(),
+  distribution_channel = col_character(),
+  is_repeated_guest = col_double(),
+  previous_cancellations = col_double(),
+  previous_bookings_not_canceled = col_double(),
+  reserved_room_type = col_character(),
+  assigned_room_type = col_character(),
+  booking_changes = col_double(),
+  deposit_type = col_character(),
+  agent = col_character(),
+  company = col_character(),
+  days_in_waiting_list = col_double(),
+  customer_type = col_character(),
+  adr = col_double(),
+  required_car_parking_spaces = col_double(),
+  total_of_special_requests = col_double(),
+  reservation_status = col_character(),
+  reservation_status_date = col_date(format = "")
+)</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># looking at the data values</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bookings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["hotel"],"name":[1],"type":["chr"],"align":["left"]},{"label":["is_canceled"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lead_time"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["arrival_date_year"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["arrival_date_month"],"name":[5],"type":["chr"],"align":["left"]},{"label":["arrival_date_week_number"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["arrival_date_day_of_month"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["stays_in_weekend_nights"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["stays_in_week_nights"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["adults"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["children"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["babies"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["meal"],"name":[13],"type":["chr"],"align":["left"]},{"label":["country"],"name":[14],"type":["chr"],"align":["left"]},{"label":["market_segment"],"name":[15],"type":["chr"],"align":["left"]},{"label":["distribution_channel"],"name":[16],"type":["chr"],"align":["left"]},{"label":["is_repeated_guest"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["previous_cancellations"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["previous_bookings_not_canceled"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["reserved_room_type"],"name":[20],"type":["chr"],"align":["left"]},{"label":["assigned_room_type"],"name":[21],"type":["chr"],"align":["left"]},{"label":["booking_changes"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["deposit_type"],"name":[23],"type":["chr"],"align":["left"]},{"label":["agent"],"name":[24],"type":["chr"],"align":["left"]},{"label":["company"],"name":[25],"type":["chr"],"align":["left"]},{"label":["days_in_waiting_list"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["customer_type"],"name":[27],"type":["chr"],"align":["left"]},{"label":["adr"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["required_car_parking_spaces"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["total_of_special_requests"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["reservation_status"],"name":[31],"type":["chr"],"align":["left"]},{"label":["reservation_status_date"],"name":[32],"type":["date"],"align":["right"]}],"data":[{"1":"Resort Hotel","2":"0","3":"342","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"0","10":"2","11":"0","12":"0","13":"BB","14":"PRT","15":"Direct","16":"Direct","17":"0","18":"0","19":"0","20":"C","21":"C","22":"3","23":"No Deposit","24":"NULL","25":"NULL","26":"0","27":"Transient","28":"0","29":"0","30":"0","31":"Check-Out","32":"2015-07-01"},{"1":"Resort Hotel","2":"0","3":"737","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"0","10":"2","11":"0","12":"0","13":"BB","14":"PRT","15":"Direct","16":"Direct","17":"0","18":"0","19":"0","20":"C","21":"C","22":"4","23":"No Deposit","24":"NULL","25":"NULL","26":"0","27":"Transient","28":"0","29":"0","30":"0","31":"Check-Out","32":"2015-07-01"},{"1":"Resort Hotel","2":"0","3":"7","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"1","10":"1","11":"0","12":"0","13":"BB","14":"GBR","15":"Direct","16":"Direct","17":"0","18":"0","19":"0","20":"A","21":"C","22":"0","23":"No Deposit","24":"NULL","25":"NULL","26":"0","27":"Transient","28":"75","29":"0","30":"0","31":"Check-Out","32":"2015-07-02"},{"1":"Resort Hotel","2":"0","3":"13","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"1","10":"1","11":"0","12":"0","13":"BB","14":"GBR","15":"Corporate","16":"Corporate","17":"0","18":"0","19":"0","20":"A","21":"A","22":"0","23":"No Deposit","24":"304","25":"NULL","26":"0","27":"Transient","28":"75","29":"0","30":"0","31":"Check-Out","32":"2015-07-02"},{"1":"Resort Hotel","2":"0","3":"14","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"2","10":"2","11":"0","12":"0","13":"BB","14":"GBR","15":"Online TA","16":"TA/TO","17":"0","18":"0","19":"0","20":"A","21":"A","22":"0","23":"No Deposit","24":"240","25":"NULL","26":"0","27":"Transient","28":"98","29":"0","30":"1","31":"Check-Out","32":"2015-07-03"},{"1":"Resort Hotel","2":"0","3":"14","4":"2015","5":"July","6":"27","7":"1","8":"0","9":"2","10":"2","11":"0","12":"0","13":"BB","14":"GBR","15":"Online TA","16":"TA/TO","17":"0","18":"0","19":"0","20":"A","21":"A","22":"0","23":"No Deposit","24":"240","25":"NULL","26":"0","27":"Transient","28":"98","29":"0","30":"1","31":"Check-Out","32":"2015-07-03"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>As we can see from the spec and head command outputs, this is the hotel booking data for 2 hotels over 3 years. We can also see that the dataset has <code>119390</code> total rows and <code>32</code> columns.</p>
+</section>
+<section id="a-bit-detailed-description-about-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="a-bit-detailed-description-about-the-data">A bit detailed description about the data</h2>
+<p>finding the unique values for each column</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(bookings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 119390</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(bookings<span class="sc">$</span>hotel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Resort Hotel" "City Hotel"  </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(bookings<span class="sc">$</span>arrival_date_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2015 2016 2017</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#unique(bookings$agent)</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#unique(bookings$company)</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(bookings<span class="sc">$</span>customer_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Transient"       "Contract"        "Transient-Party" "Group"          </code></pre>
+</div>
+</div>
+<p>Looking at the data, we can see that there are 119390 rows and 32 columns in the dataset. Moreover, taking a look at the unique values of some columns, we observe that this booking data is collected from 2 hotels, over a period of three years, across various distribution channels. The other columns have values of either character or numerical types and The dataset contains all kinds of booking information regarding the hotels, ranging right from the arrival dates to the type of guests, the booking channel, agent, etc. to the demands of the guests and parking spaces, etc.</p>
+</section>
+<section id="cleaning-and-mutating-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-and-mutating-the-data">Cleaning and mutating the data</h2>
+<p>By looking at the top values in the dataset, character type columns with values such as <code>NULL</code> can be noticed. Also, <code>0</code> valued numerical columns can be seen in the dataset as well. It will be great to find out the percentage of these values in the columns and remove these columns if the percentages are high.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get zero percentage in data</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>zero_percent <span class="ot">&lt;-</span> (<span class="fu">colSums</span>(bookings <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">nrow</span>(bookings)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># get null percent in data</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>null_percent <span class="ot">&lt;-</span> <span class="fu">sapply</span>(bookings, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">str_detect</span>(x, <span class="st">"NULL"</span>)) <span class="sc">/</span> <span class="fu">length</span>(x))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>aggregated_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">null_percent =</span> null_percent, <span class="at">zero_percent =</span> zero_percent)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(aggregated_df, <span class="fu">desc</span>(null_percent), <span class="fu">desc</span>(zero_percent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["null_percent"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["zero_percent"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.943068934","2":"0.0000000","_rn_":"company"},{"1":"0.136862384","2":"0.0000000","_rn_":"agent"},{"1":"0.004087445","2":"0.0000000","_rn_":"country"},{"1":"0.000000000","2":"99.2319290","_rn_":"babies"},{"1":"0.000000000","2":"96.9679203","_rn_":"previous_bookings_not_canceled"},{"1":"0.000000000","2":"96.9025882","_rn_":"days_in_waiting_list"},{"1":"0.000000000","2":"96.8087780","_rn_":"is_repeated_guest"},{"1":"0.000000000","2":"94.5690594","_rn_":"previous_cancellations"},{"1":"0.000000000","2":"93.7884245","_rn_":"required_car_parking_spaces"},{"1":"0.000000000","2":"84.8597035","_rn_":"booking_changes"},{"1":"0.000000000","2":"62.9583717","_rn_":"is_canceled"},{"1":"0.000000000","2":"58.8977301","_rn_":"total_of_special_requests"},{"1":"0.000000000","2":"43.5530614","_rn_":"stays_in_weekend_nights"},{"1":"0.000000000","2":"6.4033839","_rn_":"stays_in_week_nights"},{"1":"0.000000000","2":"5.3145155","_rn_":"lead_time"},{"1":"0.000000000","2":"1.6408409","_rn_":"adr"},{"1":"0.000000000","2":"0.3375492","_rn_":"adults"},{"1":"0.000000000","2":"0.0000000","_rn_":"hotel"},{"1":"0.000000000","2":"0.0000000","_rn_":"arrival_date_year"},{"1":"0.000000000","2":"0.0000000","_rn_":"arrival_date_month"},{"1":"0.000000000","2":"0.0000000","_rn_":"arrival_date_week_number"},{"1":"0.000000000","2":"0.0000000","_rn_":"arrival_date_day_of_month"},{"1":"0.000000000","2":"0.0000000","_rn_":"meal"},{"1":"0.000000000","2":"0.0000000","_rn_":"market_segment"},{"1":"0.000000000","2":"0.0000000","_rn_":"distribution_channel"},{"1":"0.000000000","2":"0.0000000","_rn_":"reserved_room_type"},{"1":"0.000000000","2":"0.0000000","_rn_":"assigned_room_type"},{"1":"0.000000000","2":"0.0000000","_rn_":"deposit_type"},{"1":"0.000000000","2":"0.0000000","_rn_":"customer_type"},{"1":"0.000000000","2":"0.0000000","_rn_":"reservation_status"},{"1":"0.000000000","2":"0.0000000","_rn_":"reservation_status_date"},{"1":"NA","2":"NA","_rn_":"children"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>As we can see from the stats above, it is safe to remove columns <code>company</code> and <code>babies</code> due to the high percentage of insignificant <code>"NULL"</code> and <code>0</code> values. But before that, I will add the values in <code>adults</code>, <code>children</code> and <code>babies</code> columns to get the total number of guests and also calculate the total_stay_period for guests by adding <code>stays_in_weekend_nights</code> and <code>stays_in_week_nights</code> columns.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">total_guests =</span> adults <span class="sc">+</span> babies <span class="sc">+</span> children,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_stay_period =</span> stays_in_weekend_nights <span class="sc">+</span> stays_in_week_nights)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>company, <span class="sc">-</span>babies, <span class="sc">-</span>adults, <span class="sc">-</span>children, <span class="sc">-</span>stays_in_weekend_nights, <span class="sc">-</span>stays_in_week_nights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="getting-the-summary-of-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="getting-the-summary-of-the-dataset">Getting the summary of the dataset</h2>
+<p>The method dfSummary provides us with the complete summary of the dataset, including the mean and median values, the range and the most important/frequent values of the columns.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfSummary</span>(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    bookings, </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">graph.magnif =</span> <span class="fl">0.75</span>, </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">method=</span> <span class="st">'render'</span>, </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">table.classes=</span> <span class="st">'table-condensed'</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">bookings</h4>
+<strong>Dimensions</strong>: 119390 x 28
+  <br><strong>Duplicates</strong>: 32030
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>No</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">1</td>
+      <td align="left">hotel
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. City Hotel</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Resort Hotel</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">79330</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">66.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40060</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">33.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFcAAAAqCAQAAABsfQ/4AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzbYM49pAAAAg0lEQVRYw+3XwQmAMAyF4USczg10QN2g6+k1WoRSjE3gf7deygd9hURPyZRpNABunMz2cIQs8qovXJFltK1KuZ2SlQEuXLhw4cKFC7clj4ms9N3yW9SOuNp9jWesMHMZ9g+3ic3lqZy2Ca8/kKwMcOHChQsXLly4Lcm8TcRPsjLA9cwFHBELxwgtQjgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTY6MDM6NTQrMDA6MDDW25rpAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE2OjAzOjU0KzAwOjAwp4YiVQAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">2</td>
+      <td align="left">is_canceled
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Min  : 0</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean : 0.4</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Max  : 1</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">75166</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">63.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">44224</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">37.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFMAAAAqCAQAAABllq+CAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzbYM49pAAAAgklEQVRYw+3WMQqAMAxG4UY8nTfQA+oNej3dpAouJbF/4L0tS/kgHWJnydA0GgDz/+Z2OKQ+6mofzFKW0ba7+piSLB0mTNVgwlQNJkzVXhdS7XslPGtPTOt+JqJWlnHpe8D1vrmsKPh69/rrSZYOE6ZqMGGqBhOmahmvd92SLB2mZxcV2gvHCiP0jAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0wN1QxNjowMzo1NCswMDowMNbbmukAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDItMDdUMTY6MDM6NTQrMDA6MDCnhiJVAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">3</td>
+      <td align="left">lead_time
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 104 (106.9)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 69 ≤ 737</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 142 (1)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">479 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAABUCAQAAAD5P9uaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzbYM49pAAABDUlEQVR42u3cwQ2CMBhAYWs6gHO5gQ4oGzCXG+i1NZEAUinvf++kgQMflIKEmF6nGJ333gChQteVyy/Dxwl7T3tv3m+VnFwvuhafx723c9PCDF2htITSEkpLKC2htITSEkpLKC2htITSEkpLKC2htITSEkpLKC2htITSEkpLKK0w0Dy18FG9G3jsNwMnoaQ3A8MMXaG0hNISSivPX7W8fTjezcMC6HX+qh0WZugKpbXgHC17Vr9rLgeYmsIcUaG0hNIKA115eakrLzZjp/fBHtH19fmQtAG0z4ekDaB1vRzf5tBejm+YySgMtPnQrdvvivtn6BS7buudkMpJcYD958+t2FkJZvtamMlIKK032a0gCa87pgAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTY6MDM6NTQrMDA6MDDW25rpAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE2OjAzOjU0KzAwOjAwp4YiVQAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">4</td>
+      <td align="left">arrival_date_year
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 2016.2 (0.7)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2015 ≤ 2016 ≤ 2017</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 1 (0)</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2015</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">21996</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">18.4%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2016</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">56707</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">47.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2017</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">40687</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">34.1%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEIAAAA7CAQAAABlcJRqAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzbYM49pAAAAkUlEQVRYw+3ZwQ2AIAyFYWqYzhEcUDdgPbwW4qENJK3J/24c1C9A0oLSS3yOaAAInaoHTz9ND7VyyeqH9V5MMRMgQIAAAQKEN3UcthCE6JK6XJ8doZR/ZdgTt7GzWk8b1j7FTIAAAQIECBC/RNBZpUJMndXOV9vvtaaWf1975zk8pFgOECBAgAABwhvhlySIKS9xBhDVYSqmuQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0wN1QxNjowMzo1NCswMDowMNbbmukAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDItMDdUMTY6MDM6NTQrMDA6MDCnhiJVAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">5</td>
+      <td align="left">arrival_date_month
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. August</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. July</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. May</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. October</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. April</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. June</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. September</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. March</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. February</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. November</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 2 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">13877</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">11.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12661</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">10.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11791</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">9.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11160</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">9.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11089</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">9.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10939</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">9.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10508</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">9794</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8068</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">6794</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12709</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">10.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABoAAADKCAQAAAARfZhqAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzbYM49pAAAA5ElEQVRo3u2a3Q3DIAwGcdXpukEzINmAuboBfcXhJzRtkUH35SkSJwHOIStCovs8twvMQOievuyNBT6lAjn3qCBhpo0AAtI5fOWhC5JUIWkMTMd9Pz1fMXeTBlQ3V8d4nYCAdMZJaMrc/IQyXicgIJ25zM0lDJm35rccCEjHeOOLuUBAxRg3t6PxzSU8bXxLqzReJyAgndnN3eQE4mcT0JLQXI1vPuCCueXTyXidgIB0jJurIB9fyeNjFzRuekBASza+vzXXx05o3PSAgJY093/3I3zUmPE6AQHpdJl7VEMWvP34BmIUU7ePWgduAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE2OjAzOjU0KzAwOjAw1tua6QAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNjowMzo1NCswMDowMKeGIlUAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">6</td>
+      <td align="left">arrival_date_week_number
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 27.2 (13.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 28 ≤ 53</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 22 (0.5)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">53 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAABUCAQAAAD5P9uaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzevNL//AAABIUlEQVR42u2ZSxLCIBAFxcrpvIEeMN7A68UtGqKESvj0e73LBujK1MwwhOWiwbX1ASxq0TKm+CNU3nxOJIjHgYeIl5+KVzmEW7WdZELXojRkRCsmo7lpE1Y1637n2NdoomfXw25EU/WwbaCeJpqjXjNQ18hkXYvSkBFtfHtZk5et9xev7kRT2fqIRqNAtLcKeZpo21auFJlkZFEaFqUhI/qnvMxLb9etUmT+qEVpWJSGRWlYlEZ3o5Q89j+CDCq6vzGVCV2L0rAoDRnRj/Iy5gy+QHTMGXweMqFrURoWpWFRGhalISM66CglRaJTj6ZIINHffbpM6FqUhkVpWJSGRWlYlIZFaViUhkVpyIiGeNDyhL2P3qOZUYC5bSITuhal8QbXySI6ugdNyQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0wN1QxNjowMzo1NSswMDowMHCskV0AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDItMDdUMTY6MDM6NTUrMDA6MDAB8SnhAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">7</td>
+      <td align="left">arrival_date_day_of_month
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 15.8 (8.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 16 ≤ 31</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 15 (0.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">31 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAABUCAQAAAD5P9uaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzevNL//AAABI0lEQVR42u2cwRGCMBAAjUMB1mUHWiB2QF12gN/kkUxIBHGz+8IZz3OT44BMhrBexuD66z+gqKJtTPGHcFDSOWkMz93Sxmmm5l/pULtHx0tDfMvgVIr2z8F9e0g2vm5wmkTjRC1pSsSDuF8ZH1S6JXrnuo4xu+7/sL3cpzS87kzM9dAlKcNb5/k2F+5Ot3eMwozm+1xdB3yvNd8q8c0GeLLSnRueMeoufScTbbla1sUM03UVpaEoDUVpKEpDURqK0lCUhqI0FKWhKA1FaShKQ1EaitJQlIaiNBSloSgNRWkoSkNRGsOInmzTYz/JXs9opydONLfHd5jSVZSGojQUpaEoDUVpKEpDURqK0hhGNMRLLC/YO38e0ZpRgLllGaZ0FaXxAW1ALC4bx00UAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE2OjAzOjU1KzAwOjAwcKyRXQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNjowMzo1NSswMDowMAHxKeEAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">8</td>
+      <td align="left">meal
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. BB</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. FB</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. HB</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. SC</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Undefined</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">92310</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">77.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">798</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">14463</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">12.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10650</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1169</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGMAAABfCAQAAABWirHIAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzevNL//AAAA8ElEQVR42u3asQ3CMBgF4RgxHRvAgLCB14OCxjEyRDQ+P93XpYl8ciL5V1KeW4LT7AWYkZdxbi8eS70o1zLI2LbL7LUdVndXIQ+VGSRmkJhBYgaJGSRmkJT2bF7+vs0M7cpDdiMx477U9DfMWJcZJGaQmEFiBokZJGaQhGQ4/ZGEZOw+mn2b/m7oJ+7gt7/680ZzhTxUZpCYQWIGiRkkZpCEZHRHQ/oRcMTpjyQko5v+PsemCp/73kJ2wwwSM0jMIDGDxAwSM0ic/mZz+qPq/vxc9d/PxN1YlxkkZpCYQWIGiRkkZpCURU/mnZDdMIPkBUNsGhwkIxEcAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE2OjAzOjU1KzAwOjAwcKyRXQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNjowMzo1NSswMDowMAHxKeEAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">9</td>
+      <td align="left">country
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. PRT</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. GBR</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. FRA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. ESP</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. DEU</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. ITA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. IRL</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. BEL</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. BRA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. NLD</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 168 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">48590</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">40.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12129</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">10.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10415</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8568</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">7.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">7287</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3766</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3375</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2342</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2224</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2104</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">18590</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">15.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADoAAADKCAQAAABeIJu6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzevNL//AAABKUlEQVR42u3c0Q2CMBSF4dY4gHOxgQxYN2AuN6ivLUoE0ntLev7jEy98oZX0aAkxB//cOphC6L08eBlO8DNuoCFMRuRSHenMKSgoKKg4ulpllnNnOZhYLqHx9Gn+p3T6D2/aaA5z4yHY0Rzaz7POLQMKCgoqjuos4tdsDq1bwxdq959DHZ05BQUFBRVHaQ5+aMrv6pOMdi/6XykoKCgoqEvYODBN/zlNufz5/zAbbZ3hBQUFBRVHaQ6m+blxYLFZUGZ1pZPL1oHOLQMKCgoqjtIcTENzAAUFBQUdDNVZxK/SHKx7g9LwgoKCgoL6h+ZgGpoDKCgoKOhgKM3BNDQHUFBQUNDBUJ3msOv9SGVaLPEH33LQ5jETnW8vKCgoqDja/2FFr+jMaRf0A2INRHasGI0FAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE2OjAzOjU1KzAwOjAwcKyRXQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNjowMzo1NSswMDowMAHxKeEAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">10</td>
+      <td align="left">market_segment
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Aviation</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Complementary</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Corporate</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Direct</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Groups</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Offline TA/TO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Online TA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Undefined</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">237</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">743</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5295</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12606</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">10.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">19811</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">16.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">24219</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">20.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">56477</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">47.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEEAAACVCAQAAACtUV/3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzevNL//AAABAElEQVR42u3cQQ6CMBAF0NZwAM/lDfSAHoHr4QbjgCnGRNtZvM9CWfVlyuIT0LqU0TmNBiCsWcJx73ZhxFUTTAEBAQEBAQHhKDVWhNpt2bhqgilsCP1aU5OQYAoICAijAQgICOkIWlMppUzxJLamW7eRTNvTy/o5d5xCgo1AQEBAQEBoRWVJQmi2ppj/NqhGa+qZBBuBgICAgIDQitaUhLBrTZ8ry/zzDpVgCggICAgICK3sbu57Pgp5RmtKQvi6Nb1y/tG+JZgCAgICAgJCK1pTKfk2ouOr2GHgHo8hICAgICAcZVBruobvWtMbwQ/YEBBGAxAQEBBSEqq/jEJY8wCs0jDFizP0kgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0wN1QxNjowMzo1NSswMDowMHCskV0AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDItMDdUMTY6MDM6NTUrMDA6MDAB8SnhAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">11</td>
+      <td align="left">distribution_channel
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Corporate</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Direct</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. GDS</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. TA/TO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Undefined</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">6677</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">14645</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">12.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">193</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">97870</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">82.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGgAAABfCAQAAACuako/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzevNL//AAAA6klEQVR42u3bwQ3CMBAFUYxSHSVQYOgg7cENvJZAiIvHn3knEBePnEgsDu1+ynKevQCD/i1o69/cyg11bbMX961+2Vv96PJ8dcxe5Y/iLjmD6AyiM4jOIDqD6Ayia/1X72XmhUHfELdDcUFlwNs//AS0yvz6dmJdVdwlZxCdQXQG0RlEZxCdQXROrHTZQXvAQwvZO5TAIDqD6AyiM4jOIDqD6JxY6eKChjPWFY8kj3KvxO2QQXQG0RlEZxCdQXQG0Q0PAK76R7UXJ1a67CDPWIEMojOIziA6g+gMojOILi6oBUwMRdwOGUT3ADcKF68OwCUFAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE2OjAzOjU1KzAwOjAwcKyRXQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNjowMzo1NSswMDowMAHxKeEAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">12</td>
+      <td align="left">is_repeated_guest
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Min  : 0</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean : 0</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Max  : 1</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">115580</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">96.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">3810</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">3.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHkAAAAqCAQAAAA96TybAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzevNL//AAAAmUlEQVRo3u2ZMQ6AIAxFqfF03EAPqDfgero4UI0MJoTY99/WhfTRMrTYkWhMoxOQspR7MNfBHvZhL/ainFIenVsXiouAjS1lAlImIGUCUiYgZQJSJmD1vBh1eFydpQ9G59aN2hLY2G5FsF2XscYtd3pUOQfdizSUCUiZgJQJSJmAlAlImYCUCdz+l8u3U36FBd39NAA2tpQJnFBDDp/ap2VwAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE2OjAzOjU1KzAwOjAwcKyRXQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNjowMzo1NSswMDowMAHxKeEAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">13</td>
+      <td align="left">previous_cancellations
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.1 (0.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0 ≤ 26</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (9.7)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">15 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAABUCAQAAAD5P9uaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzevNL//AAAAsUlEQVR42u3csQ3CMBBAUYwyHSMwIGzAetAmoUGAFOXnvc5yc1+y2xvP0zGctx5AqNDvTPPD/e3DXsfWA/5injMtry6L02PrSf/oME9XaI3QGqE1QmuE1gitEVojtEZojdAaoTVCa4TWCK0RWiO0RmiN0BqhNUJrhNYIrRFaI7RGaI3QGqE1QmuE1gitEVojtEZojdAaoTVCa1abNda7NG773gI0W4Ay9l3yucM8XaE1LyS8CQeUFEyGAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE2OjAzOjU1KzAwOjAwcKyRXQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNjowMzo1NSswMDowMAHxKeEAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">14</td>
+      <td align="left">previous_bookings_not_canceled
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.1 (1.5)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0 ≤ 72</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (10.9)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">73 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAABUCAQAAAD5P9uaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzevNL//AAAAsUlEQVR42u3cwQ2CQBBAUTFUZwkWqB3Ynl4XTgZNCJ/3TrvhMj9ZrjO9L+dw3XsAoUK3mcfLc/XD3qe9x/vNmDMvP92G82vvOf/qNE9XaI3QGqE1QmuE1gitEVojtEZojdAaoTVCa4TWCK0RWiO0RmiN0BqhNUJrhNYIrRFaI7RGaI3QGqE1QmuE1gitEVojtEZojdAaoTVCa1abNZbbNB5H3wE0rECZjt7yrdM8XaE1HyooCQfPHN/0AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE2OjAzOjU1KzAwOjAwcKyRXQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNjowMzo1NSswMDowMAHxKeEAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">15</td>
+      <td align="left">reserved_room_type
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. A</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. B</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. C</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. D</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. E</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. F</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. G</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. H</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. L</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. P</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">85994</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">72.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1118</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">932</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">19201</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">16.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">6535</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2897</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2094</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">601</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">6</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAF0AAAC3CAQAAADap5qsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzevNL//AAABV0lEQVR42u3cTU4CQRSFUcqwOnegC8QdsC520I7UbiJ/Dnj3leeb9YScdGrATRHGsuvaSzUAvVf79cPH8lrtudpx9zZ+nhq/dXR09PjQ0dHjQ69ov308VnseaKwH3vjzxzyrtbbxgdnQD6029tlb74Sf5cD0Ch0dPT50dPT40CuykiqykgLonUJHR48PHR09PvQA+nv+2vjOSqpoc/l439BIOVRn96a3f3GXc7Pa+MCgo6PHh46OHh96RaZGRY3pV1ZSyhq6i75eSTlr6FKNDww6Onp86Ojo8aFXZCVVNAv9sJyWU5sfrs3y1nuFjo4eHzo6enyN6f4C4VlZSdX9cpeUfof0VeO3jo6OHh86Onp86OgPZSVVNM9fIHQKHR09PnR09PjQ0f8L3UqqyEpCR48PHR09PnR09PhMjYpmoVtJ6OiJoaOjx4eOjh7faPU9d1Pjt45e0SfJNDM2OzFCNQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0wN1QxNjowMzo1NSswMDowMHCskV0AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDItMDdUMTY6MDM6NTUrMDA6MDAB8SnhAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">16</td>
+      <td align="left">assigned_room_type
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. A</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. D</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. E</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. F</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. G</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. C</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. B</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. H</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. I</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. K</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 2 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">74053</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">62.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">25322</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">21.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">7806</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3751</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2553</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2375</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2163</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">712</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">363</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">279</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">13</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFIAAADKCAQAAACcEN8+AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzevNL//AAABU0lEQVR42u3aQU6DYBSFUX7j6tyBLrDuoOvqDnBiIjTVhPpK7wvnmzEhJ/wd3BLGPOX38mwA5J69Li8+g36g7+MX5DS9Pdv23Xl11eK4ISHTgoRMCxIyrasVdL7vLg9uLCfkuPs29S1d/Y77tHGZf+z06EOX+boWxw0JmRYkZFqQkGkZvVW1QP65zPda3puQ62We88+xxXFDQqYFCZkWJGRalnlV/ZCn+TJf5q1vzndGpgYJmRYkZFqQkGn5UOQ/WeaP6MY785Q35T+1eJKQkGlBQqYFCZlWC6RlXpXRC5kWJGRakJBpQUKmZZlXZZlDpgUJmRYkZFqQh0IavVX1Q+Z9vH0DmRokZFqQkGlBQqbVAmmZV9UPaZlDBgQJmRYkZFqQh0Ja5lX1Q1rmkAFBQqYFCZkW5KGQlnlVRi9kWpCQaUFCpgUJmdYInZCrWjxJyKq+AFQNNQWghA2iAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE2OjAzOjU1KzAwOjAwcKyRXQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNjowMzo1NSswMDowMAHxKeEAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">17</td>
+      <td align="left">booking_changes
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.2 (0.7)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0 ≤ 21</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (2.9)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">21 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAABUCAQAAAD5P9uaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzg/i6JuAAAAvElEQVR42u3cQQ5AMBQAUZWezg04IDdwLjeoBZJvYYOkyXSehYhNJ78sm0rXhr72Agw19J0cH5bwwU6p9tK+i/+ffH81nPe19hp/18zWNZTGUBpDaQylMZTGUBpDaQylMZTGUBpDaQylMZTGUBpDaQylMZTGUBpDaQylMZTGUBpDaQylMZTGUBpDaQylMZTGUBpDaQylMZTGUBpDaR5Dt3JcM+TUmGYmmuLAFsj0LmM4BiXB2h41s3UNpdkBjmcTCCdhuEoAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTY6MDM6NTYrMDA6MDBBRIvAAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE2OjAzOjU2KzAwOjAwMBkzfAAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">18</td>
+      <td align="left">deposit_type
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. No Deposit</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Non Refund</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Refundable</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">104641</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">87.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">14587</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">12.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">162</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG4AAAA7CAQAAAAwEXc0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzg/i6JuAAAAqklEQVRo3u3asQ2DMBgF4fwRPcyVDbIg2YD1oIytSJEiCuce91V2g3yyKYyo/ZbrPnoBxhn3aWonr/0xej2nzfUeR++ccVTGURlHZRyVcVTGUU39dBu9ntOezbjazwz165P+UNsTfSyj47p3bv1yE1+AZzZ654yjMo7KOCrjqIyjMo4qOs6bONV14tawn1Kus3NpjKMyjso4KuOojKMyjqrCbjmd6J0zjuoArLwNKfZjNtwAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTY6MDM6NTYrMDA6MDBBRIvAAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE2OjAzOjU2KzAwOjAwMBkzfAAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">19</td>
+      <td align="left">agent
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. 9</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. NULL</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. 240</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. 1</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. 14</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. 7</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. 6</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. 250</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. 241</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. 28</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 324 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">31961</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">26.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">16340</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">13.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">13922</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">11.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">7191</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3640</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3539</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3290</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2870</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1721</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1666</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">33250</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">27.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACwAAADKCAQAAAB0kGoVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzg/i6JuAAABF0lEQVR42u3b4Q2DIBCGYWgcoHM5ggPSDTqXG9BfbZBC6AWk3uW9f6bxiV7IfQlYH905dTvJVQgv6cWjo+Gbdy69fTn+vF6/FcDAwMC/VDbdnsNgn85Q34ml1pxWhEaCbIJXEiSIrP/6lhswMLApWN+g/3+CSNLjC64niDy99fUYGBjYFEyCfCpLkHTQ37s6o68VwMDApmA2mybDIe5xj629rCs9MTAwMHClSJByK94jXrqxVKrsiddhR976lhswMLApmAQpt4IEAQYGBm6VvkE/M0FG5Acf3QIDA1uFSZAyHAYdVRhoBTAwMHClSJAyTIIAAwMDt0pfgoj+n9d+/wrct9l0PE7StyqAgYFNwXMOvFW0Qh/8AmIlPk2d3fGoAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE2OjAzOjU2KzAwOjAwQUSLwAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNjowMzo1NiswMDowMDAZM3wAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">20</td>
+      <td align="left">days_in_waiting_list
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 2.3 (17.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0 ≤ 391</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (7.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">128 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAABUCAQAAAD5P9uaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzg/i6JuAAAAs0lEQVR42u3cwQnCQBBAUSOpzhIsUDuwPb0IrjmJCgs/711CyGU+7OY4y/2wD8fZAwgV+p11fLkOF/a8zB7td+P/Z33/dHo+b7Nn/LvdHF2hNUJrhNYIrRFaI7RGaI3QGqE1QmuE1gitEVojtEZojdAaoTVCa4TWCK0RWiO0RmiN0BqhNUJrhNYIrRFaI7RGaI3QGqE1QmuE1git2WzWeG3UuBT2/wxrUJZCzyd2c3SF1jwANQAJB63xoakAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTY6MDM6NTYrMDA6MDBBRIvAAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE2OjAzOjU2KzAwOjAwMBkzfAAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">21</td>
+      <td align="left">customer_type
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Contract</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Group</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Transient</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Transient-Party</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">4076</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">577</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">89613</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">75.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">25124</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">21.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGAAAABOCAQAAAB1N9v1AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzg/i6JuAAAA0UlEQVRo3u3aQQrCMBQGYSM9XW9gD6g38Hp1I/IiKJQsJn+Zb6W4yWACfca2X7Jd6QUYQC9g1FLfPN4HYmv0sv6r53bpP1rptR0Wv4UMoBlAM4BmAM0AmgG0r6fRJ72ew1p9tp58DPioa47fQl3APfAninN9A4kMoBlAM4BmAM0AmgG0+AAnMlo31MdMZGWreEdGM4BmAM0AmgE0A2gG0CLvyG7ltRMZbWgim+HfjQMT2RznJX4LGUAzgGYAzQCaATQDaJETWdVSLmV+id9CBtBeY+YU/0wU+eAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTY6MDM6NTYrMDA6MDBBRIvAAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE2OjAzOjU2KzAwOjAwMBkzfAAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">22</td>
+      <td align="left">adr
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 101.8 (50.5)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">-6.4 ≤ 94.6 ≤ 5400</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 56.7 (0.5)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">8879 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAABUCAQAAAD5P9uaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzg/i6JuAAAAuElEQVR42u3csQ2AIBBAUc8wnSM4ICO4nrYoiSZYED7/dUSL+0bai3OZw9p7AEMNbZPKQ1SPc3WF91iGUQ6f3l/dHuej9+zNpvl1DaUxlMZQGkNpDKUxlMZQGkNpDKUxlMZQGkNpDKUxlMZQGkNpDKUxlMZQGkNpDKUxlMZQGkNpDKUxlMZQGkNpDKUxlMZQGkNpDKUxlMZQmmlCbwsnMngVzsdmjXqTxlAfo1h3EiPN/cc0d9RQmgu2aAqudVuBmQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0wN1QxNjowMzo1NiswMDowMEFEi8AAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDItMDdUMTY6MDM6NTYrMDA6MDAwGTN8AAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">23</td>
+      <td align="left">required_car_parking_spaces
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.1 (0.2)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0 ≤ 8</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (3.9)</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">111974</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">93.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">7383</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">6.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">28</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">3</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">8</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHUAAABfCAQAAAB8OkBnAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzg/i6JuAAAA20lEQVR42u3aQQqDMBQG4bzS0/UG7QHtDbye3SYFBVtBmX9m5yb4kbjIw1paSrezX0Cq1H+69w9v3If7rBVqa4+z3+3Q5uEp6ABLJSaVmFRiUolJJSaVWPX3tvp5mavW64J2NYg6XM2nrynEC3WiN6YQ866Frl/QAZZKTCoxqcSkEpNKTCoxpxDEUqkT7l+IVSo7qcSkEpNKTCoxqcSkEguiOoUglkp1CgFJKjGpxKQSk0pMKjGpxIKoTiGIpVKdQkCSSkwqManEpBKTSkwqsSBqoe9tQ0G7KpXYB5x+FapOgjA1AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE2OjAzOjU2KzAwOjAwQUSLwAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNjowMzo1NiswMDowMDAZM3wAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">24</td>
+      <td align="left">total_of_special_requests
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.6 (0.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0 ≤ 5</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 1 (1.4)</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">70318</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">58.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">33226</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">27.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">12969</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2497</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">2.1%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">340</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">40</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE4AAABwCAQAAAAa045LAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzg/i6JuAAAA40lEQVR42u3aQQrCMBRF0URcnTuoC6w76PbqNBEzaEzJL547UihyaAM+xLynuN1mA+DO6F6+eQU4gEtu4FJ6zLZVhX6scHBwcHBwF8R9fPFvsz1pKV7nciXlo590QqUn9GMNjavO3Lr/Mja39Bx8LkLfOTg4ODg4OLixhVvCZZZwbx9js3XZ6BnZgWv97DrrJIZ+rHBwcHBwcHBjs4SPdOUlPGf1fiv0nYODg4ODg4ODi5El3FuFWwP8FbeJixYcHBwcHBzcH+GMzd6ug7OE4eACBwcHBwc3sRxsJVWFvnNwvb0BCcwc9GS3/boAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTY6MDM6NTYrMDA6MDBBRIvAAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE2OjAzOjU2KzAwOjAwMBkzfAAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">25</td>
+      <td align="left">reservation_status
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Canceled</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Check-Out</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. No-Show</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">43017</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">36.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">75166</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">63.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1207</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFMAAAA7CAQAAACtHH68AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzg/i6JuAAAAmElEQVRo3u3ZQQqAIBBG4SY8XUfogHYDr2dbDdrkmP/AezsXxcdgMJDVLUL7agDM/0vt4aqH68vLdtr3p9uvJsg0YcJUDSZM1WDCVC31x7La85K169LA1jUhFrlZdXczO2/vI5XuDgaZJkyYqsGEqRpMmKoFYbK9exaRmWsW/U0UcZq6wYSpGkyYqsGEqZqJbm6PgkwTpmc3blQRGyhzVXYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTY6MDM6NTYrMDA6MDBBRIvAAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE2OjAzOjU2KzAwOjAwMBkzfAAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">26</td>
+      <td align="left">reservation_status_date
+[Date]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min : 2014-10-17</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">med : 2016-08-07</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">max : 2017-09-14</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">range : 2y 10m 28d</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">926 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAABUCAQAAAD5P9uaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzlIjJL4AAABbElEQVR42u2b2xGCMBBFxaEA66IDLRA7oK50ED8AyYyAyZLn3Xt+1BkRztzNEjKxszcd3EtfAEUpKqN3P3TJTzc6LeGV/HRu/+nFvyJkWF6nzOfNLurDmnvMzCsUHe3wfTerxij4CkX3uF7wBUVlBSot64Kic0qhGa1HhQpnEh2jzzSHwO9nS1SWn7GSo7KJbvmFjKT4qScXvTr+GhINIW2SFYnmmRSqeXpRI1pB6V7Dt8M3L+rbq9WULkXRUCMatRnlmeMUF92WQHIvfPmgpnQpioYaUYAp4Mr5chmQ6PlyWQTRs7tnPXfWKIkePz/Uc2dV04woigZF0aAoGhRFg6JoUBQNiqJBUTQoigZF0aAoGhRFg6JoUBQNiqJBUTQoigZF0fgjOlpjjTW2nm00UsTbb1pTv7DPqJ49RD5wjKIRXLqtjc1d0W1X/ONnK6hZBKek//KMgROFY9G5Ab0bTeuI55EoMmqaEUXR+AD7ukwsjSDUMQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0wN1QxNjowMzo1NyswMDowMOczgHQAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDItMDdUMTY6MDM6NTcrMDA6MDCWbjjIAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">27</td>
+      <td align="left">total_guests
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 2 (0.7)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 2 ≤ 55</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (0.4)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">15 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAABUCAQAAAD5P9uaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzlIjJL4AAAAsklEQVR42u3csQ3CQBAAQYxcHSVQIHRAe5AaQ4KF9PJ6Jnu9g1vpnd70PB3DefQAQoVuMy8P9y8/7HUaPeJ2y5z5/eqy+vQxeta/OczTFVojtEZojdAaoTVCa4TWCK0RWiO0RmiN0BqhNUJrhNYIrRFaI7RGaI3QGqE1QmuE1gitEVojtEZojdAaoTVCa4TWCK0RWiO0RmiN0JrVZo3PTRq3Pe8BWqw/mfbc8YvDPF2hNS8fUAkHm9v7LQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0wN1QxNjowMzo1NyswMDowMOczgHQAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDItMDdUMTY6MDM6NTcrMDA6MDCWbjjIAAAAAElFTkSuQmCC"></td>
+      <td align="center">4
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">28</td>
+      <td align="left">total_stay_period
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 3.4 (2.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 3 ≤ 69</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 2 (0.7)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">45 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAABUCAQAAAD5P9uaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcQAzlIjJL4AAAAyElEQVR42u3cQQqDMBQAUSM5XW+gB2xu4Ll6g3b7I1jQFoLzZ1ZKXOQRA9loeU85mkdPQKjQa9V403Ybdi2jp/dbkVP7oUe43kbP86+leXWF0hJKSygtobSE0hJKSygtobSE0hJKSygtobSE0hJKSygtobSE0hJKSygtobSE0hJKSygtobSE0hJKSygtobSE0hJKKw20fht8dd+Tbrf+njTNigqlJZSWUFpCadUzDz+7k9K9zkklzr3B/vmzhKUoMNthafaoUFof2RcOq2E+PH8AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTY6MDM6NTcrMDA6MDDnM4B0AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE2OjAzOjU3KzAwOjAwlm44yAAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.2)<br>2023-02-07</p>
+</div>
+</div>
+</div>
+</section>
+<section id="deep-dive-into-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="deep-dive-into-the-data">Deep dive into the data</h2>
+<p>We get a superficial idea about the data using the summary statistics, but we need to deep dive into it to know more.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bookings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["hotel"],"name":[1],"type":["chr"],"align":["left"]},{"label":["is_canceled"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lead_time"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["arrival_date_year"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["arrival_date_month"],"name":[5],"type":["chr"],"align":["left"]},{"label":["arrival_date_week_number"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["arrival_date_day_of_month"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["meal"],"name":[8],"type":["chr"],"align":["left"]},{"label":["country"],"name":[9],"type":["chr"],"align":["left"]},{"label":["market_segment"],"name":[10],"type":["chr"],"align":["left"]},{"label":["distribution_channel"],"name":[11],"type":["chr"],"align":["left"]},{"label":["is_repeated_guest"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["previous_cancellations"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["previous_bookings_not_canceled"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["reserved_room_type"],"name":[15],"type":["chr"],"align":["left"]},{"label":["assigned_room_type"],"name":[16],"type":["chr"],"align":["left"]},{"label":["booking_changes"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["deposit_type"],"name":[18],"type":["chr"],"align":["left"]},{"label":["agent"],"name":[19],"type":["chr"],"align":["left"]},{"label":["days_in_waiting_list"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["customer_type"],"name":[21],"type":["chr"],"align":["left"]},{"label":["adr"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["required_car_parking_spaces"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["total_of_special_requests"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["reservation_status"],"name":[25],"type":["chr"],"align":["left"]},{"label":["reservation_status_date"],"name":[26],"type":["date"],"align":["right"]},{"label":["total_guests"],"name":[27],"type":["dbl"],"align":["right"]},{"label":["total_stay_period"],"name":[28],"type":["dbl"],"align":["right"]}],"data":[{"1":"Resort Hotel","2":"0","3":"342","4":"2015","5":"July","6":"27","7":"1","8":"BB","9":"PRT","10":"Direct","11":"Direct","12":"0","13":"0","14":"0","15":"C","16":"C","17":"3","18":"No Deposit","19":"NULL","20":"0","21":"Transient","22":"0","23":"0","24":"0","25":"Check-Out","26":"2015-07-01","27":"2","28":"0"},{"1":"Resort Hotel","2":"0","3":"737","4":"2015","5":"July","6":"27","7":"1","8":"BB","9":"PRT","10":"Direct","11":"Direct","12":"0","13":"0","14":"0","15":"C","16":"C","17":"4","18":"No Deposit","19":"NULL","20":"0","21":"Transient","22":"0","23":"0","24":"0","25":"Check-Out","26":"2015-07-01","27":"2","28":"0"},{"1":"Resort Hotel","2":"0","3":"7","4":"2015","5":"July","6":"27","7":"1","8":"BB","9":"GBR","10":"Direct","11":"Direct","12":"0","13":"0","14":"0","15":"A","16":"C","17":"0","18":"No Deposit","19":"NULL","20":"0","21":"Transient","22":"75","23":"0","24":"0","25":"Check-Out","26":"2015-07-02","27":"1","28":"1"},{"1":"Resort Hotel","2":"0","3":"13","4":"2015","5":"July","6":"27","7":"1","8":"BB","9":"GBR","10":"Corporate","11":"Corporate","12":"0","13":"0","14":"0","15":"A","16":"A","17":"0","18":"No Deposit","19":"304","20":"0","21":"Transient","22":"75","23":"0","24":"0","25":"Check-Out","26":"2015-07-02","27":"1","28":"1"},{"1":"Resort Hotel","2":"0","3":"14","4":"2015","5":"July","6":"27","7":"1","8":"BB","9":"GBR","10":"Online TA","11":"TA/TO","12":"0","13":"0","14":"0","15":"A","16":"A","17":"0","18":"No Deposit","19":"240","20":"0","21":"Transient","22":"98","23":"0","24":"1","25":"Check-Out","26":"2015-07-03","27":"2","28":"2"},{"1":"Resort Hotel","2":"0","3":"14","4":"2015","5":"July","6":"27","7":"1","8":"BB","9":"GBR","10":"Online TA","11":"TA/TO","12":"0","13":"0","14":"0","15":"A","16":"A","17":"0","18":"No Deposit","19":"240","20":"0","21":"Transient","22":"98","23":"0","24":"1","25":"Check-Out","26":"2015-07-03","27":"2","28":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>As the column adr represents <code>Average Daily Rate</code>, it cannot have -ve values, so I will drop them.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">filter</span>(adr <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Finding the mean adr for both the hotels</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>bookings <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(hotel) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean_adr =</span> <span class="fu">mean</span>(adr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["hotel"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean_adr"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"City Hotel","2":"106.93279"},{"1":"Resort Hotel","2":"96.76963"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Now, we will look at the top 5 countries by the number of bookings</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>bookings.top_countries <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> count <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>bookings.top_countries <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Let us see which country has the highest cancellation percentage</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>bookings.cancellation <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PRT"</span>, <span class="st">"GBR"</span>, <span class="st">"ESP"</span>, <span class="st">"FRA"</span>, <span class="st">"DEU"</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(country, is_canceled) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> <span class="fu">summarise_if</span>(is.numeric, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(is_canceled))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>bookings.cancellation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["is_canceled"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"PRT","2":"0.5810374"},{"1":"ESP","2":"0.2563317"},{"1":"GBR","2":"0.2033181"},{"1":"FRA","2":"0.1864865"},{"1":"DEU","2":"0.1680927"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>We can see that the maximum number of bookings are cancelled by customers from Portugal.</p>
+<p>Let us see the number of successful bookings. i.e., the guests successfully checked out of the hotel.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>bookings.success <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(reservation_status <span class="sc">==</span> <span class="st">"Check-Out"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Let us find the hotels with most successful bookings</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>bookings.success <span class="sc">%&gt;%</span>  </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_guests =</span> <span class="fu">sum</span>(total_guests)) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_guests)) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["hotel"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_guests"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"City Hotel","2":"87968"},{"1":"Resort Hotel","2":"55406"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Now, let us find the countries with most successful bookings</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>bookings.success <span class="sc">%&gt;%</span>  </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_guests =</span> <span class="fu">sum</span>(total_guests)) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_guests)) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_guests"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"PRT","2":"35553"},{"1":"GBR","2":"19140"},{"1":"FRA","2":"17244"},{"1":"ESP","2":"13116"},{"1":"DEU","2":"11606"},{"1":"IRL","2":"5095"},{"1":"ITA","2":"4878"},{"1":"BEL","2":"3839"},{"1":"NLD","2":"3368"},{"1":"USA","2":"3202"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>From the above analysis, we can see that the City hotel is a bit expensive as compared to the Resort hotel and charges 10usd more per night. We also observe that City hotel had more successful bookings as compared to the Resourt hotel.</p>
+<p>In terms of countries, Portugal is the most frequent source of origin for the customers as well as the most frequent source of cancellation as well.</p>
+<p>Let us deep dive more into cancellations and see which types of customers are likely to cancel more.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bookings, <span class="fu">aes</span>(<span class="at">x =</span> customer_type, <span class="at">y =</span> is_canceled))<span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"Blue"</span>)<span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Cancellations by Customer_type"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Customer Type"</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"No of cancellations"</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="SiddharthGoel_HW3_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can observe from the graph above that the transient customers are more likely to cancel and the groups being the least.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>bookings.changes_by_customer <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(customer_type) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean_changes =</span> <span class="fu">mean</span>(booking_changes)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_changes)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>bookings.changes_by_customer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["customer_type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean_changes"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Transient-Party","2":"0.3450205"},{"1":"Group","2":"0.2702206"},{"1":"Transient","2":"0.1846580"},{"1":"Contract","2":"0.1192004"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>We can again see that the transient-party and group customers make the most changes to their bookings</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bookings.changes_by_customer, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> mean_changes, <span class="at">y =</span> <span class="fu">reorder</span>(customer_type, mean_changes))) <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> mean_changes)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Customer Type"</span>, <span class="at">y =</span> <span class="st">"Mean Changes"</span>, <span class="at">title =</span> <span class="st">"Booking changes by customer type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="SiddharthGoel_HW3_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can observe from the graph that the most number of changes are done by people from Transient Parties and Groups whereas the least changes are done by groups.</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb37" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Homework 3"</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Siddharth Goel"</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "01/31/2023"</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - hw3</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - hotel_bookings</span></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Importing the libraries</span></span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb37-28"><a href="#cb37-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-29"><a href="#cb37-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-30"><a href="#cb37-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading the dataset</span></span>
+<span id="cb37-33"><a href="#cb37-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-34"><a href="#cb37-34" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"_data/hotel_bookings.csv"</span>)</span>
+<span id="cb37-35"><a href="#cb37-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-36"><a href="#cb37-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Taking an initial look into the data</span></span>
+<span id="cb37-39"><a href="#cb37-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-40"><a href="#cb37-40" aria-hidden="true" tabindex="-1"></a><span class="co"># looking at the dimensions</span></span>
+<span id="cb37-41"><a href="#cb37-41" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(bookings)</span>
+<span id="cb37-42"><a href="#cb37-42" aria-hidden="true" tabindex="-1"></a><span class="co"># looking at the schema</span></span>
+<span id="cb37-43"><a href="#cb37-43" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(bookings)</span>
+<span id="cb37-44"><a href="#cb37-44" aria-hidden="true" tabindex="-1"></a><span class="co"># looking at the data values</span></span>
+<span id="cb37-45"><a href="#cb37-45" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bookings)</span>
+<span id="cb37-46"><a href="#cb37-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-47"><a href="#cb37-47" aria-hidden="true" tabindex="-1"></a>As we can see from the spec and head command outputs, this is the hotel booking data for 2 hotels over 3 years.</span>
+<span id="cb37-48"><a href="#cb37-48" aria-hidden="true" tabindex="-1"></a>We can also see that the dataset has <span class="in">`119390`</span> total rows and <span class="in">`32`</span> columns.</span>
+<span id="cb37-49"><a href="#cb37-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-50"><a href="#cb37-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## A bit detailed description about the data</span></span>
+<span id="cb37-51"><a href="#cb37-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-52"><a href="#cb37-52" aria-hidden="true" tabindex="-1"></a>finding the unique values for each column</span>
+<span id="cb37-55"><a href="#cb37-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-56"><a href="#cb37-56" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(bookings)</span>
+<span id="cb37-57"><a href="#cb37-57" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(bookings<span class="sc">$</span>hotel)</span>
+<span id="cb37-58"><a href="#cb37-58" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(bookings<span class="sc">$</span>arrival_date_year)</span>
+<span id="cb37-59"><a href="#cb37-59" aria-hidden="true" tabindex="-1"></a><span class="co">#unique(bookings$agent)</span></span>
+<span id="cb37-60"><a href="#cb37-60" aria-hidden="true" tabindex="-1"></a><span class="co">#unique(bookings$company)</span></span>
+<span id="cb37-61"><a href="#cb37-61" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(bookings<span class="sc">$</span>customer_type)</span>
+<span id="cb37-62"><a href="#cb37-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-63"><a href="#cb37-63" aria-hidden="true" tabindex="-1"></a>Looking at the data, we can see that there are 119390 rows and 32 columns in the dataset. </span>
+<span id="cb37-64"><a href="#cb37-64" aria-hidden="true" tabindex="-1"></a>Moreover, taking a look at the unique values of some columns, we observe that this booking data is collected from 2 hotels, over a period of three years, across various distribution channels. The other columns have values of either character or numerical types and </span>
+<span id="cb37-65"><a href="#cb37-65" aria-hidden="true" tabindex="-1"></a>The dataset contains all kinds of booking information regarding the hotels, ranging right from the arrival dates to the type of guests, the booking channel, agent, etc. to the demands of the guests and parking spaces, etc.</span>
+<span id="cb37-66"><a href="#cb37-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-67"><a href="#cb37-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-68"><a href="#cb37-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cleaning and mutating the data</span></span>
+<span id="cb37-69"><a href="#cb37-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-70"><a href="#cb37-70" aria-hidden="true" tabindex="-1"></a>By looking at the top values in the dataset, character type columns with values such as <span class="in">`NULL`</span> can be noticed. Also, <span class="in">`0`</span> valued numerical columns can be seen in the dataset as well. It will be great to find out the percentage of these values in the columns and remove these columns if the percentages are high. </span>
+<span id="cb37-71"><a href="#cb37-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-74"><a href="#cb37-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-75"><a href="#cb37-75" aria-hidden="true" tabindex="-1"></a><span class="co"># get zero percentage in data</span></span>
+<span id="cb37-76"><a href="#cb37-76" aria-hidden="true" tabindex="-1"></a>zero_percent <span class="ot">&lt;-</span> (<span class="fu">colSums</span>(bookings <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">/</span> <span class="fu">nrow</span>(bookings)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb37-77"><a href="#cb37-77" aria-hidden="true" tabindex="-1"></a><span class="co"># get null percent in data</span></span>
+<span id="cb37-78"><a href="#cb37-78" aria-hidden="true" tabindex="-1"></a>null_percent <span class="ot">&lt;-</span> <span class="fu">sapply</span>(bookings, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">str_detect</span>(x, <span class="st">"NULL"</span>)) <span class="sc">/</span> <span class="fu">length</span>(x))</span>
+<span id="cb37-79"><a href="#cb37-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-80"><a href="#cb37-80" aria-hidden="true" tabindex="-1"></a>aggregated_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">null_percent =</span> null_percent, <span class="at">zero_percent =</span> zero_percent)</span>
+<span id="cb37-81"><a href="#cb37-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-82"><a href="#cb37-82" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(aggregated_df, <span class="fu">desc</span>(null_percent), <span class="fu">desc</span>(zero_percent))</span>
+<span id="cb37-83"><a href="#cb37-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-84"><a href="#cb37-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-85"><a href="#cb37-85" aria-hidden="true" tabindex="-1"></a>As we can see from the stats above, it is safe to remove columns <span class="in">`company`</span> and <span class="in">`babies`</span> due to the high percentage of insignificant <span class="in">`"NULL"`</span> and <span class="in">`0`</span> values. But before that, I will add the values in <span class="in">`adults`</span>, <span class="in">`children`</span> and <span class="in">`babies`</span> columns to get the total number of guests</span>
+<span id="cb37-86"><a href="#cb37-86" aria-hidden="true" tabindex="-1"></a>and also calculate the total_stay_period for guests by adding <span class="in">`stays_in_weekend_nights`</span> and <span class="in">`stays_in_week_nights`</span> columns.</span>
+<span id="cb37-87"><a href="#cb37-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-90"><a href="#cb37-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-91"><a href="#cb37-91" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">total_guests =</span> adults <span class="sc">+</span> babies <span class="sc">+</span> children,</span>
+<span id="cb37-92"><a href="#cb37-92" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_stay_period =</span> stays_in_weekend_nights <span class="sc">+</span> stays_in_week_nights)</span>
+<span id="cb37-93"><a href="#cb37-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-94"><a href="#cb37-94" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>company, <span class="sc">-</span>babies, <span class="sc">-</span>adults, <span class="sc">-</span>children, <span class="sc">-</span>stays_in_weekend_nights, <span class="sc">-</span>stays_in_week_nights)</span>
+<span id="cb37-95"><a href="#cb37-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-96"><a href="#cb37-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-97"><a href="#cb37-97" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting the summary of the dataset</span></span>
+<span id="cb37-98"><a href="#cb37-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-99"><a href="#cb37-99" aria-hidden="true" tabindex="-1"></a>The method dfSummary provides us with the complete summary of the dataset, including the mean and median values, the range and the most important/frequent values of the columns.</span>
+<span id="cb37-100"><a href="#cb37-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-103"><a href="#cb37-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-104"><a href="#cb37-104" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(</span>
+<span id="cb37-105"><a href="#cb37-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfSummary</span>(</span>
+<span id="cb37-106"><a href="#cb37-106" aria-hidden="true" tabindex="-1"></a>    bookings, </span>
+<span id="cb37-107"><a href="#cb37-107" aria-hidden="true" tabindex="-1"></a>    <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb37-108"><a href="#cb37-108" aria-hidden="true" tabindex="-1"></a>    <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
+<span id="cb37-109"><a href="#cb37-109" aria-hidden="true" tabindex="-1"></a>    <span class="at">graph.magnif =</span> <span class="fl">0.75</span>, </span>
+<span id="cb37-110"><a href="#cb37-110" aria-hidden="true" tabindex="-1"></a>    <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb37-111"><a href="#cb37-111" aria-hidden="true" tabindex="-1"></a>  <span class="at">method=</span> <span class="st">'render'</span>, </span>
+<span id="cb37-112"><a href="#cb37-112" aria-hidden="true" tabindex="-1"></a>  <span class="at">table.classes=</span> <span class="st">'table-condensed'</span></span>
+<span id="cb37-113"><a href="#cb37-113" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb37-114"><a href="#cb37-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-115"><a href="#cb37-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-116"><a href="#cb37-116" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deep dive into the data</span></span>
+<span id="cb37-117"><a href="#cb37-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-118"><a href="#cb37-118" aria-hidden="true" tabindex="-1"></a>We get a superficial idea about the data using the summary statistics, but we need to deep dive into it to know more.</span>
+<span id="cb37-119"><a href="#cb37-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-122"><a href="#cb37-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-123"><a href="#cb37-123" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bookings)</span>
+<span id="cb37-124"><a href="#cb37-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-125"><a href="#cb37-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-126"><a href="#cb37-126" aria-hidden="true" tabindex="-1"></a>As the column adr represents <span class="in">`Average Daily Rate`</span>, it cannot have -ve values, so I will drop them. </span>
+<span id="cb37-127"><a href="#cb37-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-128"><a href="#cb37-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-131"><a href="#cb37-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-132"><a href="#cb37-132" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">filter</span>(adr <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb37-133"><a href="#cb37-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-134"><a href="#cb37-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-135"><a href="#cb37-135" aria-hidden="true" tabindex="-1"></a>Finding the mean adr for both the hotels</span>
+<span id="cb37-136"><a href="#cb37-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-139"><a href="#cb37-139" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-140"><a href="#cb37-140" aria-hidden="true" tabindex="-1"></a>bookings <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(hotel) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean_adr =</span> <span class="fu">mean</span>(adr))</span>
+<span id="cb37-141"><a href="#cb37-141" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-142"><a href="#cb37-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-143"><a href="#cb37-143" aria-hidden="true" tabindex="-1"></a>Now, we will look at the top 5 countries by the number of bookings</span>
+<span id="cb37-144"><a href="#cb37-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-147"><a href="#cb37-147" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-148"><a href="#cb37-148" aria-hidden="true" tabindex="-1"></a>bookings.top_countries <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> count <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
+<span id="cb37-149"><a href="#cb37-149" aria-hidden="true" tabindex="-1"></a>bookings.top_countries <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="dv">5</span>)</span>
+<span id="cb37-150"><a href="#cb37-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-151"><a href="#cb37-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-152"><a href="#cb37-152" aria-hidden="true" tabindex="-1"></a>Let us see which country has the highest cancellation percentage</span>
+<span id="cb37-153"><a href="#cb37-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-156"><a href="#cb37-156" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-157"><a href="#cb37-157" aria-hidden="true" tabindex="-1"></a>bookings.cancellation <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PRT"</span>, <span class="st">"GBR"</span>, <span class="st">"ESP"</span>, <span class="st">"FRA"</span>, <span class="st">"DEU"</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(country, is_canceled) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> <span class="fu">summarise_if</span>(is.numeric, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(is_canceled))</span>
+<span id="cb37-158"><a href="#cb37-158" aria-hidden="true" tabindex="-1"></a>bookings.cancellation</span>
+<span id="cb37-159"><a href="#cb37-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-160"><a href="#cb37-160" aria-hidden="true" tabindex="-1"></a>We can see that the maximum number of bookings are cancelled by customers from Portugal.</span>
+<span id="cb37-161"><a href="#cb37-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-162"><a href="#cb37-162" aria-hidden="true" tabindex="-1"></a>Let us see the number of successful bookings. i.e., the guests successfully checked out of the hotel.</span>
+<span id="cb37-165"><a href="#cb37-165" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-166"><a href="#cb37-166" aria-hidden="true" tabindex="-1"></a>bookings.success <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> </span>
+<span id="cb37-167"><a href="#cb37-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(reservation_status <span class="sc">==</span> <span class="st">"Check-Out"</span>) </span>
+<span id="cb37-168"><a href="#cb37-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-169"><a href="#cb37-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-170"><a href="#cb37-170" aria-hidden="true" tabindex="-1"></a>Let us find the hotels with most successful bookings</span>
+<span id="cb37-173"><a href="#cb37-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-174"><a href="#cb37-174" aria-hidden="true" tabindex="-1"></a>bookings.success <span class="sc">%&gt;%</span>  </span>
+<span id="cb37-175"><a href="#cb37-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-176"><a href="#cb37-176" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_guests =</span> <span class="fu">sum</span>(total_guests)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-177"><a href="#cb37-177" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_guests)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-178"><a href="#cb37-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb37-179"><a href="#cb37-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-180"><a href="#cb37-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-181"><a href="#cb37-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-182"><a href="#cb37-182" aria-hidden="true" tabindex="-1"></a>Now, let us find the countries with most successful bookings</span>
+<span id="cb37-185"><a href="#cb37-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-186"><a href="#cb37-186" aria-hidden="true" tabindex="-1"></a>bookings.success <span class="sc">%&gt;%</span>  </span>
+<span id="cb37-187"><a href="#cb37-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-188"><a href="#cb37-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_guests =</span> <span class="fu">sum</span>(total_guests)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-189"><a href="#cb37-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_guests)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-190"><a href="#cb37-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb37-191"><a href="#cb37-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-192"><a href="#cb37-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-193"><a href="#cb37-193" aria-hidden="true" tabindex="-1"></a>From the above analysis, we can see that the City hotel is a bit expensive as compared to the Resort hotel and charges 10usd more per night. We also observe that City hotel had more successful bookings as compared to the Resourt hotel.</span>
+<span id="cb37-194"><a href="#cb37-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-195"><a href="#cb37-195" aria-hidden="true" tabindex="-1"></a>In terms of countries, Portugal is the most frequent source of origin for the customers as well as the most frequent source of cancellation as well.</span>
+<span id="cb37-196"><a href="#cb37-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-197"><a href="#cb37-197" aria-hidden="true" tabindex="-1"></a>Let us deep dive more into cancellations and see which types of customers are likely to cancel more.</span>
+<span id="cb37-198"><a href="#cb37-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-201"><a href="#cb37-201" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-202"><a href="#cb37-202" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bookings, <span class="fu">aes</span>(<span class="at">x =</span> customer_type, <span class="at">y =</span> is_canceled))<span class="sc">+</span></span>
+<span id="cb37-203"><a href="#cb37-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"Blue"</span>)<span class="sc">+</span></span>
+<span id="cb37-204"><a href="#cb37-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb37-205"><a href="#cb37-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb37-206"><a href="#cb37-206" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Cancellations by Customer_type"</span>,</span>
+<span id="cb37-207"><a href="#cb37-207" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Customer Type"</span>,</span>
+<span id="cb37-208"><a href="#cb37-208" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"No of cancellations"</span></span>
+<span id="cb37-209"><a href="#cb37-209" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb37-210"><a href="#cb37-210" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-211"><a href="#cb37-211" aria-hidden="true" tabindex="-1"></a>We can observe from the graph above that the transient customers are more likely to cancel and the groups being the least. </span>
+<span id="cb37-214"><a href="#cb37-214" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-215"><a href="#cb37-215" aria-hidden="true" tabindex="-1"></a>bookings.changes_by_customer <span class="ot">&lt;-</span> bookings <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(customer_type) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean_changes =</span> <span class="fu">mean</span>(booking_changes)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_changes)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb37-216"><a href="#cb37-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-217"><a href="#cb37-217" aria-hidden="true" tabindex="-1"></a>bookings.changes_by_customer</span>
+<span id="cb37-218"><a href="#cb37-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-219"><a href="#cb37-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-220"><a href="#cb37-220" aria-hidden="true" tabindex="-1"></a>We can again see that the transient-party and group customers make the most changes to their bookings</span>
+<span id="cb37-221"><a href="#cb37-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-224"><a href="#cb37-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-225"><a href="#cb37-225" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bookings.changes_by_customer, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> mean_changes, <span class="at">y =</span> <span class="fu">reorder</span>(customer_type, mean_changes))) <span class="sc">+</span></span>
+<span id="cb37-226"><a href="#cb37-226" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> mean_changes)) <span class="sc">+</span></span>
+<span id="cb37-227"><a href="#cb37-227" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Customer Type"</span>, <span class="at">y =</span> <span class="st">"Mean Changes"</span>, <span class="at">title =</span> <span class="st">"Booking changes by customer type"</span>)</span>
+<span id="cb37-228"><a href="#cb37-228" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-229"><a href="#cb37-229" aria-hidden="true" tabindex="-1"></a>We can observe from the graph that the most number of changes are done by people from Transient Parties and Groups whereas the least changes are done by groups.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -325,30 +325,30 @@ dbl (16): Cattle - dairy, Cattle - non-dairy, Buffaloes, Swine - market, Swi...
 <pre><code># A tibble: 3 × 6
   id    st_mean st_median st_sd   st_min st_max
   &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-1 a      -0.115    -0.105 0.964 -3.17     2.10 
-2 b       0.481     0.463 0.291  0.00657  0.986
-3 c       1.07      0.842 0.953  0.0345   3.95 </code></pre>
+1 a       0.220     0.131 0.930 -2.18     2.53 
+2 b       0.488     0.525 0.272  0.00522  0.987
+3 c       1.12      0.742 1.12   0.0154   5.11 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dfr</span>(<span class="fu">list</span>(a,b,c),weights_stats,<span class="at">pivot=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 15 × 3
    id    name         value
    &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;
- 1 a     st_mean   -0.115  
- 2 a     st_median -0.105  
- 3 a     st_sd      0.964  
- 4 a     st_min    -3.17   
- 5 a     st_max     2.10   
- 6 b     st_mean    0.481  
- 7 b     st_median  0.463  
- 8 b     st_sd      0.291  
- 9 b     st_min     0.00657
-10 b     st_max     0.986  
-11 c     st_mean    1.07   
-12 c     st_median  0.842  
-13 c     st_sd      0.953  
-14 c     st_min     0.0345 
-15 c     st_max     3.95   </code></pre>
+ 1 a     st_mean    0.220  
+ 2 a     st_median  0.131  
+ 3 a     st_sd      0.930  
+ 4 a     st_min    -2.18   
+ 5 a     st_max     2.53   
+ 6 b     st_mean    0.488  
+ 7 b     st_median  0.525  
+ 8 b     st_sd      0.272  
+ 9 b     st_min     0.00522
+10 b     st_max     0.987  
+11 c     st_mean    1.12   
+12 c     st_median  0.742  
+13 c     st_sd      1.12   
+14 c     st_min     0.0154 
+15 c     st_max     5.11   </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">weights_stats</span>(animal_weight<span class="sc">$</span>Buffaloes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

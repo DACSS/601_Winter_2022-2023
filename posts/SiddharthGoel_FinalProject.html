@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Siddharth Goel">
+<meta name="dcterms.date" content="2023-02-02">
+
+<title>Final Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="Final Project">
+<meta name="twitter:description" content="Analysis of Online Retail Data is the most important factor in setting up a successful online business.">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/DACSS">
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Final Project</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Course information</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course_schedule.html" class="sidebar-item-text sidebar-link">Course Schedule</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Weekly materials</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Posts</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#import-the-data" id="toc-import-the-data" class="nav-link" data-scroll-target="#import-the-data">Import the Data</a></li>
+  <li><a href="#dataset-summary" id="toc-dataset-summary" class="nav-link" data-scroll-target="#dataset-summary">Dataset Summary</a></li>
+  <li><a href="#tidying-the-dataset" id="toc-tidying-the-dataset" class="nav-link" data-scroll-target="#tidying-the-dataset">Tidying the dataset</a>
+  <ul class="collapse">
+  <li><a href="#cleaning-the-null-values" id="toc-cleaning-the-null-values" class="nav-link" data-scroll-target="#cleaning-the-null-values">Cleaning the null values</a></li>
+  </ul></li>
+  <li><a href="#processing-and-visualization" id="toc-processing-and-visualization" class="nav-link" data-scroll-target="#processing-and-visualization">Processing and Visualization</a>
+  <ul class="collapse">
+  <li><a href="#analysing-invoice-numbers-and-categorizing-transactions" id="toc-analysing-invoice-numbers-and-categorizing-transactions" class="nav-link" data-scroll-target="#analysing-invoice-numbers-and-categorizing-transactions">Analysing Invoice Numbers and Categorizing Transactions</a></li>
+  <li><a href="#analysing-country-wise-transactions" id="toc-analysing-country-wise-transactions" class="nav-link" data-scroll-target="#analysing-country-wise-transactions">Analysing Country-wise transactions</a></li>
+  <li><a href="#analysis-based-on-total-sales" id="toc-analysis-based-on-total-sales" class="nav-link" data-scroll-target="#analysis-based-on-total-sales">Analysis based on total sales</a></li>
+  </ul></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
+  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">Bibliography</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Final Project</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Siddharth Goel </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 2, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Analysis of Online Retail Data is the most important factor in setting up a successful online business. Unlike offline stores, where footfall can be increased using physical marketing strategies, online stores mainly rely on online advertisements and data analysis for business growth.</p>
+<p>While advertisements are key to getting new customers for the stores, data analysis can provide valuable information like top selling products, the best demographic, sales patterns and dead, top stock details. These bits of information can help the management decide the areas in which the business needs investment and which are the products that make the store’s maximum sales.</p>
+<p>So, in this project, I have taken a small sample of the transactions of an online retail store and will try to analyse the data and identify some patterns which may help us answer some important business questions.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.0     ✔ purrr   1.0.1
+✔ tibble  3.1.8     ✔ dplyr   1.1.0
+✔ tidyr   1.3.0     ✔ stringr 1.5.0
+✔ readr   2.1.3     ✔ forcats 1.0.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'psych'
+
+The following objects are masked from 'package:ggplot2':
+
+    %+%, alpha</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: no DISPLAY variable so Tk is not available</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>system might not have X11 capabilities; in case of errors when using dfSummary(), set st_options(use.x11 = FALSE)
+
+Attaching package: 'summarytools'
+
+The following object is masked from 'package:tibble':
+
+    view</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="import-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="import-the-data">Import the Data</h2>
+<p>Importing the online retail dataset</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>retail <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"_data/online_retail.csv"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  InvoiceNo StockC…¹ Descr…² Quant…³ InvoiceDate         UnitP…⁴ Custo…⁵ Country
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+1 536365    85123A   WHITE …       6 2010-12-01 08:26:00    2.55   17850 United…
+2 536365    71053    WHITE …       6 2010-12-01 08:26:00    3.39   17850 United…
+3 536365    84406B   CREAM …       8 2010-12-01 08:26:00    2.75   17850 United…
+4 536365    84029G   KNITTE…       6 2010-12-01 08:26:00    3.39   17850 United…
+5 536365    84029E   RED WO…       6 2010-12-01 08:26:00    3.39   17850 United…
+6 536365    22752    SET 7 …       2 2010-12-01 08:26:00    7.65   17850 United…
+# … with abbreviated variable names ¹​StockCode, ²​Description, ³​Quantity,
+#   ⁴​UnitPrice, ⁵​CustomerID</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(retail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>cols(
+  InvoiceNo = col_character(),
+  StockCode = col_character(),
+  Description = col_character(),
+  Quantity = col_double(),
+  InvoiceDate = col_datetime(format = ""),
+  UnitPrice = col_double(),
+  CustomerID = col_double(),
+  Country = col_character()
+)</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(retail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 541909      8</code></pre>
+</div>
+</div>
+<p>The input dataset has 541909 records of goods sold in an online retail store and has 8 columns.</p>
+</section>
+<section id="dataset-summary" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-summary">Dataset Summary</h2>
+<p>The columns and their descriptions are as follows :</p>
+<ol type="1">
+<li><p>InvoiceNo: A 6 digit number which is the invoice number of the transaction in which the item was sold. As there can be multiple items in a transaction, the InvoiceNo column won’t be unique.</p></li>
+<li><p>StockCode: Item code. A 5-digit integral number uniquely assigned to each product.</p></li>
+<li><p>Description: Item name.</p></li>
+<li><p>Quantity: The quantities of the item in the transaction.</p></li>
+<li><p>InvoiceDate: Invoice Date and time.</p></li>
+<li><p>UnitPrice: Product price per unit in sterling.</p></li>
+<li><p>CustomerID: A 5-digit integral number uniquely assigned to each customer.</p></li>
+<li><p>Country: The name of the country where the customer resides.</p></li>
+</ol>
+<p>Now using the <code>dfSummary</code> method to get the summary of each column in the dataset.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(retail, </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">style =</span> <span class="st">"grid"</span>, </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">valid.col=</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">method=</span> <span class="st">'render'</span>, </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes=</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">retail</h4>
+<strong>Dimensions</strong>: 541909 x 8
+  <br><strong>Duplicates</strong>: 5268
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Valid</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">InvoiceNo
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. 573585</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. 581219</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. 581492</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. 580729</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. 558475</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. 579777</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. 581217</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. 537434</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. 580730</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. 538071</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 25890 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1114</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">749</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">731</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">721</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">705</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">687</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">676</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">675</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">662</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">652</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">534537</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">98.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHQAAAC8CAQAAAADKEJ1AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcPNhpfoMVxAAABPUlEQVR42u3XQQrCQBQFQSOezoN6BK8XtxPBjQjB+l2uQkDSZATftl9muJ79AIUW+qV9+TywH+zaNuaNFqopVFOoplBNoZpCNds6WLazn+bH1rYxb/QQqu3Rj6GyQjWFagrVFKopVFOoZkxow1vT8NYUqilUU6imUE2hmkI17VHNzNCGN6BQTaGaQjWFagrVFKppeGvao5pCNYVqCtUUqilUU6hmTGjDW9Pw1hSqKVRTqKZQTaGaQjXtUU17VFOoplBNoZpCNYVqCtWMCW14axremkI1hWoK1RSqKVRTqKY9qpkZ2vAGFKopVFOoplBNoZpCNQ1vTXtUU6imUE2hmkI1hWoK1YwJbXhrbusFN7yXI3o73rmf/Wg/9DxcjTm6hWoK1RSqKVRTqObtv+7zu2/5A5s2WD4Zc3QL1bwAyEw3J+LTkW0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTU6NTQ6MjYrMDA6MDBlwFksAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE1OjU0OjI2KzAwOjAwFJ3hkAAAAABJRU5ErkJggg=="></td>
+      <td align="center">541909
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">StockCode
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. 85123A</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. 22423</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. 85099B</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. 47566</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. 20725</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. 84879</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. 22720</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. 22197</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. 21212</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. 20727</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 4060 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2313</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2203</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2159</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1727</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1639</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1502</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1477</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1476</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1385</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1350</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">524678</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">96.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHIAAAC8CAQAAAAONjIyAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcPNhpfoMVxAAABP0lEQVR42u3XQarCQBQF0Z+Pq3OhLsHt6bQjOFCE6Hl1HIWApEgL3u325/s/+gGKLPIFt+VzgX6ga9eIN1mkokhFkYoiFUUqilRs6/DYjn6aD1q7RrzJXaS0J59GqopUFKkoUlGkokhFkYoRkY1mRaNZUaSiSEWRiiIVRSqKVLQnFfMiG80/rEhFkYoiFUUqilQUqWg0K9qTiiIVRSqKVBSpKFJRpGJEZKNZ0WhWFKkoUlGkokhFkYoiFe1JRXtSUaSiSEWRiiIVRSqKVIyIbDQrGs2KIhVFKopUFKkoUlGkoj2pmBfZaP5hRSqKVBSpKFJRpKJIRaNZ0Z5UFKkoUlGkokhFkYoiFSMiG82K03pBjeblWJ72d85HP9qHXHdXI45rkYoiFUUqilQUqXj473p971u+3CYNj2dGHNciFXf9zjcn6lm+eAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0wN1QxNTo1NDoyNiswMDowMGXAWSwAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDItMDdUMTU6NTQ6MjYrMDA6MDAUneGQAAAAAElFTkSuQmCC"></td>
+      <td align="center">541909
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Description
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. WHITE HANGING HEART T-LIG</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. REGENCY CAKESTAND 3 TIER</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. JUMBO BAG RED RETROSPOT</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. PARTY BUNTING</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. LUNCH BAG RED RETROSPOT</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. ASSORTED COLOUR BIRD ORNA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. SET OF 3 CAKE TINS PANTRY</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. PACK OF 72 RETROSPOT CAKE</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. LUNCH BAG  BLACK SKULL.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. NATURAL SLATE HEART CHALK</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 4201 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2369</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2200</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2159</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1727</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1638</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1501</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1473</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1385</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1350</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1280</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">523373</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">96.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHIAAAC8CAQAAAAONjIyAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcPNhsop/XnAAABP0lEQVR42u3XQarCQBQF0Z+Pq3OhLsHt6bQjOFCE6Hl1HIWApEgL3u325/s/+gGKLPIFt+VzgX6ga9eIN1mkokhFkYoiFUUqilRs6/DYjn6aD1q7RrzJXaS0J59GqopUFKkoUlGkokhFkYoRkY1mRaNZUaSiSEWRiiIVRSqKVLQnFfMiG80/rEhFkYoiFUUqilQUqWg0K9qTiiIVRSqKVBSpKFJRpGJEZKNZ0WhWFKkoUlGkokhFkYoiFe1JRXtSUaSiSEWRiiIVRSqKVIyIbDQrGs2KIhVFKopUFKkoUlGkoj2pmBfZaP5hRSqKVBSpKFJRpKJIRaNZ0Z5UFKkoUlGkokhFkYoiFSMiG82K03pBjeblWJ72d85HP9qHXHdXI45rkYoiFUUqilQUqXj473p971u+3CYNj2dGHNciFXf9zjcn6lm+eAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0wN1QxNTo1NDoyNyswMDowMMO3UpgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDItMDdUMTU6NTQ6MjcrMDA6MDCy6uokAAAAAElFTkSuQmCC"></td>
+      <td align="center">540455
+(99.7%)</td>
+      <td align="center">1454
+(0.3%)</td>
+    </tr>
+    <tr>
+      <td align="left">Quantity
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 9.6 (218.1)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">-80995 ≤ 3 ≤ 80995</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 9 (22.8)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">722 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcPNhsop/XnAAAAsElEQVR42u3bsQ2AMAwAQYwyHRvAgGED1oOGwg1NJBJ99NcgGsxLhM5xL7NaR7+AaaZlJd/Ez8NqOtjHL8Pyn6M0P6XJ9l6vDrMm/iBNIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMI+qwK1oHbbVHnnviV+v3tDcc+JpPE58104ge0fILRCewq6sAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTU6NTQ6MjcrMDA6MDDDt1KYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE1OjU0OjI3KzAwOjAwsurqJAAAAABJRU5ErkJggg=="></td>
+      <td align="center">541909
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">InvoiceDate
+[POSIXct, POSIXt]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min : 2010-12-01 08:26:00</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">med : 2011-07-19 17:17:00</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">max : 2011-12-09 12:50:00</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">range : 1y 0m 8d 4H 24M 0S</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">23260 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcPNh5YzQFoAAABNklEQVR42u2b0Q3CMAwFCep03QAGDBt0LjYoP4i6qFVwlJBc9I4PRBUhX+uY2kBYL6NybR2A1KRmmeyL0DqaLKIpFzejMPnfqj/m9/OyOwpNyLg+P4+zNVC1X5AaEakRkRoRqRGRGhGpEQE1NdE5xgGpbX3Zd2d2zMAJKTUiUmtHegaCVctHakSkRkRqRKRGpHFTY3uwe+Gv9xqr+TowHwMn5MBqXQ4QvFOQBmr5RWL2LG6hZotEzVpYUW2fQMeB16yFTrX0WbYrfIEf76UyOyypFlcb7Na8L0Yz/zrMiaNlrmuFvVb67P9NLR14ierWRK2XwNMMfDciNSJSI7KrkL18IlVQO/s9KJOBE1JqRKRGRGpEpEZEakSkRkRqRKRGZGC1YMchD/xsxP7DN+BtThk4IaVG5AX/qUOr/mPwRgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0wN1QxNTo1NDozMCswMDowMMq6bIgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDItMDdUMTU6NTQ6MzArMDA6MDC759Q0AAAAAElFTkSuQmCC"></td>
+      <td align="center">541909
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">UnitPrice
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 4.6 (96.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">-11062.1 ≤ 2.1 ≤ 38970</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 2.9 (21)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">1630 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcPNiCZrBzDAAAArklEQVR42u3bsQ2AIBBA0cMwnRvogLqB62lnrqHAxJBP/u8oMLwE7K7cMWvL6ANIk5areVE6Nh7vI917tv1c/nPUz1+JNSIirtGaZhNfSGnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEJqaVPBN74kfrtzRtXPCaZhNfSGnEHphLCZ3cgqHGAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE1OjU0OjMyKzAwOjAwXSV9oQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNTo1NDozMiswMDowMCx4xR0AAAAASUVORK5CYII="></td>
+      <td align="center">541909
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">CustomerID
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 15287.7 (1713.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">12346 ≤ 15152 ≤ 18287</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 2838 (0.1)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">4372 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcPNiCZrBzDAAABKElEQVR42u2a2xGDIBBFIWMBqYsOkgJJB9aVDszvwozEwPK4m3u+9Ac5ehdlR384q9xmT4BqVJNs8sSrDRuzEn7qDV1EXnarHuULQRzvY7wyDAeSaoh0q7VevJMFai8sUIafmmE1tUDmQZmP4adGNUSohgjVEDGsVnhlxyMk5/eG7eQvW9PrX4nVapqkN2nMt8p/BjJHKyjO5QHt0zmZtF8b0TlhIGcSK3v3S6iVJx+uDrOiWu3kyxiuNaoh0lBrtSsXgFqf4tfDcCCphgjVEKEaIlRDhGqIUA0RqiGyRNunhWxDLPrQ8GrnfWjDgaQaIkmtrd6jalBb4bdaPQwHkmqIUA0RqiFCNUSohgjVEKEaIlRDxMuewQu+gfAQfUgPb3OK4UBSDZEP5GEoePlwn5AAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDItMDdUMTU6NTQ6MzIrMDA6MDBdJX2hAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTA3VDE1OjU0OjMyKzAwOjAwLHjFHQAAAABJRU5ErkJggg=="></td>
+      <td align="center">406829
+(75.1%)</td>
+      <td align="center">135080
+(24.9%)</td>
+    </tr>
+    <tr>
+      <td align="left">Country
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. United Kingdom</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Germany</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. France</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. EIRE</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Spain</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Netherlands</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Belgium</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Switzerland</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Portugal</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Australia</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 28 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">495478</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">91.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">9495</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8557</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8196</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2533</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2371</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2069</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2002</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1519</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1259</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8430</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGwAAAC8CAQAAAA3UYNpAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfnAgcPNiCZrBzDAAABR0lEQVR42u3dsW3CYBhFUTtiumyQBWED1oMijbFEQxSZ83FP58b6r7Alv4r1tsz0dfQBCivs12l7ccFfuJ/1SdiyfB99tj+4PlyNfRQL0xSmKUxTmKYwze5b8fraXd7Quv2gX1++zXvYtox9FB/CzrczvsiehE1SmKYwTWGawjSFaQrTjA1raGoamprCNIVpCtMUpilMU5imPab5jLCGJqAwTWGawjSFaQrTFKZpaGp2e+zo4/xT2CSFaQrTFKYpTFOYpjDN2LCGpqahqSlMU5imME1hmsI0hWnaY5r2mKYwTWGawjSFaQrTFKYZG9bQ1DQ0NYVpCtMUpilMU5imME17TPMZYQ1NQGGawjSFaQrTFKYpTNPQ1LTHNIVpCtMUpilMU5imMM3YsIampv+U0BSmKUxTmKYwTWGawjTrmM/5nbG/WGGaO64pMiOpwR+5AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAyLTA3VDE1OjU0OjMyKzAwOjAwXSV9oQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMi0wN1QxNTo1NDozMiswMDowMCx4xR0AAAAASUVORK5CYII="></td>
+      <td align="center">541909
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.2)<br>2023-02-07</p>
+</div>
+</div>
+</div>
+<p>From the summary, we can see that there are 25900 unique invoice numbers, which implies that this data is of 25900 transactions from 2010-12-01 to 2011-12-09 12:50:00. We can also observe that 91.4% of the customers of this store are from the United Kingdom. Moreover, the mean quantity per transaction is 9.6 which indicates that this store is mostly used to cater to bulk ordering needs of the customers.</p>
+<p>On reading the item descriptions of some of the items, it is very clear that most of the SKUs in this store are large quantity sets of items. ie.<code>PACK OF 72 RETROSPOT CAKE</code>. This is also an indicator that this store mainly caters to wholesale/bulk orders.</p>
+</section>
+<section id="tidying-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="tidying-the-dataset">Tidying the dataset</h2>
+<section id="cleaning-the-null-values" class="level3">
+<h3 class="anchored" data-anchor-id="cleaning-the-null-values">Cleaning the null values</h3>
+<p>Checking the number of rows that has null data in the dataset.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(retail))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 136534</code></pre>
+</div>
+</div>
+<p>The total number of <code>N/A</code> values in the dataset is 136534, which is a bit high. Now, we will see whether any specific columns contain the bulk of these values or if the values are distributed across columns.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>na_cols <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(retail))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(retail) [na_cols <span class="sc">&gt;</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Description" "CustomerID" </code></pre>
+</div>
+</div>
+<p>Only the columns <code>Description</code> and <code>CustomerID</code> have <code>N/A</code> values in them.</p>
+<p>Checking the number of rows in each column that has null data.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(retail<span class="sc">$</span>Description))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1454</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(retail<span class="sc">$</span>CustomerID))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 135080</code></pre>
+</div>
+</div>
+<p>About 25% of the values in the column CustomerID have N/A values whereas only 0.3% of values in the column Description are N/A. So, we should be careful to form our analysis on Customers and should focus on other fields more.</p>
+<p>Also, as there are 25% N/A values in the column CustomerID, we cannot remove the whole column as we still might moss out on important information. So, an important thing to look out for here will be entries with both CustomerID and Description as N/A. We can safely remove the entries if such a condition is met.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>retail.cust_desc_null <span class="ot">&lt;-</span> retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(CustomerID), <span class="fu">is.na</span>(Description), <span class="at">.preserve =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail.cust_desc_null)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  InvoiceNo StockC…¹ Descr…² Quant…³ InvoiceDate         UnitP…⁴ Custo…⁵ Country
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+1 536414    22139    &lt;NA&gt;         56 2010-12-01 11:52:00       0      NA United…
+2 536545    21134    &lt;NA&gt;          1 2010-12-01 14:32:00       0      NA United…
+3 536546    22145    &lt;NA&gt;          1 2010-12-01 14:33:00       0      NA United…
+4 536547    37509    &lt;NA&gt;          1 2010-12-01 14:33:00       0      NA United…
+5 536549    85226A   &lt;NA&gt;          1 2010-12-01 14:34:00       0      NA United…
+6 536550    85044    &lt;NA&gt;          1 2010-12-01 14:34:00       0      NA United…
+# … with abbreviated variable names ¹​StockCode, ²​Description, ³​Quantity,
+#   ⁴​UnitPrice, ⁵​CustomerID</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(retail.cust_desc_null)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1  1454</code></pre>
+</div>
+</div>
+<p>An interesting thing we see here is that the <code>UnitPrice</code> is also <code>0</code> when <code>Description</code> and <code>CustomerID</code> columns are <code>N/A</code>.</p>
+<p>To verify this, let us count the values which meet all 3 conditions</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(CustomerID), <span class="fu">is.na</span>(Description), UnitPrice <span class="sc">==</span> <span class="dv">0</span>, <span class="at">.preserve =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1  1454</code></pre>
+</div>
+</div>
+<p>The counts match, which means it will be safe to delete the entries which match all the three conditions.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>mutated_retail <span class="ot">&lt;-</span> retail <span class="sc">%&gt;%</span> <span class="fu">subset</span>(<span class="sc">!</span>(<span class="fu">is.na</span>(CustomerID) <span class="sc">&amp;</span> <span class="fu">is.na</span>(Description) <span class="sc">&amp;</span> UnitPrice <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mutated_retail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  InvoiceNo StockC…¹ Descr…² Quant…³ InvoiceDate         UnitP…⁴ Custo…⁵ Country
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+1 536365    85123A   WHITE …       6 2010-12-01 08:26:00    2.55   17850 United…
+2 536365    71053    WHITE …       6 2010-12-01 08:26:00    3.39   17850 United…
+3 536365    84406B   CREAM …       8 2010-12-01 08:26:00    2.75   17850 United…
+4 536365    84029G   KNITTE…       6 2010-12-01 08:26:00    3.39   17850 United…
+5 536365    84029E   RED WO…       6 2010-12-01 08:26:00    3.39   17850 United…
+6 536365    22752    SET 7 …       2 2010-12-01 08:26:00    7.65   17850 United…
+# … with abbreviated variable names ¹​StockCode, ²​Description, ³​Quantity,
+#   ⁴​UnitPrice, ⁵​CustomerID</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(mutated_retail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 540455</code></pre>
+</div>
+</div>
+<p>We can similarly drop all those records with a N/A CustomerID and UnitPrice 0</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>mutated_retail <span class="ot">&lt;-</span> retail <span class="sc">%&gt;%</span> <span class="fu">subset</span>(<span class="sc">!</span>(<span class="fu">is.na</span>(CustomerID) <span class="sc">&amp;</span> UnitPrice <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mutated_retail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  InvoiceNo StockC…¹ Descr…² Quant…³ InvoiceDate         UnitP…⁴ Custo…⁵ Country
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+1 536365    85123A   WHITE …       6 2010-12-01 08:26:00    2.55   17850 United…
+2 536365    71053    WHITE …       6 2010-12-01 08:26:00    3.39   17850 United…
+3 536365    84406B   CREAM …       8 2010-12-01 08:26:00    2.75   17850 United…
+4 536365    84029G   KNITTE…       6 2010-12-01 08:26:00    3.39   17850 United…
+5 536365    84029E   RED WO…       6 2010-12-01 08:26:00    3.39   17850 United…
+6 536365    22752    SET 7 …       2 2010-12-01 08:26:00    7.65   17850 United…
+# … with abbreviated variable names ¹​StockCode, ²​Description, ³​Quantity,
+#   ⁴​UnitPrice, ⁵​CustomerID</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="processing-and-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="processing-and-visualization">Processing and Visualization</h2>
+<section id="analysing-invoice-numbers-and-categorizing-transactions" class="level3">
+<h3 class="anchored" data-anchor-id="analysing-invoice-numbers-and-categorizing-transactions">Analysing Invoice Numbers and Categorizing Transactions</h3>
+<p>Let us start our analysis by looking at the InvoiceNo column. This is an important field to be considered because the values in this column are repeated and we will use this field to get data about unique transactions.</p>
+<p>Looking at the values of the column, most of the <code>InvoiceNo</code> values are 6 digit integers whereas other values start with either the character <code>A</code> or <code>C</code>. Let us find the count of these values and try to deep dive into the meaning of these.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>distinct_invoice_no <span class="ot">&lt;-</span> <span class="fu">distinct</span>(mutated_retail, InvoiceNo, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>distinct_invoice_no[<span class="st">'InvoiceStart'</span>] <span class="ot">&lt;-</span> <span class="fu">substr</span>(distinct_invoice_no<span class="sc">$</span>InvoiceNo, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(distinct_invoice_no<span class="sc">$</span>InvoiceStart)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "5" "C" "A"</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Counting the frequency of the first character of the InvoiceNo</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>invoice_freq <span class="ot">&lt;-</span> distinct_invoice_no <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(InvoiceStart) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_count=</span><span class="fu">n</span>(),</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">'drop'</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>invoice_freq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  InvoiceStart total_count
+  &lt;chr&gt;              &lt;int&gt;
+1 5                  19963
+2 A                      3
+3 C                   3836</code></pre>
+</div>
+</div>
+<p>We can observe from the above analysis that approx. 14.8% of the Invoice No values starts with <code>C</code>, which is a significant number. Now, let us try t find the significance of this count and the starting letters by looking at the data values where the InvoiceNo starts with <code>A</code> and <code>C</code>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>retail.char_invoice_A <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">startsWith</span>(InvoiceNo, <span class="st">'A'</span>))</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>retail.char_invoice_C <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">startsWith</span>(InvoiceNo, <span class="st">'C'</span>))</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail.char_invoice_A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 8
+  InvoiceNo StockC…¹ Descr…² Quant…³ InvoiceDate         UnitP…⁴ Custo…⁵ Country
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+1 A563185   B        Adjust…       1 2011-08-12 14:50:00  11062.      NA United…
+2 A563186   B        Adjust…       1 2011-08-12 14:51:00 -11062.      NA United…
+3 A563187   B        Adjust…       1 2011-08-12 14:52:00 -11062.      NA United…
+# … with abbreviated variable names ¹​StockCode, ²​Description, ³​Quantity,
+#   ⁴​UnitPrice, ⁵​CustomerID</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail.char_invoice_C)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  InvoiceNo StockC…¹ Descr…² Quant…³ InvoiceDate         UnitP…⁴ Custo…⁵ Country
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+1 C536379   D        Discou…      -1 2010-12-01 09:41:00   27.5    14527 United…
+2 C536383   35004C   SET OF…      -1 2010-12-01 09:49:00    4.65   15311 United…
+3 C536391   22556    PLASTE…     -12 2010-12-01 10:24:00    1.65   17548 United…
+4 C536391   21984    PACK O…     -24 2010-12-01 10:24:00    0.29   17548 United…
+5 C536391   21983    PACK O…     -24 2010-12-01 10:24:00    0.29   17548 United…
+6 C536391   21980    PACK O…     -24 2010-12-01 10:24:00    0.29   17548 United…
+# … with abbreviated variable names ¹​StockCode, ²​Description, ³​Quantity,
+#   ⁴​UnitPrice, ⁵​CustomerID</code></pre>
+</div>
+</div>
+<p>As we can see from the above generated tables, retail.char_invoice_A and retail.char_invoice_C. We notice that the values in which InvoiceNo starts with A are transactions where bad debt is adjusted. Whereas, the values where InvoiceNo starts with C have negative Quantity written in transactions. Which means, that these transactions are not sale transactions, but cancelled transactions in which the goods were returned to the seller.</p>
+<p>I will plot this stat in a graph for better understanding</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>invoice_status <span class="ot">&lt;-</span> invoice_freq <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    InvoiceStart <span class="sc">==</span> <span class="st">"C"</span> <span class="sc">~</span> <span class="st">"Cancelled"</span>,</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    InvoiceStart <span class="sc">==</span> <span class="st">"A"</span> <span class="sc">~</span> <span class="st">"Adjust Debt"</span>,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    InvoiceStart <span class="sc">==</span> <span class="st">"5"</span> <span class="sc">~</span> <span class="st">"Sell"</span>,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> invoice_status, <span class="fu">aes</span>(<span class="at">x =</span> Type, <span class="at">y=</span>total_count, <span class="at">fill =</span> Type)) <span class="sc">+</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Oranges"</span>) <span class="sc">+</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Transaction type vs their count"</span>) <span class="sc">+</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Transaction type"</span>) <span class="sc">+</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="SiddharthGoel_FinalProject_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Also, let’s add a Type column to the dataset so it would be easier to filter out data if needed.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>mutated_retail <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">startsWith</span>(InvoiceNo,<span class="st">'C'</span>) <span class="sc">~</span> <span class="st">"Cancelled"</span>,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">startsWith</span>(InvoiceNo,<span class="st">'A'</span>) <span class="sc">~</span> <span class="st">"AdjustDebt"</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">startsWith</span>(InvoiceNo,<span class="st">'5'</span>) <span class="sc">~</span> <span class="st">"Sale"</span>,</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(mutated_retail<span class="sc">$</span>Type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Sale"       "Cancelled"  "AdjustDebt"</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mutated_retail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  InvoiceNo StockC…¹ Descr…² Quant…³ InvoiceDate         UnitP…⁴ Custo…⁵ Country
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+1 536365    85123A   WHITE …       6 2010-12-01 08:26:00    2.55   17850 United…
+2 536365    71053    WHITE …       6 2010-12-01 08:26:00    3.39   17850 United…
+3 536365    84406B   CREAM …       8 2010-12-01 08:26:00    2.75   17850 United…
+4 536365    84029G   KNITTE…       6 2010-12-01 08:26:00    3.39   17850 United…
+5 536365    84029E   RED WO…       6 2010-12-01 08:26:00    3.39   17850 United…
+6 536365    22752    SET 7 …       2 2010-12-01 08:26:00    7.65   17850 United…
+# … with 1 more variable: Type &lt;chr&gt;, and abbreviated variable names
+#   ¹​StockCode, ²​Description, ³​Quantity, ⁴​UnitPrice, ⁵​CustomerID</code></pre>
+</div>
+</div>
+<p>One more adjustment that I would like to make to the data for future purposes is to split the <code>InvoiceDate</code> column into <code>Year</code>, <code>Month</code> and <code>Day</code> columns.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>mutated_retail <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="fu">as.numeric</span>(<span class="fu">format</span>(InvoiceDate, <span class="at">format =</span> <span class="st">"%Y"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Month =</span> <span class="fu">as.numeric</span>(<span class="fu">format</span>(InvoiceDate, <span class="at">format =</span> <span class="st">"%m"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Day =</span> <span class="fu">as.numeric</span>(<span class="fu">format</span>(InvoiceDate, <span class="at">format =</span> <span class="st">"%d"</span>)))</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mutated_retail)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 12
+  InvoiceNo StockC…¹ Descr…² Quant…³ InvoiceDate         UnitP…⁴ Custo…⁵ Country
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+1 536365    85123A   WHITE …       6 2010-12-01 08:26:00    2.55   17850 United…
+2 536365    71053    WHITE …       6 2010-12-01 08:26:00    3.39   17850 United…
+3 536365    84406B   CREAM …       8 2010-12-01 08:26:00    2.75   17850 United…
+4 536365    84029G   KNITTE…       6 2010-12-01 08:26:00    3.39   17850 United…
+5 536365    84029E   RED WO…       6 2010-12-01 08:26:00    3.39   17850 United…
+6 536365    22752    SET 7 …       2 2010-12-01 08:26:00    7.65   17850 United…
+# … with 4 more variables: Type &lt;chr&gt;, Year &lt;dbl&gt;, Month &lt;dbl&gt;, Day &lt;dbl&gt;, and
+#   abbreviated variable names ¹​StockCode, ²​Description, ³​Quantity, ⁴​UnitPrice,
+#   ⁵​CustomerID</code></pre>
+</div>
+</div>
+<p>Now that we know that there are multiple types of transactions -&gt; Cancelled and Sell, there is one interesting thing that we can do with this data =&gt; Calculate the most sought after products (stocks with net quantity &gt; 0 =&gt; most bought products) and also the dead stock (stock with net quantity &lt; 0 =&gt; the most returned product).</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>retail.quantity <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(<span class="fu">substr</span>(StockCode, <span class="dv">1</span>, <span class="dv">1</span>), <span class="st">'^[0-9]'</span>)) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(StockCode, Description) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">net_quantity =</span> <span class="fu">sum</span>(Quantity))</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>hot_stock <span class="ot">&lt;-</span> retail.quantity <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(net_quantity))</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>hot_stock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,150 × 3
+# Groups:   StockCode [3,914]
+   StockCode Description                        net_quantity
+   &lt;chr&gt;     &lt;chr&gt;                                     &lt;dbl&gt;
+ 1 84077     WORLD WAR 2 GLIDERS ASSTD DESIGNS         53847
+ 2 85099B    JUMBO BAG RED RETROSPOT                   47359
+ 3 84879     ASSORTED COLOUR BIRD ORNAMENT             36381
+ 4 22197     POPCORN HOLDER                            36334
+ 5 21212     PACK OF 72 RETROSPOT CAKE CASES           36039
+ 6 85123A    WHITE HANGING HEART T-LIGHT HOLDER        35021
+ 7 23084     RABBIT NIGHT LIGHT                        30680
+ 8 22492     MINI PAINT SET VINTAGE                    26437
+ 9 22616     PACK OF 12 LONDON TISSUES                 26111
+10 21977     PACK OF 60 PINK PAISLEY CAKE CASES        24753
+# … with 4,140 more rows</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>dead_stock <span class="ot">&lt;-</span> retail.quantity <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(net_quantity)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>dead_stock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,150 × 3
+# Groups:   StockCode [3,914]
+   StockCode Description                     net_quantity
+   &lt;chr&gt;     &lt;chr&gt;                                  &lt;dbl&gt;
+ 1 21645     ASSORTED TUTTI FRUTTI ROUND BOX          -24
+ 2 79323W    WHITE CHERRY LIGHTS                       -8
+ 3 21144     PINK POODLE HANGING DECORATION            -7
+ 4 20703     BLUE PADDED SOFT MOBILE                   -6
+ 5 21412     VINTAGE GOLD TINSEL REEL                  -6
+ 6 35400     WOODEN BOX ADVENT CALENDAR                -6
+ 7 79323P    PINK CHERRY LIGHTS                        -4
+ 8 84750A    PINK SMALL GLASS CAKE STAND               -3
+ 9 85042     ANTIQUE LILY FAIRY LIGHTS                 -3
+10 85063     CREAM SWEETHEART MAGAZINE RACK            -3
+# … with 4,140 more rows</code></pre>
+</div>
+</div>
+<p>We now have the top selling products and the most returned products for this online store. Now, let us make it look a bit better. First, let’s find out the top 10 products in the store.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>top_10_prods <span class="ot">&lt;-</span> <span class="fu">head</span>(hot_stock, <span class="dv">10</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>top_10_prods</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+# Groups:   StockCode [10]
+   StockCode Description                        net_quantity
+   &lt;chr&gt;     &lt;chr&gt;                                     &lt;dbl&gt;
+ 1 84077     WORLD WAR 2 GLIDERS ASSTD DESIGNS         53847
+ 2 85099B    JUMBO BAG RED RETROSPOT                   47359
+ 3 84879     ASSORTED COLOUR BIRD ORNAMENT             36381
+ 4 22197     POPCORN HOLDER                            36334
+ 5 21212     PACK OF 72 RETROSPOT CAKE CASES           36039
+ 6 85123A    WHITE HANGING HEART T-LIGHT HOLDER        35021
+ 7 23084     RABBIT NIGHT LIGHT                        30680
+ 8 22492     MINI PAINT SET VINTAGE                    26437
+ 9 22616     PACK OF 12 LONDON TISSUES                 26111
+10 21977     PACK OF 60 PINK PAISLEY CAKE CASES        24753</code></pre>
+</div>
+</div>
+<p>Now, let’s put them in a pie chart</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>top_prods_pie <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(top_10_prods, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> net_quantity, <span class="at">fill =</span> Description)) <span class="sc">+</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span> </span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> <span class="st">"Top 10 Best selling Products"</span>)</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>top_prods_pie</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="SiddharthGoel_FinalProject_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="analysing-country-wise-transactions" class="level3">
+<h3 class="anchored" data-anchor-id="analysing-country-wise-transactions">Analysing Country-wise transactions</h3>
+<p>First I will filter the transactions on the basis of StockCode, so that only the transactions related to products (and not extra fees, postage etc.)</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>retail.product_transactions <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(<span class="fu">substr</span>(StockCode, <span class="dv">1</span>, <span class="dv">1</span>), <span class="st">'^[0-9]'</span>))</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail.product_transactions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 12
+  InvoiceNo StockC…¹ Descr…² Quant…³ InvoiceDate         UnitP…⁴ Custo…⁵ Country
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+1 536365    85123A   WHITE …       6 2010-12-01 08:26:00    2.55   17850 United…
+2 536365    71053    WHITE …       6 2010-12-01 08:26:00    3.39   17850 United…
+3 536365    84406B   CREAM …       8 2010-12-01 08:26:00    2.75   17850 United…
+4 536365    84029G   KNITTE…       6 2010-12-01 08:26:00    3.39   17850 United…
+5 536365    84029E   RED WO…       6 2010-12-01 08:26:00    3.39   17850 United…
+6 536365    22752    SET 7 …       2 2010-12-01 08:26:00    7.65   17850 United…
+# … with 4 more variables: Type &lt;chr&gt;, Year &lt;dbl&gt;, Month &lt;dbl&gt;, Day &lt;dbl&gt;, and
+#   abbreviated variable names ¹​StockCode, ²​Description, ³​Quantity, ⁴​UnitPrice,
+#   ⁵​CustomerID</code></pre>
+</div>
+</div>
+<p>Now, let us find the top 5 countries with maximum transactions</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>retail.transactions_by_country <span class="ot">&lt;-</span> retail.product_transactions <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country, InvoiceNo) <span class="sc">%&gt;%</span> count</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>retail.transactions_by_country <span class="ot">&lt;-</span> <span class="fu">subset</span>(retail.transactions_by_country, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(n))</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>retail.transactions_by_country <span class="ot">&lt;-</span> retail.transactions_by_country <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span> count <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>retail.top_country <span class="ot">&lt;-</span> <span class="fu">head</span>(retail.transactions_by_country, <span class="dv">5</span>)</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>retail.top_country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+# Groups:   Country [5]
+  Country            n
+  &lt;chr&gt;          &lt;int&gt;
+1 United Kingdom 20932
+2 Germany          578
+3 France           441
+4 EIRE             347
+5 Belgium          117</code></pre>
+</div>
+</div>
+<p>Here’s the plot for the same:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>transactions_by_country <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(retail.top_country, <span class="fu">aes</span>(<span class="at">x =</span> Country, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"Blue"</span>) <span class="sc">+</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Top 5 Countries by transaction volume"</span>, </span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">"Country"</span>, <span class="at">y =</span> <span class="st">"No of Transactions"</span>)</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>transactions_by_country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="SiddharthGoel_FinalProject_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Looking at top countries with the maximum number of customers</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>retail.customers_by_country <span class="ot">&lt;-</span> retail.product_transactions <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country, CustomerID) <span class="sc">%&gt;%</span> count</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>retail.customers_by_country <span class="ot">&lt;-</span> <span class="fu">subset</span>(retail.customers_by_country, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(n))</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>retail.customers_by_country <span class="ot">&lt;-</span> retail.customers_by_country <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span> count <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>retail.top_country <span class="ot">&lt;-</span> <span class="fu">head</span>(retail.customers_by_country, <span class="dv">5</span>)</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>retail.top_country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+# Groups:   Country [5]
+  Country            n
+  &lt;chr&gt;          &lt;int&gt;
+1 United Kingdom  3944
+2 Germany           95
+3 France            88
+4 Spain             30
+5 Belgium           25</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>customer_by_country <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(retail.top_country, <span class="fu">aes</span>(<span class="at">x =</span> Country, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"Orange"</span>) <span class="sc">+</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Top 5 Countries by Customer volume"</span>, </span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">"Country"</span>, <span class="at">y =</span> <span class="st">"No of Customers"</span>)</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>customer_by_country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="SiddharthGoel_FinalProject_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="analysis-based-on-total-sales" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-based-on-total-sales">Analysis based on total sales</h3>
+<p>There is another stat we can calculate per country, which is the total sales amount. First, I create another df, which is the</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>retail.total_sales <span class="ot">&lt;-</span> retail.product_transactions <span class="sc">%&gt;%</span> </span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">TotalSales =</span> Quantity <span class="sc">*</span> UnitPrice)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>retail.sales_by_country <span class="ot">&lt;-</span> retail.total_sales <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">TotalSales =</span> <span class="fu">sum</span>(TotalSales)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(TotalSales)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">5</span>)</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>retail.sales_by_country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  Country        TotalSales
+  &lt;chr&gt;               &lt;dbl&gt;
+1 United Kingdom   8301320.
+2 Netherlands       283480.
+3 EIRE              259663.
+4 Germany           200808.
+5 France            182163.</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>sales_by_country <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(retail.sales_by_country, <span class="fu">aes</span>(<span class="at">x =</span> Country, <span class="at">y =</span> TotalSales)) <span class="sc">+</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"Maroon"</span>) <span class="sc">+</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Top 5 Countries by Sales"</span>, </span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">"Country"</span>, <span class="at">y =</span> <span class="st">"Sales"</span>)</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>sales_by_country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="SiddharthGoel_FinalProject_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We will look at the sales per month now</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>retail.monthly_sales <span class="ot">&lt;-</span> retail.total_sales <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Year, Month) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Sales =</span> <span class="fu">sum</span>(TotalSales))</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>retail.monthly_sales</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 3
+# Groups:   Year [2]
+    Year Month    Sales
+   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+ 1  2010    12  760258.
+ 2  2011     1  580389.
+ 3  2011     2  500494.
+ 4  2011     3  680457.
+ 5  2011     4  482878 
+ 6  2011     5  732206.
+ 7  2011     6  724991.
+ 8  2011     7  677881.
+ 9  2011     8  702564.
+10  2011     9 1013424.
+11  2011    10 1062674.
+12  2011    11 1432732.
+13  2011    12  441363.</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>retail.monthly_sales, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Sales)) <span class="sc">+</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Monthly Sales"</span>, </span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">"Sales"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="SiddharthGoel_FinalProject_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see from the bar plot that the sales are highest during the months of November and December, which can be accounted for by the holiday season.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail.total_sales)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 13
+  InvoiceNo StockC…¹ Descr…² Quant…³ InvoiceDate         UnitP…⁴ Custo…⁵ Country
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+1 536365    85123A   WHITE …       6 2010-12-01 08:26:00    2.55   17850 United…
+2 536365    71053    WHITE …       6 2010-12-01 08:26:00    3.39   17850 United…
+3 536365    84406B   CREAM …       8 2010-12-01 08:26:00    2.75   17850 United…
+4 536365    84029G   KNITTE…       6 2010-12-01 08:26:00    3.39   17850 United…
+5 536365    84029E   RED WO…       6 2010-12-01 08:26:00    3.39   17850 United…
+6 536365    22752    SET 7 …       2 2010-12-01 08:26:00    7.65   17850 United…
+# … with 5 more variables: Type &lt;chr&gt;, Year &lt;dbl&gt;, Month &lt;dbl&gt;, Day &lt;dbl&gt;,
+#   TotalSales &lt;dbl&gt;, and abbreviated variable names ¹​StockCode, ²​Description,
+#   ³​Quantity, ⁴​UnitPrice, ⁵​CustomerID</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="reflection" class="level2">
+<h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
+<p>Being inexperienced in the field of data science, I feel I have learned a lot by partaking in this course and doing this project.</p>
+<p>My initial intention was to choose a sports dataset to analyse when I started this project. But, I went on with this dataset after having a look at it because of it’s simplicity. This very simplicity in this dataset meant that it wasn’t going to be easy to find categories in this dataset. After completing this analysis I still feel that had there been some more additional data to this set, there was a lot of information that could be extracted from the data. One such example is if we had the Categories of the products available, it would’ve led us to a lot of new information about sales trends for the categories. More information about the customers would’ve also been helpful.</p>
+<p>For this project, I approached the analysis problem by looking at each column individually and trying to extract as much data/trends from the column as I could. After that I tried to couple these trends and get some relevant information.</p>
+<p>I faced many challenges in this project and the class tutorials as well as online resources like the R documentation and the documentation of libraries like ggplot2 helped a lot.</p>
+<p>I believe that I still have a lot to learn about Data Science, but this course has been a wonderful first step into the field and will immensely help me in this journey.</p>
+</section>
+<section id="bibliography" class="level2">
+<h2 class="anchored" data-anchor-id="bibliography">Bibliography</h2>
+<p>Dataset from Kaggle- https://www.kaggle.com/datasets/ulrikthygepedersen/online-retail-dataset</p>
+<p>GGPlot2 Documentation - https://ggplot2.tidyverse.org/reference/</p>
+<p>Wickham, H., &amp; Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.</p>
+<p>Wickham, H. (2010). A layered grammar of graphics. Journal of Computational I and Graphical Statistics, 19(1), 3-28.</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb74" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Final Project"</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Siddharth Goel"</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Final Project on Online Retail Data"</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "02/02/2023"</span></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-16"><a href="#cb74-16" aria-hidden="true" tabindex="-1"></a>Analysis of Online Retail Data is the most important factor in setting up a successful online business. Unlike offline stores, where footfall can be increased using physical marketing strategies, online stores mainly rely on online advertisements and data analysis for business growth.</span>
+<span id="cb74-17"><a href="#cb74-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-18"><a href="#cb74-18" aria-hidden="true" tabindex="-1"></a>While advertisements are key to getting new customers for the stores, data analysis can provide valuable information like top selling products, the best demographic, sales patterns and dead, top stock details. These bits of information can help the management decide the areas in which the business needs investment and which are the products that make the store's maximum sales.</span>
+<span id="cb74-19"><a href="#cb74-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-20"><a href="#cb74-20" aria-hidden="true" tabindex="-1"></a>So, in this project, I have taken a small sample of the transactions of an online retail store and will try to analyse the data and identify some patterns which may help us answer some important business questions.</span>
+<span id="cb74-23"><a href="#cb74-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-24"><a href="#cb74-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb74-25"><a href="#cb74-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb74-26"><a href="#cb74-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb74-27"><a href="#cb74-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb74-28"><a href="#cb74-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb74-29"><a href="#cb74-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb74-30"><a href="#cb74-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb74-31"><a href="#cb74-31" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb74-32"><a href="#cb74-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-33"><a href="#cb74-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-34"><a href="#cb74-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-35"><a href="#cb74-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import the Data</span></span>
+<span id="cb74-36"><a href="#cb74-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-37"><a href="#cb74-37" aria-hidden="true" tabindex="-1"></a>Importing the online retail dataset</span>
+<span id="cb74-38"><a href="#cb74-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-41"><a href="#cb74-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-42"><a href="#cb74-42" aria-hidden="true" tabindex="-1"></a>retail <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"_data/online_retail.csv"</span>)</span>
+<span id="cb74-43"><a href="#cb74-43" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail)</span>
+<span id="cb74-44"><a href="#cb74-44" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(retail)</span>
+<span id="cb74-45"><a href="#cb74-45" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(retail)</span>
+<span id="cb74-46"><a href="#cb74-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-47"><a href="#cb74-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-48"><a href="#cb74-48" aria-hidden="true" tabindex="-1"></a>The input dataset has 541909 records of goods sold in an online retail store and has 8 columns.</span>
+<span id="cb74-49"><a href="#cb74-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-50"><a href="#cb74-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dataset Summary</span></span>
+<span id="cb74-51"><a href="#cb74-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-52"><a href="#cb74-52" aria-hidden="true" tabindex="-1"></a>The columns and their descriptions are as follows :</span>
+<span id="cb74-53"><a href="#cb74-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-54"><a href="#cb74-54" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>InvoiceNo: A 6 digit number which is the invoice number of the transaction in which the item was sold. As there can be multiple items in a transaction, the InvoiceNo column won't be unique.</span>
+<span id="cb74-55"><a href="#cb74-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-56"><a href="#cb74-56" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>StockCode: Item code. A 5-digit integral number uniquely assigned to each product.</span>
+<span id="cb74-57"><a href="#cb74-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-58"><a href="#cb74-58" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Description: Item name.</span>
+<span id="cb74-59"><a href="#cb74-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-60"><a href="#cb74-60" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Quantity: The quantities of the item in the transaction.</span>
+<span id="cb74-61"><a href="#cb74-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-62"><a href="#cb74-62" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>InvoiceDate: Invoice Date and time.</span>
+<span id="cb74-63"><a href="#cb74-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-64"><a href="#cb74-64" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>UnitPrice: Product price per unit in sterling.</span>
+<span id="cb74-65"><a href="#cb74-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-66"><a href="#cb74-66" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>CustomerID: A 5-digit integral number uniquely assigned to each customer.</span>
+<span id="cb74-67"><a href="#cb74-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-68"><a href="#cb74-68" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Country: The name of the country where the customer resides.</span>
+<span id="cb74-69"><a href="#cb74-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-70"><a href="#cb74-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-71"><a href="#cb74-71" aria-hidden="true" tabindex="-1"></a>Now using the <span class="in">`dfSummary`</span> method to get the summary of each column in the dataset.</span>
+<span id="cb74-74"><a href="#cb74-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-75"><a href="#cb74-75" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(retail, </span>
+<span id="cb74-76"><a href="#cb74-76" aria-hidden="true" tabindex="-1"></a>                <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb74-77"><a href="#cb74-77" aria-hidden="true" tabindex="-1"></a>                <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb74-78"><a href="#cb74-78" aria-hidden="true" tabindex="-1"></a>                <span class="at">style =</span> <span class="st">"grid"</span>, </span>
+<span id="cb74-79"><a href="#cb74-79" aria-hidden="true" tabindex="-1"></a>                <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb74-80"><a href="#cb74-80" aria-hidden="true" tabindex="-1"></a>                <span class="at">valid.col=</span> <span class="cn">TRUE</span>),</span>
+<span id="cb74-81"><a href="#cb74-81" aria-hidden="true" tabindex="-1"></a>      <span class="at">method=</span> <span class="st">'render'</span>, </span>
+<span id="cb74-82"><a href="#cb74-82" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes=</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb74-83"><a href="#cb74-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-84"><a href="#cb74-84" aria-hidden="true" tabindex="-1"></a>From the summary, we can see that there are 25900 unique invoice numbers, which implies that this data is of 25900 transactions from 2010-12-01 to 2011-12-09 12:50:00. We can also observe that 91.4% of the customers of this store are from the United Kingdom. Moreover, the mean quantity per transaction is 9.6 which indicates that this store is mostly used to cater to bulk ordering needs of the customers.</span>
+<span id="cb74-85"><a href="#cb74-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-86"><a href="#cb74-86" aria-hidden="true" tabindex="-1"></a>On reading the item descriptions of some of the items, it is very clear that most of the SKUs in this store are large quantity sets of items. ie.<span class="in">`PACK OF 72 RETROSPOT CAKE`</span>. This is also an indicator that this store mainly caters to wholesale/bulk orders.</span>
+<span id="cb74-87"><a href="#cb74-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-88"><a href="#cb74-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tidying the dataset</span></span>
+<span id="cb74-89"><a href="#cb74-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-90"><a href="#cb74-90" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cleaning the null values</span></span>
+<span id="cb74-91"><a href="#cb74-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-92"><a href="#cb74-92" aria-hidden="true" tabindex="-1"></a>Checking the number of rows that has null data in the dataset.</span>
+<span id="cb74-95"><a href="#cb74-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-96"><a href="#cb74-96" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(retail))</span>
+<span id="cb74-97"><a href="#cb74-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-98"><a href="#cb74-98" aria-hidden="true" tabindex="-1"></a>The total number of <span class="in">`N/A`</span> values in the dataset is 136534, which is a bit high. Now, we will see whether any specific columns contain the bulk of these values or if the values are distributed across columns.</span>
+<span id="cb74-99"><a href="#cb74-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-102"><a href="#cb74-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-103"><a href="#cb74-103" aria-hidden="true" tabindex="-1"></a>na_cols <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(retail))</span>
+<span id="cb74-104"><a href="#cb74-104" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(retail) [na_cols <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb74-105"><a href="#cb74-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-106"><a href="#cb74-106" aria-hidden="true" tabindex="-1"></a>Only the columns <span class="in">`Description`</span> and <span class="in">`CustomerID`</span> have <span class="in">`N/A`</span> values in them.</span>
+<span id="cb74-107"><a href="#cb74-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-108"><a href="#cb74-108" aria-hidden="true" tabindex="-1"></a>Checking the number of rows in each column that has null data.</span>
+<span id="cb74-111"><a href="#cb74-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-112"><a href="#cb74-112" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(retail<span class="sc">$</span>Description))</span>
+<span id="cb74-113"><a href="#cb74-113" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(retail<span class="sc">$</span>CustomerID))</span>
+<span id="cb74-114"><a href="#cb74-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-115"><a href="#cb74-115" aria-hidden="true" tabindex="-1"></a>About 25% of the values in the column CustomerID have N/A values whereas only 0.3% of values in the column Description are N/A. So, we should be careful to form our analysis on Customers and should focus on other fields more. </span>
+<span id="cb74-116"><a href="#cb74-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-117"><a href="#cb74-117" aria-hidden="true" tabindex="-1"></a>Also, as there are 25% N/A values in the column CustomerID, we cannot remove the whole column as we still might moss out on important information. So, an important thing to look out for here will be entries with both CustomerID and Description as N/A. We can safely remove the entries if such a condition is met.</span>
+<span id="cb74-118"><a href="#cb74-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-121"><a href="#cb74-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-122"><a href="#cb74-122" aria-hidden="true" tabindex="-1"></a>retail.cust_desc_null <span class="ot">&lt;-</span> retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(CustomerID), <span class="fu">is.na</span>(Description), <span class="at">.preserve =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb74-123"><a href="#cb74-123" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail.cust_desc_null)</span>
+<span id="cb74-124"><a href="#cb74-124" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(retail.cust_desc_null)</span>
+<span id="cb74-125"><a href="#cb74-125" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-126"><a href="#cb74-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-127"><a href="#cb74-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-128"><a href="#cb74-128" aria-hidden="true" tabindex="-1"></a>An interesting thing we see here is that the <span class="in">`UnitPrice`</span> is also <span class="in">`0`</span> when <span class="in">`Description`</span> and <span class="in">`CustomerID`</span> columns are <span class="in">`N/A`</span>.</span>
+<span id="cb74-129"><a href="#cb74-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-130"><a href="#cb74-130" aria-hidden="true" tabindex="-1"></a>To verify this, let us count the values which meet all 3 conditions</span>
+<span id="cb74-131"><a href="#cb74-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-134"><a href="#cb74-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-135"><a href="#cb74-135" aria-hidden="true" tabindex="-1"></a>retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(CustomerID), <span class="fu">is.na</span>(Description), UnitPrice <span class="sc">==</span> <span class="dv">0</span>, <span class="at">.preserve =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> count</span>
+<span id="cb74-136"><a href="#cb74-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-137"><a href="#cb74-137" aria-hidden="true" tabindex="-1"></a>The counts match, which means it will be safe to delete the entries which match all the three conditions.</span>
+<span id="cb74-138"><a href="#cb74-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-141"><a href="#cb74-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-142"><a href="#cb74-142" aria-hidden="true" tabindex="-1"></a>mutated_retail <span class="ot">&lt;-</span> retail <span class="sc">%&gt;%</span> <span class="fu">subset</span>(<span class="sc">!</span>(<span class="fu">is.na</span>(CustomerID) <span class="sc">&amp;</span> <span class="fu">is.na</span>(Description) <span class="sc">&amp;</span> UnitPrice <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb74-143"><a href="#cb74-143" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mutated_retail)</span>
+<span id="cb74-144"><a href="#cb74-144" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(mutated_retail)</span>
+<span id="cb74-145"><a href="#cb74-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-146"><a href="#cb74-146" aria-hidden="true" tabindex="-1"></a>We can similarly drop all those records with a N/A CustomerID and UnitPrice 0</span>
+<span id="cb74-149"><a href="#cb74-149" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-150"><a href="#cb74-150" aria-hidden="true" tabindex="-1"></a>mutated_retail <span class="ot">&lt;-</span> retail <span class="sc">%&gt;%</span> <span class="fu">subset</span>(<span class="sc">!</span>(<span class="fu">is.na</span>(CustomerID) <span class="sc">&amp;</span> UnitPrice <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb74-151"><a href="#cb74-151" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mutated_retail)</span>
+<span id="cb74-152"><a href="#cb74-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-153"><a href="#cb74-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-154"><a href="#cb74-154" aria-hidden="true" tabindex="-1"></a><span class="fu">## Processing and Visualization</span></span>
+<span id="cb74-155"><a href="#cb74-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-156"><a href="#cb74-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### Analysing Invoice Numbers and Categorizing Transactions</span></span>
+<span id="cb74-157"><a href="#cb74-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-158"><a href="#cb74-158" aria-hidden="true" tabindex="-1"></a>Let us start our analysis by looking at the InvoiceNo column. This is an important field to be considered because the values in this column are repeated and we will use this field to get data about unique transactions.</span>
+<span id="cb74-159"><a href="#cb74-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-160"><a href="#cb74-160" aria-hidden="true" tabindex="-1"></a>Looking at the values of the column, most of the <span class="in">`InvoiceNo`</span> values are 6 digit integers whereas other values start with either the character <span class="in">`A`</span> or <span class="in">`C`</span>. Let us find the count of these values and try to deep dive into the meaning of these.</span>
+<span id="cb74-161"><a href="#cb74-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-164"><a href="#cb74-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-165"><a href="#cb74-165" aria-hidden="true" tabindex="-1"></a>distinct_invoice_no <span class="ot">&lt;-</span> <span class="fu">distinct</span>(mutated_retail, InvoiceNo, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb74-166"><a href="#cb74-166" aria-hidden="true" tabindex="-1"></a>distinct_invoice_no[<span class="st">'InvoiceStart'</span>] <span class="ot">&lt;-</span> <span class="fu">substr</span>(distinct_invoice_no<span class="sc">$</span>InvoiceNo, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb74-167"><a href="#cb74-167" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(distinct_invoice_no<span class="sc">$</span>InvoiceStart)</span>
+<span id="cb74-168"><a href="#cb74-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-169"><a href="#cb74-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Counting the frequency of the first character of the InvoiceNo</span></span>
+<span id="cb74-170"><a href="#cb74-170" aria-hidden="true" tabindex="-1"></a>invoice_freq <span class="ot">&lt;-</span> distinct_invoice_no <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(InvoiceStart) <span class="sc">%&gt;%</span> </span>
+<span id="cb74-171"><a href="#cb74-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_count=</span><span class="fu">n</span>(),</span>
+<span id="cb74-172"><a href="#cb74-172" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">'drop'</span>)</span>
+<span id="cb74-173"><a href="#cb74-173" aria-hidden="true" tabindex="-1"></a>invoice_freq</span>
+<span id="cb74-174"><a href="#cb74-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-175"><a href="#cb74-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-176"><a href="#cb74-176" aria-hidden="true" tabindex="-1"></a>We can observe from the above analysis that approx. 14.8% of the Invoice No values starts with <span class="in">`C`</span>, which is a significant number. Now, let us try t find the significance of this count and the starting letters by looking at the data values where the InvoiceNo starts with <span class="in">`A`</span> and <span class="in">`C`</span>.</span>
+<span id="cb74-177"><a href="#cb74-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-180"><a href="#cb74-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-181"><a href="#cb74-181" aria-hidden="true" tabindex="-1"></a>retail.char_invoice_A <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">startsWith</span>(InvoiceNo, <span class="st">'A'</span>))</span>
+<span id="cb74-182"><a href="#cb74-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-183"><a href="#cb74-183" aria-hidden="true" tabindex="-1"></a>retail.char_invoice_C <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">startsWith</span>(InvoiceNo, <span class="st">'C'</span>))</span>
+<span id="cb74-184"><a href="#cb74-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-185"><a href="#cb74-185" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail.char_invoice_A)</span>
+<span id="cb74-186"><a href="#cb74-186" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail.char_invoice_C)</span>
+<span id="cb74-187"><a href="#cb74-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-188"><a href="#cb74-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-189"><a href="#cb74-189" aria-hidden="true" tabindex="-1"></a>As we can see from the above generated tables, retail.char_invoice_A and retail.char_invoice_C. We notice that the values in which InvoiceNo starts with A are transactions where bad debt is adjusted. Whereas, the  values where InvoiceNo starts with C have negative Quantity written in transactions. Which means, that these transactions are not sale transactions, but cancelled transactions in which the goods were returned to the seller.</span>
+<span id="cb74-190"><a href="#cb74-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-191"><a href="#cb74-191" aria-hidden="true" tabindex="-1"></a>I will plot this stat in a graph for better understanding</span>
+<span id="cb74-192"><a href="#cb74-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-195"><a href="#cb74-195" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-196"><a href="#cb74-196" aria-hidden="true" tabindex="-1"></a>invoice_status <span class="ot">&lt;-</span> invoice_freq <span class="sc">%&gt;%</span></span>
+<span id="cb74-197"><a href="#cb74-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb74-198"><a href="#cb74-198" aria-hidden="true" tabindex="-1"></a>    InvoiceStart <span class="sc">==</span> <span class="st">"C"</span> <span class="sc">~</span> <span class="st">"Cancelled"</span>,</span>
+<span id="cb74-199"><a href="#cb74-199" aria-hidden="true" tabindex="-1"></a>    InvoiceStart <span class="sc">==</span> <span class="st">"A"</span> <span class="sc">~</span> <span class="st">"Adjust Debt"</span>,</span>
+<span id="cb74-200"><a href="#cb74-200" aria-hidden="true" tabindex="-1"></a>    InvoiceStart <span class="sc">==</span> <span class="st">"5"</span> <span class="sc">~</span> <span class="st">"Sell"</span>,</span>
+<span id="cb74-201"><a href="#cb74-201" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb74-202"><a href="#cb74-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-203"><a href="#cb74-203" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> invoice_status, <span class="fu">aes</span>(<span class="at">x =</span> Type, <span class="at">y=</span>total_count, <span class="at">fill =</span> Type)) <span class="sc">+</span></span>
+<span id="cb74-204"><a href="#cb74-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb74-205"><a href="#cb74-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Oranges"</span>) <span class="sc">+</span></span>
+<span id="cb74-206"><a href="#cb74-206" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Transaction type vs their count"</span>) <span class="sc">+</span></span>
+<span id="cb74-207"><a href="#cb74-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Transaction type"</span>) <span class="sc">+</span></span>
+<span id="cb74-208"><a href="#cb74-208" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Count"</span>)</span>
+<span id="cb74-209"><a href="#cb74-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-210"><a href="#cb74-210" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-211"><a href="#cb74-211" aria-hidden="true" tabindex="-1"></a>Also, let's add a Type column to the dataset so it would be easier to filter out data if needed.</span>
+<span id="cb74-212"><a href="#cb74-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-215"><a href="#cb74-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-216"><a href="#cb74-216" aria-hidden="true" tabindex="-1"></a>mutated_retail <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span></span>
+<span id="cb74-217"><a href="#cb74-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb74-218"><a href="#cb74-218" aria-hidden="true" tabindex="-1"></a>    <span class="fu">startsWith</span>(InvoiceNo,<span class="st">'C'</span>) <span class="sc">~</span> <span class="st">"Cancelled"</span>,</span>
+<span id="cb74-219"><a href="#cb74-219" aria-hidden="true" tabindex="-1"></a>    <span class="fu">startsWith</span>(InvoiceNo,<span class="st">'A'</span>) <span class="sc">~</span> <span class="st">"AdjustDebt"</span>,</span>
+<span id="cb74-220"><a href="#cb74-220" aria-hidden="true" tabindex="-1"></a>    <span class="fu">startsWith</span>(InvoiceNo,<span class="st">'5'</span>) <span class="sc">~</span> <span class="st">"Sale"</span>,</span>
+<span id="cb74-221"><a href="#cb74-221" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb74-222"><a href="#cb74-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-223"><a href="#cb74-223" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(mutated_retail<span class="sc">$</span>Type)</span>
+<span id="cb74-224"><a href="#cb74-224" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mutated_retail)</span>
+<span id="cb74-225"><a href="#cb74-225" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-226"><a href="#cb74-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-227"><a href="#cb74-227" aria-hidden="true" tabindex="-1"></a>One more adjustment that I would like to make to the data for future purposes is to split the <span class="in">`InvoiceDate`</span> column into <span class="in">`Year`</span>, <span class="in">`Month`</span> and <span class="in">`Day`</span> columns.</span>
+<span id="cb74-228"><a href="#cb74-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-231"><a href="#cb74-231" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-232"><a href="#cb74-232" aria-hidden="true" tabindex="-1"></a>mutated_retail <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span></span>
+<span id="cb74-233"><a href="#cb74-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="fu">as.numeric</span>(<span class="fu">format</span>(InvoiceDate, <span class="at">format =</span> <span class="st">"%Y"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb74-234"><a href="#cb74-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Month =</span> <span class="fu">as.numeric</span>(<span class="fu">format</span>(InvoiceDate, <span class="at">format =</span> <span class="st">"%m"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb74-235"><a href="#cb74-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Day =</span> <span class="fu">as.numeric</span>(<span class="fu">format</span>(InvoiceDate, <span class="at">format =</span> <span class="st">"%d"</span>)))</span>
+<span id="cb74-236"><a href="#cb74-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-237"><a href="#cb74-237" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mutated_retail)</span>
+<span id="cb74-238"><a href="#cb74-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-239"><a href="#cb74-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-240"><a href="#cb74-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-241"><a href="#cb74-241" aria-hidden="true" tabindex="-1"></a>Now that we know that there are multiple types of transactions -&gt; Cancelled and Sell, there is one interesting thing that we can do with this data =&gt; Calculate the most sought after products (stocks with net quantity &gt; 0 =&gt; most bought products) and also the dead stock (stock with net quantity &lt; 0 =&gt; the most returned product).</span>
+<span id="cb74-242"><a href="#cb74-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-245"><a href="#cb74-245" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-246"><a href="#cb74-246" aria-hidden="true" tabindex="-1"></a>retail.quantity <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(<span class="fu">substr</span>(StockCode, <span class="dv">1</span>, <span class="dv">1</span>), <span class="st">'^[0-9]'</span>)) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(StockCode, Description) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">net_quantity =</span> <span class="fu">sum</span>(Quantity))</span>
+<span id="cb74-247"><a href="#cb74-247" aria-hidden="true" tabindex="-1"></a>hot_stock <span class="ot">&lt;-</span> retail.quantity <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(net_quantity))</span>
+<span id="cb74-248"><a href="#cb74-248" aria-hidden="true" tabindex="-1"></a>hot_stock</span>
+<span id="cb74-249"><a href="#cb74-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-250"><a href="#cb74-250" aria-hidden="true" tabindex="-1"></a>dead_stock <span class="ot">&lt;-</span> retail.quantity <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(net_quantity)</span>
+<span id="cb74-251"><a href="#cb74-251" aria-hidden="true" tabindex="-1"></a>dead_stock</span>
+<span id="cb74-252"><a href="#cb74-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-253"><a href="#cb74-253" aria-hidden="true" tabindex="-1"></a>We now have the top selling products and the most returned products for this online store. Now, let us make it look a bit better. First, let's find out the top 10 products in the store.</span>
+<span id="cb74-254"><a href="#cb74-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-257"><a href="#cb74-257" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-258"><a href="#cb74-258" aria-hidden="true" tabindex="-1"></a>top_10_prods <span class="ot">&lt;-</span> <span class="fu">head</span>(hot_stock, <span class="dv">10</span>)</span>
+<span id="cb74-259"><a href="#cb74-259" aria-hidden="true" tabindex="-1"></a>top_10_prods</span>
+<span id="cb74-260"><a href="#cb74-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-261"><a href="#cb74-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-262"><a href="#cb74-262" aria-hidden="true" tabindex="-1"></a>Now, let's put them in a pie chart</span>
+<span id="cb74-263"><a href="#cb74-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-266"><a href="#cb74-266" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-267"><a href="#cb74-267" aria-hidden="true" tabindex="-1"></a>top_prods_pie <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(top_10_prods, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> net_quantity, <span class="at">fill =</span> Description)) <span class="sc">+</span></span>
+<span id="cb74-268"><a href="#cb74-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb74-269"><a href="#cb74-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb74-270"><a href="#cb74-270" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span> </span>
+<span id="cb74-271"><a href="#cb74-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> <span class="st">"Top 10 Best selling Products"</span>)</span>
+<span id="cb74-272"><a href="#cb74-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-273"><a href="#cb74-273" aria-hidden="true" tabindex="-1"></a>top_prods_pie</span>
+<span id="cb74-274"><a href="#cb74-274" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-275"><a href="#cb74-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-276"><a href="#cb74-276" aria-hidden="true" tabindex="-1"></a><span class="fu">### Analysing Country-wise transactions</span></span>
+<span id="cb74-277"><a href="#cb74-277" aria-hidden="true" tabindex="-1"></a>First I will filter the transactions on the basis of StockCode, so that only the transactions related to products (and not extra fees, postage etc.)</span>
+<span id="cb74-280"><a href="#cb74-280" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-281"><a href="#cb74-281" aria-hidden="true" tabindex="-1"></a>retail.product_transactions <span class="ot">&lt;-</span> mutated_retail <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(<span class="fu">substr</span>(StockCode, <span class="dv">1</span>, <span class="dv">1</span>), <span class="st">'^[0-9]'</span>))</span>
+<span id="cb74-282"><a href="#cb74-282" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail.product_transactions)</span>
+<span id="cb74-283"><a href="#cb74-283" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-284"><a href="#cb74-284" aria-hidden="true" tabindex="-1"></a>Now, let us find the top 5 countries with maximum transactions</span>
+<span id="cb74-287"><a href="#cb74-287" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-288"><a href="#cb74-288" aria-hidden="true" tabindex="-1"></a>retail.transactions_by_country <span class="ot">&lt;-</span> retail.product_transactions <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country, InvoiceNo) <span class="sc">%&gt;%</span> count</span>
+<span id="cb74-289"><a href="#cb74-289" aria-hidden="true" tabindex="-1"></a>retail.transactions_by_country <span class="ot">&lt;-</span> <span class="fu">subset</span>(retail.transactions_by_country, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(n))</span>
+<span id="cb74-290"><a href="#cb74-290" aria-hidden="true" tabindex="-1"></a>retail.transactions_by_country <span class="ot">&lt;-</span> retail.transactions_by_country <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span> count <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
+<span id="cb74-291"><a href="#cb74-291" aria-hidden="true" tabindex="-1"></a>retail.top_country <span class="ot">&lt;-</span> <span class="fu">head</span>(retail.transactions_by_country, <span class="dv">5</span>)</span>
+<span id="cb74-292"><a href="#cb74-292" aria-hidden="true" tabindex="-1"></a>retail.top_country</span>
+<span id="cb74-293"><a href="#cb74-293" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-294"><a href="#cb74-294" aria-hidden="true" tabindex="-1"></a>Here's the plot for the same:</span>
+<span id="cb74-297"><a href="#cb74-297" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-298"><a href="#cb74-298" aria-hidden="true" tabindex="-1"></a>transactions_by_country <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(retail.top_country, <span class="fu">aes</span>(<span class="at">x =</span> Country, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb74-299"><a href="#cb74-299" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"Blue"</span>) <span class="sc">+</span></span>
+<span id="cb74-300"><a href="#cb74-300" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb74-301"><a href="#cb74-301" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Top 5 Countries by transaction volume"</span>, </span>
+<span id="cb74-302"><a href="#cb74-302" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">"Country"</span>, <span class="at">y =</span> <span class="st">"No of Transactions"</span>)</span>
+<span id="cb74-303"><a href="#cb74-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-304"><a href="#cb74-304" aria-hidden="true" tabindex="-1"></a>transactions_by_country</span>
+<span id="cb74-305"><a href="#cb74-305" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-306"><a href="#cb74-306" aria-hidden="true" tabindex="-1"></a>Looking at top countries with the maximum number of customers</span>
+<span id="cb74-309"><a href="#cb74-309" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-310"><a href="#cb74-310" aria-hidden="true" tabindex="-1"></a>retail.customers_by_country <span class="ot">&lt;-</span> retail.product_transactions <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country, CustomerID) <span class="sc">%&gt;%</span> count</span>
+<span id="cb74-311"><a href="#cb74-311" aria-hidden="true" tabindex="-1"></a>retail.customers_by_country <span class="ot">&lt;-</span> <span class="fu">subset</span>(retail.customers_by_country, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(n))</span>
+<span id="cb74-312"><a href="#cb74-312" aria-hidden="true" tabindex="-1"></a>retail.customers_by_country <span class="ot">&lt;-</span> retail.customers_by_country <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span> count <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
+<span id="cb74-313"><a href="#cb74-313" aria-hidden="true" tabindex="-1"></a>retail.top_country <span class="ot">&lt;-</span> <span class="fu">head</span>(retail.customers_by_country, <span class="dv">5</span>)</span>
+<span id="cb74-314"><a href="#cb74-314" aria-hidden="true" tabindex="-1"></a>retail.top_country</span>
+<span id="cb74-315"><a href="#cb74-315" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-318"><a href="#cb74-318" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-319"><a href="#cb74-319" aria-hidden="true" tabindex="-1"></a>customer_by_country <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(retail.top_country, <span class="fu">aes</span>(<span class="at">x =</span> Country, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb74-320"><a href="#cb74-320" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"Orange"</span>) <span class="sc">+</span></span>
+<span id="cb74-321"><a href="#cb74-321" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb74-322"><a href="#cb74-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Top 5 Countries by Customer volume"</span>, </span>
+<span id="cb74-323"><a href="#cb74-323" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">"Country"</span>, <span class="at">y =</span> <span class="st">"No of Customers"</span>)</span>
+<span id="cb74-324"><a href="#cb74-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-325"><a href="#cb74-325" aria-hidden="true" tabindex="-1"></a>customer_by_country</span>
+<span id="cb74-326"><a href="#cb74-326" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-327"><a href="#cb74-327" aria-hidden="true" tabindex="-1"></a><span class="fu">### Analysis based on total sales</span></span>
+<span id="cb74-328"><a href="#cb74-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-329"><a href="#cb74-329" aria-hidden="true" tabindex="-1"></a>There is another stat we can calculate per country, which is the total sales amount.</span>
+<span id="cb74-330"><a href="#cb74-330" aria-hidden="true" tabindex="-1"></a>First, I create another df, which is the </span>
+<span id="cb74-333"><a href="#cb74-333" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-334"><a href="#cb74-334" aria-hidden="true" tabindex="-1"></a>retail.total_sales <span class="ot">&lt;-</span> retail.product_transactions <span class="sc">%&gt;%</span> </span>
+<span id="cb74-335"><a href="#cb74-335" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">TotalSales =</span> Quantity <span class="sc">*</span> UnitPrice)</span>
+<span id="cb74-336"><a href="#cb74-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-337"><a href="#cb74-337" aria-hidden="true" tabindex="-1"></a>retail.sales_by_country <span class="ot">&lt;-</span> retail.total_sales <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">TotalSales =</span> <span class="fu">sum</span>(TotalSales)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(TotalSales)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">5</span>)</span>
+<span id="cb74-338"><a href="#cb74-338" aria-hidden="true" tabindex="-1"></a>retail.sales_by_country</span>
+<span id="cb74-339"><a href="#cb74-339" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-342"><a href="#cb74-342" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-343"><a href="#cb74-343" aria-hidden="true" tabindex="-1"></a>sales_by_country <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(retail.sales_by_country, <span class="fu">aes</span>(<span class="at">x =</span> Country, <span class="at">y =</span> TotalSales)) <span class="sc">+</span></span>
+<span id="cb74-344"><a href="#cb74-344" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"Maroon"</span>) <span class="sc">+</span></span>
+<span id="cb74-345"><a href="#cb74-345" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb74-346"><a href="#cb74-346" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Top 5 Countries by Sales"</span>, </span>
+<span id="cb74-347"><a href="#cb74-347" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">"Country"</span>, <span class="at">y =</span> <span class="st">"Sales"</span>)</span>
+<span id="cb74-348"><a href="#cb74-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-349"><a href="#cb74-349" aria-hidden="true" tabindex="-1"></a>sales_by_country</span>
+<span id="cb74-350"><a href="#cb74-350" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-351"><a href="#cb74-351" aria-hidden="true" tabindex="-1"></a>We will look at the sales per month now</span>
+<span id="cb74-354"><a href="#cb74-354" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-355"><a href="#cb74-355" aria-hidden="true" tabindex="-1"></a>retail.monthly_sales <span class="ot">&lt;-</span> retail.total_sales <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Year, Month) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Sales =</span> <span class="fu">sum</span>(TotalSales))</span>
+<span id="cb74-356"><a href="#cb74-356" aria-hidden="true" tabindex="-1"></a>retail.monthly_sales</span>
+<span id="cb74-357"><a href="#cb74-357" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-360"><a href="#cb74-360" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-361"><a href="#cb74-361" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>retail.monthly_sales, <span class="fu">aes</span>(<span class="at">x=</span>Month, <span class="at">y=</span>Sales)) <span class="sc">+</span></span>
+<span id="cb74-362"><a href="#cb74-362" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb74-363"><a href="#cb74-363" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb74-364"><a href="#cb74-364" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Monthly Sales"</span>, </span>
+<span id="cb74-365"><a href="#cb74-365" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">"Sales"</span>)</span>
+<span id="cb74-366"><a href="#cb74-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-367"><a href="#cb74-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-368"><a href="#cb74-368" aria-hidden="true" tabindex="-1"></a>We can see from the bar plot that the sales are highest during the months of November and December, which can be accounted for by the holiday season.</span>
+<span id="cb74-369"><a href="#cb74-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-372"><a href="#cb74-372" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb74-373"><a href="#cb74-373" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retail.total_sales)</span>
+<span id="cb74-374"><a href="#cb74-374" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb74-375"><a href="#cb74-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-376"><a href="#cb74-376" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
+<span id="cb74-377"><a href="#cb74-377" aria-hidden="true" tabindex="-1"></a>Being inexperienced in the field of data science, I feel I have learned a lot by partaking in this course and doing this project.</span>
+<span id="cb74-378"><a href="#cb74-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-379"><a href="#cb74-379" aria-hidden="true" tabindex="-1"></a>My initial intention was to choose a sports dataset to analyse when I started this project. But, I went on with this dataset after having a look at it because of it's simplicity. This very simplicity in this dataset meant that it wasn't going to be easy to find categories in this dataset. After completing this analysis I still feel that had there been some more additional data to this set, there was a lot of information that could be extracted from the data. One such example is if we had the Categories of the products available, it would've led us to a lot of new information about sales trends for the categories. More information about the customers would've also been helpful.</span>
+<span id="cb74-380"><a href="#cb74-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-381"><a href="#cb74-381" aria-hidden="true" tabindex="-1"></a>For this project, I approached the analysis problem by looking at each column individually and trying to extract as much data/trends from the column as I could. After that I tried to couple these trends and get some relevant information.</span>
+<span id="cb74-382"><a href="#cb74-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-383"><a href="#cb74-383" aria-hidden="true" tabindex="-1"></a>I faced many challenges in this project and the class tutorials as well as online resources like the R documentation and the documentation of libraries like ggplot2 helped a lot. </span>
+<span id="cb74-384"><a href="#cb74-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-385"><a href="#cb74-385" aria-hidden="true" tabindex="-1"></a>I believe that I still have a lot to learn about Data Science, but this course has been a wonderful first step into the field and will immensely help me in this journey.</span>
+<span id="cb74-386"><a href="#cb74-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-387"><a href="#cb74-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-388"><a href="#cb74-388" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliography</span></span>
+<span id="cb74-389"><a href="#cb74-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-390"><a href="#cb74-390" aria-hidden="true" tabindex="-1"></a>Dataset from Kaggle- https://www.kaggle.com/datasets/ulrikthygepedersen/online-retail-dataset</span>
+<span id="cb74-391"><a href="#cb74-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-392"><a href="#cb74-392" aria-hidden="true" tabindex="-1"></a>GGPlot2 Documentation - https://ggplot2.tidyverse.org/reference/</span>
+<span id="cb74-393"><a href="#cb74-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-394"><a href="#cb74-394" aria-hidden="true" tabindex="-1"></a>Wickham, H., &amp; Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.</span>
+<span id="cb74-395"><a href="#cb74-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-396"><a href="#cb74-396" aria-hidden="true" tabindex="-1"></a>Wickham, H. (2010). A layered grammar of graphics. Journal of Computational I and Graphical Statistics, 19(1), 3-28.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
