@@ -1,0 +1,64 @@
+---
+title: "Challenge 9"
+author: "Henry Mitrano"
+description: "Creating a function"
+date: "1/30/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_9
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is simple. Create a function, and use it to perform a data analysis / cleaning / visualization task:
+
+Examples of such functions are:
+1) A function that reads in and cleans a dataset.  
+2) A function that computes summary statistics (e.g., computes the z score for a variable).  
+3) A function that plots a histogram.  
+
+That's it!
+
+
+
+
+```{r}
+get_summary_statistics <- function(x) {
+    mean <- mean(x)
+    median <- median(x)
+    std_dev <- sd(x)
+    min_val <- min(x)
+    max_val <- max(x)
+    result <- c(mean, median, std_dev, min_val, max_val)
+    names(result) <- c("Mean", "Median", "Standard Deviation", "Minimum", "Maximum")
+  return(result)
+}
+test_scores <- c(90, 85, 77, 69, 71, 80, 65, 83, 53, 95, 94, 90, 87, 71, 70, 65, 58, 59, 98, 90, 87, 76)
+get_summary_statistics(test_scores)
+
+condition <- x >= 50
+exclude_outliers <- function(test_scores, condition) {
+  no_outliers_test_scores <- keep(test_scores, condition)
+  return(no_outliers_test_scores)
+}
+```
+
+
+
+At the top of the file, we define our function "get_summary_statistics". Then we code how we want it to interpret the input, and what that input is supposed to be, in this case a group of test scores. Our function computes the mean, median, standard dev., min, and max of our test scores, and returns the results to the console for viewing. Voila!
+
