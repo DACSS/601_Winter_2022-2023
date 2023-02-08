@@ -1,0 +1,35 @@
+---
+ title: "HW 2"
+ author: "Henry Mitrano"
+ description: "Reading in Data"
+ date: "1/21/2023"
+ format:
+   html:
+     toc: true
+     code-copy: true
+     code-tools: true
+     df-print: kable
+---
+ 
+```{r}
+ #| label: setup
+ #| warning: false
+ #| message: false
+ library(tidyverse)
+ library(ggplot2)
+ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+ data <- read_csv("_data/snl_actors.csv")
+ view(data)
+ head(data)
+ summary(data)
+```
+
+## Narrative, Variables, and Research Question
+It appears that this is a dataset consisting of every performer that has ever appeared on the hit late-night sketch comedy television show 'Saturday Night Live'. It includes the performer's name, their gender, whether they are a cast member or guest performer, and what seems to be a url to their performer page/site on the web. Perhaps there is an online database where this information is stored, and the CSV provides a link to the individual pages.
+
+There are a few places we could take this- for one, the data might be able to use some tidying/organization in the gender column. Some performers are male and female, some are listed as "unknown", and Carey Mulligan is listed as "andy". Now, gender is fluid and constitutes a spectrum, so I wouldn't necessarily adjust the variable, because gender being "unknown" could mean any number of things, in 2023 at least. So I would want to look into that, as well as "andy" and maybe make that category more structured, or change the name of the category to "sex" not "gender" so that the category would be binary, for the sake of ease.
