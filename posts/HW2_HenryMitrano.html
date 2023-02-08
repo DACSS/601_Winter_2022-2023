@@ -6,10 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Marcela Robinson">
-<meta name="dcterms.date" content="2023-02-05">
+<meta name="author" content="Henry Mitrano">
+<meta name="dcterms.date" content="2023-01-21">
+<meta name="description" content="Reading in Data">
 
-<title>Challenge10_MarcelaRobincon</title>
+<title>HW 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +129,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }</script>
 
 
-<meta name="twitter:title" content="Challenge10_MarcelaRobincon">
+<meta name="twitter:title" content="HW 2">
+<meta name="twitter:description" content="Reading in Data">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:site" content="@UMassDACSS">
 <meta name="twitter:card" content="summary">
@@ -177,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Challenge10_MarcelaRobincon</h1>
+      <h1 class="quarto-secondary-nav-title">HW 2</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -230,16 +232,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#read-in-data" id="toc-read-in-data" class="nav-link active" data-scroll-target="#read-in-data">Read in data</a></li>
+  <li><a href="#narrative-variables-and-research-question" id="toc-narrative-variables-and-research-question" class="nav-link" data-scroll-target="#narrative-variables-and-research-question">Narrative, Variables, and Research Question</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Challenge10_MarcelaRobincon</h1>
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">HW 2</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
+<div>
+  <div class="description">
+    Reading in Data
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -247,14 +261,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Marcela Robinson </p>
+             <p>Henry Mitrano </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 5, 2023</p>
+      <p class="date">January 21, 2023</p>
     </div>
   </div>
   
@@ -265,7 +279,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="co">#| label: setup</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#| warning: false</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="co">#| message: false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ✔ ggplot2 3.4.0     ✔ purrr   1.0.1
@@ -276,91 +293,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>here() starts at /home/runner/work/601_Winter_2022-2023/601_Winter_2022-2023</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
+<section id="read-in-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-data">Read in data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>animal_weight<span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"posts"</span>, <span class="st">"_data"</span>, <span class="st">"animal_weight.csv"</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 9 Columns: 17
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (1): IPCC Area
-dbl (16): Cattle - dairy, Cattle - non-dairy, Buffaloes, Swine - market, Swi...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/snl_actors.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">view</span>(data)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">aid</th>
+<th style="text-align: left;">url</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: left;">gender</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Kate McKinnon</td>
+<td style="text-align: left;">/Cast/?KaMc</td>
+<td style="text-align: left;">cast</td>
+<td style="text-align: left;">female</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alex Moffat</td>
+<td style="text-align: left;">/Cast/?AlMo</td>
+<td style="text-align: left;">cast</td>
+<td style="text-align: left;">male</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ego Nwodim</td>
+<td style="text-align: left;">/Cast/?EgNw</td>
+<td style="text-align: left;">cast</td>
+<td style="text-align: left;">unknown</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chris Redd</td>
+<td style="text-align: left;">/Cast/?ChRe</td>
+<td style="text-align: left;">cast</td>
+<td style="text-align: left;">male</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kenan Thompson</td>
+<td style="text-align: left;">/Cast/?KeTh</td>
+<td style="text-align: left;">cast</td>
+<td style="text-align: left;">male</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Carey Mulligan</td>
+<td style="text-align: left;">/Guests/?3677</td>
+<td style="text-align: left;">guest</td>
+<td style="text-align: left;">andy</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>weights_stats<span class="ot">&lt;-</span><span class="cf">function</span>(animal_weight, <span class="at">pivot=</span>F){</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id=</span><span class="fu">ifelse</span>(<span class="fu">is.null</span>(<span class="fu">names</span>(animal_weight)),<span class="cn">NA</span>,<span class="fu">names</span>(animal_weight)),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">st_mean =</span> <span class="fu">mean</span>(animal_weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">st_median =</span> <span class="fu">median</span>(animal_weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">st_sd =</span> <span class="fu">sd</span>(animal_weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">st_min =</span> <span class="fu">min</span>(animal_weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">st_max =</span> <span class="fu">max</span>(animal_weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>     )</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(pivot){</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>id)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dat)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(a) <span class="ot">&lt;-</span> <span class="st">"a"</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(b) <span class="ot">&lt;-</span> <span class="st">"b"</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(n,<span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(c) <span class="ot">&lt;-</span> <span class="st">"c"</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dfr</span>(<span class="fu">list</span>(a,b,c),weights_stats,<span class="at">pivot=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">summary</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 6
-  id    st_mean st_median st_sd   st_min st_max
-  &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-1 a      0.0906    0.0984 0.997 -2.69     2.54 
-2 b      0.502     0.557  0.298  0.0172   0.971
-3 c      0.879     0.431  1.04   0.00589  4.69 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dfr</span>(<span class="fu">list</span>(a,b,c),weights_stats,<span class="at">pivot=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 15 × 3
-   id    name         value
-   &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;
- 1 a     st_mean    0.0906 
- 2 a     st_median  0.0984 
- 3 a     st_sd      0.997  
- 4 a     st_min    -2.69   
- 5 a     st_max     2.54   
- 6 b     st_mean    0.502  
- 7 b     st_median  0.557  
- 8 b     st_sd      0.298  
- 9 b     st_min     0.0172 
-10 b     st_max     0.971  
-11 c     st_mean    0.879  
-12 c     st_median  0.431  
-13 c     st_sd      1.04   
-14 c     st_min     0.00589
-15 c     st_max     4.69   </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">weights_stats</span>(animal_weight<span class="sc">$</span>Buffaloes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 6
-  id    st_mean st_median st_sd st_min st_max
-  &lt;lgl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 NA       371.       380  28.3    295    380</code></pre>
+<pre><code>     aid                url                type              gender         
+ Length:2306        Length:2306        Length:2306        Length:2306       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  </code></pre>
 </div>
 </div>
+</section>
+<section id="narrative-variables-and-research-question" class="level2">
+<h2 class="anchored" data-anchor-id="narrative-variables-and-research-question">Narrative, Variables, and Research Question</h2>
+<p>It appears that this is a dataset consisting of every performer that has ever appeared on the hit late-night sketch comedy television show ‘Saturday Night Live’. It includes the performer’s name, their gender, whether they are a cast member or guest performer, and what seems to be a url to their performer page/site on the web. Perhaps there is an online database where this information is stored, and the CSV provides a link to the individual pages.</p>
+<p>There are a few places we could take this- for one, the data might be able to use some tidying/organization in the gender column. Some performers are male and female, some are listed as “unknown”, and Carey Mulligan is listed as “andy”. Now, gender is fluid and constitutes a spectrum, so I wouldn’t necessarily adjust the variable, because gender being “unknown” could mean any number of things, in 2023 at least. So I would want to look into that, as well as “andy” and maybe make that category more structured, or change the name of the category to “sex” not “gender” so that the category would be binary, for the sake of ease.</p>
 
 
+<!-- -->
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -543,6 +554,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -612,7 +674,44 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 <script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"> title: "HW 2"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"> author: "Henry Mitrano"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"> description: "Reading in Data"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"> date: "1/21/2023"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"> format:</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">   html:</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">     toc: true</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">     code-copy: true</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">     code-tools: true</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">     df-print: kable</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a> <span class="co">#| label: setup</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a> <span class="co">#| warning: false</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a> <span class="co">#| message: false</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a> knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in data</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a> data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/snl_actors.csv"</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a> <span class="fu">view</span>(data)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a> <span class="fu">head</span>(data)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a> <span class="fu">summary</span>(data)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Narrative, Variables, and Research Question</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>It appears that this is a dataset consisting of every performer that has ever appeared on the hit late-night sketch comedy television show 'Saturday Night Live'. It includes the performer's name, their gender, whether they are a cast member or guest performer, and what seems to be a url to their performer page/site on the web. Perhaps there is an online database where this information is stored, and the CSV provides a link to the individual pages.</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>There are a few places we could take this- for one, the data might be able to use some tidying/organization in the gender column. Some performers are male and female, some are listed as "unknown", and Carey Mulligan is listed as "andy". Now, gender is fluid and constitutes a spectrum, so I wouldn't necessarily adjust the variable, because gender being "unknown" could mean any number of things, in 2023 at least. So I would want to look into that, as well as "andy" and maybe make that category more structured, or change the name of the category to "sex" not "gender" so that the category would be binary, for the sake of ease.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

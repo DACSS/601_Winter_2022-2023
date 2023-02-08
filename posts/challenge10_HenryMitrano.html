@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sean Conway">
-<meta name="dcterms.date" content="2023-02-02">
+<meta name="author" content="Henry Mitrano">
+<meta name="dcterms.date" content="2023-01-31">
 <meta name="description" content="purrr">
 
 <title>Challenge 10</title>
@@ -238,7 +238,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#challenge-overview" id="toc-challenge-overview" class="nav-link active" data-scroll-target="#challenge-overview">Challenge Overview</a></li>
   <li><a href="#the-challenge" id="toc-the-challenge" class="nav-link" data-scroll-target="#the-challenge">The challenge</a></li>
-  <li><a href="#function-to-compute-statistics-z-score" id="toc-function-to-compute-statistics-z-score" class="nav-link" data-scroll-target="#function-to-compute-statistics-z-score">Function to compute statistics (z-score)</a></li>
   </ul>
 </nav>
     </div>
@@ -250,7 +249,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Challenge 10</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
   <div class="quarto-categories">
     <div class="quarto-category">challenge_10</div>
-    <div class="quarto-category">hotel_bookings</div>
   </div>
   </div>
 
@@ -266,14 +264,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Sean Conway </p>
+             <p>Henry Mitrano </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 2, 2023</p>
+      <p class="date">January 31, 2023</p>
     </div>
   </div>
   
@@ -286,8 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="challenge-overview" class="level2">
 <h2 class="anchored" data-anchor-id="challenge-overview">Challenge Overview</h2>
@@ -303,8 +300,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>samps <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.8839732 1.9236149 3.0686267 4.0933483 5.0332033 5.9975204 6.9799975
- [8] 8.1724002 9.2181266 9.9365236</code></pre>
+<pre><code> [1]  1.103797  2.184559  3.026138  3.956743  5.099791  5.975480  6.926975
+ [8]  7.972380  9.005506 10.109356</code></pre>
 </div>
 </div>
 <p><code>purrr</code> is tricky to learn (but beyond useful once you get a handle on it). Therefore, it’s imperative that you complete the <code>purr</code> and <code>map</code> readings before attempting this challenge.</p>
@@ -312,51 +309,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="the-challenge" class="level2">
 <h2 class="anchored" data-anchor-id="the-challenge">The challenge</h2>
 <p>Use <code>purrr</code> with a function to perform <em>some</em> data science task. What this task is is up to you. It could involve computing summary statistics, reading in multiple datasets, running a random process multiple times, or anything else you might need to do in your work as a data analyst. You might consider using <code>purrr</code> with a function you wrote for challenge 9.</p>
-<p>I will re-use the dataset I used in Challenge 9 and will compute the Z-Score of the columns, just like I did in Challenge 9.</p>
-</section>
-<section id="function-to-compute-statistics-z-score" class="level1">
-<h1>Function to compute statistics (z-score)</h1>
-<p>z-score = (x - mean) / std_dev</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>z_score <span class="ot">&lt;-</span> <span class="cf">function</span>(col) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> (col <span class="sc">-</span> <span class="fu">mean</span>(col)) <span class="sc">/</span> <span class="fu">sd</span>(col)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Reading the dataset</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/hotel_bookings.csv"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># taking 20 samples</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> <span class="fu">head</span>(bookings, <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Calculating the z-score for some of the columns: lead_time, stays_in_week_nights, adr</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">map</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(bookings<span class="sc">$</span>lead_time,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>       bookings<span class="sc">$</span>stays_in_week_nights, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>       bookings<span class="sc">$</span>adr), </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  z_score)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  get_summary_statistics <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    median <span class="ot">&lt;-</span> <span class="fu">median</span>(x)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    std_dev <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    min_val <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    max_val <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> <span class="fu">c</span>(mean, median, std_dev, min_val, max_val)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(result) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mean"</span>, <span class="st">"Median"</span>, <span class="st">"Standard Deviation"</span>, <span class="st">"Minimum"</span>, <span class="st">"Maximum"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>test_scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">77</span>, <span class="dv">69</span>, <span class="dv">41</span>, <span class="dv">71</span>, <span class="dv">80</span>, <span class="dv">65</span>, <span class="dv">83</span>, <span class="dv">29</span>, <span class="dv">53</span>, <span class="dv">95</span>, <span class="dv">94</span>, <span class="dv">90</span>, <span class="dv">87</span>, <span class="dv">71</span>, <span class="dv">70</span>, <span class="dv">65</span>, <span class="dv">58</span>, <span class="dv">59</span>, <span class="dv">98</span>, <span class="dv">90</span>, <span class="dv">87</span>, <span class="dv">76</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">get_summary_statistics</span>(test_scores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
- [1]  1.52612471  3.82740076 -0.42559042 -0.39063433 -0.38480831 -0.38480831
- [7] -0.46637253 -0.41393839  0.02883878 -0.02942138 -0.33237417 -0.26246199
-[13] -0.07020348 -0.36150425 -0.25080996 -0.07020348 -0.25080996 -0.39646034
-[19] -0.46637253 -0.42559042
-
-[[2]]
- [1] -1.7018641 -1.7018641 -1.0211185 -1.0211185 -0.3403728 -0.3403728
- [7] -0.3403728 -0.3403728  0.3403728  0.3403728  1.0211185  1.0211185
-[13]  1.0211185  1.0211185  1.0211185  1.0211185  1.0211185 -1.0211185
-[19] -1.0211185  1.0211185
-
-[[3]]
- [1] -2.400562779 -2.400562779 -0.506478213 -0.506478213  0.074374387
- [6]  0.074374387  0.301664535  0.200646692 -0.329696987  0.263782844
-[11]  0.705735909  1.261334049  0.049119926  1.508070131 -0.008712789
-[16]  0.049119926  0.061747157 -0.173119329  0.312271409  1.463369736</code></pre>
+<pre><code>              Mean             Median Standard Deviation            Minimum 
+          74.29167           76.50000           17.48162           29.00000 
+           Maximum 
+          98.00000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>remove_outliers <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">keep</span>(x, x <span class="sc">&gt;=</span> <span class="dv">50</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>updated_scores <span class="ot">&lt;-</span> <span class="fu">remove_outliers</span>(test_scores) </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">get_summary_statistics</span>(updated_scores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Mean             Median Standard Deviation            Minimum 
+          77.86364           78.50000           13.07231           53.00000 
+           Maximum 
+          98.00000 </code></pre>
 </div>
 </div>
+<p>Above, we use purr and one of its key functions, “keep” to mainpulate a similar data object as we did in challenge 9 where we had to create a function. We are using that same function as we did in 9 to calculate the summary statistics of a group of test scores, but this time we are manipulating the test scores vector before we run the summary statistics function on it. We want to disregard all outliers in our data set, so we can assess the test on its meri without taking into consideration the really low scores some students who didn’t study got. We want to see if our test was fair to those that WERE adequately prepared, so we us the purrr keep function that’s used to manipulate lists to remove all test score values that were substantially worse than the mean- any test score below 50.</p>
+<p>After, we run our summary statistics function on our updated data, and we see a more fair test- the mean and median scores went up and the standard dev went down!</p>
 
 
 <!-- -->
@@ -667,9 +657,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 10"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Sean Conway"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Henry Mitrano"</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "purrr"</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "02/02/2023"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "1/31/2023"</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
@@ -677,78 +667,70 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_10</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - hotel_bookings</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">purrr</span><span class="co">](https://purrr.tidyverse.org/)</span> package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call. </span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>For example, we can draw <span class="in">`n`</span> random samples from 10 different distributions using a vector of 10 means.  </span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># sample size</span></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>) <span class="co"># means </span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>samps <span class="ot">&lt;-</span> <span class="fu">map</span>(m,rnorm,<span class="at">n=</span>n) </span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>We can then use <span class="in">`map_dbl`</span> to verify that this worked correctly by computing the mean for each sample.  </span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>samps <span class="sc">%&gt;%</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(mean)</span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="in">`purrr`</span> is tricky to learn (but beyond useful once you get a handle on it). Therefore, it's imperative that you complete the <span class="in">`purr`</span> and <span class="in">`map`</span> readings before attempting this challenge.  </span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## The challenge  </span></span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`purrr`</span> with a function to perform *some* data science task. What this task is is up to you. It could involve computing summary statistics, reading in multiple datasets, running a random process multiple times, or anything else you might need to do in your work as a data analyst. You might consider using <span class="in">`purrr`</span> with a function you wrote for challenge 9.</span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>I will re-use the dataset I used in Challenge 9 and will compute the Z-Score of the columns, just like I did in Challenge 9.</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">purrr</span><span class="co">](https://purrr.tidyverse.org/)</span> package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call. </span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>For example, we can draw <span class="in">`n`</span> random samples from 10 different distributions using a vector of 10 means.  </span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># sample size</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>) <span class="co"># means </span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>samps <span class="ot">&lt;-</span> <span class="fu">map</span>(m,rnorm,<span class="at">n=</span>n) </span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>We can then use <span class="in">`map_dbl`</span> to verify that this worked correctly by computing the mean for each sample.  </span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>samps <span class="sc">%&gt;%</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(mean)</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="in">`purrr`</span> is tricky to learn (but beyond useful once you get a handle on it). Therefore, it's imperative that you complete the <span class="in">`purr`</span> and <span class="in">`map`</span> readings before attempting this challenge.  </span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## The challenge  </span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`purrr`</span> with a function to perform *some* data science task. What this task is is up to you. It could involve computing summary statistics, reading in multiple datasets, running a random process multiple times, or anything else you might need to do in your work as a data analyst. You might consider using <span class="in">`purrr`</span> with a function you wrote for challenge 9.  </span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
 <span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="fu"># Function to compute statistics (z-score)</span></span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>z-score = (x - mean) / std_dev</span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>z_score <span class="ot">&lt;-</span> <span class="cf">function</span>(col) {</span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> (col <span class="sc">-</span> <span class="fu">mean</span>(col)) <span class="sc">/</span> <span class="fu">sd</span>(col)</span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>Reading the dataset</span>
-<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/hotel_bookings.csv"</span>)</span>
-<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a><span class="co"># taking 20 samples</span></span>
-<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> <span class="fu">head</span>(bookings, <span class="dv">20</span>)</span>
-<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>Calculating the z-score for some of the columns: lead_time, stays_in_week_nights, adr</span>
-<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">map</span>(</span>
-<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(bookings<span class="sc">$</span>lead_time,</span>
-<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>       bookings<span class="sc">$</span>stays_in_week_nights, </span>
-<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>       bookings<span class="sc">$</span>adr), </span>
-<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>  z_score)</span>
-<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(output)</span>
-<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>  get_summary_statistics <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>    mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>    median <span class="ot">&lt;-</span> <span class="fu">median</span>(x)</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    std_dev <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>    min_val <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>    max_val <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> <span class="fu">c</span>(mean, median, std_dev, min_val, max_val)</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(result) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mean"</span>, <span class="st">"Median"</span>, <span class="st">"Standard Deviation"</span>, <span class="st">"Minimum"</span>, <span class="st">"Maximum"</span>)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>test_scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">77</span>, <span class="dv">69</span>, <span class="dv">41</span>, <span class="dv">71</span>, <span class="dv">80</span>, <span class="dv">65</span>, <span class="dv">83</span>, <span class="dv">29</span>, <span class="dv">53</span>, <span class="dv">95</span>, <span class="dv">94</span>, <span class="dv">90</span>, <span class="dv">87</span>, <span class="dv">71</span>, <span class="dv">70</span>, <span class="dv">65</span>, <span class="dv">58</span>, <span class="dv">59</span>, <span class="dv">98</span>, <span class="dv">90</span>, <span class="dv">87</span>, <span class="dv">76</span>)</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="fu">get_summary_statistics</span>(test_scores)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>remove_outliers <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">keep</span>(x, x <span class="sc">&gt;=</span> <span class="dv">50</span>)</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>updated_scores <span class="ot">&lt;-</span> <span class="fu">remove_outliers</span>(test_scores) </span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="fu">get_summary_statistics</span>(updated_scores)</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>Above, we use purr and one of its key functions, "keep" to mainpulate a similar data object as we did in challenge 9 where we had to create a function. We are using that same function as we did in 9 to calculate the summary statistics of a group of test scores, but this time we are manipulating the test scores vector before we run the summary statistics function on it. We want to disregard all outliers in our data set, so we can assess the test on its meri without taking into consideration the really low scores some students who didn't study got. We want to see if our test was fair to those that WERE adequately prepared, so we us the purrr keep function that's used to manipulate lists to remove all test score values that were substantially worse than the mean- any test score below 50.</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>After, we run our summary statistics function on our updated data, and we see a more fair test- the mean and median scores went up and the standard dev went down!</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -6,11 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sean Conway">
-<meta name="dcterms.date" content="2023-02-02">
-<meta name="description" content="purrr">
+<meta name="author" content="Henry Mitrano">
+<meta name="dcterms.date" content="2023-02-03">
 
-<title>Challenge 10</title>
+<title>Homework 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,9 +127,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
-<meta name="twitter:title" content="Challenge 10">
-<meta name="twitter:description" content="purrr">
+
+<meta name="twitter:title" content="Homework 3">
+<meta name="twitter:description" content="Here, we slim down on a lot of the redundant fat of the original dataset.">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:site" content="@UMassDACSS">
 <meta name="twitter:card" content="summary">
@@ -179,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Challenge 10</h1>
+      <h1 class="quarto-secondary-nav-title">Homework 3</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -236,9 +238,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#challenge-overview" id="toc-challenge-overview" class="nav-link active" data-scroll-target="#challenge-overview">Challenge Overview</a></li>
-  <li><a href="#the-challenge" id="toc-the-challenge" class="nav-link" data-scroll-target="#the-challenge">The challenge</a></li>
-  <li><a href="#function-to-compute-statistics-z-score" id="toc-function-to-compute-statistics-z-score" class="nav-link" data-scroll-target="#function-to-compute-statistics-z-score">Function to compute statistics (z-score)</a></li>
+  <li><a href="#reading-in-and-describing-data" id="toc-reading-in-and-describing-data" class="nav-link active" data-scroll-target="#reading-in-and-describing-data">Reading in and Describing Data</a></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive Statistics</a></li>
   </ul>
 </nav>
     </div>
@@ -247,18 +248,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Challenge 10</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Homework 3</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
   <div class="quarto-categories">
-    <div class="quarto-category">challenge_10</div>
-    <div class="quarto-category">hotel_bookings</div>
+    <div class="quarto-category">hw3</div>
+    <div class="quarto-category">hotel_bookings.csv</div>
   </div>
   </div>
 
-<div>
-  <div class="description">
-    purrr
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -266,14 +262,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Sean Conway </p>
+             <p>Henry Mitrano </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 2, 2023</p>
+      <p class="date">February 3, 2023</p>
     </div>
   </div>
   
@@ -284,79 +280,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("dyplr")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<section id="challenge-overview" class="level2">
-<h2 class="anchored" data-anchor-id="challenge-overview">Challenge Overview</h2>
-<p>The <a href="https://purrr.tidyverse.org/">purrr</a> package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call.</p>
-<p>For example, we can draw <code>n</code> random samples from 10 different distributions using a vector of 10 means.</p>
+<section id="reading-in-and-describing-data" class="level2">
+<h2 class="anchored" data-anchor-id="reading-in-and-describing-data">Reading in and Describing Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># sample size</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>) <span class="co"># means </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>samps <span class="ot">&lt;-</span> <span class="fu">map</span>(m,rnorm,<span class="at">n=</span>n) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We can then use <code>map_dbl</code> to verify that this worked correctly by computing the mean for each sample.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>samps <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.8839732 1.9236149 3.0686267 4.0933483 5.0332033 5.9975204 6.9799975
- [8] 8.1724002 9.2181266 9.9365236</code></pre>
-</div>
-</div>
-<p><code>purrr</code> is tricky to learn (but beyond useful once you get a handle on it). Therefore, it’s imperative that you complete the <code>purr</code> and <code>map</code> readings before attempting this challenge.</p>
-</section>
-<section id="the-challenge" class="level2">
-<h2 class="anchored" data-anchor-id="the-challenge">The challenge</h2>
-<p>Use <code>purrr</code> with a function to perform <em>some</em> data science task. What this task is is up to you. It could involve computing summary statistics, reading in multiple datasets, running a random process multiple times, or anything else you might need to do in your work as a data analyst. You might consider using <code>purrr</code> with a function you wrote for challenge 9.</p>
-<p>I will re-use the dataset I used in Challenge 9 and will compute the Z-Score of the columns, just like I did in Challenge 9.</p>
-</section>
-<section id="function-to-compute-statistics-z-score" class="level1">
-<h1>Function to compute statistics (z-score)</h1>
-<p>z-score = (x - mean) / std_dev</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>z_score <span class="ot">&lt;-</span> <span class="cf">function</span>(col) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> (col <span class="sc">-</span> <span class="fu">mean</span>(col)) <span class="sc">/</span> <span class="fu">sd</span>(col)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Reading the dataset</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/hotel_bookings.csv"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># taking 20 samples</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> <span class="fu">head</span>(bookings, <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Calculating the z-score for some of the columns: lead_time, stays_in_week_nights, adr</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">map</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(bookings<span class="sc">$</span>lead_time,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>       bookings<span class="sc">$</span>stays_in_week_nights, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>       bookings<span class="sc">$</span>adr), </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  z_score)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
- [1]  1.52612471  3.82740076 -0.42559042 -0.39063433 -0.38480831 -0.38480831
- [7] -0.46637253 -0.41393839  0.02883878 -0.02942138 -0.33237417 -0.26246199
-[13] -0.07020348 -0.36150425 -0.25080996 -0.07020348 -0.25080996 -0.39646034
-[19] -0.46637253 -0.42559042
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/FAOSTAT_egg_chicken.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 38170 Columns: 14
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (8): Domain Code, Domain, Area, Element, Item, Unit, Flag, Flag Description
+dbl (6): Area Code, Element Code, Item Code, Year Code, Year, Value
 
-[[2]]
- [1] -1.7018641 -1.7018641 -1.0211185 -1.0211185 -0.3403728 -0.3403728
- [7] -0.3403728 -0.3403728  0.3403728  0.3403728  1.0211185  1.0211185
-[13]  1.0211185  1.0211185  1.0211185  1.0211185  1.0211185 -1.0211185
-[19] -1.0211185  1.0211185
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
 
-[[3]]
- [1] -2.400562779 -2.400562779 -0.506478213 -0.506478213  0.074374387
- [6]  0.074374387  0.301664535  0.200646692 -0.329696987  0.263782844
-[11]  0.705735909  1.261334049  0.049119926  1.508070131 -0.008712789
-[16]  0.049119926  0.061747157 -0.173119329  0.312271409  1.463369736</code></pre>
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Domain Code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Domain"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Area Code"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Area"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Element Code"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Element"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Item Code"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Item"],"name":[8],"type":["chr"],"align":["left"]},{"label":["Year Code"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Unit"],"name":[11],"type":["chr"],"align":["left"]},{"label":["Value"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Flag"],"name":[13],"type":["chr"],"align":["left"]},{"label":["Flag Description"],"name":[14],"type":["chr"],"align":["left"]}],"data":[{"1":"QL","2":"Livestock Primary","3":"2","4":"Afghanistan","5":"5313","6":"Laying","7":"1062","8":"Eggs, hen, in shell","9":"1961","10":"1961","11":"1000 Head","12":"4000","13":"F","14":"FAO estimate"},{"1":"QL","2":"Livestock Primary","3":"2","4":"Afghanistan","5":"5410","6":"Yield","7":"1062","8":"Eggs, hen, in shell","9":"1961","10":"1961","11":"100mg/An","12":"25000","13":"Fc","14":"Calculated data"},{"1":"QL","2":"Livestock Primary","3":"2","4":"Afghanistan","5":"5510","6":"Production","7":"1062","8":"Eggs, hen, in shell","9":"1961","10":"1961","11":"tonnes","12":"10000","13":"F","14":"FAO estimate"},{"1":"QL","2":"Livestock Primary","3":"2","4":"Afghanistan","5":"5313","6":"Laying","7":"1062","8":"Eggs, hen, in shell","9":"1962","10":"1962","11":"1000 Head","12":"4400","13":"F","14":"FAO estimate"},{"1":"QL","2":"Livestock Primary","3":"2","4":"Afghanistan","5":"5410","6":"Yield","7":"1062","8":"Eggs, hen, in shell","9":"1962","10":"1962","11":"100mg/An","12":"25000","13":"Fc","14":"Calculated data"},{"1":"QL","2":"Livestock Primary","3":"2","4":"Afghanistan","5":"5510","6":"Production","7":"1062","8":"Eggs, hen, in shell","9":"1962","10":"1962","11":"tonnes","12":"11000","13":"F","14":"FAO estimate"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tidy_data <span class="ot">=</span> <span class="fu">subset</span>(data, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Here, we slim down on a lot of the redundant fat of the original dataset. There were 4 columns including “codes”, which served as numerical pointers to certain fields- areas, designation, year, element. These are all repeated hundreds of times, so to reduce size and efficency of operation I eliminated all those extraneous columns. Our data is much more tidy to work with now.</p>
+</section>
+<section id="descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
+<p>Lets look at the data now. What can we expect we might need to visualize? Well, for starters we have a year date category, spanning back to the mid 1900s. We also have multiple different categories of livestock production- we can also see there are a few different kinds of ways to measure the production of the good- we have some numbers measuring production and some measuring yield, which I want to focus on. In agriculture, yield refers to “per-area harvest”, while production is tons of total harverst measured per hectare. Now,for a lot of the data in this set, “yield” values are greater than “production”, meaning we can assume in those areas that the average area of harvesting farmland is smaller than a hectare (or their prod values would be greater than yield)</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tidy_reduced <span class="ot">=</span> <span class="fu">subset</span>(tidy_data, Element <span class="sc">==</span> <span class="st">"Yield"</span>) </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tidy_final <span class="ot">=</span> <span class="fu">subset</span>(tidy_reduced, Area <span class="sc">==</span> <span class="st">"Afghanistan"</span>) </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(tidy_final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Here, we make a decision about what we want to observe when we move to visualization. For the sake of ease, I’m limiting this table to show only yield values year to year, so we can view a specific country’s growth in yield over time, and compare to others if we want. Lets plot the first country listed, Afghanistan, and their yield over the last 50 or so years. ## Visualizing and Customizing Data</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tidy_final, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="HW3_HenryMitrano_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Wow, we can see that there has been a remarkable effect on the yield of eggs in Afghanistan, specifically in the last 20 years. In the 1960s rates were at an incredible high, but at the dawn of the 21st century (and the start of the U.S. war in Afghanistan) yield dropped in half, naturally. ## Limitations of Visualizations There is however a distinct limitation of the visualization we made with ggplot. The scatterplot alone did a decent job telling the story of the egg yield in the country, but when I added geom_smooth to create a trend line linking the points of the scatterplot, the data got misinterpretated. There should be a swift, steep drop off in the plot line around 2000, followed by a quick vertical slope to show the re-growth of the industry there. Instead, it shows a small droop around 2000 and shows that yield has been declining since, despite in truth there being a steep GROWTH in yield since that giant drop off in 2000. The geom_smooth line is telling a different, and incorrect story about our data.</p>
 
 
 <!-- -->
@@ -666,89 +663,67 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 10"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Sean Conway"</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "purrr"</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "02/02/2023"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Homework 3"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Henry Mitrano"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Descriptive Statistics and Visualizing"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "02/3/2023"</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_10</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - hotel_bookings</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">purrr</span><span class="co">](https://purrr.tidyverse.org/)</span> package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call. </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - hw3</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - hotel_bookings.csv</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("dyplr")</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading in and Describing Data</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>For example, we can draw <span class="in">`n`</span> random samples from 10 different distributions using a vector of 10 means.  </span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># sample size</span></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>) <span class="co"># means </span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>samps <span class="ot">&lt;-</span> <span class="fu">map</span>(m,rnorm,<span class="at">n=</span>n) </span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/FAOSTAT_egg_chicken.csv"</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>tidy_data <span class="ot">=</span> <span class="fu">subset</span>(data, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>))</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>Here, we slim down on a lot of the redundant fat of the original dataset. There were 4 columns including "codes", which served as numerical pointers to certain fields- areas, designation, year, element. These are all repeated hundreds of times, so to reduce size and efficency of operation I eliminated all those extraneous columns. Our data is much more tidy to work with now.</span>
 <span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>We can then use <span class="in">`map_dbl`</span> to verify that this worked correctly by computing the mean for each sample.  </span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>samps <span class="sc">%&gt;%</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(mean)</span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="in">`purrr`</span> is tricky to learn (but beyond useful once you get a handle on it). Therefore, it's imperative that you complete the <span class="in">`purr`</span> and <span class="in">`map`</span> readings before attempting this challenge.  </span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descriptive Statistics</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>Lets look at the data now. What can we expect we might need to visualize? Well, for starters we have a year date category, spanning back to the mid 1900s. We also have multiple different categories of livestock production- we can also see there are a few different kinds of ways to measure the production of the good- we have some numbers measuring production and some measuring yield, which I want to focus on. In agriculture, yield refers to "per-area harvest", while production is tons of total harverst measured per hectare. Now,for a lot of the data in this set, "yield" values are greater than "production", meaning we can assume in those areas that the average area of harvesting farmland is smaller than a hectare (or their prod values would be greater than yield)</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>tidy_reduced <span class="ot">=</span> <span class="fu">subset</span>(tidy_data, Element <span class="sc">==</span> <span class="st">"Yield"</span>) </span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>tidy_final <span class="ot">=</span> <span class="fu">subset</span>(tidy_reduced, Area <span class="sc">==</span> <span class="st">"Afghanistan"</span>) </span>
 <span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## The challenge  </span></span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`purrr`</span> with a function to perform *some* data science task. What this task is is up to you. It could involve computing summary statistics, reading in multiple datasets, running a random process multiple times, or anything else you might need to do in your work as a data analyst. You might consider using <span class="in">`purrr`</span> with a function you wrote for challenge 9.</span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>I will re-use the dataset I used in Challenge 9 and will compute the Z-Score of the columns, just like I did in Challenge 9.</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(tidy_final)</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>Here, we make a decision about what we want to observe when we move to visualization. For the sake of ease, I'm limiting this table to show only yield values year to year, so we can view a specific country's growth in yield over time, and compare to others if we want. Lets plot the first country listed, Afghanistan, and their yield over the last 50 or so years.</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualizing and Customizing Data</span></span>
 <span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="fu"># Function to compute statistics (z-score)</span></span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>z-score = (x - mean) / std_dev</span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>z_score <span class="ot">&lt;-</span> <span class="cf">function</span>(col) {</span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> (col <span class="sc">-</span> <span class="fu">mean</span>(col)) <span class="sc">/</span> <span class="fu">sd</span>(col)</span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>Reading the dataset</span>
-<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/hotel_bookings.csv"</span>)</span>
-<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a><span class="co"># taking 20 samples</span></span>
-<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>bookings <span class="ot">&lt;-</span> <span class="fu">head</span>(bookings, <span class="dv">20</span>)</span>
-<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>Calculating the z-score for some of the columns: lead_time, stays_in_week_nights, adr</span>
-<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">map</span>(</span>
-<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(bookings<span class="sc">$</span>lead_time,</span>
-<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>       bookings<span class="sc">$</span>stays_in_week_nights, </span>
-<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>       bookings<span class="sc">$</span>adr), </span>
-<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>  z_score)</span>
-<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(output)</span>
-<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tidy_final, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>Wow, we can see that there has been a remarkable effect on the yield of eggs in Afghanistan, specifically in the last 20 years. In the 1960s rates were at an incredible high, but at the dawn of the 21st century (and the start of the U.S. war in Afghanistan) yield dropped in half, naturally. </span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitations of Visualizations</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>There is however a distinct limitation of the visualization we made with ggplot. The scatterplot alone did a decent job telling the story of the egg yield in the country, but when I added geom_smooth to create a trend line linking the points of the scatterplot, the data got misinterpretated. There should be a swift, steep drop off in the plot line around 2000, followed by a quick vertical slope to show the re-growth of the industry there. Instead, it shows a small droop around 2000 and shows that yield has been declining since, despite in truth there being a steep GROWTH in yield since that giant drop off in 2000. The geom_smooth line is telling a different, and incorrect story about our data.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
