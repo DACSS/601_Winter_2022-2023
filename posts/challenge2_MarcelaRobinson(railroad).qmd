@@ -1,0 +1,124 @@
+---
+title: "Challenge 2 Instructions"
+author: "Marcela Robinson"
+description: "Data wrangling: using group() and summarise()"
+date: "12/29/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+##Import data into R 
+```{r}
+railroad2<-read.csv("_data/railroad_2012_clean_county.csv")
+railroad2
+
+```
+##Get the name of the columns
+```{r}
+colnames(railroad2)
+
+```
+We can determine that the name of the columns for the railroad2 dataset are "state", "county", and "total_employees". 
+
+##Get dimesion of the dataset 
+```{r}
+dim(railroad2)
+```
+By using the dim() function, it was determine that there are 2,930 observances and 3 variables in this dataset. 
+
+##Pivot_wider to add states into columns 
+```{r}
+pivot_wider(railroad2, names_from = state, values_from = total_employees)
+
+```
+I use pivot_wider to make the dataset wider and include the states as columns.
+
+##Find the mean of total employees 
+``` {r}
+summarize(railroad2, mean(total_employees), na.rm = TRUE)
+```
+The mean of the total employees for all counties is 87.17816. 
+
+#Summary of the data set 
+```{r}
+summary(railroad2)
+```
+A summary of the dataset confirms that the mean is 87.18 as well as providing other information regarding the dataset. 
+
+##Filter by counties with total employees of 50 or less. 
+```{r}
+railroad2%>% 
+  filter(total_employees <=50)%>%
+  group_by(county)%>%
+  summarize(total_employees)
+
+```
+I use the filter function to pull the counties that have 50 or less employees. After running the code, there are 2,067 counties with 50 or less employees. There are multiple questions that arise from this information: Is employment declining in those counties? Are resources distributed based on the total number of employees? Are the railroad stations smaller and less employees are needed, or are these counties significantly understaffed? Is there a correlation between state/county population and the number of employees?  
+
+##Create a df for counties with 50 or less employees called railroad_l50 
+```{r}
+railroad_l50<-railroad2%>%
+  filter(total_employees<=50)
+railroad_l50
+```
+
+
+##Obtain the mean for counties with 50 or less employees 
+```{r}
+railroad_l50%>%
+  select(county, total_employees)%>%
+  filter(total_employees<=50)%>%
+  summarize(mean = mean(total_employees, na.rm = TRUE))
+
+```
+
+##Obtain the median for counties with 50 or less employees 
+``` {r}
+median(railroad_l50$total_employees)
+```
+##Calculate the standard deviation for counties with 50 or less employees
+```{r}
+summarize(railroad_l50, sd(total_employees))
+```
+##Calculate the stantard deviation for railroad2 dataset
+```{r}
+summarize(railroad2, sd(total_employees))
+```
+Since I already calculated the mean, median and standard deviation for railroad_l50 (15.66, 11, 13.40 respectively) and the mean and median for railroad2 (87.18, 21), I wanted to calculate the standard deviation as well for railroad2 (283.63).
+
+I then decided to visualize my data by creating histograms. 
+
+##Sample 1000 values with mean 15.66 and sd 13.40 for counties with 50 or less employees.
+```{r}
+set.seed(10000)
+data<-tibble(value=rnorm(1000,15.66, 13.40))
+ggplot(data, aes(x=value))+
+  geom_histogram(binwidth = 10, col='black', fill='gray')
+```
+##Sample 1000 values with mean 87.18 and sd 283.63 for counties with 50 or more employees and adjust binwidth.
+```{r}
+set.seed(10000)
+data<-tibble(value=rnorm(1000,87.18,283.63))
+ggplot(data, aes(x=value))+
+  geom_histogram(binwidth = 10, col='black', fill='gray')
+```
+By looking at both histograms, it can be determined that the data is approximately symmetrical since there is an almost equal amount of data on either side of the mean. 
+
+Conclusion: The file railroad_2012_clean_county.cvs contains information regarding total employees per county in the United States. This data was most likely gathered by the US Department of Transportation. After filtering the data by counties that have 50 or less employees, I was able to determine the mean, median and standard deviation for those counties. By creating histograms, I was able to determine that the data is symmetrical. 
+

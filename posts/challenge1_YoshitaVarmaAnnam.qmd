@@ -1,0 +1,94 @@
+---
+title: "Challenge 1"
+author: "Yoshita Varma Annam"
+description: "Reading in data and creating a post"
+date: "12/20/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, using the correct R package and command.
+
+-   railroad_2012_clean_county.csv ⭐
+-   birds.csv ⭐⭐
+-   FAOstat\*.csv ⭐⭐
+-   wild_bird_data.xlsx ⭐⭐⭐
+-   StateCounty2012.xlsx ⭐⭐⭐⭐
+
+Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
+
+```{r}
+library(readr)
+
+birds_csv <- read_csv("_data/birds.csv")
+```
+
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+## View of the data
+
+```{r}
+#| label: understanding the data
+birds_csv
+```
+
+By just viewing the data it looks like the data is about 30,977 bird entries and detailing for 14 features. The features mainly have domain code, domain area and  area to describe the location of the birds. For the bird type item and item code explains it. There is also an entry for the year to time the data. To understand further we need to perform more operations. 
+
+## Analyzing the data
+```{r}
+#| label: summary of the data
+summary(birds_csv)
+```
+```{r}
+#| label: column names the data
+colnames(birds_csv)
+```
+```{r}
+#| label: finding unique values of the data
+unique(birds_csv$Area)
+length(unique(birds_csv$Area))
+unique(birds_csv$Item)
+length(unique(birds_csv$Item))
+```
+
+After the following analysis it is clear that the data has been collected across the world for different countries from 1961 to 2018. The data is very specific to few types of the birds like chickens, ducks etc. We can say that the data is majorly from the poultry farms across the world. This might have other animals since they are only focusing the birds the entries are restricted to poultry birds. This data might be used to keep a track of the poultry birds in the that area with the count. There are total 248 countries for 5 different kind of birds including other birds. However, some the rows are still not clear of their purpose.
+
+## Viewing data for a particular Country for further analysis
+
+```{r}
+#| label: data for United Stated of America
+birds_csv_america <- filter(birds_csv, Area == "Europe")
+birds_csv_america
+```
+```{r}
+summary(birds_csv_america)
+```

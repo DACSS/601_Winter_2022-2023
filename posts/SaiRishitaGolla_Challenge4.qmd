@@ -1,0 +1,75 @@
+---
+ title: "Challenge 4"
+ author: "Rishita Golla"
+ description: "More data wrangling: mutate"
+ date: "1/2/2022"
+ format:
+   html:
+     toc: true
+     code-fold: true
+     code-copy: true
+     code-tools: true
+ categories:
+   - challenge_4
+---
+
+```{r}
+ #| label: setup
+ #| warning: false
+ #| message: false
+
+ library(tidyverse)
+ library(lubridate)
+ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Read in data
+
+```{r}
+ library(readr)
+ data <- read_csv("_data/hotel_bookings.csv")
+ view(data)
+```
+ 
+
+### Briefly describe the data
+
+Describing data based on challenge 2's observations-
+Using the view() command, we see that the there are 119,390 rows for hotel entries and 32 columns for information such as reserved room type, deposit type, reservation status, adults (number), country etc. After analyzing the summary() and above commands in R, we can conclude that the data has been collected from 178 countries over a span of 4 years (2014 - 17), going by the reservation dates. We can further conclude that most of the data collected is from 2016 - 17 as the Q1 of reservation status date lies in 2016. It is also clear that there are two kind of hotels (Resort and City Hotel), and 8 types of market segments. From the summary we can also observe that most bookings have adults followed by children and then babies. Further, on an average stay is booked for 2.5 days during week days and around for a day during weekends.
+
+## Tidy Data
+ 
+Looking at the data wrt arrival we have four fields - arrival_date_day_of_month, arrival_date_month, arrival_date_year, arrival_date_week_number. Using mutate the first three fields can be combined into a single arrival date field and the fourth field - arrival_date_week_number can be dropped as this is not really useful for our analysis.
+
+```{r}
+ data <- data[,-6]
+```
+
+## Identify variables that need to be mutated
+
+Since we have arrival date, month, year in three different columns we can combine the fields into one single field. The final column is in date/month/year format. We combine the fields using str_c command.
+
+```{r}
+ bookings<-data%>%
+   mutate(date_arrival = str_c(arrival_date_day_of_month,
+                               arrival_date_month,
+                               arrival_date_year, sep="/"),
+          date_arrival = dmy(date_arrival))%>%
+  select(-starts_with("arrival"))
+```
+
+```{r}
+ view(bookings)
+```
+
+We see that there is now a single field for arrival date information.
+
+Additionally, we could also get booking time using the arrival date-lead time. This helps us understand how ahead people plan a vacation given the season.
+
+```{r}
+bookings<-bookings%>%
+   mutate(date_booking = date_arrival-days(lead_time))
+
+ view(bookings$date_booking)
+```

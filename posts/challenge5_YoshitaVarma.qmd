@@ -1,0 +1,131 @@
+---
+title: "Challenge 5"
+author: "Yoshita Varma Annam"
+description: "Introduction to Visualization"
+date: "1/2/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - railroads
+  - cereal
+  - air_bnb
+  - pathogen_cost
+  - australian_marriage
+  - public_schools
+  - usa_hh
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  create at least two univariate visualizations
+   - try to make them "publication" ready
+   - Explain why you choose the specific graph type
+5)  Create at least one bivariate visualization
+   - try to make them "publication" ready
+   - Explain why you choose the specific graph type
+
+[R Graph Gallery](https://r-graph-gallery.com/) is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code.
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+-   cereal ⭐
+-   pathogen cost ⭐
+-   Australian Marriage ⭐⭐
+-   AB_NYC_2019.csv ⭐⭐⭐
+-   railroads ⭐⭐⭐
+-   Public School Characteristics ⭐⭐⭐⭐ 
+-   USA Households ⭐⭐⭐⭐⭐
+
+```{r}
+AB_NYC_2019 <- read_csv("../posts/_data/AB_NYC_2019.csv")
+AB_NYC_2019
+```
+
+### Briefly describe the data
+```{r}
+#| label: summary of the data
+summary(AB_NYC_2019)
+```
+```{r}
+#| label: column names the data
+colnames(AB_NYC_2019)
+```
+
+This dataset is about airbnb listings in New York City from the year 2019. There are approximately 49000 rows and 16 columns. It includes host name with id, location of the property along with the price, and details of reviews. 
+
+## Tidy Data (as needed)
+
+There are few columns with NA values will be tidying those columns. Columns such as “date_of_last_review” also has NA values but that is alright as there are no reviews yet. So, tidying selected columns to avoid NA values.
+
+```{r}
+table(AB_NYC_2019$reviews_per_month)
+
+```
+
+```{r}
+replace_na(AB_NYC_2019, list(reviews_per_month = 0))
+```
+
+## Univariate Visualizations
+I am interested to find which kind of room type is popular in New York this will give a good idea for the investors. Also, what are the price ranges based on the room style. Furthermore, if we can narrow down popular room types based on the neighborhood it will give good edge to the investors. 
+
+```{r}
+AB_NYC_2019 %>%
+  dplyr::count(room_type) %>%
+  ggplot(aes(x = room_type, y = n, fill = room_type)) +
+  geom_bar(stat = "identity") + 
+  geom_text(aes(label = n), vjust = -0.5) +
+  labs(title="Total Bookings vs Type of the Room", x="Type of the Room", y="Total Booking Count", fill="Room Type")
+```
+
+It is clear that the entire home/apartment is very popular next is a private room. It is surprsing that shared room if preferred by very few people despite of the cost people prefer have private stay. To understand lets analyze the data further in detail to give some good findings to investors.
+
+## Bivariate Visualization(s)
+
+Using Bivariate Visualization lets try to find the prices of the room types. This will help the hosts to set the margin of the property based on the room types.
+
+```{r}
+AB_NYC_2019 %>%
+  ggplot(aes(room_type, price), fill = room_type) + 
+  geom_boxplot() + 
+  labs(title = "Price per Listing by room type") + 
+  theme_bw()
+```
+
+It is expected that entire home/ apartment are more expensive than private rooms. As you can see entire home/apartments ranges maximum to 8500 whereas, for private rooms majorty of the listings are priced under 3000. However, there are outliers which can cost as high as 10000 for a single private room. May be with more data we can deduce what could the reason behind this. But majorly this gave a good range of prices based on the room type for the investors to set the prices for their properties.
+
+Similarly, using Bivariate Visualization lets also find which kind of room type is popular in a particular neighborhood.
+
+```{r}
+ggplot(AB_NYC_2019) +
+  geom_bar(aes(x = room_type, fill=neighbourhood_group)) + 
+  labs(x = "Type of room", y = "Count of Airbnbs", title = "Count of Airbnbs vs  Room Type",
+       fill = "Neighbourhood")
+
+```
+
+From this visualization we not only found which room type is popular in the neighborhood but also understood that majority of the listings are in Manhattan and Brooklyn. Since, these two are popular destinations for tourist it is quite understandable why the bookings are so high from these neighborhoods. If you clearly observe there is more inclination towards entire home/apartment in Manhattan than private room. On the contrary, in Brooklyn there is more demand for private room than entire home. However, these small fluctuations can't contribute to major conclusions. So, more information might be required to strongly conclude on this. Similarly, in Queens private room is more popular. In Bronx and Staten Island there is zero demand for shared room.  

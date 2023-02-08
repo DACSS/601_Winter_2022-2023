@@ -1,0 +1,136 @@
+---
+title: "Challenge 8"
+author: "Priya Marla"
+description: "Joining Data"
+date: "1/25/2023"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+  - railroads
+  - snl
+  - faostat
+  - debt
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(here)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in multiple data sets, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  join two or more data sets and analyze some aspect of the joined data
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+  - military marriages ⭐⭐
+  - faostat ⭐⭐
+  - railroads  ⭐⭐⭐
+  - fed_rate ⭐⭐⭐
+  - debt ⭐⭐⭐
+  - us_hh ⭐⭐⭐⭐
+  - snl ⭐⭐⭐⭐⭐
+
+```{r}
+snl_actors <- here("posts","_data","snl_actors.csv") %>%
+  read_csv()
+
+snl_casts <- here("posts","_data","snl_casts.csv") %>%
+  read_csv()
+
+snl_seasons <- here("posts","_data","snl_seasons.csv") %>%
+  read_csv()
+
+snl_actors
+snl_casts
+snl_seasons
+
+```
+
+
+### Briefly describe the data
+
+There are 3 datasets describing the data about various actors and their appearances in the saturday night live show.
+snl_actors dataset contains data about various actors ever involved with snl show.
+snl_casts dataset contains data about various actors appearances in snl.
+snl_seasons dataset contains details about seasons aired.
+
+There are total 46 seasons with 906 episodes, 2306 actors from year 1975 to 2020.
+
+```{r}
+length(unique(snl_seasons$sid))
+length(unique(snl_actors$aid))
+min(snl_seasons$year)
+max(snl_seasons$year)
+sum(snl_seasons$n_episodes)
+```
+
+## Analysis
+
+Here our goal is to find the count of various genders in the saturday night live show over the years. To get the year, gender and count we have to combine 3 different tables i.e snl_actors, snl_casts and snl_seasons.
+
+## Join Data
+
+Be sure to include a sanity check, and double-check that case count is correct!
+
+From snl_actors table we get the "gender" column and will get get "sid" from snl_casts which can later be used to combine with snl_seasons. We can combine this with snl_casts as they have a common column "aid" and name the new dataframe as actors_casts. We then combine actors_casts with snl_seasons where we get the "year".
+
+```{r}
+#Merging snl_actors and snl_casts
+actors_casts <- merge(snl_actors, snl_casts, by = 'aid')
+
+#merging actors_casts and snl_seasons based on gender
+actors_casts_seasons_gender <- actors_casts %>%
+  merge(snl_seasons, by = 'sid') %>%
+  group_by(sid, year, gender) %>%
+  count(sid, gender)
+actors_casts_seasons_gender
+
+#plotting graph
+actors_casts_seasons_gender %>%
+  ggplot(aes(year, n, col = gender)) +
+  geom_line() +
+  ylab("count") +
+  ggtitle("Various gender count over the years")
+
+#merging actors_casts and snl_seasons
+actors_casts_seasons <- actors_casts %>%
+  merge(snl_seasons, by = 'sid') %>%
+  group_by(sid, year) %>%
+  count(sid)
+actors_casts_seasons
+
+mean(actors_casts_seasons$n)
+min(actors_casts_seasons$n)
+max(actors_casts_seasons$n)
+
+#plotting graph
+actors_casts_seasons %>%
+  ggplot(aes(x = year)) +
+  geom_line(aes(y = n), color = "blue") +
+  geom_point(aes(y = n), color = "red") +
+  ylab("count") +
+  ggtitle("Count of cast over the years")
+```
+From the above visualization we can see that there is rise in number of employees in each season over the years. Number of females are consistently less less than the number of males. 
+The second graph shows that the number of actors over the years. We can infer that there has been increase in the actors over years with minimum number of actors per season are 8 recorded in between 1975 and 1985 and maximum are 20 in 2020. 

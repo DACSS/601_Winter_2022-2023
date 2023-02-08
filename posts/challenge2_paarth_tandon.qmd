@@ -1,0 +1,95 @@
+---
+title: "Challenge 2"
+author: "Paarth Tandon"
+description: "Data wrangling: using group() and summarise()"
+date: "12/28/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+    df-print: kable
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in the Data
+
+```{r}
+# read in the data using readr
+rail <- read_csv("_data/railroad_2012_clean_county.csv")
+# view a few data points
+head(rail)
+```
+
+## Describe the data
+
+This part is the same as in challenge 1.
+
+As seen by using `head`, this csv has three columns: `state <chr>`, `county <chr>`, and `total_employees <dbl>`. It contains two character based columns and one double column. Essentially, it contains the number of employees at each `state`, `county` pair.
+
+```{r}
+#| label: summary
+u_states <- rail$state %>%
+                unique() %>%
+                length()
+sprintf('# unique states: %s', u_states)
+
+u_counties <- rail$county %>%
+                unique() %>%
+                length()
+sprintf('# unique counties: %s', u_counties)
+
+range_emp <- rail$total_employees %>%
+                range()
+sprintf('range of total employees: [%s, %s]', range_emp[1], range_emp[2])
+```
+
+I believe that this data was collected from each railroad station in the United States. It is most likely collected for bookkeeping purposes, but I could see it being used for analysis of which railroad stations need more employees, and which are overstaffed. Of course, answering these questions would require more data to be combined with this dataset. 
+
+## Provide Grouped Summary Statistics
+
+```{r}
+rail %>%
+    group_by(`state`) %>%
+    summarise(n_counties=n(),
+              sum_emp=sum(`total_employees`),
+              mean_emp=mean(`total_employees`),
+              sd_emp=sd(`total_employees`)) %>%
+    arrange(desc(`mean_emp`))
+```
+
+Above is a dataframe that has five columns. The first column is the state. The second column is how many counties are in that state. The third column is how many employees are in that state. The fourth column is the mean employees per county in that state. The final column is the standard deviation of employees per county in that state. Sometimes, the standard deviation cannot be calculated, as there is only one sample (county) in that state.
+
+As seen in the dataframe, Delaware (DE) has the highest mean employees of all the states.
+
+```{r}
+rail %>%
+    filter(`state`=="DE") %>%
+    arrange(desc(`total_employees`))
+```
+
+Taking a look specifically at Delaware, it seems that their employees are mostly at New Castle, while Kent and Sussex have very few employees in comparison.
+
+```{r}
+rail %>%
+    filter(`state`=="NJ") %>%
+    arrange(desc(`total_employees`))
+```
+
+In comparison, looking at New Jersey (NJ, second highest mean), tells a different story. New Jersey has 21 counties, and the employees are much more dispersed that in Delaware. This can also be noted by comparing their standard deviations, where New Jersey is half as dispersed as Delaware.
+
+### Explain and Interpret
+
+I first chose to group by state, as it gives a bigger picture as to which states have a higher concentration of employees. After which, I focused on the top two states by mean employees, and compared them.

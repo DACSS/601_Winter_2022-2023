@@ -1,0 +1,184 @@
+---
+title: "Challenge 2"
+author: "Marcela Robinson"
+description: "Data wrangling: using group() and summarise()"
+date: "12/26/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in Dataset 
+Import FAOSTAT_cattle_dairt.csv into R.  
+```{r}
+library(readr)
+cattle <- read.csv(("_data/FAOSTAT_cattle_dairy.csv"))
+head(cattle)
+
+cattle %>%
+  select("Area", "Element", "Year", "Value")
+```
+ 
+##Get dimesions
+```{r}
+dim(cattle)
+colnames(cattle)
+str(cattle)
+
+```
+This data set contains 36449 observances and 14 variables. The names of the variables are: "Domain.Code", "Domain", "Area.Code","Area","Element.Code", "Element", "Item.Code", "Item", "Year.Code", "Year", "Unit","Value", "Flag", and "Flag.Description"
+
+##Pivot wide and select years 2008 to 2018
+```{r}
+cattle_sm%>% 
+  pivot_wider(names_from = Year, values_from = Value)%>%
+select(`Area`,`Element`, `2008`:`2018`)
+```
+
+
+##Determine the amount of NA in the dataset  
+```{r}
+cattle_sm%>%
+  is.na()%>%
+  sum()
+
+```
+There are 74 missing values. 
+
+```{r}
+replace_na(cattle_sm, list(Year= 0))
+
+```
+
+
+#Get the number of unique areas 
+```{r}
+cattle%>%
+  select(Area)%>%
+  n_distinct(.)
+
+cattle%>%
+  select(Area)%>%
+  distinct()
+```
+
+```{r}
+cattle%>%
+  select(Element)%>%
+  n_distinct(.)
+
+cattle%>%
+  select(Element)%>%
+  distinct()
+
+
+```
+
+```{r}
+cattle%>%
+  select(Year)%>%
+  n_distinct(.)
+
+cattle%>%
+  select(Year)%>%
+  distinct()
+```
+
+This dataset was provided by the Food and Agriculture Organization of the United Nations. There are 232 countries represented in the data. This dataset shows 3 different types of cattle (Yield, Milk Animals, and Production) from 1961 to 2018.
+
+
+```{r}
+
+```
+
+
+#
+
+
+
+
+##Creating a new dataframe called cattle_sm to drop variabes that contain the same grouping information.
+The only varying information appears to be Value per country on a given year. Therefore, I created a new dataframe to eliminate many of the double information. 
+```{r}
+cattle_sm <- cattle%>%
+  select(-contains("Code"))
+cattle_sm
+
+```
+##?
+```{r}
+cattle_sm %>%
+  arrange(desc(Element)) %>%
+  select(Element, Area) %>%
+  group_by(Area) %>%
+  slice(1)
+
+
+```
+```{r}
+
+
+```
+
+
+
+## Recoding data to create new columns element_new and value_new 
+``` {r}
+cattle_sm <- cattle_sm%>%
+  mutate(element_new = case_when(
+    Element == Yield ~ "harvest",
+    Element == Production ~ "crop & livestock",
+    Element == Milk Animals ~ "stock" 
+  ),
+  value_new = case_when(
+    
+  )
+
+```
+
+freq_tab_cattle <- cattle_sm %>%
+  table()
+freq_tab_cattle
+
+```
+
+freq_tab <- table(cattle_sm$Area, cattle_sm$Element)
+freq_tab
+  prop.table(freq_tab)
+```
+
+
+
+
+
+```{r}
+#| label: summary
+
+```
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+```{r}
+
+```
+
+### Explain and Interpret
+
+Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.
