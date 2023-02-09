@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Henry Mitrano">
+<meta name="dcterms.date" content="2023-02-03">
+
+<title>Final Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<meta name="twitter:title" content="Final Project">
+<meta name="twitter:description" content="If you know me, you know I’m an obsessive sports-watcher. Football, baseball, soccer, tennis, golf, anything. At the pro level, in college, overseas, little league, doesn’t matter.">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/DACSS">
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Final Project</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Course information</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course_schedule.html" class="sidebar-item-text sidebar-link">Course Schedule</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Weekly materials</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Posts</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#reading-in-and-describing-data" id="toc-reading-in-and-describing-data" class="nav-link active" data-scroll-target="#reading-in-and-describing-data">Reading in and Describing Data</a></li>
+  <li><a href="#visualizing-and-customizing-data" id="toc-visualizing-and-customizing-data" class="nav-link" data-scroll-target="#visualizing-and-customizing-data">Visualizing and Customizing Data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Final Project</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">finalproject</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Henry Mitrano </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 3, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("dyplr")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="reading-in-and-describing-data" class="level2">
+<h2 class="anchored" data-anchor-id="reading-in-and-describing-data">Reading in and Describing Data</h2>
+<p>If you know me, you know I’m an obsessive sports-watcher. Football, baseball, soccer, tennis, golf, anything. At the pro level, in college, overseas, little league, doesn’t matter. If there’s a game on, I’m watching it. But by far my favorite sport to watch, play, and discuss is basketball. It is a beautiful sport, highly accessible regardless of economic status or geography, endlessly entertaining to watch, and one of the places where data analytics has proven to be most useful in the world of sports. VORP, true shooting %, PER, net rating; all of these are highly detailed advanced metrics used to gauge the performance of different kinds of players. These insights are taken from massive amounts of data, over years of a players performance, and they can tell us valuable information that might not always jump off the screen when we’re simply watching them play.</p>
+<p>I downloaded a CSV file off the web with NBA player statistics from every year since 1950. For every player, there are dozens of stats kept for every season they’ve played. I’m gonna take a look at, and break down the rarity of one of my favorite statistical anomalies- the 50/40/90 season.</p>
+<p>A 50/40/90 season is when a player, over the course of one regular season, averages 50% shooting from the floor (on all field goal attempts), 40% on 3 point shot attempts, and 90% from the free throw line. It is an extremely rare occurence- it has happened a handful of times in the NBA since statkeeping began, and only players with the purest and most complete offensive games have even come close to accomplishing it. So who has, and when?</p>
+<p>Let’s read in our data and work with it a bit. For starters, an important thing to note is that the 3 point shot wasn’t introduced at the NBA level until 1979- so for players in seasons before then, their 3PM and 3P% stats are listed as NA. Lets change our set to only include player stats from seasons later than 1979.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/Seasons_Stats.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 24691 Columns: 53
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(3): Player, Pos, Tm dbl (48): ...1, Year, Age, G, GS, MP, PER, TS%, 3PAr, FTr,
+ORB%, DRB%, TRB%,... lgl (2): blanl, blank2
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...1`</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>stats_since_1980 <span class="ot">&lt;-</span> <span class="fu">subset</span>(data, Year <span class="sc">&gt;</span> <span class="dv">1979</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stats_since_1980)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["...1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Player"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Pos"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Age"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Tm"],"name":[6],"type":["chr"],"align":["left"]},{"label":["G"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["GS"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["MP"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["PER"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["TS%"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["3PAr"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["FTr"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["ORB%"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["DRB%"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["TRB%"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["AST%"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["STL%"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["BLK%"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["TOV%"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["USG%"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["blanl"],"name":[22],"type":["lgl"],"align":["right"]},{"label":["OWS"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["DWS"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["WS"],"name":[25],"type":["dbl"],"align":["right"]},{"label":["WS/48"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["blank2"],"name":[27],"type":["lgl"],"align":["right"]},{"label":["OBPM"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["DBPM"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["BPM"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["VORP"],"name":[31],"type":["dbl"],"align":["right"]},{"label":["FG"],"name":[32],"type":["dbl"],"align":["right"]},{"label":["FGA"],"name":[33],"type":["dbl"],"align":["right"]},{"label":["FG%"],"name":[34],"type":["dbl"],"align":["right"]},{"label":["3P"],"name":[35],"type":["dbl"],"align":["right"]},{"label":["3PA"],"name":[36],"type":["dbl"],"align":["right"]},{"label":["3P%"],"name":[37],"type":["dbl"],"align":["right"]},{"label":["2P"],"name":[38],"type":["dbl"],"align":["right"]},{"label":["2PA"],"name":[39],"type":["dbl"],"align":["right"]},{"label":["2P%"],"name":[40],"type":["dbl"],"align":["right"]},{"label":["eFG%"],"name":[41],"type":["dbl"],"align":["right"]},{"label":["FT"],"name":[42],"type":["dbl"],"align":["right"]},{"label":["FTA"],"name":[43],"type":["dbl"],"align":["right"]},{"label":["FT%"],"name":[44],"type":["dbl"],"align":["right"]},{"label":["ORB"],"name":[45],"type":["dbl"],"align":["right"]},{"label":["DRB"],"name":[46],"type":["dbl"],"align":["right"]},{"label":["TRB"],"name":[47],"type":["dbl"],"align":["right"]},{"label":["AST"],"name":[48],"type":["dbl"],"align":["right"]},{"label":["STL"],"name":[49],"type":["dbl"],"align":["right"]},{"label":["BLK"],"name":[50],"type":["dbl"],"align":["right"]},{"label":["TOV"],"name":[51],"type":["dbl"],"align":["right"]},{"label":["PF"],"name":[52],"type":["dbl"],"align":["right"]},{"label":["PTS"],"name":[53],"type":["dbl"],"align":["right"]}],"data":[{"1":"5727","2":"1980","3":"Kareem Abdul-Jabbar*","4":"C","5":"32","6":"LAL","7":"82","8":"NA","9":"3143","10":"25.3","11":"0.639","12":"0.001","13":"0.344","14":"7.2","15":"22.2","16":"15.4","17":"16.5","18":"1.2","19":"4.6","20":"15.7","21":"24.1","22":"NA","23":"9.5","24":"5.3","25":"14.8","26":"0.227","27":"NA","28":"4.0","29":"2.7","30":"6.7","31":"6.8","32":"835","33":"1383","34":"0.604","35":"0","36":"1","37":"0.000","38":"835","39":"1382","40":"0.604","41":"0.604","42":"364","43":"476","44":"0.765","45":"190","46":"696","47":"886","48":"371","49":"81","50":"280","51":"297","52":"216","53":"2034"},{"1":"5728","2":"1980","3":"Tom Abernethy","4":"PF","5":"25","6":"GSW","7":"67","8":"NA","9":"1222","10":"11.0","11":"0.511","12":"0.003","13":"0.258","14":"5.4","15":"12.0","16":"8.6","17":"9.3","18":"1.4","19":"0.6","20":"9.9","21":"13.3","22":"NA","23":"1.2","24":"0.8","25":"2.0","26":"0.080","27":"NA","28":"-1.5","29":"-0.1","30":"-1.6","31":"0.1","32":"153","33":"318","34":"0.481","35":"0","36":"1","37":"0.000","38":"153","39":"317","40":"0.483","41":"0.481","42":"56","43":"82","44":"0.683","45":"62","46":"129","47":"191","48":"87","49":"35","50":"12","51":"39","52":"118","53":"362"},{"1":"5729","2":"1980","3":"Alvan Adams","4":"C","5":"25","6":"PHO","7":"75","8":"NA","9":"2168","10":"19.2","11":"0.571","12":"0.002","13":"0.270","14":"8.2","15":"22.4","16":"15.4","17":"21.6","18":"2.3","19":"1.4","20":"18.2","21":"21.9","22":"NA","23":"3.1","24":"3.9","25":"7.0","26":"0.155","27":"NA","28":"1.6","29":"2.8","30":"4.4","31":"3.5","32":"465","33":"875","34":"0.531","35":"0","36":"2","37":"0.000","38":"465","39":"873","40":"0.533","41":"0.531","42":"188","43":"236","44":"0.797","45":"158","46":"451","47":"609","48":"322","49":"108","50":"55","51":"218","52":"237","53":"1118"},{"1":"5730","2":"1980","3":"Tiny Archibald*","4":"PG","5":"31","6":"BOS","7":"80","8":"80","9":"2864","10":"15.3","11":"0.574","12":"0.023","13":"0.548","14":"2.3","15":"5.3","16":"3.8","17":"30.2","18":"1.7","19":"0.2","20":"19.7","21":"17.0","22":"NA","23":"5.9","24":"2.9","25":"8.9","26":"0.148","27":"NA","28":"1.1","29":"-1.1","30":"0.0","31":"1.5","32":"383","33":"794","34":"0.482","35":"4","36":"18","37":"0.222","38":"379","39":"776","40":"0.488","41":"0.485","42":"361","43":"435","44":"0.830","45":"59","46":"138","47":"197","48":"671","49":"106","50":"10","51":"242","52":"218","53":"1131"},{"1":"5731","2":"1980","3":"Dennis Awtrey","4":"C","5":"31","6":"CHI","7":"26","8":"NA","9":"560","10":"7.4","11":"0.524","12":"0.000","13":"0.833","14":"6.0","15":"16.9","16":"11.5","17":"9.0","18":"1.0","19":"1.5","20":"24.8","21":"7.9","22":"NA","23":"0.1","24":"0.5","25":"0.6","26":"0.053","27":"NA","28":"-2.9","29":"1.5","30":"-1.4","31":"0.1","32":"27","33":"60","34":"0.450","35":"0","36":"0","37":"NA","38":"27","39":"60","40":"0.450","41":"0.450","42":"32","43":"50","44":"0.640","45":"29","46":"86","47":"115","48":"40","49":"12","50":"15","51":"27","52":"66","53":"86"},{"1":"5732","2":"1980","3":"Gus Bailey","4":"SG","5":"28","6":"WSB","7":"20","8":"NA","9":"180","10":"9.3","11":"0.467","12":"0.029","13":"0.371","14":"3.3","15":"12.4","16":"7.8","17":"17.8","18":"1.8","19":"1.2","20":"21.3","21":"11.3","22":"NA","23":"0.0","24":"0.2","25":"0.2","26":"0.043","27":"NA","28":"-3.7","29":"1.3","30":"-2.4","31":"0.0","32":"16","33":"35","34":"0.457","35":"1","36":"1","37":"1.000","38":"15","39":"34","40":"0.441","41":"0.471","42":"5","43":"13","44":"0.385","45":"6","46":"22","47":"28","48":"26","49":"7","50":"4","51":"11","52":"18","53":"38"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Boom- as we can see, no player seasons from before 1980 are shown. Every player with a 3 point attempt has a valid (non NA) 3P%, and their makes and misses are all recorded. Now we know we are working with all the potential pool of players that could have had a 50/40/90 season. Now, lets put in our criteria. We want to build a dataset that only includes players with FG% &gt;= .5, 3P% &gt;=.4, and FT% &gt;= .9. Here we go;</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>highFG <span class="ot">&lt;-</span> <span class="fu">subset</span>(stats_since_1980, FG<span class="sc">/</span>FGA <span class="sc">&gt;=</span> .<span class="dv">5</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>highFGandFT <span class="ot">&lt;-</span> <span class="fu">subset</span>(highFG, FT<span class="sc">/</span>FTA <span class="sc">&gt;=</span> .<span class="dv">9</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(highFGandFT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["...1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Player"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Pos"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Age"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Tm"],"name":[6],"type":["chr"],"align":["left"]},{"label":["G"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["GS"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["MP"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["PER"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["TS%"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["3PAr"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["FTr"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["ORB%"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["DRB%"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["TRB%"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["AST%"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["STL%"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["BLK%"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["TOV%"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["USG%"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["blanl"],"name":[22],"type":["lgl"],"align":["right"]},{"label":["OWS"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["DWS"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["WS"],"name":[25],"type":["dbl"],"align":["right"]},{"label":["WS/48"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["blank2"],"name":[27],"type":["lgl"],"align":["right"]},{"label":["OBPM"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["DBPM"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["BPM"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["VORP"],"name":[31],"type":["dbl"],"align":["right"]},{"label":["FG"],"name":[32],"type":["dbl"],"align":["right"]},{"label":["FGA"],"name":[33],"type":["dbl"],"align":["right"]},{"label":["FG%"],"name":[34],"type":["dbl"],"align":["right"]},{"label":["3P"],"name":[35],"type":["dbl"],"align":["right"]},{"label":["3PA"],"name":[36],"type":["dbl"],"align":["right"]},{"label":["3P%"],"name":[37],"type":["dbl"],"align":["right"]},{"label":["2P"],"name":[38],"type":["dbl"],"align":["right"]},{"label":["2PA"],"name":[39],"type":["dbl"],"align":["right"]},{"label":["2P%"],"name":[40],"type":["dbl"],"align":["right"]},{"label":["eFG%"],"name":[41],"type":["dbl"],"align":["right"]},{"label":["FT"],"name":[42],"type":["dbl"],"align":["right"]},{"label":["FTA"],"name":[43],"type":["dbl"],"align":["right"]},{"label":["FT%"],"name":[44],"type":["dbl"],"align":["right"]},{"label":["ORB"],"name":[45],"type":["dbl"],"align":["right"]},{"label":["DRB"],"name":[46],"type":["dbl"],"align":["right"]},{"label":["TRB"],"name":[47],"type":["dbl"],"align":["right"]},{"label":["AST"],"name":[48],"type":["dbl"],"align":["right"]},{"label":["STL"],"name":[49],"type":["dbl"],"align":["right"]},{"label":["BLK"],"name":[50],"type":["dbl"],"align":["right"]},{"label":["TOV"],"name":[51],"type":["dbl"],"align":["right"]},{"label":["PF"],"name":[52],"type":["dbl"],"align":["right"]},{"label":["PTS"],"name":[53],"type":["dbl"],"align":["right"]}],"data":[{"1":"5804","2":"1980","3":"Terry Crosby","4":"PG","5":"23","6":"KCK","7":"4","8":"NA","9":"28","10":"3.5","11":"0.615","12":"0.000","13":"0.500","14":"0.0","15":"4.0","16":"1.9","17":"30.0","18":"0.0","19":"0.0","20":"50.6","21":"14.1","22":"NA","23":"0.0","24":"0.0","25":"0.0","26":"-0.051","27":"NA","28":"-8.3","29":"-4.9","30":"-13.3","31":"-0.1","32":"2","33":"4","34":"0.500","35":"0","36":"0","37":"NA","38":"2","39":"4","40":"0.500","41":"0.500","42":"2","43":"2","44":"1.000","45":"0","46":"1","47":"1","48":"7","49":"0","50":"0","51":"5","52":"4","53":"6"},{"1":"6314","2":"1981","3":"Billy McKinney","4":"PG","5":"25","6":"UTA","7":"35","8":"NA","9":"1032","10":"11.0","11":"0.576","12":"0.009","13":"0.206","14":"1.3","15":"6.8","16":"4.1","17":"21.0","18":"1.8","19":"0.2","20":"21.6","21":"13.5","22":"NA","23":"0.8","24":"0.3","25":"1.1","26":"0.051","27":"NA","28":"-1.5","29":"-1.6","30":"-3.1","31":"-0.3","32":"124","33":"233","34":"0.532","35":"1","36":"2","37":"0.5","38":"123","39":"231","40":"0.532","41":"0.534","42":"44","43":"48","44":"0.917","45":"12","46":"62","47":"74","48":"157","49":"38","50":"4","51":"70","52":"107","53":"293"},{"1":"6426","2":"1981","3":"Rudy White","4":"SG","5":"27","6":"GSW","7":"4","8":"NA","9":"43","10":"13.3","11":"0.557","12":"0.000","13":"0.222","14":"0.0","15":"0.0","16":"0.0","17":"6.7","18":"4.4","19":"0.0","20":"13.2","21":"21.0","22":"NA","23":"0.1","24":"0.0","25":"0.1","26":"0.094","27":"NA","28":"-2.0","29":"-3.1","30":"-5.1","31":"0.0","32":"9","33":"18","34":"0.500","35":"0","36":"0","37":"NA","38":"9","39":"18","40":"0.500","41":"0.500","42":"4","43":"4","44":"1.000","45":"0","46":"0","47":"0","48":"2","49":"4","50":"0","51":"3","52":"7","53":"22"},{"1":"6835","2":"1983","3":"James Bailey","4":"PF","5":"25","6":"NJN","7":"6","8":"0","9":"50","10":"5.0","11":"0.530","12":"0.000","13":"0.111","14":"6.9","15":"6.7","16":"6.8","17":"5.6","18":"0.9","19":"1.2","20":"24.1","21":"19.6","22":"NA","23":"0.0","24":"0.1","25":"0.0","26":"0.018","27":"NA","28":"-4.9","29":"-1.4","30":"-6.3","31":"-0.1","32":"9","33":"18","34":"0.500","35":"0","36":"0","37":"NA","38":"9","39":"18","40":"0.500","41":"0.500","42":"2","43":"2","44":"1.000","45":"3","46":"3","47":"6","48":"2","49":"1","50":"1","51":"6","52":"15","53":"20"},{"1":"7442","2":"1984","3":"Roger Phegley","4":"SG","5":"27","6":"SAS","7":"3","8":"0","9":"11","10":"20.7","11":"0.717","12":"0.250","13":"0.500","14":"0.0","15":"19.0","16":"9.7","17":"22.8","18":"0.0","19":"0.0","20":"17.0","21":"20.7","22":"NA","23":"0.0","24":"0.0","25":"0.0","26":"0.212","27":"NA","28":"3.0","29":"-3.3","30":"-0.3","31":"0.0","32":"2","33":"4","34":"0.500","35":"1","36":"1","37":"1.0","38":"1","39":"3","40":"0.333","41":"0.625","42":"2","43":"2","44":"1.000","45":"0","46":"2","47":"2","48":"2","49":"0","50":"0","51":"1","52":"1","53":"7"},{"1":"7582","2":"1985","3":"Ron Brewer","4":"SG","5":"29","6":"TOT","7":"20","8":"0","9":"326","10":"13.3","11":"0.570","12":"0.017","13":"0.212","14":"3.0","15":"4.2","16":"3.6","17":"7.0","18":"0.9","19":"1.1","20":"6.5","21":"17.1","22":"NA","23":"0.6","24":"0.2","25":"0.8","26":"0.111","27":"NA","28":"-0.7","29":"-2.4","30":"-3.1","31":"-0.1","32":"62","33":"118","34":"0.525","35":"0","36":"2","37":"0.0","38":"62","39":"116","40":"0.534","41":"0.525","42":"23","43":"25","44":"0.920","45":"9","46":"12","47":"21","48":"17","49":"6","50":"6","51":"9","52":"23","53":"147"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>We now have everyone that has shot above 50 percent from the field AND 90 percent from the free throw line since 1980. We’re having a hard time manipulating the 3P and 3PA variables because of the number in their names, so we’ll go ahead and rename the columns.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(highFGandFT)[<span class="dv">35</span>] <span class="ot">=</span><span class="st">"threesMade"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(highFGandFT)[<span class="dv">36</span>] <span class="ot">=</span><span class="st">"threesAttempted"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(highFGandFT)[<span class="dv">37</span>] <span class="ot">=</span><span class="st">"threePointPercentage"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(highFGandFT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["...1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Player"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Pos"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Age"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Tm"],"name":[6],"type":["chr"],"align":["left"]},{"label":["G"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["GS"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["MP"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["PER"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["TS%"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["3PAr"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["FTr"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["ORB%"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["DRB%"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["TRB%"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["AST%"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["STL%"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["BLK%"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["TOV%"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["USG%"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["blanl"],"name":[22],"type":["lgl"],"align":["right"]},{"label":["OWS"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["DWS"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["WS"],"name":[25],"type":["dbl"],"align":["right"]},{"label":["WS/48"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["blank2"],"name":[27],"type":["lgl"],"align":["right"]},{"label":["OBPM"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["DBPM"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["BPM"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["VORP"],"name":[31],"type":["dbl"],"align":["right"]},{"label":["FG"],"name":[32],"type":["dbl"],"align":["right"]},{"label":["FGA"],"name":[33],"type":["dbl"],"align":["right"]},{"label":["FG%"],"name":[34],"type":["dbl"],"align":["right"]},{"label":["threesMade"],"name":[35],"type":["dbl"],"align":["right"]},{"label":["threesAttempted"],"name":[36],"type":["dbl"],"align":["right"]},{"label":["threePointPercentage"],"name":[37],"type":["dbl"],"align":["right"]},{"label":["2P"],"name":[38],"type":["dbl"],"align":["right"]},{"label":["2PA"],"name":[39],"type":["dbl"],"align":["right"]},{"label":["2P%"],"name":[40],"type":["dbl"],"align":["right"]},{"label":["eFG%"],"name":[41],"type":["dbl"],"align":["right"]},{"label":["FT"],"name":[42],"type":["dbl"],"align":["right"]},{"label":["FTA"],"name":[43],"type":["dbl"],"align":["right"]},{"label":["FT%"],"name":[44],"type":["dbl"],"align":["right"]},{"label":["ORB"],"name":[45],"type":["dbl"],"align":["right"]},{"label":["DRB"],"name":[46],"type":["dbl"],"align":["right"]},{"label":["TRB"],"name":[47],"type":["dbl"],"align":["right"]},{"label":["AST"],"name":[48],"type":["dbl"],"align":["right"]},{"label":["STL"],"name":[49],"type":["dbl"],"align":["right"]},{"label":["BLK"],"name":[50],"type":["dbl"],"align":["right"]},{"label":["TOV"],"name":[51],"type":["dbl"],"align":["right"]},{"label":["PF"],"name":[52],"type":["dbl"],"align":["right"]},{"label":["PTS"],"name":[53],"type":["dbl"],"align":["right"]}],"data":[{"1":"5804","2":"1980","3":"Terry Crosby","4":"PG","5":"23","6":"KCK","7":"4","8":"NA","9":"28","10":"3.5","11":"0.615","12":"0.000","13":"0.500","14":"0.0","15":"4.0","16":"1.9","17":"30.0","18":"0.0","19":"0.0","20":"50.6","21":"14.1","22":"NA","23":"0.0","24":"0.0","25":"0.0","26":"-0.051","27":"NA","28":"-8.3","29":"-4.9","30":"-13.3","31":"-0.1","32":"2","33":"4","34":"0.500","35":"0","36":"0","37":"NA","38":"2","39":"4","40":"0.500","41":"0.500","42":"2","43":"2","44":"1.000","45":"0","46":"1","47":"1","48":"7","49":"0","50":"0","51":"5","52":"4","53":"6"},{"1":"6314","2":"1981","3":"Billy McKinney","4":"PG","5":"25","6":"UTA","7":"35","8":"NA","9":"1032","10":"11.0","11":"0.576","12":"0.009","13":"0.206","14":"1.3","15":"6.8","16":"4.1","17":"21.0","18":"1.8","19":"0.2","20":"21.6","21":"13.5","22":"NA","23":"0.8","24":"0.3","25":"1.1","26":"0.051","27":"NA","28":"-1.5","29":"-1.6","30":"-3.1","31":"-0.3","32":"124","33":"233","34":"0.532","35":"1","36":"2","37":"0.5","38":"123","39":"231","40":"0.532","41":"0.534","42":"44","43":"48","44":"0.917","45":"12","46":"62","47":"74","48":"157","49":"38","50":"4","51":"70","52":"107","53":"293"},{"1":"6426","2":"1981","3":"Rudy White","4":"SG","5":"27","6":"GSW","7":"4","8":"NA","9":"43","10":"13.3","11":"0.557","12":"0.000","13":"0.222","14":"0.0","15":"0.0","16":"0.0","17":"6.7","18":"4.4","19":"0.0","20":"13.2","21":"21.0","22":"NA","23":"0.1","24":"0.0","25":"0.1","26":"0.094","27":"NA","28":"-2.0","29":"-3.1","30":"-5.1","31":"0.0","32":"9","33":"18","34":"0.500","35":"0","36":"0","37":"NA","38":"9","39":"18","40":"0.500","41":"0.500","42":"4","43":"4","44":"1.000","45":"0","46":"0","47":"0","48":"2","49":"4","50":"0","51":"3","52":"7","53":"22"},{"1":"6835","2":"1983","3":"James Bailey","4":"PF","5":"25","6":"NJN","7":"6","8":"0","9":"50","10":"5.0","11":"0.530","12":"0.000","13":"0.111","14":"6.9","15":"6.7","16":"6.8","17":"5.6","18":"0.9","19":"1.2","20":"24.1","21":"19.6","22":"NA","23":"0.0","24":"0.1","25":"0.0","26":"0.018","27":"NA","28":"-4.9","29":"-1.4","30":"-6.3","31":"-0.1","32":"9","33":"18","34":"0.500","35":"0","36":"0","37":"NA","38":"9","39":"18","40":"0.500","41":"0.500","42":"2","43":"2","44":"1.000","45":"3","46":"3","47":"6","48":"2","49":"1","50":"1","51":"6","52":"15","53":"20"},{"1":"7442","2":"1984","3":"Roger Phegley","4":"SG","5":"27","6":"SAS","7":"3","8":"0","9":"11","10":"20.7","11":"0.717","12":"0.250","13":"0.500","14":"0.0","15":"19.0","16":"9.7","17":"22.8","18":"0.0","19":"0.0","20":"17.0","21":"20.7","22":"NA","23":"0.0","24":"0.0","25":"0.0","26":"0.212","27":"NA","28":"3.0","29":"-3.3","30":"-0.3","31":"0.0","32":"2","33":"4","34":"0.500","35":"1","36":"1","37":"1.0","38":"1","39":"3","40":"0.333","41":"0.625","42":"2","43":"2","44":"1.000","45":"0","46":"2","47":"2","48":"2","49":"0","50":"0","51":"1","52":"1","53":"7"},{"1":"7582","2":"1985","3":"Ron Brewer","4":"SG","5":"29","6":"TOT","7":"20","8":"0","9":"326","10":"13.3","11":"0.570","12":"0.017","13":"0.212","14":"3.0","15":"4.2","16":"3.6","17":"7.0","18":"0.9","19":"1.1","20":"6.5","21":"17.1","22":"NA","23":"0.6","24":"0.2","25":"0.8","26":"0.111","27":"NA","28":"-0.7","29":"-2.4","30":"-3.1","31":"-0.1","32":"62","33":"118","34":"0.525","35":"0","36":"2","37":"0.0","38":"62","39":"116","40":"0.534","41":"0.525","42":"23","43":"25","44":"0.920","45":"9","46":"12","47":"21","48":"17","49":"6","50":"6","51":"9","52":"23","53":"147"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Now that we have column names we can work with, lets eliminate all players from this list who didn’t shoot above 40 percent from 3 that season- it should give us all our 50/40/90 players!</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fiftyFortyNineties <span class="ot">&lt;-</span> <span class="fu">subset</span>(highFGandFT, threePointPercentage <span class="sc">&gt;=</span> .<span class="dv">4</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fiftyFortyNineties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["...1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Player"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Pos"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Age"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Tm"],"name":[6],"type":["chr"],"align":["left"]},{"label":["G"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["GS"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["MP"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["PER"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["TS%"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["3PAr"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["FTr"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["ORB%"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["DRB%"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["TRB%"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["AST%"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["STL%"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["BLK%"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["TOV%"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["USG%"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["blanl"],"name":[22],"type":["lgl"],"align":["right"]},{"label":["OWS"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["DWS"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["WS"],"name":[25],"type":["dbl"],"align":["right"]},{"label":["WS/48"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["blank2"],"name":[27],"type":["lgl"],"align":["right"]},{"label":["OBPM"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["DBPM"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["BPM"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["VORP"],"name":[31],"type":["dbl"],"align":["right"]},{"label":["FG"],"name":[32],"type":["dbl"],"align":["right"]},{"label":["FGA"],"name":[33],"type":["dbl"],"align":["right"]},{"label":["FG%"],"name":[34],"type":["dbl"],"align":["right"]},{"label":["threesMade"],"name":[35],"type":["dbl"],"align":["right"]},{"label":["threesAttempted"],"name":[36],"type":["dbl"],"align":["right"]},{"label":["threePointPercentage"],"name":[37],"type":["dbl"],"align":["right"]},{"label":["2P"],"name":[38],"type":["dbl"],"align":["right"]},{"label":["2PA"],"name":[39],"type":["dbl"],"align":["right"]},{"label":["2P%"],"name":[40],"type":["dbl"],"align":["right"]},{"label":["eFG%"],"name":[41],"type":["dbl"],"align":["right"]},{"label":["FT"],"name":[42],"type":["dbl"],"align":["right"]},{"label":["FTA"],"name":[43],"type":["dbl"],"align":["right"]},{"label":["FT%"],"name":[44],"type":["dbl"],"align":["right"]},{"label":["ORB"],"name":[45],"type":["dbl"],"align":["right"]},{"label":["DRB"],"name":[46],"type":["dbl"],"align":["right"]},{"label":["TRB"],"name":[47],"type":["dbl"],"align":["right"]},{"label":["AST"],"name":[48],"type":["dbl"],"align":["right"]},{"label":["STL"],"name":[49],"type":["dbl"],"align":["right"]},{"label":["BLK"],"name":[50],"type":["dbl"],"align":["right"]},{"label":["TOV"],"name":[51],"type":["dbl"],"align":["right"]},{"label":["PF"],"name":[52],"type":["dbl"],"align":["right"]},{"label":["PTS"],"name":[53],"type":["dbl"],"align":["right"]}],"data":[{"1":"6314","2":"1981","3":"Billy McKinney","4":"PG","5":"25","6":"UTA","7":"35","8":"NA","9":"1032","10":"11.0","11":"0.576","12":"0.009","13":"0.206","14":"1.3","15":"6.8","16":"4.1","17":"21.0","18":"1.8","19":"0.2","20":"21.6","21":"13.5","22":"NA","23":"0.8","24":"0.3","25":"1.1","26":"0.051","27":"NA","28":"-1.5","29":"-1.6","30":"-3.1","31":"-0.3","32":"124","33":"233","34":"0.532","35":"1","36":"2","37":"0.500","38":"123","39":"231","40":"0.532","41":"0.534","42":"44","43":"48","44":"0.917","45":"12","46":"62","47":"74","48":"157","49":"38","50":"4","51":"70","52":"107","53":"293"},{"1":"7442","2":"1984","3":"Roger Phegley","4":"SG","5":"27","6":"SAS","7":"3","8":"0","9":"11","10":"20.7","11":"0.717","12":"0.250","13":"0.500","14":"0.0","15":"19.0","16":"9.7","17":"22.8","18":"0.0","19":"0.0","20":"17.0","21":"20.7","22":"NA","23":"0.0","24":"0.0","25":"0.0","26":"0.212","27":"NA","28":"3.0","29":"-3.3","30":"-0.3","31":"0.0","32":"2","33":"4","34":"0.500","35":"1","36":"1","37":"1.000","38":"1","39":"3","40":"0.333","41":"0.625","42":"2","43":"2","44":"1.000","45":"0","46":"2","47":"2","48":"2","49":"0","50":"0","51":"1","52":"1","53":"7"},{"1":"8325","2":"1987","3":"Larry Bird*","4":"SF","5":"30","6":"BOS","7":"74","8":"73","9":"3005","10":"26.4","11":"0.612","12":"0.150","13":"0.304","14":"5.1","15":"19.2","16":"12.8","17":"28.6","18":"2.2","19":"1.3","20":"12.4","21":"27.5","22":"NA","23":"10.4","24":"4.8","25":"15.2","26":"0.243","27":"NA","28":"7.1","29":"2.1","30":"9.2","31":"8.5","32":"786","33":"1497","34":"0.525","35":"90","36":"225","37":"0.400","38":"696","39":"1272","40":"0.547","41":"0.555","42":"414","43":"455","44":"0.910","45":"124","46":"558","47":"682","48":"566","49":"135","50":"70","51":"240","52":"185","53":"2076"},{"1":"8705","2":"1988","3":"Larry Bird*","4":"SF","5":"31","6":"BOS","7":"76","8":"75","9":"2965","10":"27.8","11":"0.608","12":"0.142","13":"0.271","14":"4.6","15":"22.3","16":"14.0","17":"25.7","18":"2.1","19":"1.1","20":"10.2","21":"30.2","22":"NA","23":"11.2","24":"3.8","25":"15.0","26":"0.243","27":"NA","28":"7.5","29":"1.3","30":"8.8","31":"8.1","32":"881","33":"1672","34":"0.527","35":"98","36":"237","37":"0.414","38":"783","39":"1435","40":"0.546","41":"0.556","42":"415","43":"453","44":"0.916","45":"108","46":"595","47":"703","48":"467","49":"125","50":"57","51":"213","52":"157","53":"2275"},{"1":"9407","2":"1989","3":"Mark Price","4":"PG","5":"24","6":"CLE","7":"75","8":"74","9":"2728","10":"20.6","11":"0.623","12":"0.210","13":"0.290","14":"2.1","15":"7.0","16":"4.7","17":"33.8","18":"2.1","19":"0.1","20":"15.7","21":"21.0","22":"NA","23":"8.0","24":"3.3","25":"11.3","26":"0.199","27":"NA","28":"4.6","29":"-1.1","30":"3.5","31":"3.8","32":"529","33":"1006","34":"0.526","35":"93","36":"211","37":"0.441","38":"436","39":"795","40":"0.548","41":"0.572","42":"263","43":"292","44":"0.901","45":"48","46":"178","47":"226","48":"631","49":"115","50":"7","51":"212","52":"98","53":"1414"},{"1":"10179","2":"1991","3":"Scott Hastings","4":"PF","5":"30","6":"DET","7":"27","8":"0","9":"113","10":"15.8","11":"0.712","12":"0.143","13":"0.464","14":"14.1","15":"14.2","16":"14.2","17":"9.3","18":"0.0","19":"0.0","20":"17.2","21":"15.8","22":"NA","23":"0.4","24":"0.1","25":"0.5","26":"0.216","27":"NA","28":"2.6","29":"-1.3","30":"1.3","31":"0.1","32":"16","33":"28","34":"0.571","35":"3","36":"4","37":"0.750","38":"13","39":"24","40":"0.542","41":"0.625","42":"13","43":"13","44":"1.000","45":"14","46":"14","47":"28","48":"7","49":"0","50":"0","51":"7","52":"23","53":"48"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>This should be it… or is it? I’m a huge basketball fan, and even I’ve never heard of this (checks tibble) ‘Roger Phelgley’ character. According to the web, only 9 NBA players have ever done it! So what gives! Well, there are stipulations to that- players must have played a certain number of games, and taken at least a minimum number of each kind of shot for their percentages to qualify. Roger Phegley attempted only 1 three pointer in that fateful 1984 season. He made it- does that mean he shot 100% from 3 that year? Technically, but it doesn’t make him an all time offensive player. So lets cut out those outlying seasons, and mandate that players shoot a certain number of each shot. Lets say they need to have attempted 500 field goals, 100 3 pointers, and 100 free throws. That’s reasonable, I’d say.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fiftyFortyNinetiesMinThrees <span class="ot">&lt;-</span> <span class="fu">subset</span>(fiftyFortyNineties, threesAttempted <span class="sc">&gt;=</span> <span class="dv">100</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fiftyFortyNinetiesMinThreesAndFG <span class="ot">&lt;-</span> <span class="fu">subset</span>(fiftyFortyNinetiesMinThrees, FGA <span class="sc">&gt;=</span> <span class="dv">500</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fiftyFortyNinetiesMinUsage <span class="ot">&lt;-</span> <span class="fu">subset</span>(fiftyFortyNinetiesMinThreesAndFG, FTA <span class="sc">&gt;=</span> <span class="dv">100</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(fiftyFortyNinetiesMinUsage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Holy smokes, is that Jose Calderon? JOSE CALDERON had a 50/40/90 season! You’ve gotta be kidding me! If there’s one thing the Europeans have going for them, its efficiency.</p>
+<p>Bt there you have it! It is extremely rare to have 1 50/40/90 season. Larry Bird did it twice, Steph Curry, KD, Steve Nash a bunch. All those guys are hoopers. No denying it. I think Malcolm Brogdon (shoutout the Celtics) had one recently but this data doesn’t go back to that far. Now lets visualize this data.</p>
+</section>
+<section id="visualizing-and-customizing-data" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-and-customizing-data">Visualizing and Customizing Data</h2>
+<p>Here, we show a scatterplot with all the players from our final dataset. On the x axis, we sort minutes played. On the y axis, we go up by the players total points that season. This way we can kind of compare the 50/40/90 seasons- who was vital to their teams performance, and scored most of the points? Which players played a ton of minutes but didn’t score as many points, alluding to the fact that they benefitted from being on a great team and getting a lot of open looks?</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fiftyFortyNinetiesMinUsage, <span class="fu">aes</span>(<span class="at">x =</span>MP, <span class="at">y=</span>PTS)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Player))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="FinalProject_HenryMitrano_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>THE TRUTH IS REVEALED. Despite having a 50/40/90 season by our criteria, Jose Calderon barely played 2300 minutes that season. He had less points than every other player by at least 200, and the closest to him is Steve Nash, a point guard who also averaged 10 assists a game that same season (MVP! MVP!). He has a fraudulent 50/40/90 season, and I will not be convinced of otherwise.</p>
+<p>Meanwhile, Steph Curry is just some kind of freak.That was his 2015-16 campaign, the legendary unanimous MVP season, and clearly he deserved that accolade. He had more points that season than any other player with a 50/40/90 season in history. He also did it playing hundreds of minutes LESS than Kevin Durant, Larry Bird, and Dirk, who all played more and scored less points. Absurd. He was on another level that year.</p>
+<p>Wow, that was a whirlwind. We’ve learned so much about the history of the game and some of its best offensive players in such a short time. And we learned that not all efficiency is considered equal- we would much prefer high volume efficiency over whatever that chump Jose Calderon is doing to inflate his percentages. Fraud!</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/601_Winter_2022-2023" data-repo-id="R_kgDOIpVkxw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Final Project"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Henry Mitrano"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Descriptive Statistics and Visualizing"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "02/3/2023"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - finalproject</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("dyplr")</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading in and Describing Data</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>If you know me, you know I'm an obsessive sports-watcher. Football, baseball, soccer, tennis, golf, anything. At the pro level, in college, overseas, little league, doesn't matter. If there's a game on, I'm watching it. But by far my favorite sport to watch, play, and discuss is basketball. It is a beautiful sport, highly accessible regardless of economic status or geography, endlessly entertaining to watch, and one of the places where data analytics has proven to be most useful in the world of sports. VORP, true shooting %, PER, net rating; all of these are highly detailed advanced metrics used to gauge the performance of different kinds of players. These insights are taken from massive amounts of data, over years of a players performance, and they can tell us valuable information that might not always jump off the screen when we're simply watching them play.</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>I downloaded a CSV file off the web with NBA player statistics from every year since 1950. For every player, there are dozens of stats kept for every season they've played. I'm gonna take a look at, and break down the rarity of one of my favorite statistical anomalies- the 50/40/90 season.</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>A 50/40/90 season is when a player, over the course of one regular season, averages 50% shooting from the floor (on all field goal attempts), 40% on 3 point shot attempts, and 90% from the free throw line. It is an extremely rare occurence- it has happened a handful of times in the NBA since statkeeping began, and only players with the purest and most complete offensive games have even come close to accomplishing it. So who has, and when?</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>Let's read in our data and work with it a bit. For starters, an important thing to note is that the 3 point shot wasn't introduced at the NBA level until 1979- so for players in seasons before then, their 3PM and 3P% stats are listed as NA. Lets change our set to only include player stats from seasons later than 1979.</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/Seasons_Stats.csv"</span>)</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>stats_since_1980 <span class="ot">&lt;-</span> <span class="fu">subset</span>(data, Year <span class="sc">&gt;</span> <span class="dv">1979</span>)</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stats_since_1980)</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>Boom- as we can see, no player seasons from before 1980 are shown. Every player with a 3 point attempt has a valid (non NA) 3P%, and their makes and misses are all recorded. Now we know we are working with all the potential pool of players that could have had a 50/40/90 season. Now, lets put in our criteria. We want to build a dataset that only includes players with FG% &gt;= .5, 3P% &gt;=.4, and FT% &gt;= .9. Here we go;</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>highFG <span class="ot">&lt;-</span> <span class="fu">subset</span>(stats_since_1980, FG<span class="sc">/</span>FGA <span class="sc">&gt;=</span> .<span class="dv">5</span>)</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>highFGandFT <span class="ot">&lt;-</span> <span class="fu">subset</span>(highFG, FT<span class="sc">/</span>FTA <span class="sc">&gt;=</span> .<span class="dv">9</span>)</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(highFGandFT)</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>We now have everyone that has shot above 50 percent from the field AND 90 percent from the free throw line since 1980. We're having a hard time manipulating the 3P and 3PA variables because of the number in their names, so we'll go ahead and rename the columns.</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(highFGandFT)[<span class="dv">35</span>] <span class="ot">=</span><span class="st">"threesMade"</span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(highFGandFT)[<span class="dv">36</span>] <span class="ot">=</span><span class="st">"threesAttempted"</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(highFGandFT)[<span class="dv">37</span>] <span class="ot">=</span><span class="st">"threePointPercentage"</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(highFGandFT)</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>Now that we have column names we can work with, lets eliminate all players from this list who didn't shoot above 40 percent from 3 that season- it should give us all our 50/40/90 players!</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>fiftyFortyNineties <span class="ot">&lt;-</span> <span class="fu">subset</span>(highFGandFT, threePointPercentage <span class="sc">&gt;=</span> .<span class="dv">4</span>)</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fiftyFortyNineties)</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>This should be it... or is it? I'm a huge basketball fan, and even I've never heard of this (checks tibble) 'Roger Phelgley' character. According to the web, only 9 NBA players have ever done it! So what gives! Well, there are stipulations to that- players must have played a certain number of games, and taken at least a minimum number of each kind of shot for their percentages to qualify. Roger Phegley attempted only 1 three pointer in that fateful 1984 season. He made it- does that mean he shot 100% from 3 that year? Technically, but it doesn't make him an all time offensive player. So lets cut out those outlying seasons, and mandate that players shoot a certain number of each shot. Lets say they need to have attempted 500 field goals, 100 3 pointers, and 100 free throws. That's reasonable, I'd say.</span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a>fiftyFortyNinetiesMinThrees <span class="ot">&lt;-</span> <span class="fu">subset</span>(fiftyFortyNineties, threesAttempted <span class="sc">&gt;=</span> <span class="dv">100</span>)</span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>fiftyFortyNinetiesMinThreesAndFG <span class="ot">&lt;-</span> <span class="fu">subset</span>(fiftyFortyNinetiesMinThrees, FGA <span class="sc">&gt;=</span> <span class="dv">500</span>)</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>fiftyFortyNinetiesMinUsage <span class="ot">&lt;-</span> <span class="fu">subset</span>(fiftyFortyNinetiesMinThreesAndFG, FTA <span class="sc">&gt;=</span> <span class="dv">100</span>)</span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(fiftyFortyNinetiesMinUsage)</span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>Holy smokes, is that Jose Calderon? JOSE CALDERON had a 50/40/90 season! You've gotta be kidding me! If there's one thing the Europeans have going for them, its efficiency.</span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>Bt there you have it! It is extremely rare to have 1 50/40/90 season. Larry Bird did it twice, Steph Curry, KD, Steve Nash a bunch. All those guys are hoopers. No denying it. I think Malcolm Brogdon (shoutout the Celtics) had one recently but this data doesn't go back to that far. Now lets visualize this data.</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualizing and Customizing Data</span></span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>Here, we show a scatterplot with all the players from our final dataset. On the x axis, we sort minutes played. On the y axis, we go up by the players total points that season. This way we can kind of compare the 50/40/90 seasons- who was vital to their teams performance, and scored most of the points? Which players played a ton of minutes but didn't score as many points, alluding to the fact that they benefitted from being on a great team and getting a lot of open looks?</span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fiftyFortyNinetiesMinUsage, <span class="fu">aes</span>(<span class="at">x =</span>MP, <span class="at">y=</span>PTS)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Player))</span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>THE TRUTH IS REVEALED. Despite having a 50/40/90 season by our criteria, Jose Calderon barely played 2300 minutes that season. He had less points than every other player by at least 200, and the closest to him is Steve Nash, a point guard who also averaged 10 assists a game that same season (MVP! MVP!). He has a fraudulent 50/40/90 season, and I will not be convinced of otherwise.</span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>Meanwhile, Steph Curry is just some kind of freak.That was his 2015-16 campaign, the legendary unanimous MVP season, and clearly he deserved that accolade. He had more points that season than any other player with a 50/40/90 season in history. He also did it playing hundreds of minutes LESS than Kevin Durant, Larry Bird, and Dirk, who all played more and scored less points. Absurd. He was on another level that year.</span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>Wow, that was a whirlwind. We've learned so much about the history of the game and some of its best offensive players in such a short time. And we learned that not all efficiency is considered equal- we would much prefer high volume efficiency over whatever that chump Jose Calderon is doing to inflate his percentages. Fraud!</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
